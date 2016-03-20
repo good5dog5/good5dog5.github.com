@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>解決urxvt 中文字方塊問題 | 一奔二飛</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用urxvt近一年，最近在用mutt收mail時突然發現部份中文字顯示為方塊，但在gnome-terminal中能正常顯示。
+
+“眾”在urxvt中顯示成方塊
+
+
+
+但在gnome-terminal中卻正常
+
+
+參考了網路上的資料，悟道洞穴人
+
+urxvt 和 xterm 都可以设置两种字体。不同的是二者在 .Xresources中的资源名是不同的。urxvt 通过 URxvt.font: xf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解決urxvt 中文字方塊問題">
+<meta property="og:url" content="good5dog5.github.io/2016/03/19/urxvt-chinese-word-birck/index.html">
+<meta property="og:site_name" content="一奔二飛">
+<meta property="og:description" content="使用urxvt近一年，最近在用mutt收mail時突然發現部份中文字顯示為方塊，但在gnome-terminal中能正常顯示。
+
+“眾”在urxvt中顯示成方塊
+
+
+
+但在gnome-terminal中卻正常
+
+
+參考了網路上的資料，悟道洞穴人
+
+urxvt 和 xterm 都可以设置两种字体。不同的是二者在 .Xresources中的资源名是不同的。urxvt 通过 URxvt.font: xf">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-19-urxvt-chinese-word-birck/urxvt.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-19-urxvt-chinese-word-birck/gnome-terminal.png">
+<meta property="og:updated_time" content="2016-03-20T03:56:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解決urxvt 中文字方塊問題">
+<meta name="twitter:description" content="使用urxvt近一年，最近在用mutt收mail時突然發現部份中文字顯示為方塊，但在gnome-terminal中能正常顯示。
+
+“眾”在urxvt中顯示成方塊
+
+
+
+但在gnome-terminal中卻正常
+
+
+參考了網路上的資料，悟道洞穴人
+
+urxvt 和 xterm 都可以设置两种字体。不同的是二者在 .Xresources中的资源名是不同的。urxvt 通过 URxvt.font: xf">
+<meta name="twitter:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-19-urxvt-chinese-word-birck/urxvt.png">
+  
+    <link rel="alternate" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一奔二飛</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="good5dog5.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-urxvt-chinese-word-birck" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/19/urxvt-chinese-word-birck/" class="article-date">
+  <time datetime="2016-03-18T16:00:00.000Z" itemprop="datePublished">2016-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      解決urxvt 中文字方塊問題
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用urxvt近一年，最近在用mutt收mail時突然發現部份中文字顯示為方塊，但在<code>gnome-terminal</code>中能正常顯示。</p>
+<ul>
+<li>“眾”在urxvt中顯示成方塊</li>
+</ul>
+<p><img src="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-19-urxvt-chinese-word-birck/urxvt.png" alt="urxvt中顯示錯誤"></p>
+<ul>
+<li>但在gnome-terminal中卻正常</li>
+</ul>
+<p><img src="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-19-urxvt-chinese-word-birck/gnome-terminal.png" alt="gnome-terminal顯示正常"></p>
+<p>參考了網路上的資料，<a href="http://yuex.in/post/2013/09/terminal-switching.html" target="_blank" rel="external">悟道洞穴人</a></p>
+<blockquote>
+<p>urxvt 和 xterm 都可以设置两种字体。不同的是二者在 .Xresources<br>中的资源名是不同的。urxvt 通过 URxvt.font: xft:<em>，xft:</em> 来指定，而 xterm<br>要分别使用 xterm.faceName 和 xterm.faceNameDoubleSize 来指定英文和中文字体。</p>
+</blockquote>
+<p>故把<code>~/.Xresources</code>的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">URxvt.font        : xft:Droid\ Sans\ Mono\ For\ Powerline:regular:size=13</span><br></pre></td></tr></table></figure>
+<p>改成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">URxvt.font        : xft:Droid\ Sans\ Mono\ For\ Powerline:regular:size=13 ,xft:WenQuanYi Micro Hei Mono:regular:size=13:minspace=true</span><br></pre></td></tr></table></figure>
+<p>ubuntu 可以透過執行 <code>sudo apt-get install ttf-wqy-microhei</code>,來安裝<br><code>WenQuanYi Micro Hei Mono</code>字體。 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="good5dog5.github.io/2016/03/19/urxvt-chinese-word-birck/" data-id="cim017n8f000ymt7prg4oizja" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fixed/">fixed</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/urxvt/">urxvt</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/14/hw_raytracing/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">嵌入式系統作業 - raytracing效能改進與分析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CLI/">CLI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Homework/">Homework</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/daily/">daily</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLI/">CLI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/config/">config</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/daily/">daily</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/embedded-system/">embedded system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fixed/">fixed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gdb/">gdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/job/">job</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/urxvt/">urxvt</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/CLI/" style="font-size: 10px;">CLI</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/config/" style="font-size: 10px;">config</a> <a href="/tags/daily/" style="font-size: 10px;">daily</a> <a href="/tags/embedded-system/" style="font-size: 20px;">embedded system</a> <a href="/tags/fixed/" style="font-size: 10px;">fixed</a> <a href="/tags/gdb/" style="font-size: 20px;">gdb</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/urxvt/" style="font-size: 10px;">urxvt</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/19/urxvt-chinese-word-birck/">解決urxvt 中文字方塊問題</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/14/hw_raytracing/">嵌入式系統作業 - raytracing效能改進與分析</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/08/phonebook/">嵌入式系統作業 - Phonebook效能改進與分析</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/07/offlineimap-config/">Mutt手把手：offlineimap設定</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/22/Began_working/">開始工作之後</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Jordan Huang<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

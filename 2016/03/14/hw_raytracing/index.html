@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>嵌入式系統作業 - raytracing效能改進與分析 | 一奔二飛</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="github repository  
+課程網頁
+
+作業(A)
+目標
+
+以 make PROFILE=1 重新編譯程式碼，並且學習 gprof  
+以 gprof 指出效能瓶頸，並且著手改寫檔案 math-toolkit.h 在內的函式實做，充分紀錄效能差異在共筆  
+注意: 請勿更動編譯器最佳化選項 -O0 (關閉最佳化)  
+檔案 math-toolkit.h 定義的若干數學操作函式很重要，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="嵌入式系統作業 - raytracing效能改進與分析">
+<meta property="og:url" content="good5dog5.github.io/2016/03/14/hw_raytracing/index.html">
+<meta property="og:site_name" content="一奔二飛">
+<meta property="og:description" content="github repository  
+課程網頁
+
+作業(A)
+目標
+
+以 make PROFILE=1 重新編譯程式碼，並且學習 gprof  
+以 gprof 指出效能瓶頸，並且著手改寫檔案 math-toolkit.h 在內的函式實做，充分紀錄效能差異在共筆  
+注意: 請勿更動編譯器最佳化選項 -O0 (關閉最佳化)  
+檔案 math-toolkit.h 定義的若干數學操作函式很重要，">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-14-hw_raytracing/flat-profile.png">
+<meta property="og:updated_time" content="2016-03-20T03:56:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="嵌入式系統作業 - raytracing效能改進與分析">
+<meta name="twitter:description" content="github repository  
+課程網頁
+
+作業(A)
+目標
+
+以 make PROFILE=1 重新編譯程式碼，並且學習 gprof  
+以 gprof 指出效能瓶頸，並且著手改寫檔案 math-toolkit.h 在內的函式實做，充分紀錄效能差異在共筆  
+注意: 請勿更動編譯器最佳化選項 -O0 (關閉最佳化)  
+檔案 math-toolkit.h 定義的若干數學操作函式很重要，">
+<meta name="twitter:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-14-hw_raytracing/flat-profile.png">
+  
+    <link rel="alternate" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一奔二飛</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="good5dog5.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-hw_raytracing" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/14/hw_raytracing/" class="article-date">
+  <time datetime="2016-03-13T16:00:00.000Z" itemprop="datePublished">2016-03-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Homework/">Homework</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      嵌入式系統作業 - raytracing效能改進與分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="https://github.com/good5dog5/raytracing" target="_blank" rel="external">github repository</a>  </li>
+<li><a href="http://wiki.csie.ncku.edu.tw/embedded/2016q1h2" target="_blank" rel="external">課程網頁</a></li>
+</ul>
+<h2 id="作業-A"><a href="#作業-A" class="headerlink" title="作業(A)"></a>作業(A)</h2><hr>
+<h3 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h3><blockquote>
+<ul>
+<li>以 <code>make PROFILE=1</code> 重新編譯程式碼，並且學習 <a href="https://sourceware.org/binutils/docs/gprof/" target="_blank" rel="external">gprof</a>  </li>
+<li>以 <code>gprof</code> 指出效能瓶頸，並且著手改寫檔案 <code>math-toolkit.h</code> 在內的函式實做，充分紀錄效能差異在共筆  </li>
+<li>注意: 請勿更動編譯器最佳化選項 <code>-O0</code> (關閉最佳化)  </li>
+<li>檔案 math-toolkit.h 定義的若干數學操作函式很重要，可參考 <a href="http://tomjbward.co.uk/simd-optimized-dot-and-cross/" target="_blank" rel="external">SIMD optimized dot and cross product functions</a> 和 <a href="http://wiki.csie.ncku.edu.tw/embedded/2015q3h1ext" target="_blank" rel="external">2015q3 Homework #1 Ext</a><br>將你的觀察、分析，以及各式效能改善過程，並善用 <code>gnuplot</code> 製圖。</li>
+</ul>
+</blockquote>
+<h3 id="gprof-Gun-Profiler"><a href="#gprof-Gun-Profiler" class="headerlink" title="gprof - Gun Profiler"></a>gprof - Gun Profiler</h3><hr>
+<p>Profiling能讓程式撰寫者了解程式花在各function的時間和function間的呼叫關係，並能有效找出與預期有落差的funciton，<br>改善整體效能。</p>
+<p>gprof需要在compile時加入 <code>-pg</code> flag，如此會告知 <code>gcc</code> 在compile時為每個function加入名為mcount ( or  “_mcount”  , or  “__mcount” , depend on compiler and OS.)的函数<br>則每個funciton執行時都會call mcount，而mcount會存有一份calling graph，裡頭紀錄了child function和parent funciton的關係，呼叫時間以及呼叫次數等資訊。</p>
+<p>利用<code>make PROFILE=1</code>編譯時：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ifeq ($(strip $(PROFILE)),1)</span><br><span class="line">PROF_FLAGS = -pg</span><br><span class="line">CFLAGS += $(PROF_FLAGS)</span><br><span class="line">LDFLAGS += $(PROF_FLAGS) </span><br><span class="line">endif</span><br></pre></td></tr></table></figure>
+<p><code>$(strip $(PROFILE)), 1)</code>，strip去掉$PROFILE的開頭結尾空字符<br>比較$PROFILE==1?，成立時則將<code>CFLAGS</code>和 <code>LDFLAGS</code> 加入 <code>-pg</code>字串<br>因為在runtime會多執行mcount，故執行時間會比沒有加<code>-pg</code>flag的慢許多。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make PROFILE=1</span><br></pre></td></tr></table></figure>
+<p>執行 ./raytracing，得到gmon.out(只能用gprof來讀取)，並把data<br>redirect到<code>analysis.txt</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gprof raytracing gmon.out &gt; analysis.txt</span><br></pre></td></tr></table></figure>
+<h3 id="利用-Graphviz-產生函數呼叫關係圖"><a href="#利用-Graphviz-產生函數呼叫關係圖" class="headerlink" title="利用 Graphviz 產生函數呼叫關係圖"></a>利用 <a href="http://www.graphviz.org/" target="_blank" rel="external">Graphviz</a> 產生函數呼叫關係圖</h3><blockquote>
+<p>Graphviz is open source graph visualization software. Graph visualization is a<br>way of representing structural information as diagrams of abstract graphs and<br>networks. It has important applications in networking, bioinformatics,  software<br>engineering, database and web design, machine learning, and in visual interfaces<br>for other technical domains. </p>
+</blockquote>
+<ol>
+<li>利用<a href="https://github.com/jrfonseca/gprof2dot" target="_blank" rel="external">gprof2dot</a>，將<code>gmon.out</code>轉成<code>graphviz</code><br>所用的<code>dot language</code></li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安裝</span></span><br><span class="line">pip install gprof2dot</span><br></pre></td></tr></table></figure>
+<p><code>analysis.txt</code> 中分為幾個部份</p>
+<ol>
+<li><a href="https://sourceware.org/binutils/docs/gprof/Flat-Profile.html" target="_blank" rel="external">Flat Profile</a><br><strong>The flat profile shows the total amount of time your program spent executing each function.</strong></li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-14-hw_raytracing/flat-profile.png" alt="raytracing的gprfo圖"><br>各column分別代表</p>
+<ul>
+<li><code>time</code><br>  function執行時間的百分比，加總起來應為100%。</li>
+<li><code>cumulative seconds</code><br>  此function的執行時間(second)，加上此funciton之前functions執行時間的總和。</li>
+<li><code>self seconds</code><br>  此function獨自執行的時間，flat profile以此column為第一順位排序。</li>
+<li><code>calls</code><br>  此function被called的次數，如果被called的次數沒辦法被統計或<br>  This is the total number of times the function was called. If the function was never called, or the number of times it was called cannot be determined (probably because the function was not compiled with profiling enabled), the calls field is blank.</li>
+<li><code>self ms/call</code><br>  代表 <strong>average number of milliseconds spent in this function per call</strong>， 若沒被profiled則為空。</li>
+<li><code>total ms/call</code><br>  This represents the average number of milliseconds spent in this function and its descendants per call, if this function is profiled. Otherwise, this field is blank for this function. This is the only field in the flat profile that uses call graph analysis.</li>
+<li><code>name</code><br>  funtion name.</li>
+</ul>
+<p>由flat profile中可發現，主要的效能瓶頸在  </p>
+<table>
+<thead>
+<tr>
+<th>function name</th>
+<th style="text-align:center">calls</th>
+<th style="text-align:right">second</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dot_product</td>
+<td style="text-align:center">69646433</td>
+<td style="text-align:right">1.19</td>
+</tr>
+<tr>
+<td>subtract_vector</td>
+<td style="text-align:center">56956357</td>
+<td style="text-align:right">0.58</td>
+</tr>
+<tr>
+<td>multiply_vector</td>
+<td style="text-align:center">31410180</td>
+<td style="text-align:right">0.34</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="good5dog5.github.io/2016/03/14/hw_raytracing/" data-id="cim017n8a000smt7pptse1ijq" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/embedded-system/">embedded system</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gdb/">gdb</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/19/urxvt-chinese-word-birck/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          解決urxvt 中文字方塊問題
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/08/phonebook/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">嵌入式系統作業 - Phonebook效能改進與分析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CLI/">CLI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Homework/">Homework</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/daily/">daily</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLI/">CLI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/config/">config</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/daily/">daily</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/embedded-system/">embedded system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fixed/">fixed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gdb/">gdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/job/">job</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/urxvt/">urxvt</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/CLI/" style="font-size: 10px;">CLI</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/config/" style="font-size: 10px;">config</a> <a href="/tags/daily/" style="font-size: 10px;">daily</a> <a href="/tags/embedded-system/" style="font-size: 20px;">embedded system</a> <a href="/tags/fixed/" style="font-size: 10px;">fixed</a> <a href="/tags/gdb/" style="font-size: 20px;">gdb</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/urxvt/" style="font-size: 10px;">urxvt</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/19/urxvt-chinese-word-birck/">解決urxvt 中文字方塊問題</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/14/hw_raytracing/">嵌入式系統作業 - raytracing效能改進與分析</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/08/phonebook/">嵌入式系統作業 - Phonebook效能改進與分析</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/07/offlineimap-config/">Mutt手把手：offlineimap設定</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/22/Began_working/">開始工作之後</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Jordan Huang<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
