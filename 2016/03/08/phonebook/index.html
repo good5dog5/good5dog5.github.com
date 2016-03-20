@@ -29,7 +29,7 @@ phonebook_orig.[ch] 不需要修改，我們關注的是 pho">
 phonebook_orig.[ch] 不需要修改，我們關注的是 pho">
 <meta property="og:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-08-phonebook/comment_out_members.png">
 <meta property="og:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-08-phonebook/hash_vi.png">
-<meta property="og:updated_time" content="2016-03-20T05:07:39.000Z">
+<meta property="og:updated_time" content="2016-03-20T05:23:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="嵌入式系統作業 - Phonebook效能改進與分析">
 <meta name="twitter:description" content="github repository  
@@ -129,6 +129,7 @@ phonebook_orig.[ch] 不需要修改，我們關注的是 pho">
 <li>main.c 應該只有一份，不要建立新的 <code>main()</code>，善用 Makefile 定義對應的 CFLAGS</li>
 </ul>
 </blockquote>
+<a id="more"></a>
 <p>先來看看 <code>phonebook_orig.h</code> 內的entry struct  </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> __PHONE_BOOK_ENTRY &#123;</span><br><span class="line">    <span class="keyword">char</span> lastName[MAX_LAST_NAME_SIZE];</span><br><span class="line">    <span class="keyword">char</span> firstName[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">char</span> email[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">char</span> phone[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> cell[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> addr1[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">char</span> addr2[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">char</span> city[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">char</span> state[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">char</span> zip[<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">struct</span> __PHONE_BOOK_ENTRY *pNext;</span><br><span class="line">&#125; entry;</span><br></pre></td></tr></table></figure>
 <ul>

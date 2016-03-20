@@ -14,13 +14,12 @@
     <meta name="description" content="github repository  
 課程網頁
 
-作業(A)
-目標
+作業(A)目標
 
 以 make PROFILE=1 重新編譯程式碼，並且學習 gprof  
 以 gprof 指出效能瓶頸，並且著手改寫檔案 math-toolkit.h 在內的函式實做，充分紀錄效能差異在共筆  
 注意: 請勿更動編譯器最佳化選項 -O0 (關閉最佳化)  
-檔案 math-toolkit.h 定義的若干數學操作函式很重要，">
+檔案 math-toolkit.h 定義的若干數學操作函式很重要，可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="嵌入式系統作業 - raytracing效能改進與分析">
 <meta property="og:url" content="good5dog5.github.io/2016/03/14/hw_raytracing/index.html">
@@ -28,27 +27,25 @@
 <meta property="og:description" content="github repository  
 課程網頁
 
-作業(A)
-目標
+作業(A)目標
 
 以 make PROFILE=1 重新編譯程式碼，並且學習 gprof  
 以 gprof 指出效能瓶頸，並且著手改寫檔案 math-toolkit.h 在內的函式實做，充分紀錄效能差異在共筆  
 注意: 請勿更動編譯器最佳化選項 -O0 (關閉最佳化)  
-檔案 math-toolkit.h 定義的若干數學操作函式很重要，">
+檔案 math-toolkit.h 定義的若干數學操作函式很重要，可">
 <meta property="og:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-14-hw_raytracing/flat-profile.png">
-<meta property="og:updated_time" content="2016-03-20T03:56:18.000Z">
+<meta property="og:updated_time" content="2016-03-20T05:22:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="嵌入式系統作業 - raytracing效能改進與分析">
 <meta name="twitter:description" content="github repository  
 課程網頁
 
-作業(A)
-目標
+作業(A)目標
 
 以 make PROFILE=1 重新編譯程式碼，並且學習 gprof  
 以 gprof 指出效能瓶頸，並且著手改寫檔案 math-toolkit.h 在內的函式實做，充分紀錄效能差異在共筆  
 注意: 請勿更動編譯器最佳化選項 -O0 (關閉最佳化)  
-檔案 math-toolkit.h 定義的若干數學操作函式很重要，">
+檔案 math-toolkit.h 定義的若干數學操作函式很重要，可">
 <meta name="twitter:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-14-hw_raytracing/flat-profile.png">
 
     
@@ -133,8 +130,7 @@
 <li><a href="https://github.com/good5dog5/raytracing" target="_blank" rel="external">github repository</a>  </li>
 <li><a href="http://wiki.csie.ncku.edu.tw/embedded/2016q1h2" target="_blank" rel="external">課程網頁</a></li>
 </ul>
-<h2 id="作業-A"><a href="#作業-A" class="headerlink" title="作業(A)"></a>作業(A)</h2><hr>
-<h3 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h3><blockquote>
+<h2 id="作業-A"><a href="#作業-A" class="headerlink" title="作業(A)"></a>作業(A)</h2><h3 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h3><blockquote>
 <ul>
 <li>以 <code>make PROFILE=1</code> 重新編譯程式碼，並且學習 <a href="https://sourceware.org/binutils/docs/gprof/" target="_blank" rel="external">gprof</a>  </li>
 <li>以 <code>gprof</code> 指出效能瓶頸，並且著手改寫檔案 <code>math-toolkit.h</code> 在內的函式實做，充分紀錄效能差異在共筆  </li>
@@ -142,6 +138,7 @@
 <li>檔案 math-toolkit.h 定義的若干數學操作函式很重要，可參考 <a href="http://tomjbward.co.uk/simd-optimized-dot-and-cross/" target="_blank" rel="external">SIMD optimized dot and cross product functions</a> 和 <a href="http://wiki.csie.ncku.edu.tw/embedded/2015q3h1ext" target="_blank" rel="external">2015q3 Homework #1 Ext</a><br>將你的觀察、分析，以及各式效能改善過程，並善用 <code>gnuplot</code> 製圖。</li>
 </ul>
 </blockquote>
+<a id="more"></a>
 <h3 id="gprof-Gun-Profiler"><a href="#gprof-Gun-Profiler" class="headerlink" title="gprof - Gun Profiler"></a>gprof - Gun Profiler</h3><hr>
 <p>Profiling能讓程式撰寫者了解程式花在各function的時間和function間的呼叫關係，並能有效找出與預期有落差的funciton，<br>改善整體效能。</p>
 <p>gprof需要在compile時加入 <code>-pg</code> flag，如此會告知 <code>gcc</code> 在compile時為每個function加入名為mcount ( or  “_mcount”  , or  “__mcount” , depend on compiler and OS.)的函数<br>則每個funciton執行時都會call mcount，而mcount會存有一份calling graph，裡頭紀錄了child function和parent funciton的關係，呼叫時間以及呼叫次數等資訊。</p>
