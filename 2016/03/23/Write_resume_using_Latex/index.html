@@ -4,26 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>解決urxvt 中文字方塊問題 | 一奔二飛</title>
+    <title>用Latex寫個人履歷 - 以Awesome-cv作為template | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
     
 
     
-    <meta name="description" content="使用urxvt近一年，最近在用mutt收mail時突然發現部份中文字顯示為方塊，但在gnome-terminal中能正常顯示。">
+    <meta name="description" content="2016研究所上榜後，想在暑期找個軟體實習工作，在104投了幾家都沒有回覆，在看看104制式履歷真的蠻鳥的，洋洋灑灑兩大頁資訊卻雜亂沒有重點，於是興起用Latex寫履歷的念頭。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解決urxvt 中文字方塊問題">
-<meta property="og:url" content="good5dog5.github.io/2016/03/19/urxvt-chinese-word-birck/index.html">
+<meta property="og:title" content="用Latex寫個人履歷 - 以Awesome-cv作為template">
+<meta property="og:url" content="good5dog5.github.io/2016/03/23/Write_resume_using_Latex/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="使用urxvt近一年，最近在用mutt收mail時突然發現部份中文字顯示為方塊，但在gnome-terminal中能正常顯示。">
-<meta property="og:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-19-urxvt-chinese-word-birck/urxvt.png">
-<meta property="og:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-19-urxvt-chinese-word-birck/gnome-terminal.png">
-<meta property="og:updated_time" content="2016-03-20T05:24:15.000Z">
+<meta property="og:description" content="2016研究所上榜後，想在暑期找個軟體實習工作，在104投了幾家都沒有回覆，在看看104制式履歷真的蠻鳥的，洋洋灑灑兩大頁資訊卻雜亂沒有重點，於是興起用Latex寫履歷的念頭。">
+<meta property="og:image" content="https://i.imgur.com/JI4Uh5M.png">
+<meta property="og:image" content="https://i.imgur.com/v5RJK1n.png">
+<meta property="og:updated_time" content="2016-03-25T05:06:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解決urxvt 中文字方塊問題">
-<meta name="twitter:description" content="使用urxvt近一年，最近在用mutt收mail時突然發現部份中文字顯示為方塊，但在gnome-terminal中能正常顯示。">
-<meta name="twitter:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-19-urxvt-chinese-word-birck/urxvt.png">
+<meta name="twitter:title" content="用Latex寫個人履歷 - 以Awesome-cv作為template">
+<meta name="twitter:description" content="2016研究所上榜後，想在暑期找個軟體實習工作，在104投了幾家都沒有回覆，在看看104制式履歷真的蠻鳥的，洋洋灑灑兩大頁資訊卻雜亂沒有重點，於是興起用Latex寫履歷的念頭。">
+<meta name="twitter:image" content="https://i.imgur.com/JI4Uh5M.png">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -83,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/19/urxvt-chinese-word-birck/" title="解決urxvt 中文字方塊問題" itemprop="url">解決urxvt 中文字方塊問題</a>
+      <a href="/2016/03/23/Write_resume_using_Latex/" title="用Latex寫個人履歷 - 以Awesome-cv作為template" itemprop="url">用Latex寫個人履歷 - 以Awesome-cv作為template</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-18T16:00:00.000Z" itemprop="datePublished"> Published 2016-03-19</time>
+    <time datetime="2016-03-22T16:00:00.000Z" itemprop="datePublished"> Published 2016-03-23</time>
     
   </p>
 </header>
@@ -99,29 +99,38 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝"><span class="toc-number">1.</span> <span class="toc-text">安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Awesome-cv"><span class="toc-number">2.</span> <span class="toc-text">使用Awesome-cv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#檔案結構"><span class="toc-number">3.</span> <span class="toc-text">檔案結構</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#中文化"><span class="toc-number">3.1.</span> <span class="toc-text">中文化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vspace和-vskip的差別"><span class="toc-number">3.2.</span> <span class="toc-text">\vspace和\vskip的差別</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
 		
 		</div>
 		
-		<p>使用urxvt近一年，最近在用mutt收mail時突然發現部份中文字顯示為方塊，但在<code>gnome-terminal</code>中能正常顯示。</p>
+		<p>2016研究所上榜後，想在暑期找個軟體實習工作，在<a href="http://www.104.com.tw/" target="_blank" rel="external">104</a>投了幾家都沒有回覆，<br>在看看104制式履歷真的蠻鳥的，洋洋灑灑兩大頁資訊卻雜亂沒有重點，於是興起用<a href="https://www.wikiwand.com/zh-tw/LaTeX" target="_blank" rel="external">Latex</a>寫履歷的念頭。</p>
 <a id="more"></a>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#完整安裝 latex live,需要4GB的空間</span></span><br><span class="line">sudo apt-get install texlive-full</span><br></pre></td></tr></table></figure>
+<h2 id="使用Awesome-cv"><a href="#使用Awesome-cv" class="headerlink" title="使用Awesome-cv"></a>使用Awesome-cv</h2><p>由於時間緊迫，沒有太多時間從頭開始刻一個自己的template，經過一番搜索後在github上找到一個叫<a href="https://github.com/posquit0/Awesome-CV" target="_blank" rel="external">Awesome-CV</a>的repo，<br>是一個架構完整的resume template，把相關資料填進去後用能得到一份精美，條列清晰且言簡意賅的resume。</p>
+<p><img src="https://i.imgur.com/JI4Uh5M.png" alt="resume example"></p>
+<h2 id="檔案結構"><a href="#檔案結構" class="headerlink" title="檔案結構"></a>檔案結構</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── awesome-cv.cls</span><br><span class="line">├── examples</span><br><span class="line">├── fontawesome.sty</span><br><span class="line">├── fonts</span><br><span class="line">├── Makefile</span><br><span class="line">└── README.md</span><br></pre></td></tr></table></figure>
 <ul>
-<li>“眾”在urxvt中顯示成方塊</li>
+<li><p><code>awesome-cv.cls</code><br> awesome-cv的class file，可以在其他latex file中引用，例如在 <code>./example/resume.tex</code>中：</p>
+ <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[11pt, a4paper]</span><span class="string">&#123;awesome-cv&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p> 每個<code>class file</code>中都會以以下兩行指令做開頭</p>
+ <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">NeedsTeXFormat</span><span class="string">&#123;LaTeX2e&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">ProvidesClass</span><span class="string">&#123;my_cv&#125;</span><span class="string">[2011/03/26 My custom CV class]</span></span></span><br></pre></td></tr></table></figure>
+<p> <code>\NeedsTeXFormat</code>告訴Compiler此class是用哪一版</p>
+</li>
 </ul>
-<p><img src="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-19-urxvt-chinese-word-birck/urxvt.png" alt="urxvt中顯示錯誤"></p>
-<ul>
-<li>但在gnome-terminal中卻正常</li>
-</ul>
-<p><img src="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-19-urxvt-chinese-word-birck/gnome-terminal.png" alt="gnome-terminal顯示正常"></p>
-<p>參考了網路上的資料，<a href="http://yuex.in/post/2013/09/terminal-switching.html" target="_blank" rel="external">悟道洞穴人</a></p>
-<blockquote>
-<p>urxvt 和 xterm 都可以设置两种字体。不同的是二者在 .Xresources<br>中的资源名是不同的。urxvt 通过 URxvt.font: xft:<em>，xft:</em> 来指定，而 xterm<br>要分别使用 xterm.faceName 和 xterm.faceNameDoubleSize 来指定英文和中文字体。</p>
-</blockquote>
-<p>故把<code>~/.Xresources</code>的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">URxvt.font        : xft:Droid\ Sans\ Mono\ For\ Powerline:regular:size=13</span><br></pre></td></tr></table></figure>
-<p>改成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">URxvt.font        : xft:Droid\ Sans\ Mono\ For\ Powerline:regular:size=13 ,xft:WenQuanYi Micro Hei Mono:regular:size=13:minspace=true</span><br></pre></td></tr></table></figure>
-<p>ubuntu 可以透過執行 <code>sudo apt-get install ttf-wqy-microhei</code>,來安裝<br><code>WenQuanYi Micro Hei Mono</code>字體。 </p>
+<h3 id="中文化"><a href="#中文化" class="headerlink" title="中文化"></a>中文化</h3><p>Awesome-cv預設的語言是英文，若填入中文的資料會產生亂碼或直接空白，後來得知可使用<a href="http://cjk.ffii.org/" target="_blank" rel="external">CJK</a>(Chinese/Japanese/Korean) package<br>可以解決中文字型的問題。</p>
+<p>範例(<a href="http://www.hitripod.com/blog/2011/04/xetex-chinese-font-cjk-latex/" target="_blank" rel="external">參考</a>)：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[12pt]</span><span class="string">&#123;article&#125;</span></span></span><br><span class="line"><span class="comment">% 1. Dec. 2009更新：使用[encapsulate]才是正確的用法</span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">[encapsulated]</span><span class="string">&#123;CJK&#125;</span></span> </span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 開始 CJK 環境，設定編碼，設定字體</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;CJK&#125;</span><span class="string">&#123;UTF8&#125;</span><span class="string">&#123;bsmi&#125;</span></span> </span><br><span class="line">正體中文測試。This is a test.</span><br><span class="line"> <span class="comment">% 結束 CJK 環境</span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;CJK&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>或者<br>在<code>\begin{document}</code>下面添加<code>\begin{CJK*}{UTF8}{bsmi}</code>，在<code>\end{document}</code>上面添加<code>\end{CJK*}</code>.</p>
+<p>把以上檔案存成<code>chinese.tex</code>,用<code>xelatex chinese.tx</code>，一切順利的話會得到<code>chinese.pdf</code></p>
+<p><img src="https://i.imgur.com/v5RJK1n.png" alt="chinese.pdf"></p>
+<p>但當要使用CJK不支援的中文字型時問題就會比較複雜，最佳的解決方法為<code>xeTex</code>。<br><code>xetex</code>可以轉換系統所有的<code>.ttf</code>檔，並利用fontconfig才取用系統字型，故不用為寫tex<br>file額外裝其他字型檔。</p>
+<p>##常用命令</p>
+<h3 id="vspace和-vskip的差別"><a href="#vspace和-vskip的差別" class="headerlink" title="\vspace和\vskip的差別"></a>\vspace和\vskip的差別</h3><p>\vspace和\vskip皆能夠產生垂直距離，但</p>
+<ol>
+<li>\vspace是latex命令，\vskip是tex命令</li>
+<li>使用方法<br> \vspace{1cm}<br> \vskip 1cm<br><a href="http://geowu.blogspot.tw/2012/09/vspacevskip.html" target="_blank" rel="external">參考</a></li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://www.sharelatex.com/blog/2011/03/27/how-to-write-a-latex-class-file-and-design-your-own-cv.html" target="_blank" rel="external">How to write a LaTeX class file and design your own CV</a><br><a href="http://www.hitripod.com/blog/2011/04/cjk-template-compile-using-xetex/" target="_blank" rel="external">將使用 CJK 的範本無痛轉移到 XeTeX</a><br><a href="http://www.hitripod.com/blog/2011/04/xetex-chinese-font-cjk-latex/" target="_blank" rel="external">XeTeX：解決 LaTeX 惱人的中文字型問題</a><br><a href="http://electronic-blue.wikidot.com/doc:xetex" target="_blank" rel="external">XeTeX 快速上手 </a><br><a href="https://www.ptt.cc/bbs/LaTeX/M.1352185883.A.6C5.html" target="_blank" rel="external">[心得] newcommand renewcommand providecommand</a><br><a href="http://tex.stackexchange.com/questions/257128/how-does-the-newcolumntype-command-work" target="_blank" rel="external">How does the \newcolumntype command work?</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -129,13 +138,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  <a class="article-category-link" href="/categories/Job/">Job</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/urxvt/">urxvt</a><a href="/tags/fixed/">fixed</a>
+  <span></span> <a href="/tags/Latex/">Latex</a><a href="/tags/Resume/">Resume</a><a href="/tags/Job/">Job</a>
   </div>
 
 </div>
@@ -144,7 +153,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="good5dog5.github.io/2016/03/19/urxvt-chinese-word-birck/" data-title="解決urxvt 中文字方塊問題 | 一奔二飛" data-tsina="null" class="share clearfix">
+	  <div data-url="good5dog5.github.io/2016/03/23/Write_resume_using_Latex/" data-title="用Latex寫個人履歷 - 以Awesome-cv作為template | 一奔二飛" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -158,18 +167,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/03/21/hw-unit-test/" title="嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試">
+ <a href="/2016/03/24/vim-note/" title="vim使用筆記">
   <strong>上一篇：</strong><br/>
   <span>
-  嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試</span>
+  vim使用筆記</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/03/14/hw_raytracing/"  title="2016嵌入式系統作業w2 - raytracing效能改進與分析">
+<a href="/2016/03/22/embedded_system-note/"  title="2016W5嵌入式系統實作-課程筆記">
  <strong>下一篇：</strong><br/> 
- <span>2016嵌入式系統作業w2 - raytracing效能改進與分析
+ <span>2016W5嵌入式系統實作-課程筆記
 </span>
 </a>
 </div>
@@ -190,7 +199,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝"><span class="toc-number">1.</span> <span class="toc-text">安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Awesome-cv"><span class="toc-number">2.</span> <span class="toc-text">使用Awesome-cv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#檔案結構"><span class="toc-number">3.</span> <span class="toc-text">檔案結構</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#中文化"><span class="toc-number">3.1.</span> <span class="toc-text">中文化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vspace和-vskip的差別"><span class="toc-number">3.2.</span> <span class="toc-text">\vspace和\vskip的差別</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
  
   </div>
 

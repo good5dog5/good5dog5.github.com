@@ -33,7 +33,7 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 實做 Merge sort，可參見 競技程式設計課程的解說，需要提供以下檔案:
 merge.c: merge_sort() 函式的實做
 test-merge.sh: 測試 merge_sort() 函式的 GDB script">
-<meta property="og:updated_time" content="2016-03-21T12:05:27.000Z">
+<meta property="og:updated_time" content="2016-03-22T08:01:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試">
 <meta name="twitter:description" content="github repository
@@ -120,7 +120,7 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作業-B"><span class="toc-number">1.</span> <span class="toc-text">作業(B)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目標"><span class="toc-number">1.1.</span> <span class="toc-text">目標</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作業-B"><span class="toc-number">1.</span> <span class="toc-text">作業(B)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目標"><span class="toc-number">1.1.</span> <span class="toc-text">目標</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#swap"><span class="toc-number">2.</span> <span class="toc-text">swap()</span></a></li></ol>
 		
 		</div>
 		
@@ -140,6 +140,7 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 <li>將你學習 GDB 的過程、指出原本程式不足之處 (程式碼寫出來就是給你改進的，可不是給你背誦用！)、如何修正和強化程式</li>
 </ul>
 </blockquote>
+<h2 id="swap"><a href="#swap" class="headerlink" title="swap()"></a>swap()</h2><p><code>swap.c</code>本身沒有main function</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -175,6 +176,14 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/03/22/embedded_system-note/" title="2016W5嵌入式系統實作-課程筆記">
+  <strong>上一篇：</strong><br/>
+  <span>
+  2016W5嵌入式系統實作-課程筆記</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/03/19/urxvt-chinese-word-birck/"  title="解決urxvt 中文字方塊問題">
@@ -200,7 +209,7 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作業-B"><span class="toc-number">1.</span> <span class="toc-text">作業(B)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目標"><span class="toc-number">1.1.</span> <span class="toc-text">目標</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作業-B"><span class="toc-number">1.</span> <span class="toc-text">作業(B)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目標"><span class="toc-number">1.1.</span> <span class="toc-text">目標</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#swap"><span class="toc-number">2.</span> <span class="toc-text">swap()</span></a></li></ol>
  
   </div>
 
@@ -236,7 +245,19 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 		  
 		
 		  
+			<li><a href="/categories/Job/" title="Job">Job<sup>2</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Note/" title="Note">Note<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Work/" title="Work">Work<sup>1</sup></a></li>
 		  
 		
 		  
@@ -253,15 +274,15 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/embedded-system/" title="embedded system">embedded system<sup>3</sup></a></li>
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
+				<li><a href="/tags/embedded-system/" title="embedded system">embedded system<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+				<li><a href="/tags/C/" title="C">C<sup>3</sup></a></li>
 			
 		
 			
@@ -269,7 +290,15 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 			
 		
 			
-				<li><a href="/tags/C/" title="C">C<sup>2</sup></a></li>
+				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/c/" title="c">c<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
 			
 		
 			
@@ -277,19 +306,11 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 			
 		
 			
-				<li><a href="/tags/job/" title="job">job<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/fixed/" title="fixed">fixed<sup>1</sup></a></li>
+				<li><a href="/tags/job/" title="job">job<sup>1</sup></a></li>
 			
 		
 			
@@ -297,7 +318,35 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 			
 		
 			
-				<li><a href="/tags/c/" title="c">c<sup>1</sup></a></li>
+				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Embedded-system/" title="Embedded system">Embedded system<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Latex/" title="Latex">Latex<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Resume/" title="Resume">Resume<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Job/" title="Job">Job<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Vim/" title="Vim">Vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Note/" title="Note">Note<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/fixed/" title="fixed">fixed<sup>1</sup></a></li>
 			
 		
 		</ul>
