@@ -4,47 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試 | 一奔二飛</title>
+    <title>Git 使用筆記 | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
     
 
     
-    <meta name="description" content="github repository
-課程網頁
-
-作業(B)目標
-
-補強給定程式的 swap() 和 bubble_sort() 函式，並且研究如何用 GDB 進行自動測試
-實做 Merge sort，可參見 競技程式設計課程的解說，需要提供以下檔案:
-merge.c: merge_sort() 函式的實做
-test-merge.sh: 測試 merge_sort() 函式的 GDB script">
+    <meta name="description" content="一些使用git遇到的問題與解決方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試">
-<meta property="og:url" content="good5dog5.github.io/2016/03/21/hw-unit-test/index.html">
+<meta property="og:title" content="Git 使用筆記">
+<meta property="og:url" content="good5dog5.github.io/2016/03/28/2016-03-28-git-note/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="github repository
-課程網頁
-
-作業(B)目標
-
-補強給定程式的 swap() 和 bubble_sort() 函式，並且研究如何用 GDB 進行自動測試
-實做 Merge sort，可參見 競技程式設計課程的解說，需要提供以下檔案:
-merge.c: merge_sort() 函式的實做
-test-merge.sh: 測試 merge_sort() 函式的 GDB script">
-<meta property="og:updated_time" content="2016-03-22T08:01:10.000Z">
+<meta property="og:description" content="一些使用git遇到的問題與解決方法">
+<meta property="og:updated_time" content="2016-03-28T05:53:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試">
-<meta name="twitter:description" content="github repository
-課程網頁
-
-作業(B)目標
-
-補強給定程式的 swap() 和 bubble_sort() 函式，並且研究如何用 GDB 進行自動測試
-實做 Merge sort，可參見 競技程式設計課程的解說，需要提供以下檔案:
-merge.c: merge_sort() 函式的實做
-test-merge.sh: 測試 merge_sort() 函式的 GDB script">
+<meta name="twitter:title" content="Git 使用筆記">
+<meta name="twitter:description" content="一些使用git遇到的問題與解決方法">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -104,14 +80,14 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/21/hw-unit-test/" title="嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試" itemprop="url">嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試</a>
+      <a href="/2016/03/28/2016-03-28-git-note/" title="Git 使用筆記" itemprop="url">Git 使用筆記</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-21T11:49:35.000Z" itemprop="datePublished"> 发表于 2016-03-21</time>
+    <time datetime="2016-03-28T06:41:27.762Z" itemprop="datePublished"> 发表于 2016-03-28</time>
     
   </p>
 </header>
@@ -120,27 +96,14 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作業-B"><span class="toc-number">1.</span> <span class="toc-text">作業(B)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目標"><span class="toc-number">1.1.</span> <span class="toc-text">目標</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#swap"><span class="toc-number">2.</span> <span class="toc-text">swap()</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Remove-ssh-key-passphrase-without-create-a-new-key"><span class="toc-number">1.</span> <span class="toc-text">Remove ssh key passphrase without create a new key</span></a></li></ol>
 		
 		</div>
 		
-		<ul>
-<li><a href="https://github.com/good5dog5/unit-tests" target="_blank" rel="external">github repository</a></li>
-<li><a href="http://wiki.csie.ncku.edu.tw/embedded/2016q1h2" target="_blank" rel="external">課程網頁</a></li>
-</ul>
-<h2 id="作業-B"><a href="#作業-B" class="headerlink" title="作業(B)"></a>作業(B)</h2><h3 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h3><blockquote>
-<ul>
-<li>補強給定程式的 <code>swap()</code> 和 <code>bubble_sort()</code> 函式，並且研究如何用 <code>GDB</code> 進行自動測試</li>
-<li>實做 <code>Merge sort</code>，可參見 競技程式設計課程的解說，需要提供以下檔案:<ul>
-<li><code>merge.c</code>: merge_sort() 函式的實做</li>
-<li><code>test-merge.sh</code>: 測試 merge_sort() 函式的 GDB script</li>
-<li><code>data-merge.in</code>: 用來測試的輸入資料，原則上與 <code>data-bubble.in</code> 相仿 </li>
-</ul>
-</li>
-<li>將你學習 GDB 的過程、指出原本程式不足之處 (程式碼寫出來就是給你改進的，可不是給你背誦用！)、如何修正和強化程式</li>
-</ul>
-</blockquote>
-<h2 id="swap"><a href="#swap" class="headerlink" title="swap()"></a>swap()</h2><p><code>swap.c</code>本身沒有main function</p>
+		<p>一些使用git遇到的問題與解決方法<br><a id="more"></a></p>
+<h2 id="Remove-ssh-key-passphrase-without-create-a-new-key"><a href="#Remove-ssh-key-passphrase-without-create-a-new-key" class="headerlink" title="Remove ssh key passphrase without create a new key"></a>Remove ssh key passphrase without create a new key</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -p </span><br><span class="line"><span class="comment"># 之後就是互動式的</span></span><br></pre></td></tr></table></figure>
+<p><code>-p</code>: Requests changing the passphrase of a private key file instead of creating a new private key.<br><code>-N</code>: Provides the <strong>new</strong> passphrases.<br><code>-P</code>: Provide the <strong>Old</strong> passphrases.</p>
+<p>[參考] <a href="http://stackoverflow.com/questions/112396/how-do-i-remove-the-passphrase-for-the-ssh-key-without-having-to-create-a-new-ke" target="_blank" rel="external">How do I remove the passphrase for the SSH key without having to create a new key?</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -148,13 +111,13 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Homework/">Homework</a>
+  <a class="article-category-link" href="/categories/Tools/">Tools</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CLI/">CLI</a><a href="/tags/embedded-system/">embedded system</a><a href="/tags/c/">c</a><a href="/tags/GDB/">GDB</a>
+  <span></span> <a href="/tags/Note/">Note</a><a href="/tags/Ssh/">Ssh</a><a href="/tags/Git/">Git</a><a href="/tags/Cml/">Cml</a>
   </div>
 
 </div>
@@ -169,16 +132,16 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/03/22/embedded_system-note/" title="2016W5嵌入式系統實作-課程筆記">
+ <a href="/2016/03/28/2016-03-28-tmux-script/" title="為tmux撰寫啟動script">
   <span>
-  2016W5嵌入式系統實作-課程筆記</span>
+  為tmux撰寫啟動script</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/03/19/urxvt-chinese-word-birck/"  title="解決urxvt 中文字方塊問題">
- <span>解決urxvt 中文字方塊問題
+<a href="/2016/03/28/2016-03-28-todoCli-note/"  title="利用todo.txt來管理代辦事項">
+ <span>利用todo.txt來管理代辦事項
 </span>
 </a>
 </div>
@@ -199,7 +162,7 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作業-B"><span class="toc-number">1.</span> <span class="toc-text">作業(B)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目標"><span class="toc-number">1.1.</span> <span class="toc-text">目標</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#swap"><span class="toc-number">2.</span> <span class="toc-text">swap()</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Remove-ssh-key-passphrase-without-create-a-new-key"><span class="toc-number">1.</span> <span class="toc-text">Remove ssh key passphrase without create a new key</span></a></li></ol>
  
   </div>
 

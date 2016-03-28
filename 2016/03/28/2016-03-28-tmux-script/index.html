@@ -4,47 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試 | 一奔二飛</title>
+    <title>為tmux撰寫啟動script | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
     
 
     
-    <meta name="description" content="github repository
-課程網頁
+    <meta name="description" content="my tmux.conf
+Tmux rock!
 
-作業(B)目標
-
-補強給定程式的 swap() 和 bubble_sort() 函式，並且研究如何用 GDB 進行自動測試
-實做 Merge sort，可參見 競技程式設計課程的解說，需要提供以下檔案:
-merge.c: merge_sort() 函式的實做
-test-merge.sh: 測試 merge_sort() 函式的 GDB script">
+Tmux是一個terminal multiplexr，用來管理多個virtual console，使用久了會發現自己有特定的workflow，比如常會開一個window專門用來寫blog，旁邊令一個pane則是用來執行hexo server，再加上幾個windows拿來寫作業之類的，感覺是時候寫個script來自動畫這些daily task。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試">
-<meta property="og:url" content="good5dog5.github.io/2016/03/21/hw-unit-test/index.html">
+<meta property="og:title" content="為tmux撰寫啟動script">
+<meta property="og:url" content="good5dog5.github.io/2016/03/28/2016-03-28-tmux-script/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="github repository
-課程網頁
+<meta property="og:description" content="my tmux.conf
+Tmux rock!
 
-作業(B)目標
-
-補強給定程式的 swap() 和 bubble_sort() 函式，並且研究如何用 GDB 進行自動測試
-實做 Merge sort，可參見 競技程式設計課程的解說，需要提供以下檔案:
-merge.c: merge_sort() 函式的實做
-test-merge.sh: 測試 merge_sort() 函式的 GDB script">
-<meta property="og:updated_time" content="2016-03-22T08:01:10.000Z">
+Tmux是一個terminal multiplexr，用來管理多個virtual console，使用久了會發現自己有特定的workflow，比如常會開一個window專門用來寫blog，旁邊令一個pane則是用來執行hexo server，再加上幾個windows拿來寫作業之類的，感覺是時候寫個script來自動畫這些daily task。">
+<meta property="og:updated_time" content="2016-03-28T15:54:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試">
-<meta name="twitter:description" content="github repository
-課程網頁
+<meta name="twitter:title" content="為tmux撰寫啟動script">
+<meta name="twitter:description" content="my tmux.conf
+Tmux rock!
 
-作業(B)目標
-
-補強給定程式的 swap() 和 bubble_sort() 函式，並且研究如何用 GDB 進行自動測試
-實做 Merge sort，可參見 競技程式設計課程的解說，需要提供以下檔案:
-merge.c: merge_sort() 函式的實做
-test-merge.sh: 測試 merge_sort() 函式的 GDB script">
+Tmux是一個terminal multiplexr，用來管理多個virtual console，使用久了會發現自己有特定的workflow，比如常會開一個window專門用來寫blog，旁邊令一個pane則是用來執行hexo server，再加上幾個windows拿來寫作業之類的，感覺是時候寫個script來自動畫這些daily task。">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -104,14 +89,14 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/21/hw-unit-test/" title="嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試" itemprop="url">嵌入式系統作業 - Unit-test, 令用GDB進行自動化測試</a>
+      <a href="/2016/03/28/2016-03-28-tmux-script/" title="為tmux撰寫啟動script" itemprop="url">為tmux撰寫啟動script</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-21T11:49:35.000Z" itemprop="datePublished"> 发表于 2016-03-21</time>
+    <time datetime="2016-03-28T15:55:05.569Z" itemprop="datePublished"> 发表于 2016-03-28</time>
     
   </p>
 </header>
@@ -120,27 +105,28 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作業-B"><span class="toc-number">1.</span> <span class="toc-text">作業(B)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目標"><span class="toc-number">1.1.</span> <span class="toc-text">目標</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#swap"><span class="toc-number">2.</span> <span class="toc-text">swap()</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#從範例學習"><span class="toc-number">1.</span> <span class="toc-text">從範例學習</span></a></li></ol>
 		
 		</div>
 		
 		<ul>
-<li><a href="https://github.com/good5dog5/unit-tests" target="_blank" rel="external">github repository</a></li>
-<li><a href="http://wiki.csie.ncku.edu.tw/embedded/2016q1h2" target="_blank" rel="external">課程網頁</a></li>
+<li><a href="https://github.com/good5dog5/dotfile/blob/master/config/XDG_CONFIG/tmux/tmux.conf" target="_blank" rel="external">my tmux.conf</a></li>
+<li><a href="http://www.slideshare.net/chenkaie/tmux-rocks" target="_blank" rel="external">Tmux rock!</a></li>
 </ul>
-<h2 id="作業-B"><a href="#作業-B" class="headerlink" title="作業(B)"></a>作業(B)</h2><h3 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h3><blockquote>
+<p><a href="https://www.wikiwand.com/en/Tmux" target="_blank" rel="external">Tmux</a>是一個terminal multiplexr，用來管理多個<a href="https://www.wikiwand.com/en/Virtual_console" target="_blank" rel="external">virtual console</a>，使用久了會發現自己有特定的workflow，比如常會開一個window專門用來寫blog，旁邊令一個pane則是用來執行<code>hexo server</code>，再加上幾個windows拿來寫作業之類的，感覺是時候寫個script來自動畫這些daily task。</p>
+<a id="more"></a>
+<h2 id="從範例學習"><a href="#從範例學習" class="headerlink" title="從範例學習"></a>從範例學習</h2><p>[<a href="https://www.reddit.com/r/tmux/comments/3nhx80/how_can_i_use_one_command_to_open_several_tmux/" target="_blank" rel="external">Question on rediit</a>]<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">tmux new-session <span class="_">-d</span> <span class="_">-s</span> config</span><br><span class="line"></span><br><span class="line">tmux new-window -t config:0 -n <span class="string">'name'</span> <span class="string">'vi text/file'</span></span><br><span class="line">tmux new-window -t config:2 -n <span class="string">'name'</span> <span class="string">'vi text/file'</span></span><br><span class="line">tmux new-window -t config:3 -n <span class="string">'name'</span> <span class="string">'vi text/file'</span></span><br><span class="line">tmux new-window -t config:4 -n <span class="string">'name'</span> <span class="string">'vi text/file'</span></span><br><span class="line">tmux new-window -t config:5 -n <span class="string">'name'</span> <span class="string">'vi text/file'</span></span><br><span class="line"></span><br><span class="line">tmux select-window -t config:1</span><br><span class="line">tmux -2 attach-session -t config</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>補強給定程式的 <code>swap()</code> 和 <code>bubble_sort()</code> 函式，並且研究如何用 <code>GDB</code> 進行自動測試</li>
-<li>實做 <code>Merge sort</code>，可參見 競技程式設計課程的解說，需要提供以下檔案:<ul>
-<li><code>merge.c</code>: merge_sort() 函式的實做</li>
-<li><code>test-merge.sh</code>: 測試 merge_sort() 函式的 GDB script</li>
-<li><code>data-merge.in</code>: 用來測試的輸入資料，原則上與 <code>data-bubble.in</code> 相仿 </li>
-</ul>
+<li><p><code>tmux new-session -d -s config</code>: 產生一個名叫 <code>config</code>的new session, not attached。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">new-session [-AdDP] [-c start-directory] [-F format] [-n window-name] [-s session-name] [-t target-session] [-x width] [-y height]</span><br><span class="line">            [shell-command]</span><br><span class="line">                  (alias: new)</span><br><span class="line">            Create a new session with name session-name.</span><br><span class="line"></span><br><span class="line">            The new session is attached to the current terminal unless -d is given.  window-name and shell-command are the name of and shell</span><br><span class="line">            command to execute in the initial window.  If -d is used, -x and -y specify the size of the initial window (80 by 24 if not</span><br><span class="line">            given).</span><br><span class="line"></span><br><span class="line">            If run from a terminal, any termios(3) special characters are saved and used for new windows in the new session.</span><br><span class="line"></span><br><span class="line">            The -A flag makes new-session behave like attach-session if session-name already exists; in the case, -D behaves like -d to</span><br><span class="line">            attach-session.</span><br><span class="line"></span><br><span class="line">            If -t is given, the new session is grouped with target-session.  This means they share the same set of windows - all windows</span><br><span class="line">            from target-session are linked to the new session and any subsequent new windows or windows being closed are applied to both</span><br><span class="line">            sessions.  The current and previous window and any session options remain independent and either session may be killed without</span><br><span class="line">            affecting the other.  Giving -n or shell-command are invalid if -t is used.</span><br><span class="line"></span><br><span class="line">            The -P option prints information about the new session after it has been created.  By default, it uses the format</span><br><span class="line">            ‘#&#123;session_name&#125;:’ but a different format may be specified with -F.</span><br></pre></td></tr></table></figure>
 </li>
-<li>將你學習 GDB 的過程、指出原本程式不足之處 (程式碼寫出來就是給你改進的，可不是給你背誦用！)、如何修正和強化程式</li>
+<li><p><code>tmux new-window -t config:0 -n &#39;name&#39; &#39;vi text/file&#39;</code> : 產生名叫name的new window，bind到剛剛建的<code>config</code>的第0個tab， 執行<code>vi text/file</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">new-window [-adkP] [-c start-directory] [-F format] [-n window-name] [-t target-window] [shell-command]</span><br><span class="line">                  (alias: neww)</span><br><span class="line">            Create a new window.  With -a, the new window is inserted at the next index up from the specified target-window,</span><br><span class="line">            moving windows up if necessary, otherwise target-window is the new window location.</span><br><span class="line"></span><br><span class="line">            If -d is given, the session does not make the new window the current window.  target-window represents the window</span><br><span class="line">            to be created; if the target already exists an error is shown, unless the -k flag is used, in which case it is</span><br><span class="line">            destroyed.  shell-command is the command to execute.  If shell-command is not specified, the value of the</span><br><span class="line">            default-command option is used.  -c specifies the working directory in which the new window is created.</span><br><span class="line"></span><br><span class="line">            When the shell command completes, the window closes.  See the remain-on-exit option to change this behaviour.</span><br><span class="line"></span><br><span class="line">            The TERM environment variable must be set to “screen” for all programs running inside tmux.  New windows will</span><br><span class="line">            automatically have “TERM=screen” added to their environment, but care must be taken not to reset this in shell</span><br><span class="line">            start-up files.</span><br><span class="line"></span><br><span class="line">            The -P option prints information about the new window after it has been created.  By default, it uses the format</span><br><span class="line">            ‘#&#123;session_name&#125;:#&#123;window_index&#125;’ but a different format may be specified with -F.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>tmux select-window -t config:1</code> : 選擇config session中的第0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select-window [-lnpT] [-t target-window]</span><br><span class="line">                   (alias: selectw)</span><br><span class="line">             Select the window at target-window.  -l, -n and -p are equivalent to the last-window, next-window and</span><br><span class="line">             previous-window commands.  If -T is given and the selected window is already the current window, the command</span><br><span class="line">             behaves like last-window.</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-</blockquote>
-<h2 id="swap"><a href="#swap" class="headerlink" title="swap()"></a>swap()</h2><p><code>swap.c</code>本身沒有main function</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -148,13 +134,13 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Homework/">Homework</a>
+  <a class="article-category-link" href="/categories/Tools/">Tools</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CLI/">CLI</a><a href="/tags/embedded-system/">embedded system</a><a href="/tags/c/">c</a><a href="/tags/GDB/">GDB</a>
+  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/Note/">Note</a><a href="/tags/Tmux/">Tmux</a><a href="/tags/Script/">Script</a>
   </div>
 
 </div>
@@ -168,17 +154,10 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/03/22/embedded_system-note/" title="2016W5嵌入式系統實作-課程筆記">
-  <span>
-  2016W5嵌入式系統實作-課程筆記</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/03/19/urxvt-chinese-word-birck/"  title="解決urxvt 中文字方塊問題">
- <span>解決urxvt 中文字方塊問題
+<a href="/2016/03/28/2016-03-28-git-note/"  title="Git 使用筆記">
+ <span>Git 使用筆記
 </span>
 </a>
 </div>
@@ -199,7 +178,7 @@ test-merge.sh: 測試 merge_sort() 函式的 GDB script">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作業-B"><span class="toc-number">1.</span> <span class="toc-text">作業(B)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目標"><span class="toc-number">1.1.</span> <span class="toc-text">目標</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#swap"><span class="toc-number">2.</span> <span class="toc-text">swap()</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#從範例學習"><span class="toc-number">1.</span> <span class="toc-text">從範例學習</span></a></li></ol>
  
   </div>
 
