@@ -25,7 +25,7 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 
 markdown word-wrap
 Line breaking, also known as word wrapping, is the process of breaking a section of text into lines such that it will fit in the availabl">
-<meta property="og:updated_time" content="2016-03-28T13:37:06.000Z">
+<meta property="og:updated_time" content="2016-04-01T15:13:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vim使用筆記">
 <meta name="twitter:description" content="Use others vimrc  1vim -u ~/others.vimrc
@@ -60,7 +60,7 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 				<h1 class="site-name"><a href="/" title="一奔二飛">一奔二飛</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -76,7 +76,7 @@ Line breaking, also known as word wrapping, is the process of breaking a section
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:good5dog5.github.io">
 					</form>
 					
@@ -99,16 +99,16 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-23T16:00:00.000Z" itemprop="datePublished"> 发表于 2016-03-24</time>
+    <time datetime="2016-03-23T16:00:00.000Z" itemprop="datePublished"> Published 2016-03-24</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-word-wrap"><span class="toc-number">1.</span> <span class="toc-text">markdown word-wrap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#expandtab-or-noexpandtab"><span class="toc-number">2.</span> <span class="toc-text">expandtab or noexpandtab</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-word-wrap"><span class="toc-number">1.</span> <span class="toc-text">markdown word-wrap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#expandtab-or-noexpandtab"><span class="toc-number">2.</span> <span class="toc-text">expandtab or noexpandtab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Update-cscope-database"><span class="toc-number">3.</span> <span class="toc-text">Update cscope database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Remove-‘-M’-symbol"><span class="toc-number">4.</span> <span class="toc-text">Remove ‘^M’ symbol</span></a></li></ol>
 		
 		</div>
 		
@@ -125,6 +125,17 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 <h2 id="expandtab-or-noexpandtab"><a href="#expandtab-or-noexpandtab" class="headerlink" title="expandtab or noexpandtab"></a>expandtab or noexpandtab</h2><p><code>set tabstop=4</code> : 設定插入<code>tab</code>時用幾個space取代，例如本例是1個tab == 4 space<br><code>set expandtab</code> : 把tab用指定數目的space取代<br><code>shiftwidth</code>用來指定程式<strong>indent</strong>的space數。</p>
 <p>以上設定完後，之後鍵入tab都會被4個space取代，但之前存在於文件中的tab並不會改變<br><code>set retab</code>讓全文件apply新的tab設定。</p>
 <p>有些文件如markdown，Makefile，需要tab才區別程式區段，可在<code>vimrc</code>中加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">autocmd FileType make\|markdown setlocal noexpandtab</span><br></pre></td></tr></table></figure></p>
+<h2 id="Update-cscope-database"><a href="#Update-cscope-database" class="headerlink" title="Update cscope database"></a>Update cscope database</h2><p>撰寫了一隻<code>cscope_gen_database.sh</code>去產生cscope database</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span><br><span class="line"></span></span><br><span class="line">DIR=( <span class="string">"./"</span></span><br><span class="line">      <span class="string">"/usr/include/i386-linux-gnu/sys/"</span></span><br><span class="line">      <span class="string">"/usr/include/i386-linux-gnu/bits/"</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">[ <span class="_">-e</span> <span class="string">"cscope.files"</span> ] &amp;&amp; rm <span class="string">"cscope.files"</span></span><br><span class="line"></span><br><span class="line">find /usr/include/ -maxdepth 1 -type f -name <span class="string">"*.[hc]"</span> &gt;&gt; cscope.files</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> d <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;DIR[@]&#125;</span>"</span>; <span class="keyword">do</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ <span class="_">-d</span> <span class="string">"<span class="variable">$d</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">       find <span class="variable">$d</span> -type f -name <span class="string">"*.[hc]"</span> -o -name <span class="string">"*.cpp"</span> &gt;&gt; cscope.files</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">done</span>           </span><br><span class="line"></span><br><span class="line">cscope -Rbq -i cscope.files</span><br></pre></td></tr></table></figure>
+<p>直接在vim中輸入 <code>!cscope_gen_database src_root</code>，src_root代表專案的根目錄。<br>接著輸入<code>cs reset</code>即完成。</p>
+<h2 id="Remove-‘-M’-symbol"><a href="#Remove-‘-M’-symbol" class="headerlink" title="Remove ‘^M’ symbol"></a>Remove ‘^M’ symbol</h2><p>有時用vim開啟文件，會在行尾看到<code>^M</code>符號，這是Windows(DOS)系統中的換行字元，可以下2種方法移除</p>
+<ol>
+<li>字串取代: :%s/^M/\r/g (ctrl-v then ctrl-m才能打出^M)</li>
+<li><p>doc2unix指令<br> ubuntu預設沒有安裝，需要安裝<code>tofrodos</code> package</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tofrodos</span><br></pre></td></tr></table></figure>
+<p> 之後執行 <code>todos xxx</code>     (即unix2doc xxx)<br> 若想轉回則 <code>fromdos xxx</code> (即doc2unix xxx)</p>
+</li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -178,17 +189,17 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-word-wrap"><span class="toc-number">1.</span> <span class="toc-text">markdown word-wrap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#expandtab-or-noexpandtab"><span class="toc-number">2.</span> <span class="toc-text">expandtab or noexpandtab</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-word-wrap"><span class="toc-number">1.</span> <span class="toc-text">markdown word-wrap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#expandtab-or-noexpandtab"><span class="toc-number">2.</span> <span class="toc-text">expandtab or noexpandtab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Update-cscope-database"><span class="toc-number">3.</span> <span class="toc-text">Update cscope database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Remove-‘-M’-symbol"><span class="toc-number">4.</span> <span class="toc-text">Remove ‘^M’ symbol</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 <div id="authorInfo">
 	
@@ -216,7 +227,7 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="good5dog5" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -226,7 +237,7 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -275,8 +286,12 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Note/" title="Note">Note<sup>7</sup></a></li>
+			
 		
 			
 				<li><a href="/tags/Linux/" title="Linux">Linux<sup>7</sup></a></li>
@@ -287,15 +302,7 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 			
 		
 			
-				<li><a href="/tags/Note/" title="Note">Note<sup>4</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/C/" title="C">C<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CLI/" title="CLI">CLI<sup>2</sup></a></li>
 			
 		
 			
@@ -307,15 +314,19 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 			
 		
 			
+				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CLI/" title="CLI">CLI<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Cml/" title="Cml">Cml<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Embedded-system/" title="Embedded system">Embedded system<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
+				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
 			
 		
 			
@@ -331,11 +342,11 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 			
 		
 			
-				<li><a href="/tags/Resume/" title="Resume">Resume<sup>1</sup></a></li>
+				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/job/" title="job">job<sup>1</sup></a></li>
+				<li><a href="/tags/Job/" title="Job">Job<sup>1</sup></a></li>
 			
 		
 			
@@ -347,11 +358,11 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 			
 		
 			
-				<li><a href="/tags/Script/" title="Script">Script<sup>1</sup></a></li>
+				<li><a href="/tags/job/" title="job">job<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
+				<li><a href="/tags/Embedded-system/" title="Embedded system">Embedded system<sup>1</sup></a></li>
 			
 		
 			
@@ -363,7 +374,7 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 
 
   <div class="linkslist">
-  <p class="asidetitle">链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
     </ul>
@@ -373,11 +384,11 @@ Line breaking, also known as word wrapping, is the process of breaking a section
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -603,7 +614,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
