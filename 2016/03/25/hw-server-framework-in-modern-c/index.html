@@ -46,7 +46,7 @@ Unix Signals
 Reactor Pattern
 pip">
 <meta property="og:image" content="https://i.imgur.com/rmebmVi.png">
-<meta property="og:updated_time" content="2016-03-28T05:51:11.000Z">
+<meta property="og:updated_time" content="2016-04-03T16:46:46.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2016嵌入式系統課程w3 - server-framework效能分析與改進">
 <meta name="twitter:description" content="github repository  
@@ -141,7 +141,7 @@ pip">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目標"><span class="toc-number">1.</span> <span class="toc-text">目標</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#預先安裝的packages"><span class="toc-number">1.1.</span> <span class="toc-text">預先安裝的packages</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#程式架構"><span class="toc-number">2.</span> <span class="toc-text">程式架構</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#探索過程"><span class="toc-number">3.</span> <span class="toc-text">探索過程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效能改進"><span class="toc-number">4.</span> <span class="toc-text">效能改進</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目標"><span class="toc-number">1.</span> <span class="toc-text">目標</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#預先安裝的packages"><span class="toc-number">1.1.</span> <span class="toc-text">預先安裝的packages</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#閱讀資料"><span class="toc-number">2.</span> <span class="toc-text">閱讀資料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#epoll"><span class="toc-number">2.1.</span> <span class="toc-text">epoll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reactor-pattern"><span class="toc-number">2.2.</span> <span class="toc-text">reactor pattern</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Understanding-“volatile”-qualifier-in-C"><span class="toc-number">2.3.</span> <span class="toc-text">Understanding “volatile” qualifier in C</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#程式架構"><span class="toc-number">3.</span> <span class="toc-text">程式架構</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#httpd-c"><span class="toc-number">3.1.</span> <span class="toc-text">httpd.c</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#protocol-server-c"><span class="toc-number">3.2.</span> <span class="toc-text">protocol-server.c</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#探索過程"><span class="toc-number">4.</span> <span class="toc-text">探索過程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效能改進"><span class="toc-number">5.</span> <span class="toc-text">效能改進</span></a></li></ol>
 		
 		</div>
 		
@@ -193,17 +193,65 @@ pip">
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rich set of graph drawing tools</span><br><span class="line">Graph drawing addresses the problem of visualizing structural information</span><br><span class="line">by constructing geometric representations of abstract graphs and networks.</span><br><span class="line">Automatic generation of graph drawings has important applications in key</span><br><span class="line">technologies such as database design, software engineering, VLSI and</span><br><span class="line">network design and visual interfaces in other domains.</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h2 id="閱讀資料"><a href="#閱讀資料" class="headerlink" title="閱讀資料"></a>閱讀資料</h2><h3 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h3><p><a href="http://blog.csdn.net/xiajun07061225/article/details/9250579" target="_blank" rel="external">ref1</a></p>
+<blockquote>
+<p>The epoll API performs a similar task to poll(2): monitoring multiple file descriptors to see if I/O is possible on any of them.</p>
+</blockquote>
+<p>epoll能夠通時monitor許多file descriptor，並對I/O event做監聽。</p>
+<ol>
+<li><p><strong>int epoll_create(int size)</strong> or <strong>int epoll_create1(int size)</strong><br> 產生出一個epoll instance並回傳一個file descriptor代表該instance, 自linux 2.6.8之後，<code>size</code>參數被忽略掉，使用完畢需用<strong>close()</strong>來釋放。</p>
+</li>
+<li><p><strong>epoll_ctl(2)</strong> - control interface for an epoll descriptor<br> <code>int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);</code></p>
+<ul>
+<li><p>第一個参數epoll_create()的返回值。</p>
+</li>
+<li><p>第二個參數表示operation,可為<code>EPOLL_CTL_ADD</code>：註冊新的fd及想監聽的event到epfd中, <code>EPOLL_CTL_MOD</code>：修改已經註冊之fd的監聽事件； <code>EPOLL_CTL_DEL</code>：從epfd中刪除(deregister)，event欄位可為<code>NULL</code>。</p>
+</li>
+<li><p>第三個參數代表要監聽的fd。</p>
+</li>
+<li><p>第四個參數代表要監聽的events,結構如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">union</span> epoll_data &#123;</span><br><span class="line">	<span class="keyword">void</span>        *ptr;</span><br><span class="line">	<span class="keyword">int</span>          fd;</span><br><span class="line">	<span class="keyword">uint32_t</span>     u32;</span><br><span class="line">	<span class="keyword">uint64_t</span>     u64;</span><br><span class="line">&#125; <span class="keyword">epoll_data_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> epoll_event &#123;</span><br><span class="line">	<span class="keyword">uint32_t</span>     events;      <span class="comment">/* Epoll events */</span></span><br><span class="line">	<span class="keyword">epoll_data_t</span> data;        <span class="comment">/* User data variable */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>events</code>是一組由下面幾種bit set組成的mask<br> EPOLLIN ：對應的fd可供讀<br> EPOLLOUT：對應的fd可供寫<br> EPOLLPRI：<code>There is urgent data available for read(2) operations.</code>(還不太懂他的意思)</p>
+<p>以下兩者不用特別在<code>event</code>中設定， <code>epoll_wait(2)</code>預設會去監聽這些事件<br> EPOLLERR：對應的fd出錯<br> EPOLLHUP：對應的fd hang up </p>
+<p> EPOLLET：將對應的fd設為<code>Edge triggered</code>, epoll預設為<code>Level triggered</code><br> EPOLLONESHOT：對該fd只監聽一次事件，即之後發生的events都會會被epoll回報，除非利用call epoll_ctl() with EPOLL_CTL_MOD再次設定events mask</p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><strong>epoll_wait(2)</strong> - wait for an I/O event on an epoll file descriptor<br>   <code>int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);</code></li>
+</ul>
+<h3 id="reactor-pattern"><a href="#reactor-pattern" class="headerlink" title="reactor pattern"></a>reactor pattern</h3><h3 id="Understanding-“volatile”-qualifier-in-C"><a href="#Understanding-“volatile”-qualifier-in-C" class="headerlink" title="Understanding “volatile” qualifier in C"></a>Understanding “volatile” qualifier in C</h3><p>[<a href="http://newscienceview.blogspot.com/2013/09/c-volatile.html" target="_blank" rel="external">ref1</a>] [<a href="http://newscienceview.blogspot.com/2013/09/c-volatile.html" target="_blank" rel="external">ref2</a>]</p>
+<blockquote>
+<p>The volatile keyword is intended to prevent the compiler from applying any optimizations on objects that can change in ways that cannot be determined by the compiler. </p>
+</blockquote>
+<p><code>volatile</code>是變數的修飾詞,它代表其所修飾的變數可能在任何時刻意外地被的更新，compiler就不會對該變數做optimization(例如把該變數存入register，每次都從register中讀取,取而代之的是每次都從memory更新該值)。</p>
+<p>當一個變數的內容可能會被意想不到的更新時(by hardware)，一定要使用volatile來聲明該變數。通常，只有三種類型的變數會發生這種“意外”：</p>
+<ul>
+<li>在記憶體中進行位址映射的周邊暫存器(peripheral registers)；</li>
+<li>在中斷處理程式中(interrupt service routine)可能被修改的全域變數(Global variables)；</li>
+<li>多線程應用程式中(multi-threaded application) 的全域變數(Global variables)；</li>
+</ul>
+<p>假設我們有一個8位元的狀態暫存器映射在位址0x1234上。系統需要我們一直監測狀態暫存器的值，直到它的值不為0為止。</p>
+<p>錯誤的寫法及對應的optimized assembly code<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uint * ptr = (uint *) <span class="number">0x1234</span>; <span class="comment">// Wait for register to become non-zero.</span></span><br><span class="line"><span class="keyword">while</span> (*ptr == <span class="number">0</span>);</span><br><span class="line"><span class="comment">// Do something else.</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov ptr, #0x1234     </span><br><span class="line">mov a, @ptr loop</span><br><span class="line">bz  loop</span><br></pre></td></tr></table></figure>
+<p>優化的原理很簡單，c code的第一行把一個變數讀入reg(assembly code的ptr)，如果從變數相關的上下文來看，變數的值總是沒變，則沒有必要從記憶體中更新值到reg,故while loop會無窮執行下去。</p>
+<p>如果把第一行寫成<code>uint volatile * ptr = (uint volatile *) 0x1234;</code>，則會強迫編譯器對該變數禁用優化，達到程式原本的目的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">      mov ptr, #0x1234</span><br><span class="line">loop  mov a, @ptr    </span><br><span class="line">	  bz  loop</span><br></pre></td></tr></table></figure></p>
 <h2 id="程式架構"><a href="#程式架構" class="headerlink" title="程式架構"></a>程式架構</h2><p>運用<a href="http://good5dog5.github.io/2016/03/14/hw_raytracing/#%E5%88%A9%E7%94%A8-Graphviz-%E7%94%A2%E7%94%9F%E5%87%BD%E6%95%B8%E5%91%BC%E5%8F%AB%E9%97%9C%E4%BF%82%E5%9C%96">Homework 2</a>所學<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#產生gmon.out</span></span><br><span class="line">./httpd</span><br><span class="line"></span><br><span class="line"><span class="comment">#產生呼叫圖</span></span><br><span class="line">gprof httpd| gprof2dot | dot -Tpng -o codemap.png</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/rmebmVi.png" alt="結果"></p>
-<h2 id="探索過程"><a href="#探索過程" class="headerlink" title="探索過程"></a>探索過程</h2><p>Q: <code>ab -c 32 -n 100 http://localhost:8080/</code>的作用？<br><code>ab</code>是Apache HTTP server benchmarking tool，<code>-c</code> option代表concurency，即一次送出的request數目，<br><code>-n</code>代表總共發出幾次request。</p>
-<p>從<code>http.c</code>的main function開始trace，裡頭的第一行<code>.on_data = ondata</code>，<br>直覺的以為<code>on_data</code>會是一個structure或是變數，沒想到竟然是一個function。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.c</span></span><br><span class="line"><span class="keyword">struct</span> Protocol protocol = &#123; .on_data = on_data &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">on_data</span><span class="params">(server_pt srv, <span class="keyword">int</span> fd)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> reply[] =</span><br><span class="line">        <span class="string">"HTTP/1.1 200 OK\r\n"</span></span><br><span class="line">        <span class="string">"Content-Length: 12\r\n"</span></span><br><span class="line">        <span class="string">"Connection: keep-alive\r\n"</span></span><br><span class="line">        <span class="string">"Keep-Alive: timeout=2\r\n"</span></span><br><span class="line">        <span class="string">"\r\n"</span></span><br><span class="line">        <span class="string">"Hello World!"</span>;</span><br><span class="line">    <span class="keyword">char</span> buff[<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (Server.read(srv, fd, buff, <span class="number">1024</span>))</span><br><span class="line">        Server.write(srv, fd, reply, <span class="keyword">sizeof</span>(reply));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="httpd-c"><a href="#httpd-c" class="headerlink" title="httpd.c"></a>httpd.c</h3><p>從<code>http.c</code>的main function開始trace，裡頭的第一行<code>.on_data = ondata</code>，直覺的以為<code>on_data</code>會是一個structure或是變數，沒想到竟然是一個function。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//httpd.c</span></span><br><span class="line"><span class="keyword">struct</span> Protocol protocol = &#123; .on_data = on_data &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">on_data</span><span class="params">(server_pt srv, <span class="keyword">int</span> fd)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> reply[] =</span><br><span class="line">        <span class="string">"HTTP/1.1 200 OK\r\n"</span></span><br><span class="line">        <span class="string">"Content-Length: 12\r\n"</span></span><br><span class="line">        <span class="string">"Connection: keep-alive\r\n"</span></span><br><span class="line">        <span class="string">"Keep-Alive: timeout=2\r\n"</span></span><br><span class="line">        <span class="string">"\r\n"</span></span><br><span class="line">        <span class="string">"Hello World!"</span>;</span><br><span class="line">    <span class="keyword">char</span> buff[<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (Server.read(srv, fd, buff, <span class="number">1024</span>))</span><br><span class="line">        Server.write(srv, fd, reply, <span class="keyword">sizeof</span>(reply));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>而struct Protocal中<code>.on_data</code>定義為</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*on_data)(<span class="keyword">struct</span> Server *, <span class="keyword">int</span> sockfd); <span class="comment">/**&lt; called when a data is available */</span></span><br></pre></td></tr></table></figure>
-<p>這段我看不太懂，在stackoverflow找到一個不錯的<a href="http://stackoverflow.com/questions/11038430/how-to-create-a-typedef-for-function-pointers" target="_blank" rel="external">例子</a></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123; <span class="keyword">return</span> i + <span class="number">1</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*g)</span><span class="params">(<span class="keyword">int</span>)</span></span>;  <span class="comment">// Declare typedef</span></span><br><span class="line">g func = &amp;foo;          <span class="comment">// Define function-pointer variable, and initialise</span></span><br><span class="line"><span class="keyword">int</span> hvar = func(<span class="number">3</span>);     <span class="comment">// Call function through pointer</span></span><br></pre></td></tr></table></figure>
-<p>故struct Protocal的<code>on_data</code>的意思為<code>一個回傳型態為void，引數型態為(struct Server *, int)的function</code>。<br><code>start_server</code>是個</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.c</span></span><br><span class="line">start_server(.protocol = &amp;protocol,</span><br><span class="line">                 .timeout = <span class="number">2</span>,</span><br><span class="line">                 .on_init = on_init,</span><br><span class="line">                 .threads = THREAD_COUNT);</span><br><span class="line"><span class="comment">//protocol-server.h </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> start_server(...) \</span><br><span class="line">    Server.listen((struct ServerSettings)&#123;__VA_ARGS__&#125;)</span></span><br></pre></td></tr></table></figure>
+<p>這段我看不太懂，在stackoverflow找到一個不錯的<a href="http://stackoverflow.com/questions/11038430/how-to-create-a-typedef-for-function-pointers" target="_blank" rel="external">例子</a><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123; <span class="keyword">return</span> i + <span class="number">1</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*g)</span><span class="params">(<span class="keyword">int</span>)</span></span>;  <span class="comment">// Declare typedef</span></span><br><span class="line">g func = &amp;foo;          <span class="comment">// Define function-pointer variable, and initialise</span></span><br><span class="line"><span class="keyword">int</span> hvar = func(<span class="number">3</span>);     <span class="comment">// Call function through pointer</span></span><br></pre></td></tr></table></figure></p>
+<p>故struct Protocal的<code>on_data</code>的意思為<code>一個回傳型態為void，引數型態為(struct Server *, int)的function</code>。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//httpd.c</span></span><br><span class="line">start_server(.protocol = &amp;protocol,</span><br><span class="line">                 .timeout = <span class="number">2</span>,</span><br><span class="line">                 .on_init = on_init,</span><br><span class="line">                 .threads = THREAD_COUNT)</span><br><span class="line"><span class="comment">//protocol-server.h </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> start_server(...) \</span><br><span class="line">    Server.listen((struct ServerSettings)&#123;__VA_ARGS__&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//會被轉換成</span></span><br><span class="line">Server.listen((<span class="keyword">struct</span> ServerSettings)&#123;.protocol = &amp;protocol, .timeout = <span class="number">2</span>, .on_init = on_init, .threads = <span class="number">4</span>&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><code>Struct Server</code>定義在<code>protocol-server.c</code>中，給個struct element都是一個function pointer，指向定義在<code>protocol-server.c</code>中的functions，故執行<code>Server.listen(xxx)</code>其實是呼叫<code>srv_listen(xxx)</code>，整個過程實現了資料封裝即資訊隱藏的概念。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Server API gateway */</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">struct</span> __SERVER_API__ Server = &#123;</span><br><span class="line">    .reactor = srv_reactor,</span><br><span class="line">    .settings = srv_settings,</span><br><span class="line">    .capacity = srv_capacity,</span><br><span class="line">    .listen = srv_listen,</span><br><span class="line">    .stop = srv_stop,</span><br><span class="line">    .stop_all = srv_stop_all,</span><br><span class="line">    .is_busy = is_busy,</span><br><span class="line">    .get_protocol = get_protocol,</span><br><span class="line">    .set_protocol = set_protocol,</span><br><span class="line">    .get_udata = get_udata,</span><br><span class="line">    .set_udata = set_udata,</span><br><span class="line">    .set_timeout = set_timeout,</span><br><span class="line">    .attach = srv_attach,</span><br><span class="line">    .close = srv_close,</span><br><span class="line">    .hijack = srv_hijack,</span><br><span class="line">    .count = srv_count,</span><br><span class="line">    .touch = srv_touch,</span><br><span class="line">    .rw_hooks = rw_hooks,</span><br><span class="line">    .read = srv_read,</span><br><span class="line">    .write = srv_write,</span><br><span class="line">    .write_move = srv_write_move,</span><br><span class="line">    .write_urgent = srv_write_urgent,</span><br><span class="line">    .write_move_urgent = srv_write_move_urgent,</span><br><span class="line">    .sendfile = srv_sendfile,</span><br><span class="line">    .each = each,</span><br><span class="line">    .each_block = each_block,</span><br><span class="line">    .fd_task = fd_task,</span><br><span class="line">    .run_async = run_async,</span><br><span class="line">    .run_after = run_after,</span><br><span class="line">    .run_every = run_every,</span><br><span class="line">    .root_pid = root_pid,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="protocol-server-c"><a href="#protocol-server-c" class="headerlink" title="protocol-server.c"></a>protocol-server.c</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">long</span> <span class="title">srv_capacity</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">/* get current limits */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">long</span> flim = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (flim) <span class="keyword">return</span> flim;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _SC_OPEN_MAX</span></span><br><span class="line">    flim = sysconf(_SC_OPEN_MAX) - <span class="number">1</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> defined(OPEN_MAX)</span></span><br><span class="line">    flim = OPEN_MAX - <span class="number">1</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="comment">//....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>當變數被<code>static</code>修飾，就會一直存在memory中的data section，就算結束函數呼叫後仍存在，因此<code>flim</code>只有在<code>srv_capacity</code>第一次被呼叫時被初始為0並通過if statement取得flim的max value，之後呼叫<code>srv_capacity</code>都會直接被if statement卡住而直接return flim。</p>
+<p>另外，<code>srv_capacity</code>也被須告為<code>static</code>，但其代表的意義為該function的存取範圍只限於該c file(<code>protocol-server.c</code>)，如此有利資訊隱藏和避免與其他c file的命名衝突。</p>
+<p>POSIX允許application在 <strong>compiler time</strong> 或 <strong>run time</strong>去測試系統支不支援某個option或取得某設定值;若是在compiler time決定的話則須引入<code>&lt;unistd.h&gt;</code>和<code>&lt;limits.h&gt;</code>並且撰寫macro測試。若由runtime決定則可由<code>sysconf()</code>取得。</p>
+<h2 id="探索過程"><a href="#探索過程" class="headerlink" title="探索過程"></a>探索過程</h2><p>Q: <code>ab -c 32 -n 100 http://localhost:8080/</code>的作用？<br><code>ab</code>是Apache HTTP server benchmarking tool，<code>-c</code> option代表concurency，即一次送出的request數目，<br><code>-n</code>代表總共發出幾次request。</p>
 <h2 id="效能改進"><a href="#效能改進" class="headerlink" title="效能改進"></a>效能改進</h2><p>原版效能：</p>
 <pre><code>Concurrency Level:      32
 Time taken for tests:   16.136 seconds
@@ -250,9 +298,9 @@ Total:       3999 4044  64.7   4000    4138
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/04/02/2016-03-27-write-blog-with-hexo/" title="利用hexo寫blog並用Travis CI部署">
+ <a href="/2016/03/28/2016-03-28-todoCli-note/" title="利用todo.txt來管理代辦事項">
   <span>
-  利用hexo寫blog並用Travis CI部署</span>
+  利用todo.txt來管理代辦事項</span>
 </a>
 </div>
 
@@ -280,7 +328,7 @@ Total:       3999 4044  64.7   4000    4138
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目標"><span class="toc-number">1.</span> <span class="toc-text">目標</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#預先安裝的packages"><span class="toc-number">1.1.</span> <span class="toc-text">預先安裝的packages</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#程式架構"><span class="toc-number">2.</span> <span class="toc-text">程式架構</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#探索過程"><span class="toc-number">3.</span> <span class="toc-text">探索過程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效能改進"><span class="toc-number">4.</span> <span class="toc-text">效能改進</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目標"><span class="toc-number">1.</span> <span class="toc-text">目標</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#預先安裝的packages"><span class="toc-number">1.1.</span> <span class="toc-text">預先安裝的packages</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#閱讀資料"><span class="toc-number">2.</span> <span class="toc-text">閱讀資料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#epoll"><span class="toc-number">2.1.</span> <span class="toc-text">epoll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reactor-pattern"><span class="toc-number">2.2.</span> <span class="toc-text">reactor pattern</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Understanding-“volatile”-qualifier-in-C"><span class="toc-number">2.3.</span> <span class="toc-text">Understanding “volatile” qualifier in C</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#程式架構"><span class="toc-number">3.</span> <span class="toc-text">程式架構</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#httpd-c"><span class="toc-number">3.1.</span> <span class="toc-text">httpd.c</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#protocol-server-c"><span class="toc-number">3.2.</span> <span class="toc-text">protocol-server.c</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#探索過程"><span class="toc-number">4.</span> <span class="toc-text">探索過程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效能改進"><span class="toc-number">5.</span> <span class="toc-text">效能改進</span></a></li></ol>
  
   </div>
 
@@ -376,7 +424,7 @@ Total:       3999 4044  64.7   4000    4138
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Note/" title="Note">Note<sup>7</sup></a></li>
+				<li><a href="/tags/Note/" title="Note">Note<sup>8</sup></a></li>
 			
 		
 			
@@ -392,19 +440,15 @@ Total:       3999 4044  64.7   4000    4138
 			
 		
 			
+				<li><a href="/tags/CLI/" title="CLI">CLI<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/c/" title="c">c<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CLI/" title="CLI">CLI<sup>2</sup></a></li>
 			
 		
 			
@@ -416,11 +460,7 @@ Total:       3999 4044  64.7   4000    4138
 			
 		
 			
-				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
+				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
 			
 		
 			
@@ -428,15 +468,15 @@ Total:       3999 4044  64.7   4000    4138
 			
 		
 			
-				<li><a href="/tags/Latex/" title="Latex">Latex<sup>1</sup></a></li>
+				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/config/" title="config">config<sup>1</sup></a></li>
+				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Job/" title="Job">Job<sup>1</sup></a></li>
+				<li><a href="/tags/GDB/" title="GDB">GDB<sup>1</sup></a></li>
 			
 		
 			
@@ -444,7 +484,15 @@ Total:       3999 4044  64.7   4000    4138
 			
 		
 			
-				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>1</sup></a></li>
+				<li><a href="/tags/cml/" title="cml">cml<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/config/" title="config">config<sup>1</sup></a></li>
 			
 		
 			
@@ -452,7 +500,7 @@ Total:       3999 4044  64.7   4000    4138
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Jekyll/" title="Jekyll">Jekyll<sup>1</sup></a></li>
 			
 		
 		</ul>
