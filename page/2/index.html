@@ -119,6 +119,8 @@
 <p> 之後執行 <code>todos xxx</code>     (即unix2doc xxx)<br> 若想轉回則 <code>fromdos xxx</code> (即doc2unix xxx)</p>
 </li>
 </ol>
+<h2 id="修正文件中文亂碼問題"><a href="#修正文件中文亂碼問題" class="headerlink" title="修正文件中文亂碼問題"></a>修正文件中文亂碼問題</h2><p>發現之前在windows編輯過得文件，在linux下會顯示亂碼，這是因為windows是以<code>big5</code>編碼，而linux是用<code>utf-8</code>，此問題可用<code>iconv</code>解決。<br>在<code>bash.alias</code>中加入<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Big5toUTF8</span></span> () &#123; iconv <span class="_">-f</span> big5 -t utf8 -c <span class="variable">$1</span> -o <span class="variable">$1</span>; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>假設要轉換<code>foo</code>，直接輸入<code>Big5toUTF8 foo</code>即可。</p>
 
         
         
@@ -284,7 +286,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/Embedded-system/">Embedded system</a><a href="/tags/c/">c</a>
+  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/c/">c</a><a href="/tags/Embedded-system/">Embedded system</a>
   </div>
 
 </div>
@@ -362,7 +364,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CLI/">CLI</a><a href="/tags/embedded-system/">embedded system</a><a href="/tags/c/">c</a><a href="/tags/GDB/">GDB</a>
+  <span></span> <a href="/tags/CLI/">CLI</a><a href="/tags/embedded-system/">embedded system</a><a href="/tags/GDB/">GDB</a><a href="/tags/c/">c</a>
   </div>
 
 </div>
@@ -914,6 +916,10 @@
 			
 		
 			
+				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
 			
 		
@@ -922,11 +928,7 @@
 			
 		
 			
-				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Embedded-system/" title="Embedded system">Embedded system<sup>1</sup></a></li>
+				<li><a href="/tags/GDB/" title="GDB">GDB<sup>1</sup></a></li>
 			
 		
 			
@@ -934,23 +936,23 @@
 			
 		
 			
-				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
+				<li><a href="/tags/Embedded-system/" title="Embedded system">Embedded system<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/GDB/" title="GDB">GDB<sup>1</sup></a></li>
+				<li><a href="/tags/Latex/" title="Latex">Latex<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/script/" title="script">script<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Job/" title="Job">Job<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Vim/" title="Vim">Vim<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/cml/" title="cml">cml<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
@@ -962,7 +964,7 @@
 			
 		
 			
-				<li><a href="/tags/Jekyll/" title="Jekyll">Jekyll<sup>1</sup></a></li>
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 		</ul>
