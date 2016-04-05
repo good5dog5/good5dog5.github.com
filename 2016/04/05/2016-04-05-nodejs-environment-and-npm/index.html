@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://good5dog5.github.io/2016/04/05/2016-04-05-nodejs-environment-and-npm/index.html">
 <meta property="og:site_name" content="一奔二飛">
 <meta property="og:description" content="Nodejs紅了好一陣子了，對於它我還是不太了解，可是手邊蠻多日常工具如hexo都跟nodejs和npm密切相關，故用此篇來紀錄探索的過程。">
-<meta property="og:updated_time" content="2016-04-05T13:52:13.422Z">
+<meta property="og:updated_time" content="2016-04-05T15:24:13.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs開發環境與npm">
 <meta name="twitter:description" content="Nodejs紅了好一陣子了，對於它我還是不太了解，可是手邊蠻多日常工具如hexo都跟nodejs和npm密切相關，故用此篇來紀錄探索的過程。">
@@ -88,7 +88,7 @@
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-05T13:52:13.426Z" itemprop="datePublished"> Published 2016-04-05</time>
+    <time datetime="2016-04-05T15:24:13.278Z" itemprop="datePublished"> Published 2016-04-05</time>
     
   </p>
 </header>
@@ -97,18 +97,22 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#在ubuntu建立nodejs開發環境"><span class="toc-number">1.</span> <span class="toc-text">在ubuntu建立nodejs開發環境</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Setting-up-nodejs-environment-on-Ubuntu"><span class="toc-number">1.</span> <span class="toc-text">Setting up nodejs environment on Ubuntu</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-nodejs"><span class="toc-number">1.1.</span> <span class="toc-text">install nodejs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#install-npm"><span class="toc-number">1.2.</span> <span class="toc-text">install npm</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-install-packages"><span class="toc-number">2.</span> <span class="toc-text">npm - install packages</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#package-json"><span class="toc-number">2.1.</span> <span class="toc-text">package.json</span></a></li></ol></li></ol>
 		
 		</div>
 		
 		<p>Nodejs紅了好一陣子了，對於它我還是不太了解，可是手邊蠻多日常工具如<code>hexo</code>都跟nodejs和npm密切相關，故用此篇來紀錄探索的過程。<br><a id="more"></a></p>
-<h2 id="在ubuntu建立nodejs開發環境"><a href="#在ubuntu建立nodejs開發環境" class="headerlink" title="在ubuntu建立nodejs開發環境"></a>在ubuntu建立nodejs開發環境</h2><p>Nodejs已經釋出v5了(<a href="https://nodejs.org/en/blog/community/node-v5/" target="_blank" rel="external">source</a>)，Ubuntu可用以下方式安裝最新版nodejs</p>
+<h2 id="Setting-up-nodejs-environment-on-Ubuntu"><a href="#Setting-up-nodejs-environment-on-Ubuntu" class="headerlink" title="Setting up nodejs environment on Ubuntu"></a>Setting up nodejs environment on Ubuntu</h2><h3 id="install-nodejs"><a href="#install-nodejs" class="headerlink" title="install nodejs"></a>install nodejs</h3><p>Nodejs已經釋出v5了(<a href="https://nodejs.org/en/blog/community/node-v5/" target="_blank" rel="external">source</a>)，Ubuntu可用以下方式安裝最新版nodejs</p>
 <ul>
-<li>curl -s代表<code>silent</code> mode，不會印出任何訊息包括下載進度</li>
-<li>curl -L :<br>   (HTTP/HTTPS) If the server reports that the requested page has moved to a different location (indicated with a Location: header and  a 3XX response code), this option will make curl redo the request on the new place.</li>
-<li>sudo -E, –preserve-env:<br>   Indicates to the security policy that the user wishes to preserve their existing environment variables.  The security policy may return an error if the user does not have permission to preserve the environment.<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Using Ubuntu</span></span><br><span class="line">curl <span class="_">-s</span>L https://deb.nodesource.com/setup_5.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line"></span><br><span class="line"><span class="comment"># Using Debian, as root</span></span><br><span class="line">curl <span class="_">-s</span>L https://deb.nodesource.com/setup_5.x | bash -</span><br><span class="line">apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
-</li>
+<li><strong>curl -s</strong>代表<code>silent</code> mode，不會印出任何訊息包括下載進度</li>
+<li><strong>curl -L</strong> :<br>   (HTTP/HTTPS) If the server reports that the requested page has moved to a different location (indicated with a Location: header and  a 3XX response code), this option will make curl redo the request on the new place.</li>
+<li><strong>sudo -E –preserve-env</strong>:<br>   Indicates to the security policy that the user wishes to preserve their existing environment variables.  The security policy may return an error if the user does not have permission to preserve the environment.</li>
+<li><strong>bash -</strong> :<a href="http://good5dog5.github.io/2016/04/05/2016-04-03-bash-script-note/#mysterious-%E2%80%98-%E2%80%98">mysterious ‘-‘</a></li>
 </ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Using Ubuntu</span></span><br><span class="line">curl <span class="_">-s</span>L https://deb.nodesource.com/setup_5.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line"></span><br><span class="line"><span class="comment"># Using Debian, as root</span></span><br><span class="line">curl <span class="_">-s</span>L https://deb.nodesource.com/setup_5.x | bash -</span><br><span class="line">apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
+<h3 id="install-npm"><a href="#install-npm" class="headerlink" title="install npm"></a>install npm</h3><p>npm是node的套件管理工具，安裝node會一併安裝npm，因為npm的更新速度較node快，故可用<code>sudo npm install npm -g</code>來更新npm。</p>
+<h2 id="npm-install-packages"><a href="#npm-install-packages" class="headerlink" title="npm - install packages"></a>npm - install packages</h2><p>npm安裝套件分為locally跟globally，若只是當前開發的程式<code>require</code>其他node package，則<code>npm install &lt;package_name&gt;</code>會執行install locally，在當前目錄下產生<code>node_modules</code>並把你要求的package放入;<code>-g --global</code>則是全域安裝，通常是把package拿來當執行檔用。</p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>package.json是一個用來紀錄你project開發時所depend的package，其他開法者只要clone你的project並執行<code>npm install</code>就會安裝好所需的package，project剛開始也可用<code>npm init</code>產生對應的package.json。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -131,17 +135,10 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/04/05/2016-04-03-bash-script-note/" title="Bash script筆記">
-  <span>
-  Bash script筆記</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/04/05/2016-04-02-github-pages-enable-googlesearch/"  title="為Blog啟用google站內搜尋功能">
- <span>為Blog啟用google站內搜尋功能
+<a href="/2016/04/05/2016-04-03-bash-script-note/"  title="Bash script筆記">
+ <span>Bash script筆記
 </span>
 </a>
 </div>
@@ -162,7 +159,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#在ubuntu建立nodejs開發環境"><span class="toc-number">1.</span> <span class="toc-text">在ubuntu建立nodejs開發環境</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Setting-up-nodejs-environment-on-Ubuntu"><span class="toc-number">1.</span> <span class="toc-text">Setting up nodejs environment on Ubuntu</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-nodejs"><span class="toc-number">1.1.</span> <span class="toc-text">install nodejs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#install-npm"><span class="toc-number">1.2.</span> <span class="toc-text">install npm</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-install-packages"><span class="toc-number">2.</span> <span class="toc-text">npm - install packages</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#package-json"><span class="toc-number">2.1.</span> <span class="toc-text">package.json</span></a></li></ol></li></ol>
  
   </div>
 
