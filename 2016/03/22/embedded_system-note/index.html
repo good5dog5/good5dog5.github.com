@@ -23,7 +23,7 @@
 
 *a : value of a&amp;amp;a : address of a
 12345678910111213141516171819202122232425262728293031323334353637#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;/* forward declaration */typedef struct ob">
-<meta property="og:updated_time" content="2016-04-02T11:27:49.972Z">
+<meta property="og:updated_time" content="2016-04-09T02:36:13.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2016W5嵌入式系統實作-課程筆記">
 <meta name="twitter:description" content="課程網頁
@@ -106,7 +106,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#c-preprocessor"><span class="toc-number">1.</span> <span class="toc-text">c preprocessor</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Stringfication-and-concatenation"><span class="toc-number">1.</span> <span class="toc-text">Stringfication and concatenation</span></a></li></ol>
 		
 		</div>
 		
@@ -123,15 +123,16 @@
 <li>C function只有一種<code>return value</code>，其為純量，但該純量可以是pointer to function, or pointer to<br>  struct.</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*func_t)</span><span class="params">(Object *)</span></span>;</span><br></pre></td></tr></table></figure>
-<h2 id="c-preprocessor"><a href="#c-preprocessor" class="headerlink" title="c preprocessor"></a>c preprocessor</h2><ul>
+<h2 id="Stringfication-and-concatenation"><a href="#Stringfication-and-concatenation" class="headerlink" title="Stringfication and concatenation"></a>Stringfication and concatenation</h2><ul>
 <li><a href="https://gcc.gnu.org/onlinedocs/cpp/Stringification.html" target="_blank" rel="external">Stringification(字串化)</a></li>
 <li><a href="https://gcc.gnu.org/onlinedocs/cpp/Concatenation.html" target="_blank" rel="external">concatenation(連結，接續)</a> </li>
+<li><a href="http://wen00072-blog.logdown.com/posts/146624-talk-about-c-macros#目錄" target="_blank" rel="external">C preprocessor</a></li>
 </ul>
 <p>考慮以下MACRO -<code>object.h</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __RAY_OBJECTS_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __RAY_OBJECTS_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DECLARE_OBJECT(name) \</span><br><span class="line">    struct __##name##_node; \</span><br><span class="line">    typedef struct __##name##_node *name##_node; \</span><br><span class="line">    struct __##name##_node &#123; \</span><br><span class="line">        name element; \</span><br><span class="line">        name##_node next; \</span><br><span class="line">    &#125;; \</span><br><span class="line">    void append_##name(const name *X, name##_node *list); \</span><br><span class="line">    void delete_##name##_list(name##_node *list);</span></span><br><span class="line"></span><br><span class="line">DECLARE_OBJECT(light)</span><br><span class="line">DECLARE_OBJECT(rectangular)</span><br><span class="line">DECLARE_OBJECT(sphere)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> DECLARE_OBJECT</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <p><code>light</code>在<code>DECLARE_OBJECT(light)</code>中會取代name,故會產生以下</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> __light_node; <span class="keyword">typedef</span> <span class="keyword">struct</span> __light_node *light_node; <span class="keyword">struct</span> __light_node &#123; light element; light_node next; &#125;; <span class="function"><span class="keyword">void</span> <span class="title">append_light</span><span class="params">(<span class="keyword">const</span> light *X, light_node *<span class="built_in">list</span>)</span></span>; <span class="function"><span class="keyword">void</span> <span class="title">delete_light_list</span><span class="params">(light_node *<span class="built_in">list</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>故對<code>object.c</code>前處理後(<code>gcc -E -P source.c</code>)<a href="http://wen00072-blog.logdown.com/posts/146624-talk-about-c-macros" target="_blank" rel="external">GNU: The C Preprocessor 導讀 </a></p>
+<p>故對<code>object.c</code>前處理後(<code>gcc -E -P source.c</code>)</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> __light_node; <span class="keyword">typedef</span> <span class="keyword">struct</span> __light_node *light_node; <span class="keyword">struct</span> __light_node &#123; light element; light_node next; &#125;; <span class="function"><span class="keyword">void</span> <span class="title">append_light</span><span class="params">(<span class="keyword">const</span> light *X, light_node *<span class="built_in">list</span>)</span></span>; <span class="function"><span class="keyword">void</span> <span class="title">delete_light_list</span><span class="params">(light_node *<span class="built_in">list</span>)</span></span>;</span><br><span class="line"><span class="keyword">struct</span> __rectangular_node; <span class="keyword">typedef</span> <span class="keyword">struct</span> __rectangular_node *rectangular_node; <span class="keyword">struct</span> __rectangular_node &#123; rectangular element; rectangular_node next; &#125;; <span class="function"><span class="keyword">void</span> <span class="title">append_rectangular</span><span class="params">(<span class="keyword">const</span> rectangular *X, rectangular_node *<span class="built_in">list</span>)</span></span>; <span class="function"><span class="keyword">void</span> <span class="title">delete_rectangular_list</span><span class="params">(rectangular_node *<span class="built_in">list</span>)</span></span>;</span><br><span class="line"><span class="keyword">struct</span> __sphere_node; <span class="keyword">typedef</span> <span class="keyword">struct</span> __sphere_node *sphere_node; <span class="keyword">struct</span> __sphere_node &#123; sphere element; sphere_node next; &#125;; <span class="function"><span class="keyword">void</span> <span class="title">append_sphere</span><span class="params">(<span class="keyword">const</span> sphere *X, sphere_node *<span class="built_in">list</span>)</span></span>; <span class="function"><span class="keyword">void</span> <span class="title">delete_sphere_list</span><span class="params">(sphere_node *<span class="built_in">list</span>)</span></span>;</span><br></pre></td></tr></table></figure>
   
 	</div>
@@ -146,7 +147,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/c/">c</a><a href="/tags/Embedded-system/">Embedded system</a>
+  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/c/">c</a><a href="/tags/Embedded-system/">Embedded system</a><a href="/tags/Preprocessor/">Preprocessor</a>
   </div>
 
 </div>
@@ -191,7 +192,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#c-preprocessor"><span class="toc-number">1.</span> <span class="toc-text">c preprocessor</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Stringfication-and-concatenation"><span class="toc-number">1.</span> <span class="toc-text">Stringfication and concatenation</span></a></li></ol>
  
   </div>
 
@@ -287,11 +288,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Note/" title="Note">Note<sup>8</sup></a></li>
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>7</sup></a></li>
+				<li><a href="/tags/Note/" title="Note">Note<sup>8</sup></a></li>
 			
 		
 			
@@ -299,19 +300,11 @@
 			
 		
 			
+				<li><a href="/tags/c/" title="c">c<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C/" title="C">C<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cml/" title="Cml">Cml<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
 			
 		
 			
@@ -323,15 +316,23 @@
 			
 		
 			
-				<li><a href="/tags/c/" title="c">c<sup>2</sup></a></li>
+				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/GDB/" title="GDB">GDB<sup>1</sup></a></li>
+				<li><a href="/tags/Cml/" title="Cml">Cml<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/fixed/" title="fixed">fixed<sup>1</sup></a></li>
 			
 		
 			
@@ -343,7 +344,7 @@
 			
 		
 			
-				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>1</sup></a></li>
+				<li><a href="/tags/macro/" title="macro">macro<sup>1</sup></a></li>
 			
 		
 			
@@ -359,11 +360,11 @@
 			
 		
 			
-				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/GDB/" title="GDB">GDB<sup>1</sup></a></li>
 			
 		
 		</ul>

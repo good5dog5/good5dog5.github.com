@@ -46,7 +46,7 @@ Unix Signals
 Reactor Pattern
 pip">
 <meta property="og:image" content="https://i.imgur.com/rmebmVi.png">
-<meta property="og:updated_time" content="2016-04-03T16:46:46.863Z">
+<meta property="og:updated_time" content="2016-04-06T15:44:51.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2016嵌入式系統課程w3 - server-framework效能分析與改進">
 <meta name="twitter:description" content="github repository  
@@ -251,6 +251,9 @@ pip">
 <p>當變數被<code>static</code>修飾，就會一直存在memory中的data section，就算結束函數呼叫後仍存在，因此<code>flim</code>只有在<code>srv_capacity</code>第一次被呼叫時被初始為0並通過if statement取得flim的max value，之後呼叫<code>srv_capacity</code>都會直接被if statement卡住而直接return flim。</p>
 <p>另外，<code>srv_capacity</code>也被須告為<code>static</code>，但其代表的意義為該function的存取範圍只限於該c file(<code>protocol-server.c</code>)，如此有利資訊隱藏和避免與其他c file的命名衝突。</p>
 <p>POSIX允許application在 <strong>compiler time</strong> 或 <strong>run time</strong>去測試系統支不支援某個option或取得某設定值;若是在compiler time決定的話則須引入<code>&lt;unistd.h&gt;</code>和<code>&lt;limits.h&gt;</code>並且撰寫macro測試。若由runtime決定則可由<code>sysconf()</code>取得。</p>
+<ul>
+<li>pthread_mutex_init()</li>
+</ul>
 <h2 id="探索過程"><a href="#探索過程" class="headerlink" title="探索過程"></a>探索過程</h2><p>Q: <code>ab -c 32 -n 100 http://localhost:8080/</code>的作用？<br><code>ab</code>是Apache HTTP server benchmarking tool，<code>-c</code> option代表concurency，即一次送出的request數目，<br><code>-n</code>代表總共發出幾次request。</p>
 <h2 id="效能改進"><a href="#效能改進" class="headerlink" title="效能改進"></a>效能改進</h2><p>原版效能：</p>
 <pre><code>Concurrency Level:      32
@@ -424,11 +427,11 @@ Total:       3999 4044  64.7   4000    4138
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Note/" title="Note">Note<sup>8</sup></a></li>
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>7</sup></a></li>
+				<li><a href="/tags/Note/" title="Note">Note<sup>8</sup></a></li>
 			
 		
 			
@@ -436,19 +439,11 @@ Total:       3999 4044  64.7   4000    4138
 			
 		
 			
+				<li><a href="/tags/c/" title="c">c<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C/" title="C">C<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cml/" title="Cml">Cml<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
 			
 		
 			
@@ -460,15 +455,23 @@ Total:       3999 4044  64.7   4000    4138
 			
 		
 			
-				<li><a href="/tags/c/" title="c">c<sup>2</sup></a></li>
+				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/GDB/" title="GDB">GDB<sup>1</sup></a></li>
+				<li><a href="/tags/Cml/" title="Cml">Cml<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/fixed/" title="fixed">fixed<sup>1</sup></a></li>
 			
 		
 			
@@ -480,7 +483,7 @@ Total:       3999 4044  64.7   4000    4138
 			
 		
 			
-				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>1</sup></a></li>
+				<li><a href="/tags/macro/" title="macro">macro<sup>1</sup></a></li>
 			
 		
 			
@@ -496,11 +499,11 @@ Total:       3999 4044  64.7   4000    4138
 			
 		
 			
-				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/GDB/" title="GDB">GDB<sup>1</sup></a></li>
 			
 		
 		</ul>

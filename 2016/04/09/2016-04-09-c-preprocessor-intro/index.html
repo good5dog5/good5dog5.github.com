@@ -4,32 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>2016嵌入式系統課程W6課程筆記 | 一奔二飛</title>
+    <title>GNU c preprocessor筆記 | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
     
 
     
-    <meta name="description" content="課程共筆
-
-
-「環境每天都或多或少在變化，如果我們不變通，終有一日會發現遠遠落後。如果在沒有轉變的情況下，處境突然變好了，那只是靠運氣，太被動。」「主動改善最困難的地方，不是如何改善，而是你根本不認為有需要改善。」「只要是為了變得更好，而不是為變而變，我們就應該踏出這一步，不應故步自封，否則，突破絕不會從天而降。」">
+    <meta name="description" content="C語言的前置處理(CPP:C Preprocessor)功能強大，了解其使用方法及時機能加快理解他人程式碼的速度與撰碼功力，本篇是我學習的筆記。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2016嵌入式系統課程W6課程筆記">
-<meta property="og:url" content="http://good5dog5.github.io/2016/03/29/2016-03-29-2016EmbeddedW6-course-note/index.html">
+<meta property="og:title" content="GNU c preprocessor筆記">
+<meta property="og:url" content="http://good5dog5.github.io/2016/04/09/2016-04-09-c-preprocessor-intro/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="課程共筆
-
-
-「環境每天都或多或少在變化，如果我們不變通，終有一日會發現遠遠落後。如果在沒有轉變的情況下，處境突然變好了，那只是靠運氣，太被動。」「主動改善最困難的地方，不是如何改善，而是你根本不認為有需要改善。」「只要是為了變得更好，而不是為變而變，我們就應該踏出這一步，不應故步自封，否則，突破絕不會從天而降。」">
-<meta property="og:updated_time" content="2016-03-29T11:43:42.906Z">
+<meta property="og:description" content="C語言的前置處理(CPP:C Preprocessor)功能強大，了解其使用方法及時機能加快理解他人程式碼的速度與撰碼功力，本篇是我學習的筆記。">
+<meta property="og:updated_time" content="2016-04-09T14:46:49.976Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2016嵌入式系統課程W6課程筆記">
-<meta name="twitter:description" content="課程共筆
-
-
-「環境每天都或多或少在變化，如果我們不變通，終有一日會發現遠遠落後。如果在沒有轉變的情況下，處境突然變好了，那只是靠運氣，太被動。」「主動改善最困難的地方，不是如何改善，而是你根本不認為有需要改善。」「只要是為了變得更好，而不是為變而變，我們就應該踏出這一步，不應故步自封，否則，突破絕不會從天而降。」">
+<meta name="twitter:title" content="GNU c preprocessor筆記">
+<meta name="twitter:description" content="C語言的前置處理(CPP:C Preprocessor)功能強大，了解其使用方法及時機能加快理解他人程式碼的速度與撰碼功力，本篇是我學習的筆記。">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -90,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/29/2016-03-29-2016EmbeddedW6-course-note/" title="2016嵌入式系統課程W6課程筆記" itemprop="url">2016嵌入式系統課程W6課程筆記</a>
+      <a href="/2016/04/09/2016-04-09-c-preprocessor-intro/" title="GNU c preprocessor筆記" itemprop="url">GNU c preprocessor筆記</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-29T11:43:42.906Z" itemprop="datePublished"> Published 2016-03-29</time>
+    <time datetime="2016-04-09T14:46:49.980Z" itemprop="datePublished"> Published 2016-04-09</time>
     
   </p>
 </header>
@@ -106,45 +97,56 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最佳化有時來自對系統的認知"><span class="toc-number">1.</span> <span class="toc-text">最佳化有時來自對系統的認知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#善用StackOverflow"><span class="toc-number">2.</span> <span class="toc-text">善用StackOverflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thread-pool"><span class="toc-number">3.</span> <span class="toc-text">Thread pool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARM"><span class="toc-number">4.</span> <span class="toc-text">ARM</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Header-files"><span class="toc-number">1.</span> <span class="toc-text">Header files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MACRO"><span class="toc-number">2.</span> <span class="toc-text">MACRO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GCC-predefined-macro"><span class="toc-number">2.1.</span> <span class="toc-text">GCC predefined macro</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GCC-preprocessor-related-options"><span class="toc-number">3.</span> <span class="toc-text">GCC preprocessor related options</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
 		
 		</div>
 		
-		<ul>
-<li><a href="https://embedded2016.hackpad.com/Mar-29-2016--VJmq0R0ILi6" target="_blank" rel="external">課程共筆</a></li>
-</ul>
-<blockquote>
-<p>「環境每天都或多或少在變化，如果我們不變通，終有一日會發現遠遠落後。如果在沒有轉變的情況下，處境突然變好了，那只是靠運氣，太被動。」<br>「主動改善最困難的地方，不是如何改善，而是你根本不認為有需要改善。」<br>「只要是為了變得更好，而不是為變而變，我們就應該踏出這一步，不應故步自封，否則，突破絕不會從天而降。」</p>
-</blockquote>
+		<p>C語言的前置處理(CPP:C Preprocessor)功能強大，了解其使用方法及時機能加快理解他人程式碼的速度與撰碼功力，本篇是我學習的筆記。</p>
 <a id="more"></a>
-<h2 id="最佳化有時來自對系統的認知"><a href="#最佳化有時來自對系統的認知" class="headerlink" title="最佳化有時來自對系統的認知"></a>最佳化有時來自對系統的認知</h2><p>有branch的版本 vs 沒有branch的版本<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int32_t</span> a, b;</span><br><span class="line"><span class="keyword">if</span> (b&lt;<span class="number">0</span>) a++; <span class="comment">//等價於a -= b &gt;&gt; 31;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="善用StackOverflow"><a href="#善用StackOverflow" class="headerlink" title="善用StackOverflow"></a>善用StackOverflow</h2><ol>
-<li>查tag</li>
-<li>看問問題的人是誰，你們也許有相同的興趣，google一下</li>
-<li>回覆者是誰，可以google一下</li>
-</ol>
-<p>用google問題，找到的可能是和你同病相憐的人，請善用StackOverflow<br><a href="http://stackoverflow.com/questions/6297428/existing-threadpool-c-implementation" target="_blank" rel="external">[Question on StackOverflow]</a></p>
-<h2 id="Thread-pool"><a href="#Thread-pool" class="headerlink" title="Thread pool"></a>Thread pool</h2><p><code>migrate</code>: 從一個worker thread 轉移到令一個worker thread<br><code>reuse</code>: 一個worker thread很快速，常為空可重複使用稱之。</p>
-<ul>
-<li>mutex lock有owner的概念，誰lock的就該由誰unlock。</li>
-<li>mutex_lock的cost基本上會是<code>加法</code>的50~100倍。</li>
-<li><code>lock free</code>並不是不用lock，只是用的lock比較少而已，就像waterproof也不是完全防水</li>
-<li>Ring-buffer可以用來實作很多expire的概念，例如網路封包過一陣子會過期。</li>
-<li>原本作業的想法，是長長排隊隊伍，到最後關頭才進行分組</li>
-</ul>
-<p>task-migration可以在每個work</p>
+<h2 id="Header-files"><a href="#Header-files" class="headerlink" title="Header files"></a>Header files</h2><p><a href="https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html#Header-Files" target="_blank" rel="external">[header file section]</a><br>標頭檔內含函數的宣告和macro的定義，能讓眾多<code>source file</code>去引用。</p>
+<p>剛學C的時候，我一直對標頭檔有很深的疑惑：為何不要把函數的宣告和實作寫在同一個<code>.c</code>檔中呢？何必費心的額外準備一個標頭檔再引入呢？</p>
+<p>原來標頭檔有兩個主要目的：</p>
 <ol>
-<li>thread中，計算已經完成的task數，則之後要選擇migtate到的thread，就取counter最高的worker thread即可。</li>
-<li>或者可以把工作轉成atomic operation</li>
+<li>作業系統會實作一系列系統呼叫(system call)並把相關的界面(interface)紀錄在標頭檔，我們可以透過引用標頭檔的方式使用系統呼叫或其他libries。</li>
+<li>開發專案時，能透過標頭檔整理，集結相關的宣告與macro，並讓有需要相關功能的source files去引用，<code>#include xxx</code>相當於把該標頭檔複製到source files，如果沒有標頭檔則需要在每個原始碼中手動新增修改，增加維護的難度。</li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>  &#123;  </span><br><span class="line">    work = <span class="literal">NULL</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>  (thread_queue_len( thread ) &lt;= <span class="number">0</span>)   <span class="comment">//also atomic  </span></span><br><span class="line">        <span class="keyword">break</span> ;  </span><br><span class="line">    tmp =  thread -&gt;out;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">//prefetch work  </span></span><br><span class="line">    work = &amp; thread -&gt;work_queue[queue_offset(tmp)];  </span><br><span class="line">&#125;  <span class="keyword">while</span>  (!__sync_bool_compare_and_swap(&amp; thread -&gt;out, tmp, tmp + <span class="number">1</span>));  </span><br><span class="line"><span class="keyword">if</span>  (work)  do_something();</span><br></pre></td></tr></table></figure>
-<p>其中 <code>__sync_bool_compare_and_swap</code>會由compiler轉成低階的<strong>test-and-set</strong>指令。</p>
-<h2 id="ARM"><a href="#ARM" class="headerlink" title="ARM"></a>ARM</h2><ul>
-<li>現在的processor pipeline多為9~10 stage，Zen phone用的ARM A15可到27 stage</li>
-<li>ARM和MIPS都為RISC架構，其中ARM有<code>Barrel shifter</code>，能夠對register做shfit，重排register的bit</li>
-<li>ARM的PC是指向 <strong>下兩道指令</strong>，不同於MIPC的是指向 下一到</li>
+<h2 id="MACRO"><a href="#MACRO" class="headerlink" title="MACRO"></a>MACRO</h2><p>macro是一個名字(identifier)和內容(content)的對應，<code>#define xxx ooo</code>指示CPP，要把文件中所有的xxx轉換成ooo;macro又區分為兩類：</p>
+<ul>
+<li><code>Object-like macro</code>: 看起來像普通物件定義，例如 #define BUFFER_SIZE 1024</li>
+<li><p><code>function-like macro</code>: 和object-like macro一樣，只是後面需要加上<code>()</code>並且可以餵食參數。</p>
+<ul>
+<li><p><code>()</code>前不可有空格會轉換錯誤</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lang_init ()    c_init()</span></span><br><span class="line">lang_init() ==&gt; () c_init()()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>function-like macro定義好之後，只有在名字後面連接<code>()</code>才會被展開，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> foo() <span class="comment">/* optimized inline version */</span></span></span><br><span class="line">...</span><br><span class="line">foo();</span><br><span class="line">funcptr = foo;</span><br></pre></td></tr></table></figure>
+<p><code>foo()</code>會展開成macro的定義，而<code>funcptr</code>則會拿到<code>void foo</code>的位址。</p>
+</li>
 </ul>
-<p>Q:如上面所說 PC 指向正在執行的後 2 條指令 (+8)，但若某道正在執行指令遇到中斷，這時候的 PC 會如何變化？<br>A:以Cortex M3/M4來說，而是以 <strong>硬體給定</strong> <code>EXC_RETURN</code>(exception return)作為新的PC，一旦返回原程式時才還原成 +8/+4</p>
+</li>
+</ul>
+<h3 id="GCC-predefined-macro"><a href="#GCC-predefined-macro" class="headerlink" title="GCC predefined macro"></a>GCC predefined macro</h3><p>GCC預先定義好一些object-like macro，可以直接取用，在debug或其他用途上都很方便。</p>
+<ul>
+<li><code>__FILE__</code></li>
+<li><code>__LINE__</code><br>兩者常被組合在一起用來產生錯誤訊息：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fprintf</span> (<span class="built_in">stderr</span>, <span class="string">"Internal error: "</span></span><br><span class="line">		<span class="string">"negative string length "</span></span><br><span class="line">		<span class="string">"%d at %s, line %d."</span>,</span><br><span class="line">		length, __FILE__, __LINE__);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="GCC-preprocessor-related-options"><a href="#GCC-preprocessor-related-options" class="headerlink" title="GCC preprocessor related options"></a>GCC preprocessor related options</h2><p>建構一個程式包含前處理(preprocessing)，編譯(compilation)，轉換成組合語言(assemlby)和連結(linking)，這裡列出一些在前處理步驟有趣的options。</p>
+<ul>
+<li><p><code>-E</code>:令gcc在完成前處理階段後就停止，並把前處理後的結果輸出到STDOUT;輸入中不須前處理的檔案會被忽略掉。</p>
+</li>
+<li><p><code>-save-temps</code> : 把建構過程產生的中介檔案(intermediate files)存下來，例如<code>gcc -c -save-temps foo.c</code>會在當前資料夾下產生</p>
+<ul>
+<li><code>foo.i</code>: 前處理後的結果</li>
+<li><code>foo.s</code>: 轉換成組合語言的結果</li>
+<li><code>foo.o</code>: 連結後的完整結果</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="http://wen00072-blog.logdown.com/posts/146624-talk-about-c-macros" target="_blank" rel="external">GNU: The C Preprocessor 導讀 </a></li>
+<li><a href="https://gcc.gnu.org/onlinedocs/cpp/index.html" target="_blank" rel="external">The C Preprocessor</a></li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -153,7 +155,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Note/">Note</a><a href="/tags/Embedded-System/">Embedded System</a>
+  <span></span> <a href="/tags/c/">c</a><a href="/tags/Preprocessor/">Preprocessor</a><a href="/tags/gcc/">gcc</a><a href="/tags/macro/">macro</a>
   </div>
 
 </div>
@@ -167,17 +169,10 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/03/30/2016-03-30-resume-note/" title="寫英文履歷時的筆記">
-  <span>
-  寫英文履歷時的筆記</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/03/29/2016-03-28-tmux-script/"  title="為tmux撰寫啟動script">
- <span>為tmux撰寫啟動script
+<a href="/2016/04/09/2016-04-09-Mimeapps-and-default-application/"  title="利用MIME type綁定各類預設應用程式">
+ <span>利用MIME type綁定各類預設應用程式
 </span>
 </a>
 </div>
@@ -198,7 +193,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最佳化有時來自對系統的認知"><span class="toc-number">1.</span> <span class="toc-text">最佳化有時來自對系統的認知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#善用StackOverflow"><span class="toc-number">2.</span> <span class="toc-text">善用StackOverflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thread-pool"><span class="toc-number">3.</span> <span class="toc-text">Thread pool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARM"><span class="toc-number">4.</span> <span class="toc-text">ARM</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Header-files"><span class="toc-number">1.</span> <span class="toc-text">Header files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MACRO"><span class="toc-number">2.</span> <span class="toc-text">MACRO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GCC-predefined-macro"><span class="toc-number">2.1.</span> <span class="toc-text">GCC predefined macro</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GCC-preprocessor-related-options"><span class="toc-number">3.</span> <span class="toc-text">GCC preprocessor related options</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
  
   </div>
 
