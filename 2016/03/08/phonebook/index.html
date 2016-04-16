@@ -4,46 +4,40 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>一奔二飛</title>
+    <title>嵌入式系統作業 - Phonebook效能改進與分析 | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
     
 
     
-    <meta name="description" content="github repository
+    <meta name="description" content="github repository  
+參考課程網頁的作業要求：  
 
-參考課程網頁的作業要求：
 
-
-  
-    在 GitHub 上 fork phonebook，然後適度修改 phonebook_opt.c和 phonebook_opt.h兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。
-    phonebook_orig.[ch] 不需要修改，我們">
+在 GitHub 上 fork phonebook，然後適度修改 phonebook_opt.c和 phonebook_opt.h兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。
+phonebook_orig.[ch] 不需要修改，我們關注的是 pho">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一奔二飛">
+<meta property="og:title" content="嵌入式系統作業 - Phonebook效能改進與分析">
 <meta property="og:url" content="http://good5dog5.github.io/2016/03/08/phonebook/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="github repository
+<meta property="og:description" content="github repository  
+參考課程網頁的作業要求：  
 
-參考課程網頁的作業要求：
 
-
-  
-    在 GitHub 上 fork phonebook，然後適度修改 phonebook_opt.c和 phonebook_opt.h兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。
-    phonebook_orig.[ch] 不需要修改，我們">
+在 GitHub 上 fork phonebook，然後適度修改 phonebook_opt.c和 phonebook_opt.h兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。
+phonebook_orig.[ch] 不需要修改，我們關注的是 pho">
 <meta property="og:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-08-phonebook/comment_out_members.png">
 <meta property="og:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-08-phonebook/hash_vi.png">
 <meta property="og:updated_time" content="2016-04-09T02:36:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一奔二飛">
-<meta name="twitter:description" content="github repository
+<meta name="twitter:title" content="嵌入式系統作業 - Phonebook效能改進與分析">
+<meta name="twitter:description" content="github repository  
+參考課程網頁的作業要求：  
 
-參考課程網頁的作業要求：
 
-
-  
-    在 GitHub 上 fork phonebook，然後適度修改 phonebook_opt.c和 phonebook_opt.h兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。
-    phonebook_orig.[ch] 不需要修改，我們">
+在 GitHub 上 fork phonebook，然後適度修改 phonebook_opt.c和 phonebook_opt.h兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。
+phonebook_orig.[ch] 不需要修改，我們關注的是 pho">
 <meta name="twitter:image" content="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-08-phonebook/comment_out_members.png">
 
     
@@ -74,7 +68,7 @@
 				<h1 class="site-name"><a href="/" title="一奔二飛">一奔二飛</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -90,7 +84,7 @@
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
@@ -105,200 +99,85 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/08/phonebook/" title="" itemprop="url"></a>
+      <a href="/2016/03/08/phonebook/" title="嵌入式系統作業 - Phonebook效能改進與分析" itemprop="url">嵌入式系統作業 - Phonebook效能改進與分析</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-08T05:00:00.000Z" itemprop="datePublished"> 发表于 2016-03-08</time>
+    <time datetime="2016-03-08T05:00:00.000Z" itemprop="datePublished"> Published 2016-03-08</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#perf"><span class="toc-number">1.</span> <span class="toc-text">利用perf尋找程式熱點</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cache"><span class="toc-number"></span> <span class="toc-text">cache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optimize"><span class="toc-number"></span> <span class="toc-text">開始optimize!</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#entry"><span class="toc-number">1.</span> <span class="toc-text">1.減少entry的大小</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#利用perf尋找程式熱點"><span class="toc-number">1.</span> <span class="toc-text">利用perf尋找程式熱點</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cache"><span class="toc-number"></span> <span class="toc-text">cache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#開始optimize"><span class="toc-number"></span> <span class="toc-text">開始optimize!</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-減少entry的大小"><span class="toc-number">1.</span> <span class="toc-text">1.減少entry的大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Hashing"><span class="toc-number">2.</span> <span class="toc-text">2. Hashing</span></a></li></ol>
 		
 		</div>
 		
-		<p><a href="https://github.com/good5dog5/phonebook" target="_blank" rel="external"><strong>github repository</strong></a></p>
-
-<p>參考<a href="http://wiki.csie.ncku.edu.tw/embedded/2016q1h1" target="_blank" rel="external">課程網頁</a>的作業要求：</p>
-
+		<p><a href="https://github.com/good5dog5/phonebook" target="_blank" rel="external"><strong>github repository</strong></a>  </p>
+<p>參考<a href="http://wiki.csie.ncku.edu.tw/embedded/2016q1h1" target="_blank" rel="external">課程網頁</a>的作業要求：  </p>
 <blockquote>
-  <ul>
-    <li>在 GitHub 上 fork phonebook，然後適度修改 <code class="highlighter-rouge">phonebook_opt.c</code>和 <code class="highlighter-rouge">phonebook_opt.h</code>兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。</li>
-    <li><code class="highlighter-rouge">phonebook_orig.[ch]</code> 不需要修改，我們關注的是 <code class="highlighter-rouge">phonebook_opt.[ch]</code>，當然要修改 <code class="highlighter-rouge">main.c</code> 也是允許的</li>
-    <li><code class="highlighter-rouge">findName()</code> 的時間必須原本的時間更短</li>
-    <li><code class="highlighter-rouge">append()</code> 的時間可以比原始版本稍久，但不應該增加太多</li>
-    <li>main.c 應該只有一份，不要建立新的 <code class="highlighter-rouge">main()</code>，善用 Makefile 定義對應的 CFLAGS</li>
-  </ul>
-</blockquote>
-
-<p>先來看看 <code class="highlighter-rouge">phonebook_orig.h</code> 內的entry struct</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">__PHONE_BOOK_ENTRY</span> <span class="p">{</span>
-    <span class="kt">char</span> <span class="n">lastName</span><span class="p">[</span><span class="n">MAX_LAST_NAME_SIZE</span><span class="p">];</span>
-    <span class="kt">char</span> <span class="n">firstName</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
-    <span class="kt">char</span> <span class="n">email</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
-    <span class="kt">char</span> <span class="n">phone</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
-    <span class="kt">char</span> <span class="n">cell</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
-    <span class="kt">char</span> <span class="n">addr1</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
-    <span class="kt">char</span> <span class="n">addr2</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
-    <span class="kt">char</span> <span class="n">city</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
-    <span class="kt">char</span> <span class="n">state</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-    <span class="kt">char</span> <span class="n">zip</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
-    <span class="k">struct</span> <span class="n">__PHONE_BOOK_ENTRY</span> <span class="o">*</span><span class="n">pNext</span><span class="p">;</span>
-<span class="p">}</span> <span class="n">entry</span><span class="p">;</span>
-</code></pre>
-</div>
-
 <ul>
-  <li>用GDB print sizeof(entry)得出size為136 bytes，但entry中member的總size
-應該為131 bytes，因為word alignment的關係才湊成136(136%8=0)。</li>
+<li>在 GitHub 上 fork phonebook，然後適度修改 <code>phonebook_opt.c</code>和 <code>phonebook_opt.h</code>兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。</li>
+<li><code>phonebook_orig.[ch]</code> 不需要修改，我們關注的是 <code>phonebook_opt.[ch]</code>，當然要修改 <code>main.c</code> 也是允許的</li>
+<li><code>findName()</code> 的時間必須原本的時間更短</li>
+<li><code>append()</code> 的時間可以比原始版本稍久，但不應該增加太多</li>
+<li>main.c 應該只有一份，不要建立新的 <code>main()</code>，善用 Makefile 定義對應的 CFLAGS</li>
 </ul>
-
-<p>接著看 <code class="highlighter-rouge">main.c</code></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;string.h&gt;
-#include &lt;time.h&gt;
-#include &lt;assert.h&gt;
-</span>
-<span class="cp">#include IMPL      // WTF?
-</span>
-<span class="cp">#define DICT_FILE "./dictionary/words.txt"
-</span></code></pre>
-</div>
+</blockquote>
+<a id="more"></a>
+<p>先來看看 <code>phonebook_orig.h</code> 內的entry struct  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> __PHONE_BOOK_ENTRY &#123;</span><br><span class="line">    <span class="keyword">char</span> lastName[MAX_LAST_NAME_SIZE];</span><br><span class="line">    <span class="keyword">char</span> firstName[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">char</span> email[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">char</span> phone[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> cell[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> addr1[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">char</span> addr2[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">char</span> city[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">char</span> state[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">char</span> zip[<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">struct</span> __PHONE_BOOK_ENTRY *pNext;</span><br><span class="line">&#125; entry;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用GDB print sizeof(entry)得出size為136 bytes，但entry中member的總size<br>應該為131 bytes，因為word alignment的關係才湊成136(136%8=0)。</li>
+</ul>
+<p>接著看 <code>main.c</code>  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> IMPL      // WTF?</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DICT_FILE <span class="string">"./dictionary/words.txt"</span></span></span><br></pre></td></tr></table></figure>
 <p>#include IMPL須連Makefile一起看才能理解#</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">SRCS_common</span> <span class="o">=</span> main.c
-
-<span class="nl">phonebook_orig</span><span class="o">:</span> <span class="nf">$(SRCS_common) phonebook_orig.c phonebook_orig.h</span>
-	<span class="nv">$(CC)</span> <span class="nv">$(CFLAGS_common)</span> <span class="nv">$(CFLAGS_orig)</span> <span class="se">\</span>
-		-DIMPL<span class="o">=</span><span class="s2">"</span><span class="se">\"</span><span class="nv">$@</span><span class="s2">.h</span><span class="se">\"</span><span class="s2">"</span> -o <span class="nv">$@</span> <span class="se">\</span>
-		<span class="nv">$(SRCS_common)</span> <span class="nv">$@</span>.c
-
-<span class="nl">phonebook_opt</span><span class="o">:</span> <span class="nf">$(SRCS_common) phonebook_opt.c phonebook_opt.h</span>
-	<span class="nv">$(CC)</span> <span class="nv">$(CFLAGS_common)</span> <span class="nv">$(CFLAGS_opt)</span> <span class="se">\</span>
-		-DIMPL<span class="o">=</span><span class="s2">"</span><span class="se">\"</span><span class="nv">$@</span><span class="s2">.h</span><span class="se">\"</span><span class="s2">"</span> -o <span class="nv">$@</span> <span class="se">\</span>
-		<span class="nv">$(SRCS_common)</span> <span class="nv">$@</span>.c
-</code></pre>
-</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SRCS_common = main.c</span><br><span class="line"></span><br><span class="line">phonebook_orig: $(SRCS_common) phonebook_orig.c phonebook_orig.h</span><br><span class="line">	$(CC) $(CFLAGS_common) $(CFLAGS_orig) \</span><br><span class="line">		-DIMPL=&quot;\&quot;$@.h\&quot;&quot; -o $@ \</span><br><span class="line">		$(SRCS_common) $@.c</span><br><span class="line"></span><br><span class="line">phonebook_opt: $(SRCS_common) phonebook_opt.c phonebook_opt.h</span><br><span class="line">	$(CC) $(CFLAGS_common) $(CFLAGS_opt) \</span><br><span class="line">		-DIMPL=&quot;\&quot;$@.h\&quot;&quot; -o $@ \</span><br><span class="line">		$(SRCS_common) $@.c</span><br></pre></td></tr></table></figure>
 <p>-DIMPL 會把main.c中的 #include IMPL換成 phonebook_opt.h或 phonebook_orig.h</p>
-
-<h3 id="perf">利用perf尋找程式熱點</h3>
-<p><code class="highlighter-rouge">./phonebook_orig &amp; sudo perf top -p $!</code></p>
-
-<h2 id="cache">cache</h2>
-<p>因為我們對此次作業cache misses很在意，故要排除系統cache 的影響，
-在每次執行之前手動藉由</p>
-
-<p><code class="highlighter-rouge">echo 1 &gt; /proc/sys/vm/drop_caches</code>來釋放cache。
-&gt;<code class="highlighter-rouge">Freeing the page cache:</code><br>
-&gt;echo 1 &gt; /proc/sys/vm/drop_caches<br>
-&gt;<code class="highlighter-rouge">Free dentries and inodes:</code><br>
-&gt;echo 2 &gt; /proc/sys/vm/drop_caches<br>
-&gt;<code class="highlighter-rouge">Free the page cache, dentries and the inodes:</code><br>
-&gt;echo 3 &gt; /proc/sys/vm/drop_caches</p>
-
-<h2 id="optimize">開始optimize!</h2>
-
-<h3 id="entry">1.減少entry的大小</h3>
-<hr>
-
-<p>原本的entry耗用136 bytes，但<code class="highlighter-rouge">append()</code>只會用到entry.lastName這個member
-故把其他不相干的members都註解掉，比較原本的cache misses和註解掉後的cache misses。</p>
-
-<p>註解前：</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>Performance counter stats for './phonebook_opt' (100 runs):  
-
-         1,998,548      cache-misses              #   `94.496 % of all cache refs`  ( +-  0.33% )
-         2,114,954      cache-references                                              ( +-  0.20% )
-       263,123,256      instructions              #    1.40  insns per cycle          ( +-  0.02% )
-       187,765,109      cycles                                                        ( +-  0.68% )
-
-       0.072710909 seconds time elapsed                                               ( +-  0.68% )
-</code></pre>
-</div>
-
-<p>註解後</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">__PHONE_BOOK_ENTRY</span> <span class="p">{</span>
-    <span class="kt">char</span> <span class="n">lastName</span><span class="p">[</span><span class="n">MAX_LAST_NAME_SIZE</span><span class="p">];</span>
-    <span class="c1">// char firstName[16];
-</span>    <span class="c1">// char email[16];
-</span>    <span class="c1">// char phone[10];
-</span>    <span class="c1">// char cell[10];
-</span>    <span class="c1">// char addr1[16];
-</span>    <span class="c1">// char addr2[16];
-</span>    <span class="c1">// char city[16];
-</span>    <span class="c1">// char state[2];
-</span>    <span class="c1">// char zip[5];
-</span>    <span class="k">struct</span> <span class="n">__PHONE_BOOK_ENTRY</span> <span class="o">*</span><span class="n">pNext</span><span class="p">;</span>
-<span class="p">}</span> <span class="n">entry</span><span class="p">;</span>
-</code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>Performance counter stats for './phonebook_opt' (100 runs):
-
-           251,887      cache-misses              #   74.614 % of all cache refs      ( +-  0.13% )
-           337,587      cache-references                                              ( +-  1.47% )
-       242,971,052      instructions              #    1.81  insns per cycle          ( +-  0.02% )
-       134,352,512      cycles                                                        ( +-  0.99% )
-
-       0.052137429 seconds time elapsed                                               ( +-  1.03% )
-</code></pre>
-</div>
-
-<p><img src="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-08-phonebook/comment_out_members.png" alt="Comment 後的 performance"><br>
-### 2. Hashing
-—
-採用<a href="http://www.partow.net/programming/hashfunctions/#BKDRHashFunction" target="_blank" rel="external">BKDR hash</a>
-&gt; This hash function comes from Brian Kernighan and Dennis Ritchie’s book “The C Programming Language”. It is a simple hash function using a strange set of possible seeds which all constitute a pattern of 31….31…31 etc, it seems to be very similar to the DJB hash function.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// BKDR Hash Function
-</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="nf">BKDRHash</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">131</span><span class="p">;</span> <span class="c1">// 31 131 1313 13131 131313 etc..
-</span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">hash</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">str</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">hash</span> <span class="o">=</span> <span class="n">hash</span> <span class="o">*</span> <span class="n">seed</span> <span class="o">+</span> <span class="p">(</span><span class="o">*</span><span class="n">str</span><span class="o">++</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="p">(</span><span class="n">hash</span> <span class="o">&amp;</span> <span class="mh">0x7FFFFFFF</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-<p>原來是來自Brian Kernighan and Dennis Ritchie’s的書，所以才較BKDR阿，是個易於記憶，效能也不錯的hash funciton。
-修改成用bit operation，較為有效率</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="kt">int</span> <span class="nf">BKDRHash</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">hash</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">str</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">hash</span> <span class="o">=</span> <span class="p">(</span><span class="n">hash</span><span class="o">&lt;&lt;</span><span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="n">hash</span> <span class="o">+</span> <span class="p">(</span><span class="o">*</span><span class="n">str</span><span class="o">++</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">hash</span> <span class="o">%</span> <span class="n">SIZE</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-
+<h3 id="利用perf尋找程式熱點"><a href="#利用perf尋找程式熱點" class="headerlink" title="利用perf尋找程式熱點"></a>利用perf尋找程式熱點</h3><p><code>./phonebook_orig &amp; sudo perf top -p $!</code></p>
+<h2 id="cache"><a href="#cache" class="headerlink" title="cache"></a>cache</h2><p>因為我們對此次作業cache misses很在意，故要排除系統cache 的影響，<br>在每次執行之前手動藉由   </p>
+<p><code>echo 1 &gt; /proc/sys/vm/drop_caches</code>來釋放cache。</p>
+<blockquote>
+<p><code>Freeing the page cache:</code><br>echo 1 &gt; /proc/sys/vm/drop_caches<br><code>Free dentries and inodes:</code><br>echo 2 &gt; /proc/sys/vm/drop_caches<br><code>Free the page cache, dentries and the inodes:</code><br>echo 3 &gt; /proc/sys/vm/drop_caches  </p>
+</blockquote>
+<h2 id="開始optimize"><a href="#開始optimize" class="headerlink" title="開始optimize!"></a>開始optimize!</h2><h3 id="1-減少entry的大小"><a href="#1-減少entry的大小" class="headerlink" title="1.減少entry的大小"></a>1.減少entry的大小</h3><hr>
+<p>原本的entry耗用136 bytes，但<code>append()</code>只會用到entry.lastName這個member<br>故把其他不相干的members都註解掉，比較原本的cache misses和註解掉後的cache misses。  </p>
+<p>註解前：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Performance counter stats <span class="keyword">for</span> <span class="string">'./phonebook_opt'</span> (100 runs):  </span><br><span class="line"></span><br><span class="line">         1,998,548      cache-misses              <span class="comment">#   `94.496 % of all cache refs`  ( +-  0.33% )</span></span><br><span class="line">         2,114,954      cache-references                                              ( +-  0.20% )</span><br><span class="line">       263,123,256      instructions              <span class="comment">#    1.40  insns per cycle          ( +-  0.02% )</span></span><br><span class="line">       187,765,109      cycles                                                        ( +-  0.68% )</span><br><span class="line"></span><br><span class="line">       0.072710909 seconds time elapsed                                               ( +-  0.68% )</span><br></pre></td></tr></table></figure></p>
+<p>註解後 </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> __PHONE_BOOK_ENTRY &#123;</span><br><span class="line">    <span class="keyword">char</span> lastName[MAX_LAST_NAME_SIZE];</span><br><span class="line">    <span class="comment">// char firstName[16];</span></span><br><span class="line">    <span class="comment">// char email[16];</span></span><br><span class="line">    <span class="comment">// char phone[10];</span></span><br><span class="line">    <span class="comment">// char cell[10];</span></span><br><span class="line">    <span class="comment">// char addr1[16];</span></span><br><span class="line">    <span class="comment">// char addr2[16];</span></span><br><span class="line">    <span class="comment">// char city[16];</span></span><br><span class="line">    <span class="comment">// char state[2];</span></span><br><span class="line">    <span class="comment">// char zip[5];</span></span><br><span class="line">    <span class="keyword">struct</span> __PHONE_BOOK_ENTRY *pNext;</span><br><span class="line">&#125; entry;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Performance counter stats for &apos;./phonebook_opt&apos; (100 runs):</span><br><span class="line"></span><br><span class="line">           251,887      cache-misses              #   74.614 % of all cache refs      ( +-  0.13% )</span><br><span class="line">           337,587      cache-references                                              ( +-  1.47% )</span><br><span class="line">       242,971,052      instructions              #    1.81  insns per cycle          ( +-  0.02% )</span><br><span class="line">       134,352,512      cycles                                                        ( +-  0.99% )</span><br><span class="line"></span><br><span class="line">       0.052137429 seconds time elapsed                                               ( +-  1.03% )</span><br></pre></td></tr></table></figure>
+<p><img src="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-08-phonebook/comment_out_members.png" alt="Comment 後的 performance">  </p>
+<h3 id="2-Hashing"><a href="#2-Hashing" class="headerlink" title="2. Hashing"></a>2. Hashing</h3><hr>
+<p>採用<a href="http://www.partow.net/programming/hashfunctions/#BKDRHashFunction" target="_blank" rel="external">BKDR hash</a></p>
+<blockquote>
+<p>This hash function comes from Brian Kernighan and Dennis Ritchie’s book “The C Programming Language”. It is a simple hash function using a strange set of possible seeds which all constitute a pattern of 31….31…31 etc, it seems to be very similar to the DJB hash function.  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// BKDR Hash Function</span></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">BKDRHash</span><span class="params">(<span class="keyword">char</span> *str)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> seed = <span class="number">131</span>; <span class="comment">// 31 131 1313 13131 131313 etc..</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> hash = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (*str)</span><br><span class="line">    &#123;</span><br><span class="line">        hash = hash * seed + (*str++);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (hash &amp; <span class="number">0x7FFFFFFF</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原來是來自Brian Kernighan and Dennis Ritchie’s的書，所以才較BKDR阿，是個易於記憶，效能也不錯的hash funciton。<br>修改成用bit operation，較為有效率</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">BKDRHash</span><span class="params">(<span class="keyword">char</span> *str)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> hash = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (*str)</span><br><span class="line">    &#123;</span><br><span class="line">        hash = (hash&lt;&lt;<span class="number">5</span>) - hash + (*str++);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (hash % SIZE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://dl.dropboxusercontent.com/u/31201582/Blogger/2016-03-08-phonebook/hash_vi.png" alt="最終的效能比較圖"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/C/">C</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C/">C</a><a href="/tags/gdb/">gdb</a><a href="/tags/embedded-system/">embedded system</a>
+  </div>
 
 </div>
 
@@ -312,9 +191,9 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/03/08/phonebook/" title="嵌入式系統作業 - Phonebook效能改進與分析">
+ <a href="/2016/03/14/hw_raytracing/" title="2016嵌入式系統作業w2 - raytracing效能改進與分析">
   <span>
-  嵌入式系統作業 - Phonebook效能改進與分析</span>
+  2016嵌入式系統作業w2 - raytracing效能改進與分析</span>
 </a>
 </div>
 
@@ -337,17 +216,17 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#perf"><span class="toc-number">1.</span> <span class="toc-text">利用perf尋找程式熱點</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cache"><span class="toc-number"></span> <span class="toc-text">cache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optimize"><span class="toc-number"></span> <span class="toc-text">開始optimize!</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#entry"><span class="toc-number">1.</span> <span class="toc-text">1.減少entry的大小</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#利用perf尋找程式熱點"><span class="toc-number">1.</span> <span class="toc-text">利用perf尋找程式熱點</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cache"><span class="toc-number"></span> <span class="toc-text">cache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#開始optimize"><span class="toc-number"></span> <span class="toc-text">開始optimize!</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-減少entry的大小"><span class="toc-number">1.</span> <span class="toc-text">1.減少entry的大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Hashing"><span class="toc-number">2.</span> <span class="toc-text">2. Hashing</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 <div id="authorInfo">
 	
@@ -375,7 +254,7 @@
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="good5dog5" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -385,7 +264,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -434,7 +313,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -466,11 +345,7 @@
 			
 		
 			
-				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
 			
 		
 			
@@ -482,11 +357,15 @@
 			
 		
 			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Cml/" title="Cml">Cml<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
+				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
 			
 		
 			
@@ -494,7 +373,11 @@
 			
 		
 			
-				<li><a href="/tags/Latex/" title="Latex">Latex<sup>1</sup></a></li>
+				<li><a href="/tags/Job/" title="Job">Job<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Embedded-system/" title="Embedded system">Embedded system<sup>1</sup></a></li>
 			
 		
 			
@@ -502,19 +385,15 @@
 			
 		
 			
-				<li><a href="/tags/Job/" title="Job">Job<sup>1</sup></a></li>
+				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/fixed/" title="fixed">fixed<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -522,7 +401,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
     </ul>
@@ -532,11 +411,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -762,7 +641,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

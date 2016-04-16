@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>一奔二飛</title>
+    <title>Mutt手把手：offlineimap設定 | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
@@ -12,24 +12,18 @@
 
     
     <meta name="description" content="一直以來都用web界面來收發mail，接觸Linux後知道很多軟體都有對應的command line神器，而mutt就是email領域的神器。
-
-而跟所有CLI神器一樣，要享受方便之前需要很多configuration，設定自己習慣的key binding，能為日後的使用省下大量的時間，
-俗話說萬事起頭難，mutt的設定是目前我遇過數一數二難的，mutt依循Unix的設計哲學:只做一見事情，並把他">
+而跟所有CLI神器一樣，要享受方便之前需要很多configuration，設定自己習慣的key binding，能為日後的使用省下大量的時間，俗話說萬事起頭難，mutt的設定是目前我遇過數一數二難的，mutt依循Unix的設計哲學:只做一見事情，並把他做好">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一奔二飛">
+<meta property="og:title" content="Mutt手把手：offlineimap設定">
 <meta property="og:url" content="http://good5dog5.github.io/2016/03/07/offlineimap-config/index.html">
 <meta property="og:site_name" content="一奔二飛">
 <meta property="og:description" content="一直以來都用web界面來收發mail，接觸Linux後知道很多軟體都有對應的command line神器，而mutt就是email領域的神器。
-
-而跟所有CLI神器一樣，要享受方便之前需要很多configuration，設定自己習慣的key binding，能為日後的使用省下大量的時間，
-俗話說萬事起頭難，mutt的設定是目前我遇過數一數二難的，mutt依循Unix的設計哲學:只做一見事情，並把他">
+而跟所有CLI神器一樣，要享受方便之前需要很多configuration，設定自己習慣的key binding，能為日後的使用省下大量的時間，俗話說萬事起頭難，mutt的設定是目前我遇過數一數二難的，mutt依循Unix的設計哲學:只做一見事情，並把他做好">
 <meta property="og:updated_time" content="2016-04-09T02:36:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一奔二飛">
+<meta name="twitter:title" content="Mutt手把手：offlineimap設定">
 <meta name="twitter:description" content="一直以來都用web界面來收發mail，接觸Linux後知道很多軟體都有對應的command line神器，而mutt就是email領域的神器。
-
-而跟所有CLI神器一樣，要享受方便之前需要很多configuration，設定自己習慣的key binding，能為日後的使用省下大量的時間，
-俗話說萬事起頭難，mutt的設定是目前我遇過數一數二難的，mutt依循Unix的設計哲學:只做一見事情，並把他">
+而跟所有CLI神器一樣，要享受方便之前需要很多configuration，設定自己習慣的key binding，能為日後的使用省下大量的時間，俗話說萬事起頭難，mutt的設定是目前我遇過數一數二難的，mutt依循Unix的設計哲學:只做一見事情，並把他做好">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -59,7 +53,7 @@
 				<h1 class="site-name"><a href="/" title="一奔二飛">一奔二飛</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -75,7 +69,7 @@
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
@@ -90,57 +84,51 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/07/offlineimap-config/" title="" itemprop="url"></a>
+      <a href="/2016/03/07/offlineimap-config/" title="Mutt手把手：offlineimap設定" itemprop="url">Mutt手把手：offlineimap設定</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-07T05:00:00.000Z" itemprop="datePublished"> 发表于 2016-03-07</time>
+    <time datetime="2016-03-07T05:00:00.000Z" itemprop="datePublished"> Published 2016-03-07</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#mutt-"><span class="toc-number">1.</span> <span class="toc-text">MUtt 簡介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#offlineimap"><span class="toc-number">2.</span> <span class="toc-text">收信，先從設定offlineimap開始</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MUtt-簡介"><span class="toc-number">1.</span> <span class="toc-text">MUtt 簡介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收信，先從設定offlineimap開始"><span class="toc-number">2.</span> <span class="toc-text">收信，先從設定offlineimap開始</span></a></li></ol>
 		
 		</div>
 		
 		<p>一直以來都用web界面來收發mail，接觸Linux後知道很多軟體都有對應的command line神器，而mutt就是email領域的神器。</p>
-
-<p>而跟所有CLI神器一樣，要享受方便之前需要很多configuration，設定自己習慣的key binding，能為日後的使用省下大量的時間，
-俗話說萬事起頭難，mutt的設定是目前我遇過數一數二難的，mutt依循Unix的設計哲學:只做一見事情，並把他做好(<a href="http://www.catb.org/esr/writings/taoup/html/ch01s06.html" target="_blank" rel="external">Do one thing and do it well</a>)</p>
-
-<h3 id="mutt-">MUtt 簡介</h3>
-<p>根據 <a href="https://wiki.archlinux.org/index.php/Mutt" target="_blank" rel="external">Arch wiki</a>:</p>
-
+<p>而跟所有CLI神器一樣，要享受方便之前需要很多configuration，設定自己習慣的key binding，能為日後的使用省下大量的時間，<br>俗話說萬事起頭難，mutt的設定是目前我遇過數一數二難的，mutt依循Unix的設計哲學:只做一見事情，並把他做好(<a href="http://www.catb.org/esr/writings/taoup/html/ch01s06.html" target="_blank" rel="external">Do one thing and do it well</a>)</p>
+<a id="more"></a>
+<h3 id="MUtt-簡介"><a href="#MUtt-簡介" class="headerlink" title="MUtt 簡介"></a>MUtt 簡介</h3><p>根據 <a href="https://wiki.archlinux.org/index.php/Mutt" target="_blank" rel="external">Arch wiki</a>: </p>
 <blockquote>
-  <p>Mutt is a text-based mail client renowned for its powerful features.
-Though over 2 decades old, Mutt remains the mail client of choice for a great number of power-users. 
-Unfortunately, a default Mutt install is plagued by complex keybindings along with a daunting amount of documentation. 
-This guide will help the average user get Mutt up and running, and begin customizing it to their particular needs.</p>
+<p>Mutt is a text-based mail client renowned for its powerful features.<br>Though over 2 decades old, Mutt remains the mail client of choice for a great number of power-users.<br>Unfortunately, a default Mutt install is plagued by complex keybindings along with a daunting amount of documentation.<br>This guide will help the average user get Mutt up and running, and begin customizing it to their particular needs.  </p>
 </blockquote>
-
-<p>Mutt一開始是設計作為MUA(Mail User Agent),即只有閱讀信件的功能，其他如收寄信功能則須由其他程式協助完成，
-mutt只提共對應的界面。</p>
-
-<h3 id="offlineimap">收信，先從設定offlineimap開始</h3>
-
-<p>Mutt會由local disk中的mail folder讀取信件，而信件透過 IMAP 或 POP3 等協定從mail server下載到local
-端的mail folder，目前最廣為採用的mail sync程式為<a href="http://www.offlineimap.org/" target="_blank" rel="external">offlineIMAP</a>，
-透過設定 offlineimaprc 可以讓 offlineimap 有效且快速的同步多帳號的 mail。</p>
-
+<p>Mutt一開始是設計作為MUA(Mail User Agent),即只有閱讀信件的功能，其他如收寄信功能則須由其他程式協助完成，<br>mutt只提共對應的界面。</p>
+<h3 id="收信，先從設定offlineimap開始"><a href="#收信，先從設定offlineimap開始" class="headerlink" title="收信，先從設定offlineimap開始"></a>收信，先從設定offlineimap開始</h3><p>Mutt會由local disk中的mail folder讀取信件，而信件透過 IMAP 或 POP3 等協定從mail server下載到local<br>端的mail folder，目前最廣為採用的mail sync程式為<a href="http://www.offlineimap.org/" target="_blank" rel="external">offlineIMAP</a>，<br>透過設定 offlineimaprc 可以讓 offlineimap 有效且快速的同步多帳號的 mail。</p>
 <p>1.offlineimaprc</p>
-
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CLI/">CLI</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CLI/">CLI</a><a href="/tags/config/">config</a>
+  </div>
 
 </div>
 
@@ -154,9 +142,9 @@ mutt只提共對應的界面。</p>
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/03/07/offlineimap-config/" title="Mutt手把手：offlineimap設定">
+ <a href="/2016/03/08/phonebook/" title="嵌入式系統作業 - Phonebook效能改進與分析">
   <span>
-  Mutt手把手：offlineimap設定</span>
+  嵌入式系統作業 - Phonebook效能改進與分析</span>
 </a>
 </div>
 
@@ -179,17 +167,17 @@ mutt只提共對應的界面。</p>
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#mutt-"><span class="toc-number">1.</span> <span class="toc-text">MUtt 簡介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#offlineimap"><span class="toc-number">2.</span> <span class="toc-text">收信，先從設定offlineimap開始</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MUtt-簡介"><span class="toc-number">1.</span> <span class="toc-text">MUtt 簡介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收信，先從設定offlineimap開始"><span class="toc-number">2.</span> <span class="toc-text">收信，先從設定offlineimap開始</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 <div id="authorInfo">
 	
@@ -217,7 +205,7 @@ mutt只提共對應的界面。</p>
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="good5dog5" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -227,7 +215,7 @@ mutt只提共對應的界面。</p>
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -276,7 +264,7 @@ mutt只提共對應的界面。</p>
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -308,11 +296,7 @@ mutt只提共對應的界面。</p>
 			
 		
 			
-				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
 			
 		
 			
@@ -324,11 +308,15 @@ mutt只提共對應的界面。</p>
 			
 		
 			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Cml/" title="Cml">Cml<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
+				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
 			
 		
 			
@@ -336,7 +324,11 @@ mutt只提共對應的界面。</p>
 			
 		
 			
-				<li><a href="/tags/Latex/" title="Latex">Latex<sup>1</sup></a></li>
+				<li><a href="/tags/Job/" title="Job">Job<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Embedded-system/" title="Embedded system">Embedded system<sup>1</sup></a></li>
 			
 		
 			
@@ -344,19 +336,15 @@ mutt只提共對應的界面。</p>
 			
 		
 			
-				<li><a href="/tags/Job/" title="Job">Job<sup>1</sup></a></li>
+				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/fixed/" title="fixed">fixed<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -364,7 +352,7 @@ mutt只提共對應的界面。</p>
 
 
   <div class="linkslist">
-  <p class="asidetitle">链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
     </ul>
@@ -374,11 +362,11 @@ mutt只提共對應的界面。</p>
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -604,7 +592,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
