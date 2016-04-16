@@ -2,212 +2,219 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://good5dog5.github.io/2016/04/10/2016-04-09-vim-plugin-note/</loc>
+    <loc>http://good5dog5.github.io/2016/04/16/2016-03-30-resume-note/</loc>
     
-    <lastmod>2016-04-10T13:45:58.274Z</lastmod>
+    <lastmod>2016-04-16T11:49:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/16/2016-04-12-Ubuntu-fast-reinstall/</loc>
+    
+    <lastmod>2016-04-16T07:14:31.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-04-09-vim-plugin-note/</loc>
+    
+    <lastmod>2016-04-10T13:45:58.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://good5dog5.github.io/2016/03/24/vim-note/</loc>
     
-    <lastmod>2016-04-10T13:03:23.366Z</lastmod>
+    <lastmod>2016-04-10T13:03:23.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-04-09-c-preprocessor-intro/</loc>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-04-09-c-preprocessor-intro/</loc>
     
-    <lastmod>2016-04-09T14:46:49.976Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-04-09-Mimeapps-and-default-application/</loc>
-    
-    <lastmod>2016-04-09T12:22:03.384Z</lastmod>
+    <lastmod>2016-04-09T14:46:49.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/03/21/hw-unit-test/</loc>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-04-09-Mimeapps-and-default-application/</loc>
     
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/03/22/embedded_system-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
+    <lastmod>2016-04-09T12:22:03.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/03/23/Write_resume_using_Latex/</loc>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-03-27-write-blog-with-hexo/</loc>
     
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/03/25/hw-server-framework-in-modern-c/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-03-27-write-blog-with-hexo/</loc>
+    <loc>http://good5dog5.github.io/2016/03/08/phonebook/</loc>
     
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-03-28-git-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://good5dog5.github.io/2016/03/14/hw_raytracing/</loc>
     
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-03-28-todoCli-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-03-29-2016EmbeddedW6-course-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-03-30-resume-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-03-31-tig-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-04-02-github-pages-enable-googlesearch/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-04-03-bash-script-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-04-05-nodejs-environment-and-npm/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://good5dog5.github.io/2016/03/14/hw_raytracing/</loc>
     
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://good5dog5.github.io/2016/03/19/urxvt-chinese-word-birck/</loc>
     
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/04/09/2016-03-28-tmux-script/</loc>
+    <loc>http://good5dog5.github.io/2016/03/21/hw-unit-test/</loc>
     
-    <lastmod>2016-04-09T02:36:13.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/03/08/phonebook/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.507Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/03/08/phonebook/</loc>
+    <loc>http://good5dog5.github.io/2016/03/22/embedded_system-note/</loc>
     
-    <lastmod>2016-04-09T02:36:13.507Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2014/10/22/Began_working/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.507Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2014/10/16/Jobs_going/</loc>
+    <loc>http://good5dog5.github.io/2016/03/23/Write_resume_using_Latex/</loc>
     
-    <lastmod>2016-04-09T02:36:13.507Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/03/25/hw-server-framework-in-modern-c/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://good5dog5.github.io/2014/10/16/Jobs_going/</loc>
     
-    <lastmod>2016-04-09T02:36:13.507Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2014/10/16/Jobs_going/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-03-28-git-note/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-03-28-tmux-script/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-03-28-todoCli-note/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-03-29-2016EmbeddedW6-course-note/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://good5dog5.github.io/2014/10/22/Began_working/</loc>
     
-    <lastmod>2016-04-09T02:36:13.507Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-03-31-tig-note/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-04-02-github-pages-enable-googlesearch/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-04-03-bash-script-note/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/15/2016-04-05-nodejs-environment-and-npm/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2014/10/22/Began_working/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://good5dog5.github.io/2016/03/07/offlineimap-config/</loc>
     
-    <lastmod>2016-04-09T02:36:13.507Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://good5dog5.github.io/2016/03/07/offlineimap-config/</loc>
     
-    <lastmod>2016-04-09T02:36:13.507Z</lastmod>
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/03/08/phonebook/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://good5dog5.github.io/search/index.html</loc>
     
-    <lastmod>2016-04-05T12:47:48.534Z</lastmod>
+    <lastmod>2016-04-05T12:47:48.000Z</lastmod>
     
   </url>
   
