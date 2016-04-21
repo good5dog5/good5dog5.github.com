@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-04-12-Ubuntu-fast-reinstall/</loc>
+    
+    <lastmod>2016-04-21T15:55:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://good5dog5.github.io/2016/03/19/urxvt-chinese-word-birck/</loc>
     
     <lastmod>2016-04-21T14:02:48.000Z</lastmod>
@@ -16,21 +23,14 @@
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-03-30-resume-note/</loc>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-03-30-resume-note/</loc>
     
     <lastmod>2016-04-16T11:49:51.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-04-12-Ubuntu-fast-reinstall/</loc>
-    
-    <lastmod>2016-04-16T07:14:31.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-04-09-vim-plugin-note/</loc>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-04-09-vim-plugin-note/</loc>
     
     <lastmod>2016-04-10T13:45:58.000Z</lastmod>
     
@@ -44,84 +44,21 @@
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-04-09-c-preprocessor-intro/</loc>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-04-09-c-preprocessor-intro/</loc>
     
     <lastmod>2016-04-09T14:46:49.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-04-09-Mimeapps-and-default-application/</loc>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-04-09-Mimeapps-and-default-application/</loc>
     
     <lastmod>2016-04-09T12:22:03.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/03/23/Write_resume_using_Latex/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-03-28-git-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-03-28-tmux-script/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-03-28-todoCli-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-03-29-2016EmbeddedW6-course-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2014/10/22/Began_working/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-03-31-tig-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-04-02-github-pages-enable-googlesearch/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-04-03-bash-script-note/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-04-05-nodejs-environment-and-npm/</loc>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-03-28-tmux-script/</loc>
     
     <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
@@ -135,7 +72,77 @@
   </url>
   
   <url>
+    <loc>http://good5dog5.github.io/2016/03/25/hw-server-framework-in-modern-c/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-03-28-git-note/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-03-27-write-blog-with-hexo/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2014/10/22/Began_working/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-03-28-todoCli-note/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-03-29-2016EmbeddedW6-course-note/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://good5dog5.github.io/2016/03/08/phonebook/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-03-31-tig-note/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-04-02-github-pages-enable-googlesearch/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-04-05-nodejs-environment-and-npm/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/21/2016-04-03-bash-script-note/</loc>
     
     <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
@@ -163,21 +170,14 @@
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/03/25/hw-server-framework-in-modern-c/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/20/2016-03-27-write-blog-with-hexo/</loc>
-    
-    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://good5dog5.github.io/2016/03/22/embedded_system-note/</loc>
+    
+    <lastmod>2016-04-09T02:36:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/03/23/Write_resume_using_Latex/</loc>
     
     <lastmod>2016-04-09T02:36:13.000Z</lastmod>
     
