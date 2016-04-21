@@ -1,0 +1,611 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>初探X window system與xinit | 一奔二飛</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jordan Huang">
+    
+
+    
+    <meta name="description" content="自從開始用urxvt後，覺得自己對x window system及它的設定檔們(.xinitrc, .Xresources, .xdefault, .xprofile)還是一知半解，剛好最近重灌ubuntu後urxvt掛掉，趁此機會邊修復邊紀錄。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初探X window system與xinit">
+<meta property="og:url" content="http://good5dog5.github.io/2016/04/21/2016-04-20-intro-xSystem-xinit/index.html">
+<meta property="og:site_name" content="一奔二飛">
+<meta property="og:description" content="自從開始用urxvt後，覺得自己對x window system及它的設定檔們(.xinitrc, .Xresources, .xdefault, .xprofile)還是一知半解，剛好最近重灌ubuntu後urxvt掛掉，趁此機會邊修復邊紀錄。">
+<meta property="og:updated_time" content="2016-04-21T13:30:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初探X window system與xinit">
+<meta name="twitter:description" content="自從開始用urxvt後，覺得自己對x window system及它的設定檔們(.xinitrc, .Xresources, .xdefault, .xprofile)還是一知半解，剛好最近重灌ubuntu後urxvt掛掉，趁此機會邊修復邊紀錄。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
+    <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="一奔二飛" title="一奔二飛"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="一奔二飛">一奔二飛</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/21/2016-04-20-intro-xSystem-xinit/" title="初探X window system與xinit" itemprop="url">初探X window system與xinit</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-21T13:37:09.259Z" itemprop="datePublished"> Published 2016-04-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#X-window-Manager-Display-Manager"><span class="toc-number">1.</span> <span class="toc-text">X window Manager, Display Manager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xinit-X-Window-system-initializer"><span class="toc-number">2.</span> <span class="toc-text">xinit - X Window system initializer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#功能"><span class="toc-number">2.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法"><span class="toc-number">2.2.</span> <span class="toc-text">用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改"><span class="toc-number">3.</span> <span class="toc-text">修改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#以Console登入ubuntu"><span class="toc-number">3.1.</span> <span class="toc-text">以Console登入ubuntu</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+		
+		</div>
+		
+		<p>自從開始用<a href="https://wiki.archlinux.org/index.php/rxvt-unicode" target="_blank" rel="external">urxvt</a>後，覺得自己對x window system及它的設定檔們(<code>.xinitrc</code>, <code>.Xresources</code>, <code>.xdefault</code>, <code>.xprofile</code>)還是一知半解，剛好最近重灌ubuntu後urxvt掛掉，趁此機會邊修復邊紀錄。</p>
+<a id="more"></a>
+<h2 id="X-window-Manager-Display-Manager"><a href="#X-window-Manager-Display-Manager" class="headerlink" title="X window Manager, Display Manager"></a>X window Manager, Display Manager</h2><p>X window manager是特殊的<code>x clinet</code>，操縱<code>frame</code>(window)的外觀和行為，並管理其他GUI application如瀏覽器，skype，檔案管理員等等， Display manager(login manager)則是一個圖形登入界面，讓使用者選擇要載入的x window manager及相關資料。</p>
+<h2 id="xinit-X-Window-system-initializer"><a href="#xinit-X-Window-system-initializer" class="headerlink" title="xinit - X Window system initializer"></a>xinit - X Window system initializer</h2><p>啟動X window system有兩種發法，一種是上面提到的Display manager如gdm(GNOME display manager), xdm, kdm等等，另一種是利用在文字界面下<code>xinit</code>指令，而較為常用的<code>startx</code>其實只是shell script，最終執行的指令會是<code>xinit &quot;$client&quot; $clientargs -- &quot;$server&quot; $display $serverargs</code>。</p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>xinit主要功能是啟動X window server和第一個x window client，當此client結束時，xinit會結束x server並結束。</p>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiit [ [ client ] options ... ] [ -- [ server ] [ display ] options ... ]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>client</code>:用來指定基於x的應用程式，後面的option是要餵給client的參數，例如 <code>firefox -g</code></li>
+<li><code>server</code>:用來指定啟動哪個x server，較常見的為<code>/usr/bin/X</code>或<code>/usr/bin/Xorg</code>，display用來指定display number，若為0則表示是第一個display，option是餵給server的參數。</li>
+</ul>
+<p>若不指定<code>client</code>，xinit會搜尋<code>$HOME/.xinitrc</code>，若存在則把它當shell script執行，否則預設為 <strong>xterm  -geometry  +1+1  -n  login  -display  :0</strong>。<br>若不指定<code>server</code>，xinit會搜尋<code>$HOME/.xserverrc</code>，存在則當shell script執行，否則預設為<strong>X :0</strong>。</p>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><h3 id="以Console登入ubuntu"><a href="#以Console登入ubuntu" class="headerlink" title="以Console登入ubuntu"></a>以Console登入ubuntu</h3><p>利用Display manager登入雖然方便，但操控的自由度和速度都比以console登入來得差，可以透過修改<code>/etc/default/grub</code>，將 <strong>GRUB_CMDLINE_LINUX_DEFAULT=”quiet splash”</strong>  改成  <strong>GRUB_CMDLINE_LINUX_DEFAULT=”text”</strong>,之後執行 <code>sudo update-grub</code>，往後開機後會直接登入tty1。</p>
+<ul>
+<li><p><code>bashrc</code>：加入以下修改，則如果登入的是tty1會自動執行xinit，帶起x window system。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$(tty)</span>"</span> = <span class="string">"/dev/tty1"</span> ]; <span class="keyword">then</span></span><br><span class="line">    xinit &amp;&amp; <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>xinitrc</code>：值得注意<code>[ -f ~/.xprofile ] &amp;&amp; source ~/.xprofile</code>，讓xinit在執行window manager之前先讀取xprofile的設定。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span><br><span class="line"></span></span><br><span class="line"><span class="comment">#if [ -d /etc/X11/xinit/xinitrc.d ]; then</span></span><br><span class="line"><span class="comment">#  for f in /etc/X11/xinit/xinitrc.d/*; do</span></span><br><span class="line"><span class="comment">#    [ -x "$f" ] &amp;&amp; . "$f"</span></span><br><span class="line"><span class="comment">#  done</span></span><br><span class="line"><span class="comment">#  unset f</span></span><br><span class="line"><span class="comment">#fi</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">xset r rate 180 40 <span class="comment"># Sane repeat rate</span></span><br><span class="line">xset -b            <span class="comment"># No bell</span></span><br><span class="line">xset -dpms         <span class="comment"># Keep screen on at all times</span></span><br><span class="line">[ <span class="_">-f</span> ~/.xprofile ] &amp;&amp; <span class="built_in">source</span> ~/.xprofile</span><br><span class="line">[[ <span class="_">-f</span> ~/.Xresources ]] &amp;&amp; xrdb -merge <span class="string">"<span class="variable">$&#123;HOME&#125;</span>/.Xresources"</span></span><br><span class="line">xrandr --output VGA1 --mode 1600x900</span><br><span class="line"></span><br><span class="line"><span class="comment"># backlight</span></span><br><span class="line">xbacklight -set 65</span><br><span class="line"><span class="built_in">exec</span> i3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>xprfile：scim相關設定。</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> XMODIFIERS=<span class="string">"@im=SCIM"</span></span><br><span class="line"><span class="built_in">export</span> GTK_IM_MODULE=<span class="string">"xim"</span></span><br><span class="line"><span class="built_in">export</span> QT_IM_MODULE=<span class="string">"scim"</span></span><br><span class="line">scim <span class="_">-d</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://linux.vbird.org/linux_basic/0590xwindow.php#xinit" target="_blank" rel="external">鳥哥的 Linux 私房菜 第二十三章、X Window 設定介紹</a><br><a href="http://blog.csdn.net/sjin_1314/article/details/40148853" target="_blank" rel="external">startx 及xinit 介绍</a><br><a href="http://askubuntu.com/questions/148717/how-do-i-boot-into-the-console-and-then-launch-the-ubuntu-desktop-from-it" target="_blank" rel="external">How do I boot into the console and then launch the Ubuntu desktop from it?</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/urxvt/">urxvt</a><a href="/tags/xinit/">xinit</a>
+  </div>
+
+</div>
+
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/04/20/2016-03-27-write-blog-with-hexo/"  title="利用hexo寫blog並用Travis CI部署">
+ <span>利用hexo寫blog並用Travis CI部署
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#X-window-Manager-Display-Manager"><span class="toc-number">1.</span> <span class="toc-text">X window Manager, Display Manager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xinit-X-Window-system-initializer"><span class="toc-number">2.</span> <span class="toc-text">xinit - X Window system initializer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#功能"><span class="toc-number">2.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法"><span class="toc-number">2.2.</span> <span class="toc-text">用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改"><span class="toc-number">3.</span> <span class="toc-text">修改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#以Console登入ubuntu"><span class="toc-number">3.1.</span> <span class="toc-text">以Console登入ubuntu</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+<div id="authorInfo">
+	
+		<div class="author-img"></div>		
+	
+	<div class="social-info" class="clearfix">
+		
+		
+		<a href="https://github.com/good5dog5" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:good5dog5@gmail.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+
+	</div>
+</div>
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="good5dog5" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C">C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CLI/" title="CLI">CLI<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Homework/" title="Homework">Homework<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Job/" title="Job">Job<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Note/" title="Note">Note<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Tools/" title="Tools">Tools<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Work/" title="Work">Work<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/daily/" title="daily">daily<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Note/" title="Note">Note<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/embedded-system/" title="embedded system">embedded system<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C">C<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/c/" title="c">c<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CLI/" title="CLI">CLI<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cml/" title="Cml">Cml<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/note/" title="note">note<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Latex/" title="Latex">Latex<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Job/" title="Job">Job<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ssh/" title="Ssh">Ssh<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/fixed/" title="fixed">fixed<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+		
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Jordan Huang">Jordan Huang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'good5dog5';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
