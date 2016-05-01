@@ -1,0 +1,631 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>為tmux撰寫啟動script | 一奔二飛</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jordan Huang">
+    
+
+    
+    <meta name="description" content="my tmux.conf
+Tmux rock!
+
+Tmux是一個terminal multiplexr，用來管理多個virtual console，使用久了會發現自己有特定的workflow，比如常會開一個window專門用來寫blog，旁邊令一個pane則是用來執行hexo server，再加上幾個windows拿來寫作業之類的，感覺是時候寫個script來自動畫這些daily task。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="為tmux撰寫啟動script">
+<meta property="og:url" content="http://good5dog5.github.io/2016/04/29/2016-03-28-tmux-script/index.html">
+<meta property="og:site_name" content="一奔二飛">
+<meta property="og:description" content="my tmux.conf
+Tmux rock!
+
+Tmux是一個terminal multiplexr，用來管理多個virtual console，使用久了會發現自己有特定的workflow，比如常會開一個window專門用來寫blog，旁邊令一個pane則是用來執行hexo server，再加上幾個windows拿來寫作業之類的，感覺是時候寫個script來自動畫這些daily task。">
+<meta property="og:updated_time" content="2016-04-09T02:36:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="為tmux撰寫啟動script">
+<meta name="twitter:description" content="my tmux.conf
+Tmux rock!
+
+Tmux是一個terminal multiplexr，用來管理多個virtual console，使用久了會發現自己有特定的workflow，比如常會開一個window專門用來寫blog，旁邊令一個pane則是用來執行hexo server，再加上幾個windows拿來寫作業之類的，感覺是時候寫個script來自動畫這些daily task。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
+    <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="一奔二飛" title="一奔二飛"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="一奔二飛">一奔二飛</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/29/2016-03-28-tmux-script/" title="為tmux撰寫啟動script" itemprop="url">為tmux撰寫啟動script</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-30T03:32:51.464Z" itemprop="datePublished"> Published 2016-04-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#從範例學習"><span class="toc-number">1.</span> <span class="toc-text">從範例學習</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改版"><span class="toc-number">1.1.</span> <span class="toc-text">修改版</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<ul>
+<li><a href="https://github.com/good5dog5/dotfile/blob/master/config/XDG_CONFIG/tmux/tmux.conf" target="_blank" rel="external">my tmux.conf</a></li>
+<li><a href="http://www.slideshare.net/chenkaie/tmux-rocks" target="_blank" rel="external">Tmux rock!</a></li>
+</ul>
+<p><a href="https://www.wikiwand.com/en/Tmux" target="_blank" rel="external">Tmux</a>是一個terminal multiplexr，用來管理多個<a href="https://www.wikiwand.com/en/Virtual_console" target="_blank" rel="external">virtual console</a>，使用久了會發現自己有特定的workflow，比如常會開一個window專門用來寫blog，旁邊令一個pane則是用來執行<code>hexo server</code>，再加上幾個windows拿來寫作業之類的，感覺是時候寫個script來自動畫這些daily task。</p>
+<a id="more"></a>
+<h2 id="從範例學習"><a href="#從範例學習" class="headerlink" title="從範例學習"></a>從範例學習</h2><p>[<a href="https://www.reddit.com/r/tmux/comments/3nhx80/how_can_i_use_one_command_to_open_several_tmux/" target="_blank" rel="external">Question on rediit</a>]<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">tmux new-session <span class="_">-d</span> <span class="_">-s</span> config</span><br><span class="line"></span><br><span class="line">tmux new-window -t config:0 -n <span class="string">'name'</span> <span class="string">'vi text/file'</span></span><br><span class="line">tmux new-window -t config:2 -n <span class="string">'name'</span> <span class="string">'vi text/file'</span></span><br><span class="line">tmux new-window -t config:3 -n <span class="string">'name'</span> <span class="string">'vi text/file'</span></span><br><span class="line">tmux new-window -t config:4 -n <span class="string">'name'</span> <span class="string">'vi text/file'</span></span><br><span class="line">tmux new-window -t config:5 -n <span class="string">'name'</span> <span class="string">'vi text/file'</span></span><br><span class="line"></span><br><span class="line">tmux select-window -t config:1</span><br><span class="line">tmux -2 attach-session -t config</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p><code>tmux new-session -d -s config</code>: 產生一個名叫 <code>config</code>的new session, not attached。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">new-session [-AdDP] [-c start-directory] [-F format] [-n window-name] [-s session-name] [-t target-session] [-x width] [-y height]</span><br><span class="line">            [shell-command]</span><br><span class="line">                  (alias: new)</span><br><span class="line">            Create a new session with name session-name.</span><br><span class="line"></span><br><span class="line">            The new session is attached to the current terminal unless -d is given.  window-name and shell-command are the name of and shell</span><br><span class="line">            command to execute in the initial window.  If -d is used, -x and -y specify the size of the initial window (80 by 24 if not</span><br><span class="line">            given).</span><br><span class="line"></span><br><span class="line">            If run from a terminal, any termios(3) special characters are saved and used for new windows in the new session.</span><br><span class="line"></span><br><span class="line">            The -A flag makes new-session behave like attach-session if session-name already exists; in the case, -D behaves like -d to</span><br><span class="line">            attach-session.</span><br><span class="line"></span><br><span class="line">            If -t is given, the new session is grouped with target-session.  This means they share the same set of windows - all windows</span><br><span class="line">            from target-session are linked to the new session and any subsequent new windows or windows being closed are applied to both</span><br><span class="line">            sessions.  The current and previous window and any session options remain independent and either session may be killed without</span><br><span class="line">            affecting the other.  Giving -n or shell-command are invalid if -t is used.</span><br><span class="line"></span><br><span class="line">            The -P option prints information about the new session after it has been created.  By default, it uses the format</span><br><span class="line">            ‘#&#123;session_name&#125;:’ but a different format may be specified with -F.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>tmux new-window -t config:0 -n &#39;name&#39; &#39;vi text/file&#39;</code> : 產生名叫name的new window，bind到剛剛建的<code>config</code>的第0個tab， 執行<code>vi text/file</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">new-window [-adkP] [-c start-directory] [-F format] [-n window-name] [-t target-window] [shell-command]</span><br><span class="line">                  (alias: neww)</span><br><span class="line">            Create a new window.  With -a, the new window is inserted at the next index up from the specified target-window,</span><br><span class="line">            moving windows up if necessary, otherwise target-window is the new window location.</span><br><span class="line"></span><br><span class="line">            If -d is given, the session does not make the new window the current window.  target-window represents the window</span><br><span class="line">            to be created; if the target already exists an error is shown, unless the -k flag is used, in which case it is</span><br><span class="line">            destroyed.  shell-command is the command to execute.  If shell-command is not specified, the value of the</span><br><span class="line">            default-command option is used.  -c specifies the working directory in which the new window is created.</span><br><span class="line"></span><br><span class="line">            When the shell command completes, the window closes.  See the remain-on-exit option to change this behaviour.</span><br><span class="line"></span><br><span class="line">            The TERM environment variable must be set to “screen” for all programs running inside tmux.  New windows will</span><br><span class="line">            automatically have “TERM=screen” added to their environment, but care must be taken not to reset this in shell</span><br><span class="line">            start-up files.</span><br><span class="line"></span><br><span class="line">            The -P option prints information about the new window after it has been created.  By default, it uses the format</span><br><span class="line">            ‘#&#123;session_name&#125;:#&#123;window_index&#125;’ but a different format may be specified with -F.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>tmux select-window -t config:1</code> : 選擇config session中的第1個window。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select-window [-lnpT] [-t target-window]</span><br><span class="line">                   (alias: selectw)</span><br><span class="line">             Select the window at target-window.  -l, -n and -p are equivalent to the last-window, next-window and</span><br><span class="line">             previous-window commands.  If -T is given and the selected window is already the current window, the command</span><br><span class="line">             behaves like last-window.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>tmux -2 attach-session -t config</code>: 強迫tmux用256色顯示，並產生新client連上名叫config的session</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">-2:Force tmux to assume the terminal supports 256 colours.</span><br><span class="line"></span><br><span class="line">attach-session [-dr] [-c working-directory] [-t target-session]</span><br><span class="line">                  (alias: attach)</span><br><span class="line">            If run from outside tmux, create a new client in the current terminal and attach it to target-session.  If used</span><br><span class="line">            from inside, switch the current client.  If -d is specified, any other clients attached to the session are</span><br><span class="line">            detached.  -r signifies the client is read-only (only keys bound to the detach-client or switch-client commands</span><br><span class="line">            have any effect)</span><br><span class="line"></span><br><span class="line">            If no server is started, attach-session will attempt to start it; this will fail unless sessions are created in</span><br><span class="line">            the configuration file.</span><br><span class="line"></span><br><span class="line">            The target-session rules for attach-session are slightly adjusted: if tmux needs to select the most recently used</span><br><span class="line">            session, it will prefer the most recently used unattached session.</span><br><span class="line"></span><br><span class="line">            -c will set the session working directory (used for new windows) to working-directory.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="修改版"><a href="#修改版" class="headerlink" title="修改版"></a>修改版</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line">tmux new-session <span class="_">-d</span> <span class="_">-s</span> AutoSession</span><br><span class="line"></span><br><span class="line">tmux new-window -t AutoSession:1 -n <span class="string">'blog'</span> <span class="string">'cd ~/github'</span></span><br><span class="line">tmux new-window -t AutoSession:2 -n <span class="string">'test'</span> <span class="string">'vi text/file'</span></span><br><span class="line"></span><br><span class="line">tmux select-window -t config:1</span><br><span class="line">tmux -2 attach-session -t config</span><br></pre></td></tr></table></figure>
+<p><a href="http://stackoverflow.com/questions/23149699/tmux-create-window-failed-index-in-use-0" target="_blank" rel="external">Question on StackOverflow</a><br>要注意tmux new-window -t AutoSession:1 -n ‘blog’會產生錯誤 <code>Tmux create window failed: index in use: 1</code>，因為new-session會產生一個window，故window 1會在new-session完成後馬上產生，解決辦法是在new-session命令後直接指定其他options。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Tools/">Tools</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/Note/">Note</a><a href="/tags/Tmux/">Tmux</a><a href="/tags/Script/">Script</a>
+  </div>
+
+</div>
+
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/04/29/2016-03-29-2016EmbeddedW6-course-note/" title="2016嵌入式系統課程W6課程筆記">
+  <span>
+  2016嵌入式系統課程W6課程筆記</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/04/29/2016-03-28-todoCli-note/"  title="利用todo.txt來管理代辦事項">
+ <span>利用todo.txt來管理代辦事項
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#從範例學習"><span class="toc-number">1.</span> <span class="toc-text">從範例學習</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改版"><span class="toc-number">1.1.</span> <span class="toc-text">修改版</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+<div id="authorInfo">
+	
+		<div class="author-img"></div>		
+	
+	<div class="social-info" class="clearfix">
+		
+		
+		<a href="https://github.com/good5dog5" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:good5dog5@gmail.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+
+	</div>
+</div>
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="good5dog5" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C">C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CLI/" title="CLI">CLI<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Homework/" title="Homework">Homework<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Job/" title="Job">Job<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Note/" title="Note">Note<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Tools/" title="Tools">Tools<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Work/" title="Work">Work<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/daily/" title="daily">daily<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Note/" title="Note">Note<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/embedded-system/" title="embedded system">embedded system<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C">C<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/c/" title="c">c<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cml/" title="Cml">Cml<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/config/" title="config">config<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CLI/" title="CLI">CLI<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/i3-wm/" title="i3 wm">i3 wm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/note/" title="note">note<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Job/" title="Job">Job<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gihub-pages/" title="Gihub pages">Gihub pages<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Latex/" title="Latex">Latex<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+		
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Jordan Huang">Jordan Huang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'good5dog5';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
