@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://good5dog5.github.io/2016/04/03/2016-04-03-bash-script-note/index.html">
 <meta property="og:site_name" content="一奔二飛">
 <meta property="og:description" content="在Linux上長需要寫些Shell script解決繁瑣的問題，可是很多語法常常寫過就忘，這篇主要是紀錄自己常忘記的東西。">
-<meta property="og:updated_time" content="2016-04-03T04:02:59.342Z">
+<meta property="og:updated_time" content="2016-05-28T13:38:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bash script筆記">
 <meta name="twitter:description" content="在Linux上長需要寫些Shell script解決繁瑣的問題，可是很多語法常常寫過就忘，這篇主要是紀錄自己常忘記的東西。">
@@ -88,7 +88,7 @@
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-03T04:02:59.350Z" itemprop="datePublished"> Published 2016-04-03</time>
+    <time datetime="2016-04-03T16:12:00.000Z" itemprop="datePublished"> Published 2016-04-03</time>
     
   </p>
 </header>
@@ -97,7 +97,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">1.</span> <span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dereferencing-the-variables-in-array"><span class="toc-number">1.1.</span> <span class="toc-text">Dereferencing the variables in array</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">1.</span> <span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dereferencing-the-variables-in-array"><span class="toc-number">1.1.</span> <span class="toc-text">Dereferencing the variables in array</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysterious-‘-‘"><span class="toc-number">2.</span> <span class="toc-text">mysterious ‘-‘</span></a></li></ol>
 		
 		</div>
 		
@@ -105,6 +105,16 @@
 <a id="more"></a>
 <h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>比較常用 <code>array=(one two three)</code>這種宣告方法</p>
 <h3 id="Dereferencing-the-variables-in-array"><a href="#Dereferencing-the-variables-in-array" class="headerlink" title="Dereferencing the variables in array"></a>Dereferencing the variables in array</h3><p>假設array=(one two three)<br>則<code>echo ${array{*}}</code>和<code>echo ${array{@}}</code>一樣都會印出 <strong>one two three</strong>，只是${array{*}}會將”one two three”視為單一字串。</p>
+<h2 id="mysterious-‘-‘"><a href="#mysterious-‘-‘" class="headerlink" title="mysterious ‘-‘"></a>mysterious ‘-‘</h2><p><code>cd -</code>可以在當前目錄和上一個拜訪過得目錄之間做切換，<code>curl -sL http://xxxx | sudo -E bash -</code>可以讓bash執行curl下載的script，到底<code>-</code>是啥東西呢？</p>
+<p>根據<a href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank" rel="external">POSIX Utility Syntax Guidelines</a></p>
+<blockquote>
+<p>Guideline 13:<br>For utilities that use operands to represent files to be opened for either reading or writing, the ‘-‘ operand should be used to mean only standard input (or standard output when it is clear from context that an output file is being specified) or a file named -. </p>
+</blockquote>
+<p>也就是說，當utility後面接的operand是檔案（檔名）時，<code>-</code>會被視為<code>stdin</code>或<code>stdout</code>，端看使用情境，否則就單純只是代表名為<code>-</code>的檔案。<br>另外，POSIX對<code>cd</code>時後面接的<code>-</code>有特別的定義：</p>
+<blockquote>
+<p>-<br>    When a <hyphen> is used as the operand, this shall be equivalent to the command:<br>    Whencd “$OLDPWD” &amp;&amp; pwd<br>    Whenwhich changes to the previous working directory and then writes its name.</hyphen></p>
+</blockquote>
+<p>理解以上之後，可以試試看 <code>echo &quot;echo echo&quot;| bash -</code>，這會印出<code>echo</code>。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -128,16 +138,16 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/04/04/2016-03-31-tig-note/" title="tig使用筆記">
+ <a href="/2016/04/05/2016-04-05-nodejs-environment-and-npm/" title="Nodejs開發環境與npm">
   <span>
-  tig使用筆記</span>
+  Nodejs開發環境與npm</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/04/02/2016-03-27-write-blog-with-hexo/"  title="利用hexo寫blog並用Travis CI部署">
- <span>利用hexo寫blog並用Travis CI部署
+<a href="/2016/04/02/2016-04-02-github-pages-enable-googlesearch/"  title="為Blog啟用google站內搜尋功能">
+ <span>為Blog啟用google站內搜尋功能
 </span>
 </a>
 </div>
@@ -158,7 +168,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">1.</span> <span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dereferencing-the-variables-in-array"><span class="toc-number">1.1.</span> <span class="toc-text">Dereferencing the variables in array</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">1.</span> <span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dereferencing-the-variables-in-array"><span class="toc-number">1.1.</span> <span class="toc-text">Dereferencing the variables in array</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysterious-‘-‘"><span class="toc-number">2.</span> <span class="toc-text">mysterious ‘-‘</span></a></li></ol>
  
   </div>
 
@@ -233,7 +243,7 @@
 		  
 		
 		  
-			<li><a href="/categories/Tools/" title="Tools">Tools<sup>3</sup></a></li>
+			<li><a href="/categories/Tools/" title="Tools">Tools<sup>2</sup></a></li>
 		  
 		
 		  
@@ -266,11 +276,15 @@
 			
 		
 			
+				<li><a href="/tags/c/" title="c">c<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C/" title="C">C<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/CLI/" title="CLI">CLI<sup>2</sup></a></li>
+				<li><a href="/tags/note/" title="note">note<sup>3</sup></a></li>
 			
 		
 			
@@ -278,7 +292,15 @@
 			
 		
 			
-				<li><a href="/tags/c/" title="c">c<sup>2</sup></a></li>
+				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/config/" title="config">config<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
 			
 		
 			
@@ -286,19 +308,23 @@
 			
 		
 			
+				<li><a href="/tags/Job/" title="Job">Job<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Cml/" title="Cml">Cml<sup>2</sup></a></li>
+				<li><a href="/tags/CLI/" title="CLI">CLI<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Embedded-system/" title="Embedded system">Embedded system<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
+				<li><a href="/tags/i3-wm/" title="i3 wm">i3 wm<sup>2</sup></a></li>
 			
 		
 			
@@ -306,31 +332,15 @@
 			
 		
 			
-				<li><a href="/tags/script/" title="script">script<sup>1</sup></a></li>
+				<li><a href="/tags/Polkit/" title="Polkit">Polkit<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Job/" title="Job">Job<sup>1</sup></a></li>
+				<li><a href="/tags/fixed/" title="fixed">fixed<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/GDB/" title="GDB">GDB<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Vim/" title="Vim">Vim<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/config/" title="config">config<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/job/" title="job">job<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 		</ul>
