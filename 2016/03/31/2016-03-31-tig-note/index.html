@@ -16,17 +16,19 @@
 tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tig使用筆記">
-<meta property="og:url" content="good5dog5.github.io/2016/03/31/2016-03-31-tig-note/index.html">
+<meta property="og:url" content="http://good5dog5.github.io/2016/03/31/2016-03-31-tig-note/index.html">
 <meta property="og:site_name" content="一奔二飛">
 <meta property="og:description" content="My tigrc
 
 tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)">
-<meta property="og:updated_time" content="2016-03-31T03:58:07.454Z">
+<meta property="og:image" content="https://i.imgur.com/t5c55Ur.png">
+<meta property="og:updated_time" content="2016-05-28T13:36:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tig使用筆記">
 <meta name="twitter:description" content="My tigrc
 
 tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)">
+<meta name="twitter:image" content="https://i.imgur.com/t5c55Ur.png">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -38,6 +40,7 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
+    <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
     <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -69,10 +72,9 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 					
 					<li>
  					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:good5dog5.github.io">
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
@@ -94,7 +96,7 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-31T03:58:07.462Z" itemprop="datePublished"> Published 2016-03-31</time>
+    <time datetime="2016-03-31T16:12:00.000Z" itemprop="datePublished"> Published 2016-03-31</time>
     
   </p>
 </header>
@@ -103,7 +105,7 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tigrc"><span class="toc-number">1.</span> <span class="toc-text">tigrc</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tigrc"><span class="toc-number">1.</span> <span class="toc-text">tigrc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在尚未有commit的repository啟動tig"><span class="toc-number">2.</span> <span class="toc-text">在尚未有commit的repository啟動tig</span></a></li></ol>
 		
 		</div>
 		
@@ -123,6 +125,8 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 </ul>
 </li>
 </ul>
+<h2 id="在尚未有commit的repository啟動tig"><a href="#在尚未有commit的repository啟動tig" class="headerlink" title="在尚未有commit的repository啟動tig"></a>在尚未有commit的repository啟動tig</h2><p>在剛執行完<code>git init</code>的資料夾中執行<code>tig</code>會顯示以下錯誤<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tig: No revisions match the given arguments.</span><br></pre></td></tr></table></figure></p>
+<p>解決辦法是執行<code>tig status</code>，顯示status view，可以直接按<code>u</code>加入檔案。<br><img src="https://i.imgur.com/t5c55Ur.png" alt="tig status"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -146,9 +150,9 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/04/02/2016-04-02-github-pages-enable-googlesearch/" title="為Blog啟用google站內搜尋功能">
+ <a href="/2016/04/05/2016-04-05-nodejs-environment-and-npm/" title="Nodejs開發環境與npm">
   <span>
-  為Blog啟用google站內搜尋功能</span>
+  Nodejs開發環境與npm</span>
 </a>
 </div>
 
@@ -176,7 +180,7 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tigrc"><span class="toc-number">1.</span> <span class="toc-text">tigrc</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tigrc"><span class="toc-number">1.</span> <span class="toc-text">tigrc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在尚未有commit的repository啟動tig"><span class="toc-number">2.</span> <span class="toc-text">在尚未有commit的repository啟動tig</span></a></li></ol>
  
   </div>
 
@@ -251,7 +255,7 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 		  
 		
 		  
-			<li><a href="/categories/Tools/" title="Tools">Tools<sup>3</sup></a></li>
+			<li><a href="/categories/Tools/" title="Tools">Tools<sup>2</sup></a></li>
 		  
 		
 		  
@@ -284,7 +288,15 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 			
 		
 			
+				<li><a href="/tags/c/" title="c">c<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C/" title="C">C<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/note/" title="note">note<sup>3</sup></a></li>
 			
 		
 			
@@ -292,19 +304,15 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 			
 		
 			
-				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
+				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/c/" title="c">c<sup>2</sup></a></li>
+				<li><a href="/tags/config/" title="config">config<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cml/" title="Cml">Cml<sup>2</sup></a></li>
+				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
 			
 		
 			
@@ -312,7 +320,27 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 			
 		
 			
-				<li><a href="/tags/Embedded-system/" title="Embedded system">Embedded system<sup>1</sup></a></li>
+				<li><a href="/tags/Job/" title="Job">Job<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/i3-wm/" title="i3 wm">i3 wm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cml/" title="Cml">Cml<sup>1</sup></a></li>
 			
 		
 			
@@ -320,35 +348,11 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 			
 		
 			
-				<li><a href="/tags/Doxygen/" title="Doxygen">Doxygen<sup>1</sup></a></li>
+				<li><a href="/tags/fixed/" title="fixed">fixed<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/GDB/" title="GDB">GDB<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Vim/" title="Vim">Vim<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/cml/" title="cml">cml<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/config/" title="config">config<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/job/" title="job">job<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Jekyll/" title="Jekyll">Jekyll<sup>1</sup></a></li>
 			
 		
 		</ul>
