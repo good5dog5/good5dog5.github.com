@@ -4,31 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>tig使用筆記 | 一奔二飛</title>
+    <title>初探D-Bus與polkit | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
     
 
     
-    <meta name="description" content="My tigrc
-
-tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)">
+    <meta name="description" content="自從把Window manager換成i3之後，很多以往在Gnome不會出現的問題一一浮現，例如當使用Network manager要連上新的Wifi SSID時會出現 WARNING **: Failed to add/activate connection，亦或是用udiskie-mount嘗試掛載usb device會出現Not authorized to perform operation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tig使用筆記">
-<meta property="og:url" content="http://good5dog5.github.io/2016/03/31/2016-03-31-tig-note/index.html">
+<meta property="og:title" content="初探D-Bus與polkit">
+<meta property="og:url" content="http://good5dog5.github.io/2016/05/26/2016-05-26-初探Dbus與polkit/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="My tigrc
-
-tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)">
-<meta property="og:image" content="https://i.imgur.com/t5c55Ur.png">
-<meta property="og:updated_time" content="2016-05-28T13:36:46.000Z">
+<meta property="og:description" content="自從把Window manager換成i3之後，很多以往在Gnome不會出現的問題一一浮現，例如當使用Network manager要連上新的Wifi SSID時會出現 WARNING **: Failed to add/activate connection，亦或是用udiskie-mount嘗試掛載usb device會出現Not authorized to perform operation">
+<meta property="og:updated_time" content="2016-06-07T13:47:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tig使用筆記">
-<meta name="twitter:description" content="My tigrc
-
-tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)">
-<meta name="twitter:image" content="https://i.imgur.com/t5c55Ur.png">
+<meta name="twitter:title" content="初探D-Bus與polkit">
+<meta name="twitter:description" content="自從把Window manager換成i3之後，很多以往在Gnome不會出現的問題一一浮現，例如當使用Network manager要連上新的Wifi SSID時會出現 WARNING **: Failed to add/activate connection，亦或是用udiskie-mount嘗試掛載usb device會出現Not authorized to perform operation">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -89,14 +81,14 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/31/2016-03-31-tig-note/" title="tig使用筆記" itemprop="url">tig使用筆記</a>
+      <a href="/2016/05/26/2016-05-26-初探Dbus與polkit/" title="初探D-Bus與polkit" itemprop="url">初探D-Bus與polkit</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-31T16:12:00.000Z" itemprop="datePublished"> Published 2016-03-31</time>
+    <time datetime="2016-05-26T18:21:00.000Z" itemprop="datePublished"> Published 2016-05-26</time>
     
   </p>
 </header>
@@ -105,28 +97,28 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tigrc"><span class="toc-number">1.</span> <span class="toc-text">tigrc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在尚未有commit的repository啟動tig"><span class="toc-number">2.</span> <span class="toc-text">在尚未有commit的repository啟動tig</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#D-Bus-Software-Bus"><span class="toc-number">1.</span> <span class="toc-text">D-Bus (Software Bus)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解決polkit-agent問題"><span class="toc-number">2.</span> <span class="toc-text">解決polkit agent問題</span></a></li></ol>
 		
 		</div>
 		
-		<ul>
-<li><a href="https://github.com/good5dog5/dotfile/blob/master/config/XDG_CONFIG/tig/tigrc" target="_blank" rel="external">My tigrc</a></li>
-</ul>
-<p><a href="https://github.com/jonas/tig" target="_blank" rel="external">tig</a>是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)</p>
+		<p>自從把Window manager換成i3之後，很多以往在Gnome不會出現的問題一一浮現，例如當使用Network manager要連上新的Wifi SSID時會出現 <code>WARNING **: Failed to add/activate connection</code>，亦或是用udiskie-mount嘗試掛載usb device會出現<code>Not authorized to perform operation</code>等等，筆者發現這先問題牽扯到很多專有名詞與概念，故利用此篇來紀錄與整理。</p>
 <a id="more"></a>
-<h2 id="tigrc"><a href="#tigrc" class="headerlink" title="tigrc"></a>tigrc</h2><p><a href="https://github.com/jonas/tig/wiki/Bindings" target="_blank" rel="external">tig binding wiki</a></p>
+<h2 id="D-Bus-Software-Bus"><a href="#D-Bus-Software-Bus" class="headerlink" title="D-Bus (Software Bus)"></a>D-Bus (Software Bus)</h2><p>[wiki]</p>
+<blockquote>
+<p>D-Bus是一個行程間通訊(IPC)及遠端程序呼叫(RPC)機制，可以讓多個不同的電腦程式（Process）在同一臺電腦上同時進行通訊[4]。D-Bus作為freedesktop.org專案的一部份，其設計目的是使Linux桌面環境（如GNOME與KDE等）提供的服務標準化。</p>
+<p>freedesktop.org專案同時也開發了一個稱為libdbus的自由及開放原始碼軟體函式庫，作為規範的參考實作。這個函式庫常與D-Bus本身混淆。也存在著其他的D-Bus實作，像是GDBus (GNOME)[5]，QtDBus (Qt/KDE)[6]，dbus-java[7]以及sd-bus（systemd的一部份）[8]。</p>
+</blockquote>
+<p>[English wiki] (筆者翻譯覺得重要的部份)<br>一個作業系統中常有很多process參與，要為processes間建立一對一的IPC是低效且不可靠的方法。D-Bus提共一個抽象的Software Bus，讓一群彼此需要溝通的processes共享一個虛擬頻道，連接到此software bus的process並不知道底層實作細節，但保證連上後可以彼此通訊。</p>
+<p>Linux的桌面環境藉由創建許多D-Bus實體而得益：</p>
 <ul>
-<li><p>在<code>status view時刪掉某檔案</code></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind status D !?@rm %(file)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>!</code>:使用external command <code>rm</code></li>
-<li><code>?</code>:asks for confirmation, like “Are you sure you want to delete file? [YyNn]”</li>
-<li><code>@</code>:prevents tig to display the command output, making things more integrated.</li>
+<li>單一的<code>system bus</code>，可見於所有使用者與processes，提共對system services的存取(services provided by OS or by any system daemon)</li>
+<li>a <code>session bus</code> for each <strong>user login session</strong>, that provides desktop services to user applications in the same desktop session, and allows the integration of the desktop session as a whole.</li>
 </ul>
-</li>
-</ul>
-<h2 id="在尚未有commit的repository啟動tig"><a href="#在尚未有commit的repository啟動tig" class="headerlink" title="在尚未有commit的repository啟動tig"></a>在尚未有commit的repository啟動tig</h2><p>在剛執行完<code>git init</code>的資料夾中執行<code>tig</code>會顯示以下錯誤<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tig: No revisions match the given arguments.</span><br></pre></td></tr></table></figure></p>
-<p>解決辦法是執行<code>tig status</code>，顯示status view，可以直接按<code>u</code>加入檔案。<br><img src="https://i.imgur.com/t5c55Ur.png" alt="tig status"></p>
+<h2 id="解決polkit-agent問題"><a href="#解決polkit-agent問題" class="headerlink" title="解決polkit agent問題"></a>解決polkit agent問題</h2><blockquote>
+<p>An authentication agent is used to make the user of a session prove that the user of the session really is the user (by authenticating as the user) or an administrative user (by authenticating as an administrator). </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install policykit-1-gnome</span><br></pre></td></tr></table></figure>
+<p>定在 <code>~/.xinitrc</code>中加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/lib/policykit-1/polkitd --no-debug</span><br><span class="line">/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &amp;</span><br></pre></td></tr></table></figure></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -135,7 +127,7 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Note/">Note</a><a href="/tags/tig/">tig</a><a href="/tags/git/">git</a><a href="/tags/cml/">cml</a>
+  <span></span> <a href="/tags/D-Bus/">D-Bus</a><a href="/tags/Polkit/">Polkit</a>
   </div>
 
 </div>
@@ -150,16 +142,16 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/04/02/2016-04-02-github-pages-enable-googlesearch/" title="為Blog啟用google站內搜尋功能">
+ <a href="/2016/06/05/2016-06-05-PyCon2016-review/" title="PyCon TW 2016參加心得">
   <span>
-  為Blog啟用google站內搜尋功能</span>
+  PyCon TW 2016參加心得</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/03/30/2016-03-30-resume-note/"  title="寫英文履歷時的筆記">
- <span>寫英文履歷時的筆記
+<a href="/2016/04/29/2016-04-09-c-preprocessor-intro/"  title="GNU c preprocessor筆記">
+ <span>GNU c preprocessor筆記
 </span>
 </a>
 </div>
@@ -180,7 +172,7 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tigrc"><span class="toc-number">1.</span> <span class="toc-text">tigrc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在尚未有commit的repository啟動tig"><span class="toc-number">2.</span> <span class="toc-text">在尚未有commit的repository啟動tig</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#D-Bus-Software-Bus"><span class="toc-number">1.</span> <span class="toc-text">D-Bus (Software Bus)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解決polkit-agent問題"><span class="toc-number">2.</span> <span class="toc-text">解決polkit agent問題</span></a></li></ol>
  
   </div>
 

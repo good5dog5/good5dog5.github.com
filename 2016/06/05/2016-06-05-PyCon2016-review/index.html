@@ -4,31 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>tig使用筆記 | 一奔二飛</title>
+    <title>PyCon TW 2016參加心得 | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
     
 
     
-    <meta name="description" content="My tigrc
-
-tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)">
+    <meta name="description" content="感謝Jserv老師贈票，讓我有機會參加2016 PyCon TW盛會，這是我第一次參加大型的opensource聚會，三天下來聽了很多有趣的演講，吸收了不少新知識，利用此篇來備忘一下～">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tig使用筆記">
-<meta property="og:url" content="http://good5dog5.github.io/2016/03/31/2016-03-31-tig-note/index.html">
+<meta property="og:title" content="PyCon TW 2016參加心得">
+<meta property="og:url" content="http://good5dog5.github.io/2016/06/05/2016-06-05-PyCon2016-review/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="My tigrc
-
-tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)">
-<meta property="og:image" content="https://i.imgur.com/t5c55Ur.png">
-<meta property="og:updated_time" content="2016-05-28T13:36:46.000Z">
+<meta property="og:description" content="感謝Jserv老師贈票，讓我有機會參加2016 PyCon TW盛會，這是我第一次參加大型的opensource聚會，三天下來聽了很多有趣的演講，吸收了不少新知識，利用此篇來備忘一下～">
+<meta property="og:updated_time" content="2016-06-08T13:33:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tig使用筆記">
-<meta name="twitter:description" content="My tigrc
-
-tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)">
-<meta name="twitter:image" content="https://i.imgur.com/t5c55Ur.png">
+<meta name="twitter:title" content="PyCon TW 2016參加心得">
+<meta name="twitter:description" content="感謝Jserv老師贈票，讓我有機會參加2016 PyCon TW盛會，這是我第一次參加大型的opensource聚會，三天下來聽了很多有趣的演講，吸收了不少新知識，利用此篇來備忘一下～">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -89,14 +81,14 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/31/2016-03-31-tig-note/" title="tig使用筆記" itemprop="url">tig使用筆記</a>
+      <a href="/2016/06/05/2016-06-05-PyCon2016-review/" title="PyCon TW 2016參加心得" itemprop="url">PyCon TW 2016參加心得</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-31T16:12:00.000Z" itemprop="datePublished"> Published 2016-03-31</time>
+    <time datetime="2016-06-05T14:35:00.000Z" itemprop="datePublished"> Published 2016-06-05</time>
     
   </p>
 </header>
@@ -105,29 +97,88 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tigrc"><span class="toc-number">1.</span> <span class="toc-text">tigrc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在尚未有commit的repository啟動tig"><span class="toc-number">2.</span> <span class="toc-text">在尚未有commit的repository啟動tig</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PyCon-TW簡介"><span class="toc-number">1.</span> <span class="toc-text">PyCon TW簡介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Day1"><span class="toc-number">2.</span> <span class="toc-text">Day1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Keynote-明日之後的世界-The-world-after-tomorrow-唐鳳"><span class="toc-number">2.1.</span> <span class="toc-text">Keynote: 明日之後的世界 (The world after tomorrow) - 唐鳳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#那些年，我用-Django-Admin-接的案子-Michelle-Leu"><span class="toc-number">2.2.</span> <span class="toc-text">那些年，我用 Django Admin 接的案子 - Michelle Leu</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<ul>
-<li><a href="https://github.com/good5dog5/dotfile/blob/master/config/XDG_CONFIG/tig/tigrc" target="_blank" rel="external">My tigrc</a></li>
-</ul>
-<p><a href="https://github.com/jonas/tig" target="_blank" rel="external">tig</a>是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)</p>
+		<p>感謝Jserv老師贈票，讓我有機會參加2016 PyCon TW盛會，這是我第一次參加大型的opensource聚會，三天下來聽了很多有趣的演講，吸收了不少新知識，利用此篇來備忘一下～ </p>
 <a id="more"></a>
-<h2 id="tigrc"><a href="#tigrc" class="headerlink" title="tigrc"></a>tigrc</h2><p><a href="https://github.com/jonas/tig/wiki/Bindings" target="_blank" rel="external">tig binding wiki</a></p>
 <ul>
-<li><p>在<code>status view時刪掉某檔案</code></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind status D !?@rm %(file)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>!</code>:使用external command <code>rm</code></li>
-<li><code>?</code>:asks for confirmation, like “Are you sure you want to delete file? [YyNn]”</li>
-<li><code>@</code>:prevents tig to display the command output, making things more integrated.</li>
+<li><a href="https://hackfoldr.org/pycontw2016/https%253A%252F%252Fhackmd.io%252Fs%252FSy-PYcHM" target="_blank" rel="external">PyCon2016共筆</a></li>
 </ul>
+<h1 id="PyCon-TW簡介"><a href="#PyCon-TW簡介" class="headerlink" title="PyCon TW簡介"></a>PyCon TW簡介</h1><blockquote>
+<ul>
+<li>2008 年和 2011 年，thinker 籌畫了 PyCTW，也是 PyCon Taiwan 的前身。當時還是一日的活動，讓各地的 Python 愛好者能一整天聚在一起。</li>
+</ul>
+<ul>
+<li><p>2012 年 yyc 與各社群參與者，催生了第一屆 PyCon Taiwan，議程主題以科學運算為主，也包含各種 Python 的小工具。從第一屆開始，就決定要遵從 PyCon US 的 <a href="http://jessenoller.com/2011/05/25/pycon-everybody-pays/" target="_blank" rel="external">Everybody Pays</a> 原則，不論是講者還是工作人員都要購票進場，這也成為與當時台灣其他研討會不同的特色。這屆設定了 250 報名人數上限，也順利完售。</p>
+</li>
+<li><p>2013 年，續任主席的 yyc 決定擴大 PyCon Taiwan 的規模，並嘗試了許多新活動。在大會開始前，與良葛格合作，試辦收費的 Python 教學課程，報名非常踴躍，額滿後還有很多人詢問是否能加開課程。也在大會第一天議程結束，BoF 同好分享的時間，嘗試加入夜市活動。請來了音樂家現場演奏，搭配自助餐點及各社群的擺攤，有得吃也有得玩，成為本次大會的一大亮點。也因此，課程與夜市成為 PyCon Taiwan 的定番。yyc 也留下了心得。</p>
+</li>
+<li><p>2014 年，Tim Hsu 從 yyc 接下 PyCon Taiwan 主席的工作。這年，我們要幹一票大的：接下亞太區 PyCon 的聖火，成為 PyCon APAC/Taiwan，定了新標語：「from everything import python」。與 CheckIO 合作舉辦 Python 解題競賽。為了顧及議程品質與贊助商曝光，特別規劃了贊助商 Show Time，以及 Job Fair 的活動。</p>
+</li>
+<li><p>2015 年，由 Keith Yang 接任主席，再次承辦亞太區 PyCon 年會。2015 年也是電影回到未來續集主角馬蒂穿越時空抵達的年份。大會也呼應電影，將標語定為「Back to <strong>future</strong> II」，也有「回到未來夜市」。議程方向希望帶領大家，瞭解如何利用 Python 去實踐一些想法，或是應用 Python 在不同領域的研究。同時也規劃了多堂課程，從基本的 Python 入門課，到寫網路爬蟲、資料探勘、訊號處理，或是與硬體樹莓派的互動。到了大會尾聲，大抽獎的時間，嘗試將台灣夜市傳統的 Bingo 遊戲結合網路技術，讓台下所有的會眾能從手機上，即時看到自己的號碼與連線，搭配越來越奇怪的賓果條件，歡樂指數破表。</p>
+</li>
+<li><p>2016 年，也就是今年，回歸到 PyCon Taiwan，讓我們「Implement the Future, Together !」 </p>
 </li>
 </ul>
-<h2 id="在尚未有commit的repository啟動tig"><a href="#在尚未有commit的repository啟動tig" class="headerlink" title="在尚未有commit的repository啟動tig"></a>在尚未有commit的repository啟動tig</h2><p>在剛執行完<code>git init</code>的資料夾中執行<code>tig</code>會顯示以下錯誤<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tig: No revisions match the given arguments.</span><br></pre></td></tr></table></figure></p>
-<p>解決辦法是執行<code>tig status</code>，顯示status view，可以直接按<code>u</code>加入檔案。<br><img src="https://i.imgur.com/t5c55Ur.png" alt="tig status"></p>
-  
+</blockquote>
+<p>PyCon有很特別的 <code>everybody Pays</code>原則，有別於一般研討會常免除講者，甚至工作人員報名費的習慣，所有的參加者都需要付費，一視同仁，上面連結的原文不好了解的話可以參考<a href="https://tw.pycon.org/2013/zh/blog/2013/03/05/everybody-pays-zh/" target="_blank" rel="external">這篇</a>的解說。</p>
+<h1 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h1><h2 id="Keynote-明日之後的世界-The-world-after-tomorrow-唐鳳"><a href="#Keynote-明日之後的世界-The-world-after-tomorrow-唐鳳" class="headerlink" title="Keynote: 明日之後的世界 (The world after tomorrow) - 唐鳳"></a>Keynote: 明日之後的世界 (The world after tomorrow) - 唐鳳</h2><ul>
+<li>蔡英文總統的第一家庭成員是幾隻貓，這樣的好處是，你無法賄賂第一家庭XD</li>
+<li>台灣最近的政治人物的改變很有趣，都變成是無黨籍的，形成先問政策不問黨派的現象</li>
+<li>太陽花數位體驗營：意識形態就不是那麼重要了，重要的是如何形成共識。</li>
+<li>Game with Purpose，民主也可能是Game with Purpose。</li>
+<li><code>法令可否送patch，或merge呢？把opensource開發的經驗，轉移到法令或法制的體系</code></li>
+</ul>
+<p><em>意識型態：一個人對於既定印象的認定之後，可以不問事實，不管其他人想法，就做出某些推論，我的推論就是對的，別人都是錯的。（眼中只有自我，沒有他人）</em></p>
+<p><strong>Open-source and Open goverment</strong></p>
+<pre><code>開放資料: 讓台灣變成機器可讀的國家。
+</code></pre><p><strong>資料公開跟開放有什麼差別呢？</strong></p>
+<pre><code>公開：只是公開人類可讀的資料，例如 pdf 檔，無法再利用。
+開放：政府在釋出資料是機器可以讀的，例如csv、xml、xls，而不是只有人類可以讀懂，電腦可以利用這些資料進行分析跟視覺化呈現給更多人看
+，達到大眾可以讀懂的目的
+</code></pre><ul>
+<li>前行政院長張善政，在交接時規定，所有的交接資料須先上傳到<a href="http://www.slideshare.net/" target="_blank" rel="external">slideshare</a>，讓人民與內閣成員先看過之後才能進行下個階段 </li>
+</ul>
+<p><strong>公民黑客運動</strong><br>世界上有如此規模的公民黑客運動，只有兩個地方，這裡跟西班牙。<br>西班牙跟台灣有哪些相似的地方呢？</p>
+<pre><code>* 解除報禁、解除戒嚴，剛好遇到電腦網路興起。
+* 因此覺得言論自由跟網路的興起是息息相關的。
+* 台灣的社會運動解禁與網路興起能夠相結合，而在國外則分流成兩群人，國外的社會運動參與者大多都有比較外向的性格。
+* 相對在台灣解除報禁、媒體的開放激起在電腦前的技術宅人員對社會運動的參與跟期待。
+* 在台灣和西班牙的相似點，能夠接觸網路的這一代，剛好是有言論自由的一代。
+</code></pre><p><strong>vTaiwan的誕生</strong><br><a href="https://vtaiwan.tw/" target="_blank" rel="external">vTaiwan</a> 是取自 perl 6 等等社群的開發經驗而來。<br>一開始大家開始提案，提出大家最想解決的社會議題，並且投票選出最想解決的議題，Uber的問題得到第1高票。</p>
+<p>Uber的共享經濟像是一種流行性感冒，到處延燒，但對於Uber的定價、提供給乘客的資訊或是品質等等規範，政府的法令卻是對他們一點辦法都沒有。</p>
+<pre><code>* 依照流行病學的看法：接種疫苗去對待共享經濟，也就是讓乘客去意識到Uber所帶來的優缺點，想辦法讓公民去（立法）規範他們
+* Uber(共享經濟的變種)，巴黎市政府把其辦公室超掉了，但app仍然繼續跑XD
+* Ref: [快思慢想](http://www.books.com.tw/products/0010567579)
+</code></pre><p>從一開始的4個族群在平台上的討論，分別是計程車隊司機、Uber司機、乘客，還有（最後一個忘記了XD）。<br>在平台上大家會各自提出自己的看法跟意見，並且也陳述各自找到的事實，每個人可以對別人的意見按讚，當你對別人的意見表示贊同時，你所代表的點就會往某個族群方向靠。</p>
+<p>起初，4個族群分別群聚在一起，而且各自聚集到4個角落，變成毫無交集的四群人，但是經由時間的演變，大家試圖去找出可能的共識，大家開始提出很trivial的意見，像是安全第一，就拿了很高的贊成票。</p>
+<p>台灣人有個有趣的現象，當有人考了 90 分，就會有人想要考 91 分、92 分。<br>當時 <a href="https://pol.is/home" target="_blank" rel="external">pol.is</a> 討論的<a href="https://pol.is/3phdex2kjf" target="_blank" rel="external">共識</a>，最高得到了 95 高分。(目前是 93 分)</p>
+<p><strong>審議式民主</strong></p>
+<p>在線上只要邀請大家不是用馬上做出決定的方式，是把事實攤出來讓大家慢慢討論有共識，這樣的做法引進到公部門的時候，做出決策的品質會比開專家會議還要來得好的。</p>
+<p>階段：</p>
+<pre><code>* 最低階民主參與方式是投票
+* 再來是將各自的資料跟事實呈現出來
+* 依據以上的事實提出各自的看法跟意見
+* 將各自的看法凝聚成共識
+* 讓共識進一步成為規範或是法條
+
+* 延伸閱讀：[審議式民主的理念與主張](http://nccur.lib.nccu.edu.tw/bitstream/140.119/34508/9/52501109.pdf)
+</code></pre><p><strong>社會議題</strong><br>有些議題並非目前主流媒體所關注的部分，因此318之後有許多人開始新興媒體</p>
+<blockquote>
+<p>不要恨媒體，自己作媒體</p>
+</blockquote>
+<p><a href="https://www.twreporter.org/" target="_blank" rel="external">報導者</a> 用開源的程式碼可以讓未來可以持續由眾人更新，報導跟圖片也全部採用 cc 類授權，當維護者離開時，也有人可以接手做後續的維護。</p>
+<p><a href="http://talkto.tw/" target="_blank" rel="external">政問</a> 用 360 度的環場攝影機去直播，但是攝影環境決定了名嘴講話的方式，所以他會很注意身邊的人是不是有沒有聽懂，營造彼此互相聆聽的氣氛，讓事情能夠被說得更清楚。 Ex: <a href="http://data.tainan.gov.tw/dataset/project-plan" target="_blank" rel="external">台南的飛雁新村專案計畫</a></p>
+<p><strong>問題討論</strong></p>
+<ul>
+<li>為什麼 ptt 這麼鳥的介面以及難用的 UX 體驗不會被淘汰 是因為他夠難用而且具有資料隱密性？ 還是這是胎灣囡波萬的文化使然？<blockquote>
+<p>如果有用過 reddit 或 hackernews 也知道那個比 ptt 醜很多，但是也因為他夠難用才有一個門檻，通過某些檢驗，如此討論的素質就可以較高，難用的 UX 是凝聚社群的好方法 XD<br>覺得應該不能說 如此討論的素質就可以較高 ，應該是較為<strong>一致</strong>，畢竟設立門檻無法保證討論素質</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="那些年，我用-Django-Admin-接的案子-Michelle-Leu"><a href="#那些年，我用-Django-Admin-接的案子-Michelle-Leu" class="headerlink" title="那些年，我用 Django Admin 接的案子 - Michelle Leu"></a>那些年，我用 Django Admin 接的案子 - Michelle Leu</h2>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -135,7 +186,7 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Note/">Note</a><a href="/tags/tig/">tig</a><a href="/tags/git/">git</a><a href="/tags/cml/">cml</a>
+  <span></span> <a href="/tags/PyCon/">PyCon</a><a href="/tags/Python/">Python</a>
   </div>
 
 </div>
@@ -149,17 +200,10 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/04/02/2016-04-02-github-pages-enable-googlesearch/" title="為Blog啟用google站內搜尋功能">
-  <span>
-  為Blog啟用google站內搜尋功能</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/03/30/2016-03-30-resume-note/"  title="寫英文履歷時的筆記">
- <span>寫英文履歷時的筆記
+<a href="/2016/05/26/2016-05-26-初探Dbus與polkit/"  title="初探D-Bus與polkit">
+ <span>初探D-Bus與polkit
 </span>
 </a>
 </div>
@@ -180,7 +224,7 @@ tig是個ncurses-based text-mode的git界面，簡化git的操作流程不用打
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tigrc"><span class="toc-number">1.</span> <span class="toc-text">tigrc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在尚未有commit的repository啟動tig"><span class="toc-number">2.</span> <span class="toc-text">在尚未有commit的repository啟動tig</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PyCon-TW簡介"><span class="toc-number">1.</span> <span class="toc-text">PyCon TW簡介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Day1"><span class="toc-number">2.</span> <span class="toc-text">Day1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Keynote-明日之後的世界-The-world-after-tomorrow-唐鳳"><span class="toc-number">2.1.</span> <span class="toc-text">Keynote: 明日之後的世界 (The world after tomorrow) - 唐鳳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#那些年，我用-Django-Admin-接的案子-Michelle-Leu"><span class="toc-number">2.2.</span> <span class="toc-text">那些年，我用 Django Admin 接的案子 - Michelle Leu</span></a></li></ol></li></ol>
  
   </div>
 
