@@ -1,0 +1,613 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>一些常用的VIM plugins | 一奔二飛</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jordan Huang">
+    
+
+    
+    <meta name="description" content="language relatedpythone-mode一個整合了 Pylint(python程式碼分析工具) rope(a python refactoring library)pydoc(Python原生的文件產生模組) 的plugin，讓寫python更方便快速。 
+,r : 執行當前codeK  : 查詢當前游標所在的keyword
+使用:PymodeDoc時發生E21: Cannot m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些常用的VIM plugins">
+<meta property="og:url" content="http://good5dog5.github.io/2016/04/09/vim-plugin-note/index.html">
+<meta property="og:site_name" content="一奔二飛">
+<meta property="og:description" content="language relatedpythone-mode一個整合了 Pylint(python程式碼分析工具) rope(a python refactoring library)pydoc(Python原生的文件產生模組) 的plugin，讓寫python更方便快速。 
+,r : 執行當前codeK  : 查詢當前游標所在的keyword
+使用:PymodeDoc時發生E21: Cannot m">
+<meta property="og:updated_time" content="2016-06-12T02:21:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一些常用的VIM plugins">
+<meta name="twitter:description" content="language relatedpythone-mode一個整合了 Pylint(python程式碼分析工具) rope(a python refactoring library)pydoc(Python原生的文件產生模組) 的plugin，讓寫python更方便快速。 
+,r : 執行當前codeK  : 查詢當前游標所在的keyword
+使用:PymodeDoc時發生E21: Cannot m">
+
+    
+    <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
+    <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="一奔二飛" title="一奔二飛"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="一奔二飛">一奔二飛</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/09/vim-plugin-note/" title="一些常用的VIM plugins" itemprop="url">一些常用的VIM plugins</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-09T16:12:00.000Z" itemprop="datePublished"> Published 2016-04-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#language-related"><span class="toc-number">1.</span> <span class="toc-text">language related</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pythone-mode"><span class="toc-number">1.1.</span> <span class="toc-text">pythone-mode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YoucompleteMe"><span class="toc-number">1.2.</span> <span class="toc-text">YoucompleteMe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YCM-Generator"><span class="toc-number">1.3.</span> <span class="toc-text">YCM-Generator</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="language-related"><a href="#language-related" class="headerlink" title="language related"></a>language related</h2><h3 id="pythone-mode"><a href="#pythone-mode" class="headerlink" title="pythone-mode"></a><a href="https://github.com/klen/python-mode" target="_blank" rel="external">pythone-mode</a></h3><p>一個整合了 <a href="https://www.pylint.org/" target="_blank" rel="external">Pylint</a>(python程式碼分析工具) <a href="https://github.com/python-rope/rope" target="_blank" rel="external">rope</a>(a python refactoring library)<a href="https://docs.python.org/2/library/pydoc.html" target="_blank" rel="external">pydoc</a>(Python原生的文件產生模組) 的plugin，讓寫python更方便快速。 </p>
+<p><code>,r</code> : 執行當前code<br><code>K</code>  : 查詢當前游標所在的keyword</p>
+<p>使用<code>:PymodeDoc</code>時發生<strong>E21: Cannot make changes, ‘modifiable’ is off</strong><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Error detected while processing function pymode#doc#show:</span><br><span class="line">line 7:</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">File &quot;&quot;, line 1, in</span><br><span class="line">File &quot;/home/phongvcao/.vim/bundle/python-mode/pymode/init.py&quot;, line 37, in get_documentation</span><br><span class="line">vim.current.buffer.append(str(out).splitlines(), 0)</span><br><span class="line">vim.error: Vim:E21: Cannot make changes, &apos;modifiable&apos; is off</span><br></pre></td></tr></table></figure></p>
+<p>上網找到<a href="https://www.bountysource.com/issues/9393603-vim-error-cannot-make-changes-modifiable-is-off?utm_campaign=plugin&amp;utm_content=tracker/42165&amp;utm_medium=issues&amp;utm_source=github" target="_blank" rel="external">workaround</a>，把以下兩行加入<code>vimrc</code>即可<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">autocmd FileType qf,rst :setlocal modifiable</span><br><span class="line">autocmd FileType qf,rst :set modifiable</span><br></pre></td></tr></table></figure></p>
+<h3 id="YoucompleteMe"><a href="#YoucompleteMe" class="headerlink" title="YoucompleteMe"></a><a href="https://github.com/Valloric/YouCompleteMe#semantic-completion-for-other-languages" target="_blank" rel="external">YoucompleteMe</a></h3><p>大名鼎鼎的自動補全plugin，安裝過程挺麻煩的而且一直在變動。<br><code>,gl</code> :YcmCompleter GoToDeclaration<br><code>,gf</code> :YcmCompleter GoToDefinition<br><code>,gg</code>:YcmCompleter GoToDefinitionElseDeclaration</p>
+<h3 id="YCM-Generator"><a href="#YCM-Generator" class="headerlink" title="YCM-Generator"></a><a href="https://github.com/rdnetto/YCM-Generator" target="_blank" rel="external">YCM-Generator</a></h3><p>可以在專案中生成Youcompleteme所需的<code>.ycm_extra_conf.py</code>，專案的根目錄中須存在至少一種編譯系統</p>
+<ul>
+<li>make</li>
+<li>cmake</li>
+<li>qmake</li>
+<li>autotools</li>
+</ul>
+<p>利用<code>:YcmGenerateConfig</code>或<code>:CCGenerateConfig</code> 產生。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/note/">note</a><a href="/tags/vim/">vim</a>
+  </div>
+
+</div>
+
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/04/09/Mimeapps-and-default-application/" title="利用MIME type綁定各類預設應用程式">
+  <span>
+  利用MIME type綁定各類預設應用程式</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/04/05/nodejs-environment-and-npm/"  title="Nodejs開發環境與npm">
+ <span>Nodejs開發環境與npm
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#language-related"><span class="toc-number">1.</span> <span class="toc-text">language related</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pythone-mode"><span class="toc-number">1.1.</span> <span class="toc-text">pythone-mode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YoucompleteMe"><span class="toc-number">1.2.</span> <span class="toc-text">YoucompleteMe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YCM-Generator"><span class="toc-number">1.3.</span> <span class="toc-text">YCM-Generator</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+<div id="authorInfo">
+	
+		<div class="author-img"></div>		
+	
+	<div class="social-info" class="clearfix">
+		
+		
+		<a href="https://github.com/good5dog5" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:good5dog5@gmail.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+
+	</div>
+</div>
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="good5dog5" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C">C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CLI/" title="CLI">CLI<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Homework/" title="Homework">Homework<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Job/" title="Job">Job<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Note/" title="Note">Note<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Tools/" title="Tools">Tools<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Work/" title="Work">Work<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/daily/" title="daily">daily<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Note/" title="Note">Note<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/embedded-system/" title="embedded system">embedded system<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C">C<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/c/" title="c">c<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/note/" title="note">note<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/i3-wm/" title="i3 wm">i3 wm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CLI/" title="CLI">CLI<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/config/" title="config">config<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Job/" title="Job">Job<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bash/" title="Bash">Bash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/script/" title="script">script<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PyCon/" title="PyCon">PyCon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Python/" title="Python">Python<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+		
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Jordan Huang">Jordan Huang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'good5dog5';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
