@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://good5dog5.github.io/2016/04/05/nodejs-environment-and-npm/index.html">
 <meta property="og:site_name" content="一奔二飛">
 <meta property="og:description" content="Nodejs紅了好一陣子了，對於它我還是不太了解，可是手邊蠻多日常工具如hexo都跟nodejs和npm密切相關，故用此篇來紀錄探索的過程。">
-<meta property="og:updated_time" content="2016-06-12T02:21:07.000Z">
+<meta property="og:updated_time" content="2016-06-12T03:52:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs開發環境與npm">
 <meta name="twitter:description" content="Nodejs紅了好一陣子了，對於它我還是不太了解，可是手邊蠻多日常工具如hexo都跟nodejs和npm密切相關，故用此篇來紀錄探索的過程。">
@@ -107,7 +107,7 @@
 <li><strong>curl -s</strong>代表<code>silent</code> mode，不會印出任何訊息包括下載進度</li>
 <li><strong>curl -L</strong> :<br>   (HTTP/HTTPS) If the server reports that the requested page has moved to a different location (indicated with a Location: header and  a 3XX response code), this option will make curl redo the request on the new place.</li>
 <li><strong>sudo -E –preserve-env</strong>:<br>   Indicates to the security policy that the user wishes to preserve their existing environment variables.  The security policy may return an error if the user does not have permission to preserve the environment.</li>
-<li><strong>bash -</strong> :<a href="http://good5dog5.github.io/2016/04/05/2016-04-03-bash-script-note/#mysterious-%E2%80%98-%E2%80%98">mysterious ‘-‘</a></li>
+<li><strong>bash -</strong> :<a href="http://good5dog5.github.io/2016/04/05/bash-script-note/#mysterious-%E2%80%98-%E2%80%98">mysterious ‘-‘</a></li>
 </ul>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Using Ubuntu</span></span><br><span class="line">curl <span class="_">-s</span>L https://deb.nodesource.com/setup_5.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line"></span><br><span class="line"><span class="comment"># Using Debian, as root</span></span><br><span class="line">curl <span class="_">-s</span>L https://deb.nodesource.com/setup_5.x | bash -</span><br><span class="line">apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
 <h3 id="install-npm"><a href="#install-npm" class="headerlink" title="install npm"></a>install npm</h3><p>npm是node的套件管理工具，安裝node會一併安裝npm，因為npm的更新速度較node快，故可用<code>sudo npm install npm -g</code>來更新npm。</p>

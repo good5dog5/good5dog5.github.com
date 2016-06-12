@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://good5dog5.github.io/"/>
-  <updated>2016-06-12T03:25:01.000Z</updated>
+  <updated>2016-06-12T02:21:07.000Z</updated>
   <id>http://good5dog5.github.io/</id>
   
   <author>
@@ -14,26 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="http://good5dog5.github.io/2016/06/11/test/"/>
-    <id>http://good5dog5.github.io/2016/06/11/test/</id>
-    <published>2016-06-12T03:25:01.000Z</published>
-    <updated>2016-06-12T03:25:01.000Z</updated>
-    
-    <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>PyCon TW 2016參加心得</title>
@@ -681,7 +661,7 @@ Y: just raise when you wanna assign to None.
     <link href="http://good5dog5.github.io/2016/04/05/nodejs-environment-and-npm/"/>
     <id>http://good5dog5.github.io/2016/04/05/nodejs-environment-and-npm/</id>
     <published>2016-04-05T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <updated>2016-06-12T03:52:31.000Z</updated>
     
     <content type="html">&lt;p&gt;Nodejs紅了好一陣子了，對於它我還是不太了解，可是手邊蠻多日常工具如&lt;code&gt;hexo&lt;/code&gt;都跟nodejs和npm密切相關，故用此篇來紀錄探索的過程。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Setting-up-nodejs-environment-on-Ubuntu&quot;&gt;&lt;a href=&quot;#Setting-up-nodejs-environment-on-Ubuntu&quot; class=&quot;headerlink&quot; title=&quot;Setting up nodejs environment on Ubuntu&quot;&gt;&lt;/a&gt;Setting up nodejs environment on Ubuntu&lt;/h2&gt;&lt;h3 id=&quot;install-nodejs&quot;&gt;&lt;a href=&quot;#install-nodejs&quot; class=&quot;headerlink&quot; title=&quot;install nodejs&quot;&gt;&lt;/a&gt;install nodejs&lt;/h3&gt;&lt;p&gt;Nodejs已經釋出v5了(&lt;a href=&quot;https://nodejs.org/en/blog/community/node-v5/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;source&lt;/a&gt;)，Ubuntu可用以下方式安裝最新版nodejs&lt;/p&gt;
@@ -689,7 +669,7 @@ Y: just raise when you wanna assign to None.
 &lt;li&gt;&lt;strong&gt;curl -s&lt;/strong&gt;代表&lt;code&gt;silent&lt;/code&gt; mode，不會印出任何訊息包括下載進度&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;curl -L&lt;/strong&gt; :&lt;br&gt;   (HTTP/HTTPS) If the server reports that the requested page has moved to a different location (indicated with a Location: header and  a 3XX response code), this option will make curl redo the request on the new place.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;sudo -E –preserve-env&lt;/strong&gt;:&lt;br&gt;   Indicates to the security policy that the user wishes to preserve their existing environment variables.  The security policy may return an error if the user does not have permission to preserve the environment.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;bash -&lt;/strong&gt; :&lt;a href=&quot;http://good5dog5.github.io/2016/04/05/2016-04-03-bash-script-note/#mysterious-%E2%80%98-%E2%80%98&quot;&gt;mysterious ‘-‘&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;bash -&lt;/strong&gt; :&lt;a href=&quot;http://good5dog5.github.io/2016/04/05/bash-script-note/#mysterious-%E2%80%98-%E2%80%98&quot;&gt;mysterious ‘-‘&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Using Ubuntu&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;curl &lt;span class=&quot;_&quot;&gt;-s&lt;/span&gt;L https://deb.nodesource.com/setup_5.x | sudo -E bash -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get install -y nodejs&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Using Debian, as root&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;curl &lt;span class=&quot;_&quot;&gt;-s&lt;/span&gt;L https://deb.nodesource.com/setup_5.x | bash -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;apt-get install -y nodejs&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&quot;install-npm&quot;&gt;&lt;a href=&quot;#install-npm&quot; class=&quot;headerlink&quot; title=&quot;install npm&quot;&gt;&lt;/a&gt;install npm&lt;/h3&gt;&lt;p&gt;npm是node的套件管理工具，安裝node會一併安裝npm，因為npm的更新速度較node快，故可用&lt;code&gt;sudo npm install npm -g&lt;/code&gt;來更新npm。&lt;/p&gt;
@@ -1270,6 +1250,62 @@ Total:       3999 4044  64.7   4000    4138
       <category term="Doxygen" scheme="http://good5dog5.github.io/tags/Doxygen/"/>
     
       <category term="embedded system" scheme="http://good5dog5.github.io/tags/embedded-system/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vim使用筆記</title>
+    <link href="http://good5dog5.github.io/2016/03/24/vim-note/"/>
+    <id>http://good5dog5.github.io/2016/03/24/vim-note/</id>
+    <published>2016-03-24T16:12:00.000Z</published>
+    <updated>2016-06-12T02:21:07.000Z</updated>
+    
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;Use others vimrc  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vim -u ~/others.vimrc&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;markdown-word-wrap&quot;&gt;&lt;a href=&quot;#markdown-word-wrap&quot; class=&quot;headerlink&quot; title=&quot;markdown word-wrap&quot;&gt;&lt;/a&gt;markdown word-wrap&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;Line breaking&lt;/em&gt;, also known as &lt;em&gt;word wrapping&lt;/em&gt;, is the process of breaking a section of text into lines such that it will fit in the available width of a page, window or other display area.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;參考&lt;a href=&quot;http://alols.github.io/2012/11/07/writing-prose-with-vim/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing Prose with Vim&lt;/a&gt;, &lt;a href=&quot;https://github.com/reedes/vim-pencil&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;vim-pencli&lt;/a&gt;&lt;br&gt;在用markdown寫blog時，常常一個段落洋洋灑灑很多字，超出螢幕寬度甚多，此時可以用word wrap的功能限定字元數, 其還分成&lt;code&gt;soft-wrapped&lt;/code&gt;和&lt;code&gt;hard-wrapped&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;soft-wrapped中間行的結尾並不會有&lt;code&gt;換行字元&lt;/code&gt;,只是在顯示上吻合指定的區域，而hard-wrapped則會在中間行存在換行字元,目前暫用vim-pencli做soft-wrapped。&lt;/p&gt;
+&lt;p&gt;目前暫時以vim-pencli解掉。&lt;/p&gt;
+&lt;h2 id=&quot;expandtab-or-noexpandtab&quot;&gt;&lt;a href=&quot;#expandtab-or-noexpandtab&quot; class=&quot;headerlink&quot; title=&quot;expandtab or noexpandtab&quot;&gt;&lt;/a&gt;expandtab or noexpandtab&lt;/h2&gt;&lt;p&gt;&lt;code&gt;set tabstop=4&lt;/code&gt; : 設定插入&lt;code&gt;tab&lt;/code&gt;時用幾個space取代，例如本例是1個tab == 4 space&lt;br&gt;&lt;code&gt;set expandtab&lt;/code&gt; : 把tab用指定數目的space取代&lt;br&gt;&lt;code&gt;shiftwidth&lt;/code&gt;用來指定程式&lt;strong&gt;indent&lt;/strong&gt;的space數。&lt;/p&gt;
+&lt;p&gt;以上設定完後，之後鍵入tab都會被4個space取代，但之前存在於文件中的tab並不會改變&lt;br&gt;&lt;code&gt;set retab&lt;/code&gt;讓全文件apply新的tab設定。&lt;/p&gt;
+&lt;p&gt;有些文件如markdown，Makefile，需要tab才區別程式區段，可在&lt;code&gt;vimrc&lt;/code&gt;中加入&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;autocmd FileType make\|markdown setlocal noexpandtab&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Update-cscope-database&quot;&gt;&lt;a href=&quot;#Update-cscope-database&quot; class=&quot;headerlink&quot; title=&quot;Update cscope database&quot;&gt;&lt;/a&gt;Update cscope database&lt;/h2&gt;&lt;p&gt;撰寫了一隻&lt;code&gt;cscope_gen_database.sh&lt;/code&gt;去產生cscope database&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DIR=( &lt;span class=&quot;string&quot;&gt;&quot;./&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;string&quot;&gt;&quot;/usr/include/i386-linux-gnu/sys/&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;string&quot;&gt;&quot;/usr/include/i386-linux-gnu/bits/&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[ &lt;span class=&quot;_&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;cscope.files&quot;&lt;/span&gt; ] &amp;amp;&amp;amp; rm &lt;span class=&quot;string&quot;&gt;&quot;cscope.files&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;find /usr/include/ -maxdepth 1 -type f -name &lt;span class=&quot;string&quot;&gt;&quot;*.[hc]&quot;&lt;/span&gt; &amp;gt;&amp;gt; cscope.files&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; d &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$&amp;#123;DIR[@]&amp;#125;&lt;/span&gt;&quot;&lt;/span&gt;; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; [ &lt;span class=&quot;_&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$d&lt;/span&gt;&quot;&lt;/span&gt; ]; &lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       find &lt;span class=&quot;variable&quot;&gt;$d&lt;/span&gt; -type f -name &lt;span class=&quot;string&quot;&gt;&quot;*.[hc]&quot;&lt;/span&gt; -o -name &lt;span class=&quot;string&quot;&gt;&quot;*.cpp&quot;&lt;/span&gt; &amp;gt;&amp;gt; cscope.files&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;fi&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;done&lt;/span&gt;           &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cscope -Rbq -i cscope.files&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;直接在vim中輸入 &lt;code&gt;!cscope_gen_database src_root&lt;/code&gt;，src_root代表專案的根目錄。&lt;br&gt;接著輸入&lt;code&gt;cs reset&lt;/code&gt;即完成。&lt;/p&gt;
+&lt;h2 id=&quot;Remove-‘-M’-symbol&quot;&gt;&lt;a href=&quot;#Remove-‘-M’-symbol&quot; class=&quot;headerlink&quot; title=&quot;Remove ‘^M’ symbol&quot;&gt;&lt;/a&gt;Remove ‘^M’ symbol&lt;/h2&gt;&lt;p&gt;有時用vim開啟文件，會在行尾看到&lt;code&gt;^M&lt;/code&gt;符號，這是Windows(DOS)系統中的換行字元，可以下2種方法移除&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;字串取代: :%s/^M/\r/g (ctrl-v then ctrl-m才能打出^M)&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;doc2unix指令&lt;br&gt; ubuntu預設沒有安裝，需要安裝&lt;code&gt;tofrodos&lt;/code&gt; package&lt;/p&gt;
+ &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get install tofrodos&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt; 之後執行 &lt;code&gt;todos xxx&lt;/code&gt;     (即unix2doc xxx)&lt;br&gt; 若想轉回則 &lt;code&gt;fromdos xxx&lt;/code&gt; (即doc2unix xxx)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;修正文件中文亂碼問題&quot;&gt;&lt;a href=&quot;#修正文件中文亂碼問題&quot; class=&quot;headerlink&quot; title=&quot;修正文件中文亂碼問題&quot;&gt;&lt;/a&gt;修正文件中文亂碼問題&lt;/h2&gt;&lt;p&gt;發現之前在windows編輯過得文件，在linux下會顯示亂碼，這是因為windows是以&lt;code&gt;big5&lt;/code&gt;編碼，而linux是用&lt;code&gt;utf-8&lt;/code&gt;，此問題可用&lt;code&gt;iconv&lt;/code&gt;解決。&lt;br&gt;在&lt;code&gt;bash.alias&lt;/code&gt;中加入&lt;br&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;Big5toUTF8&lt;/span&gt;&lt;/span&gt; () &amp;#123; iconv &lt;span class=&quot;_&quot;&gt;-f&lt;/span&gt; big5 -t utf8 -c &lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt; -o &lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt;; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;假設要轉換&lt;code&gt;foo&lt;/code&gt;，直接輸入&lt;code&gt;Big5toUTF8 foo&lt;/code&gt;即可。&lt;/p&gt;
+&lt;h2 id=&quot;常用vim-regular-expression&quot;&gt;&lt;a href=&quot;#常用vim-regular-expression&quot; class=&quot;headerlink&quot; title=&quot;常用vim regular expression&quot;&gt;&lt;/a&gt;常用vim regular expression&lt;/h2&gt;&lt;p&gt;[&lt;a href=&quot;http://vimregex.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;vimregex&lt;/a&gt;] [&lt;a href=&quot;http://three-colors.blogspot.tw/2008/06/vim-regular-expression.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;vim 我最常用的 regular expression&lt;/a&gt;]&lt;/p&gt;
+&lt;p&gt;Character set:&lt;br&gt;&lt;img src=&quot;https://i.imgur.com/4WT4LgP.png&quot; alt=&quot;character set&quot;&gt;&lt;br&gt;&lt;code&gt;%s/(\+\s/(/&lt;/code&gt;: 會把左括號&lt;code&gt;(&lt;/code&gt;後的空白清除，例如執行後&lt;code&gt;( a&lt;/code&gt;會變成&lt;code&gt;(a&lt;/code&gt;&lt;br&gt;&lt;code&gt;%s/\s\+)/)/&lt;/code&gt;: 會把左括號&lt;code&gt;)&lt;/code&gt;前的空白清除，例如執行後&lt;code&gt;a )&lt;/code&gt;會變成&lt;code&gt;a)&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;help&quot;&gt;&lt;a href=&quot;#help&quot; class=&quot;headerlink&quot; title=&quot;help&quot;&gt;&lt;/a&gt;help&lt;/h2&gt;&lt;p&gt;&lt;code&gt;h pattern&lt;/code&gt; : 搜尋&lt;code&gt;pattern&lt;/code&gt;相關的help文件&lt;br&gt;&lt;code&gt;link&lt;/code&gt; : &lt;code&gt;ctrl+]&lt;/code&gt;用來跳轉到quickref(follow the link)，&lt;code&gt;ctrl+T&lt;/code&gt;回到原本的topic。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;Use others vimrc  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td 
+    
+    </summary>
+    
+      <category term="Job" scheme="http://good5dog5.github.io/categories/Job/"/>
+    
+    
+      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
+    
+      <category term="Linux" scheme="http://good5dog5.github.io/tags/Linux/"/>
+    
+      <category term="vim" scheme="http://good5dog5.github.io/tags/vim/"/>
     
   </entry>
   
