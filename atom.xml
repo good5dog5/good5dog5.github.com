@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://good5dog5.github.io/"/>
-  <updated>2016-06-12T02:21:07.000Z</updated>
+  <updated>2017-12-20T07:01:47.080Z</updated>
   <id>http://good5dog5.github.io/</id>
   
   <author>
@@ -16,11 +16,84 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Reflash TX2 with Tegra Sample Root FileSystem R28.1</title>
+    <link href="http://good5dog5.github.io/2017/12/20/2017-12-20-tx2-reflash/"/>
+    <id>http://good5dog5.github.io/2017/12/20/2017-12-20-tx2-reflash/</id>
+    <published>2017-12-19T16:00:00.000Z</published>
+    <updated>2017-12-20T07:01:47.080Z</updated>
+    
+    <content type="html">&lt;p&gt;在TX2上編譯了新的kernel feature，發現開機後會有問題，心想還好之前有做好備份，但用&lt;code&gt;flash.sh&lt;/code&gt;&lt;br&gt;restore會去闕遲遲沒有開機畫面。用&lt;code&gt;minicom&lt;/code&gt;進去看才發現一直kernel panic。&lt;/p&gt;
+&lt;p&gt;這大概就是刷機界所謂的&lt;code&gt;變磚&lt;/code&gt;吧。還好可以刷回原本default的root file sytem.&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; /home/jordan/working/prj_qcuda/JetPack_L4T_3.1/64_TX2/Linux_&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;_Tegra_tx2/rootfs&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo rm * -rf&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# jetpack_download 中有所有裝JetPack3.1時所下載的檔案&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo tar xpf ../../../jetpack_download/Tegra_Linux_Sample-Root-Filesystem_R28.1.0_aarch64.tbz2 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; ..&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 根據我目前的理解，`apply_binaries.sh` 會將 rootfs 打包成名為 `system.img`的檔案並放到 bootloader中&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo ./apply_binaries.sh&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo ./flash.sh jetson-tx2 mmcblk0p1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在TX2上編譯了新的kernel feature，發現開機後會有問題，心想還好之前有做好備份，但用&lt;code&gt;flash.sh&lt;/code&gt;&lt;br&gt;restore會去闕遲遲沒有開機畫面。用&lt;code&gt;minicom&lt;/code&gt;進去看才發現一直kernel panic。&lt;/
+    
+    </summary>
+    
+    
+      <category term="TX2, rootfs" scheme="http://good5dog5.github.io/tags/TX2-rootfs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Libreoffice5 使用筆記</title>
+    <link href="http://good5dog5.github.io/2016/07/18/libreoffice-use-note/"/>
+    <id>http://good5dog5.github.io/2016/07/18/libreoffice-use-note/</id>
+    <published>2016-07-17T18:37:08.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
+    
+    <content type="html">&lt;p&gt;相較於MS office，libreoffice系列的手冊或教學相對的少，此篇用來紀錄使用上遇到的問題與解法。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;#Calc&lt;/p&gt;
+&lt;h3 id=&quot;修改中文輸入成直書&quot;&gt;&lt;a href=&quot;#修改中文輸入成直書&quot; class=&quot;headerlink&quot; title=&quot;修改中文輸入成直書&quot;&gt;&lt;/a&gt;修改中文輸入成直書&lt;/h3&gt;&lt;p&gt;Format &amp;gt; Cells &amp;gt; [alignment] &amp;gt; &lt;code&gt;vertically stack&lt;/code&gt; checkbox&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/cDefocW.png&quot; alt=&quot;修改前&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://imgur.com/UxYiObR.png&quot; alt=&quot;修改後&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;相較於MS office，libreoffice系列的手冊或教學相對的少，此篇用來紀錄使用上遇到的問題與解法。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="libreoffice" scheme="http://good5dog5.github.io/tags/libreoffice/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用gpg加解密檔案</title>
+    <link href="http://good5dog5.github.io/2016/07/09/%E5%88%A9%E7%94%A8gpg%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%AA%94%E6%A1%88/"/>
+    <id>http://good5dog5.github.io/2016/07/09/利用gpg加解密檔案/</id>
+    <published>2016-07-08T19:50:42.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
+    
+    <content type="html">&lt;p&gt;###Encrypt:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gpg --cipher-algo AES256 --symmetric filename.tar.gz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#等同&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gpg --cipher-algo AES256 -c filename.tar.gz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;會產生名為 &lt;code&gt;filename.tar.gz.gpg&lt;/code&gt;的加密檔，原來的&lt;code&gt;filename.tar.gz&lt;/code&gt;亦存在。&lt;/p&gt;
+&lt;p&gt;###Decrypt:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gpg --output filename.tar.gz --decrypt filename.tar.gz.gpg&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#等同&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gpg -o filename.tar.gz -d filename.tar.gz.gpg&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###Encrypt:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gpg --cipher-algo AES256 --symmetric filename.tar.gz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#等同&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gpg --cipher-algo AES256 -c filename.tar.gz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;會產生名為 &lt;code&gt;filename.tar.gz.gpg&lt;/code&gt;的加密檔，原來的&lt;code&gt;filename.tar.gz&lt;/code&gt;亦存在。&lt;/p&gt;
+&lt;p&gt;###Decrypt:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gpg --output filename.tar.gz --decrypt filename.tar.gz.gpg&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#等同&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gpg -o filename.tar.gz -d filename.tar.gz.gpg&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="gpg" scheme="http://good5dog5.github.io/tags/gpg/"/>
+    
+  </entry>
+  
+  <entry>
     <title>PyCon TW 2016參加心得</title>
     <link href="http://good5dog5.github.io/2016/06/05/PyCon2016-review/"/>
     <id>http://good5dog5.github.io/2016/06/05/PyCon2016-review/</id>
-    <published>2016-06-05T14:35:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-06-05T02:35:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;p&gt;感謝Jserv老師贈票，讓我有機會參加2016 PyCon TW盛會，這是我第一次參加大型的opensource聚會，三天下來聽了很多有趣的演講，吸收了不少新知識，利用此篇來備忘一下～ &lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -279,8 +352,8 @@ Y: just raise when you wanna assign to None.
     <title>初探D-Bus與polkit</title>
     <link href="http://good5dog5.github.io/2016/05/26/%E5%88%9D%E6%8E%A2Dbus%E8%88%87polkit/"/>
     <id>http://good5dog5.github.io/2016/05/26/初探Dbus與polkit/</id>
-    <published>2016-05-26T18:21:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-05-26T06:21:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;p&gt;自從把Window manager換成i3之後，很多以往在Gnome不會出現的問題一一浮現，例如當使用Network manager要連上新的Wifi SSID時會出現 &lt;code&gt;WARNING **: Failed to add/activate connection&lt;/code&gt;，亦或是用udiskie-mount嘗試掛載usb device會出現&lt;code&gt;Not authorized to perform operation&lt;/code&gt;等等，筆者發現這先問題牽扯到很多專有名詞與概念，故利用此篇來紀錄與整理。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -319,8 +392,8 @@ Y: just raise when you wanna assign to None.
     <title>GNU c preprocessor筆記</title>
     <link href="http://good5dog5.github.io/2016/04/29/c-preprocessor-intro/"/>
     <id>http://good5dog5.github.io/2016/04/29/c-preprocessor-intro/</id>
-    <published>2016-04-29T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-04-29T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;p&gt;C語言的前置處理(CPP:C Preprocessor)功能強大，了解其使用方法及時機能加快理解他人程式碼的速度與撰碼功力，本篇是我學習的筆記。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -391,8 +464,8 @@ Y: just raise when you wanna assign to None.
     <title>Internship - Skymizer, Nvidia面試心得</title>
     <link href="http://good5dog5.github.io/2016/04/28/interview-skymizer-nvidia/"/>
     <id>http://good5dog5.github.io/2016/04/28/interview-skymizer-nvidia/</id>
-    <published>2016-04-28T16:12:00.000Z</published>
-    <updated>2016-06-12T03:09:04.000Z</updated>
+    <published>2016-04-28T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;p&gt;其實我沒有認真思考過為何要找暑期實習這件事，只是看到強者們都會努力去爭取這些機會，故利用進Lab前的空檔寫好英文履歷，有幸得到Skymizer和Nvidia的面試邀請，趁著記憶還鮮明時，把過程中的感受及心得記錄下來。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -461,8 +534,8 @@ Y: just raise when you wanna assign to None.
     <title>i3 window manager設定與使用教學</title>
     <link href="http://good5dog5.github.io/2016/04/22/i3wm-configuration-intro/"/>
     <id>http://good5dog5.github.io/2016/04/22/i3wm-configuration-intro/</id>
-    <published>2016-04-22T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-04-22T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 </content>
@@ -487,8 +560,8 @@ Y: just raise when you wanna assign to None.
     <title>初探X window system與xinit</title>
     <link href="http://good5dog5.github.io/2016/04/20/intro-xSystem-xinit/"/>
     <id>http://good5dog5.github.io/2016/04/20/intro-xSystem-xinit/</id>
-    <published>2016-04-20T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-04-20T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;p&gt;自從開始用&lt;a href=&quot;https://wiki.archlinux.org/index.php/rxvt-unicode&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;urxvt&lt;/a&gt;後，覺得自己對x window system及它的設定檔們(&lt;code&gt;.xinitrc&lt;/code&gt;, &lt;code&gt;.Xresources&lt;/code&gt;, &lt;code&gt;.xdefault&lt;/code&gt;, &lt;code&gt;.xprofile&lt;/code&gt;)還是一知半解，剛好最近重灌ubuntu後urxvt掛掉，趁此機會邊修復邊紀錄。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -533,8 +606,8 @@ Y: just raise when you wanna assign to None.
     <title>快速重灌Ubuntu</title>
     <link href="http://good5dog5.github.io/2016/04/12/Ubuntu-fast-reinstall/"/>
     <id>http://good5dog5.github.io/2016/04/12/Ubuntu-fast-reinstall/</id>
-    <published>2016-04-12T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-04-12T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;p&gt;又把Ubuntu玩壞了，很多設定都要從寫，先來個紀錄。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -555,6 +628,7 @@ Y: just raise when you wanna assign to None.
 &lt;/ul&gt;
 &lt;p&gt;最終的&lt;code&gt;/etc/fstab&lt;/code&gt;為：&lt;br&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# /etc/fstab: static file system information.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Use &#39;blkid&#39; to print the universally unique identifier for a&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# device; this may be used with UUID= as a more robust way to name devices&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# that works even if disks are added and removed. See fstab(5).&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &amp;lt;file system&amp;gt; &amp;lt;mount point&amp;gt;   &amp;lt;type&amp;gt;  &amp;lt;options&amp;gt;       &amp;lt;dump&amp;gt;  &amp;lt;pass&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# / was on /dev/sda3 during installation&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;UUID=04cf23d4-045c-4c72-92ca&lt;span class=&quot;_&quot;&gt;-e&lt;/span&gt;4069889599d /                  ext4    errors=remount-ro 0       1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# /home was on /dev/sda2 during installation&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;UUID=40a6134a-199b-4d5a-aaf9-ab331706e03a /home              ext4    defaults          0       2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# swap was on /dev/sda4 during installation&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;UUID=3b2e2214-831d-456e-b9ed-203077920dae none               swap    sw                0       0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;UUID=e3ebb57a-58ef-4779-9721-3662b0f2f548 /media/jordan/MASS ext4 	 defaults          0       0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;最後，執行&lt;code&gt;sudo mount -a&lt;/code&gt;，掛載所有在fstab中指定的檔案系統。&lt;/p&gt;
+&lt;h2 id=&quot;網路設定&quot;&gt;&lt;a href=&quot;#網路設定&quot; class=&quot;headerlink&quot; title=&quot;網路設定&quot;&gt;&lt;/a&gt;網路設定&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;/etc/network/interfaces&lt;/strong&gt;&lt;br&gt;&lt;code&gt;auto interface&lt;/code&gt; – Start the interface(s) at boot. That’s why the lo interface uses this kind of linking configuration.&lt;br&gt;&lt;code&gt;allow-auto interface&lt;/code&gt; – Same as auto&lt;/p&gt;
 &lt;h2 id=&quot;Reference&quot;&gt;&lt;a href=&quot;#Reference&quot; class=&quot;headerlink&quot; title=&quot;Reference&quot;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://askubuntu.com/questions/9135/how-to-backup-settings-and-list-of-installed-packages&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;1&lt;/a&gt;&lt;/p&gt;
 </content>
     
@@ -578,46 +652,11 @@ Y: just raise when you wanna assign to None.
   </entry>
   
   <entry>
-    <title>一些常用的VIM plugins</title>
-    <link href="http://good5dog5.github.io/2016/04/09/vim-plugin-note/"/>
-    <id>http://good5dog5.github.io/2016/04/09/vim-plugin-note/</id>
-    <published>2016-04-09T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;language-related&quot;&gt;&lt;a href=&quot;#language-related&quot; class=&quot;headerlink&quot; title=&quot;language related&quot;&gt;&lt;/a&gt;language related&lt;/h2&gt;&lt;h3 id=&quot;pythone-mode&quot;&gt;&lt;a href=&quot;#pythone-mode&quot; class=&quot;headerlink&quot; title=&quot;pythone-mode&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/klen/python-mode&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pythone-mode&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;一個整合了 &lt;a href=&quot;https://www.pylint.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Pylint&lt;/a&gt;(python程式碼分析工具) &lt;a href=&quot;https://github.com/python-rope/rope&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;rope&lt;/a&gt;(a python refactoring library)&lt;a href=&quot;https://docs.python.org/2/library/pydoc.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pydoc&lt;/a&gt;(Python原生的文件產生模組) 的plugin，讓寫python更方便快速。 &lt;/p&gt;
-&lt;p&gt;&lt;code&gt;,r&lt;/code&gt; : 執行當前code&lt;br&gt;&lt;code&gt;K&lt;/code&gt;  : 查詢當前游標所在的keyword&lt;/p&gt;
-&lt;p&gt;使用&lt;code&gt;:PymodeDoc&lt;/code&gt;時發生&lt;strong&gt;E21: Cannot make changes, ‘modifiable’ is off&lt;/strong&gt;&lt;br&gt;    &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Error detected while processing function pymode#doc#show:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;line 7:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Traceback (most recent call last):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;File &amp;quot;&amp;quot;, line 1, in&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;File &amp;quot;/home/phongvcao/.vim/bundle/python-mode/pymode/init.py&amp;quot;, line 37, in get_documentation&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vim.current.buffer.append(str(out).splitlines(), 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vim.error: Vim:E21: Cannot make changes, &amp;apos;modifiable&amp;apos; is off&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;上網找到&lt;a href=&quot;https://www.bountysource.com/issues/9393603-vim-error-cannot-make-changes-modifiable-is-off?utm_campaign=plugin&amp;amp;utm_content=tracker/42165&amp;amp;utm_medium=issues&amp;amp;utm_source=github&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;workaround&lt;/a&gt;，把以下兩行加入&lt;code&gt;vimrc&lt;/code&gt;即可&lt;br&gt;    &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;autocmd FileType qf,rst :setlocal modifiable&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;autocmd FileType qf,rst :set modifiable&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;YoucompleteMe&quot;&gt;&lt;a href=&quot;#YoucompleteMe&quot; class=&quot;headerlink&quot; title=&quot;YoucompleteMe&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Valloric/YouCompleteMe#semantic-completion-for-other-languages&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YoucompleteMe&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;大名鼎鼎的自動補全plugin，安裝過程挺麻煩的而且一直在變動。&lt;br&gt;&lt;code&gt;,gl&lt;/code&gt; :YcmCompleter GoToDeclaration&lt;br&gt;&lt;code&gt;,gf&lt;/code&gt; :YcmCompleter GoToDefinition&lt;br&gt;&lt;code&gt;,gg&lt;/code&gt;:YcmCompleter GoToDefinitionElseDeclaration&lt;/p&gt;
-&lt;h3 id=&quot;YCM-Generator&quot;&gt;&lt;a href=&quot;#YCM-Generator&quot; class=&quot;headerlink&quot; title=&quot;YCM-Generator&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/rdnetto/YCM-Generator&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YCM-Generator&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;可以在專案中生成Youcompleteme所需的&lt;code&gt;.ycm_extra_conf.py&lt;/code&gt;，專案的根目錄中須存在至少一種編譯系統&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;make&lt;/li&gt;
-&lt;li&gt;cmake&lt;/li&gt;
-&lt;li&gt;qmake&lt;/li&gt;
-&lt;li&gt;autotools&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;利用&lt;code&gt;:YcmGenerateConfig&lt;/code&gt;或&lt;code&gt;:CCGenerateConfig&lt;/code&gt; 產生。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;language-related&quot;&gt;&lt;a href=&quot;#language-related&quot; class=&quot;headerlink&quot; title=&quot;language related&quot;&gt;&lt;/a&gt;language related&lt;/h2&gt;&lt;h3 id=&quot;pythone-m
-    
-    </summary>
-    
-    
-      <category term="note" scheme="http://good5dog5.github.io/tags/note/"/>
-    
-      <category term="vim" scheme="http://good5dog5.github.io/tags/vim/"/>
-    
-  </entry>
-  
-  <entry>
     <title>利用MIME type綁定各類預設應用程式</title>
     <link href="http://good5dog5.github.io/2016/04/09/Mimeapps-and-default-application/"/>
     <id>http://good5dog5.github.io/2016/04/09/Mimeapps-and-default-application/</id>
-    <published>2016-04-09T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-04-09T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;p&gt;針對不同檔案類型，常常存有許多同性質的應用程式，例如文字檔，Linux上就有&lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;emacs&lt;/code&gt;, &lt;code&gt;gedit&lt;/code&gt;等等，如果有一個方法可以指定各型檔案的預設應用程式(default application)，則日常操作上會順心很多，在Linux上可以透過 檔案管理器(file manager)，MIME type，環境變數來指定預設程式。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -650,9 +689,44 @@ Y: just raise when you wanna assign to None.
     </summary>
     
     
+      <category term="MIME type" scheme="http://good5dog5.github.io/tags/MIME-type/"/>
+    
       <category term="Linux" scheme="http://good5dog5.github.io/tags/Linux/"/>
     
-      <category term="MIME type" scheme="http://good5dog5.github.io/tags/MIME-type/"/>
+  </entry>
+  
+  <entry>
+    <title>一些常用的VIM plugins</title>
+    <link href="http://good5dog5.github.io/2016/04/09/vim-plugin-note/"/>
+    <id>http://good5dog5.github.io/2016/04/09/vim-plugin-note/</id>
+    <published>2016-04-09T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;language-related&quot;&gt;&lt;a href=&quot;#language-related&quot; class=&quot;headerlink&quot; title=&quot;language related&quot;&gt;&lt;/a&gt;language related&lt;/h2&gt;&lt;h3 id=&quot;pythone-mode&quot;&gt;&lt;a href=&quot;#pythone-mode&quot; class=&quot;headerlink&quot; title=&quot;pythone-mode&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/klen/python-mode&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pythone-mode&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;一個整合了 &lt;a href=&quot;https://www.pylint.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Pylint&lt;/a&gt;(python程式碼分析工具) &lt;a href=&quot;https://github.com/python-rope/rope&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;rope&lt;/a&gt;(a python refactoring library)&lt;a href=&quot;https://docs.python.org/2/library/pydoc.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pydoc&lt;/a&gt;(Python原生的文件產生模組) 的plugin，讓寫python更方便快速。 &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;,r&lt;/code&gt; : 執行當前code&lt;br&gt;&lt;code&gt;K&lt;/code&gt;  : 查詢當前游標所在的keyword&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;:PymodeDoc&lt;/code&gt;時發生&lt;strong&gt;E21: Cannot make changes, ‘modifiable’ is off&lt;/strong&gt;&lt;br&gt;    &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Error detected while processing function pymode#doc#show:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;line 7:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Traceback (most recent call last):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;File &amp;quot;&amp;quot;, line 1, in&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;File &amp;quot;/home/phongvcao/.vim/bundle/python-mode/pymode/init.py&amp;quot;, line 37, in get_documentation&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vim.current.buffer.append(str(out).splitlines(), 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vim.error: Vim:E21: Cannot make changes, &amp;apos;modifiable&amp;apos; is off&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;上網找到&lt;a href=&quot;https://www.bountysource.com/issues/9393603-vim-error-cannot-make-changes-modifiable-is-off?utm_campaign=plugin&amp;amp;utm_content=tracker/42165&amp;amp;utm_medium=issues&amp;amp;utm_source=github&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;workaround&lt;/a&gt;，把以下兩行加入&lt;code&gt;vimrc&lt;/code&gt;即可&lt;br&gt;    &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;autocmd FileType qf,rst :setlocal modifiable&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;autocmd FileType qf,rst :set modifiable&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;YoucompleteMe&quot;&gt;&lt;a href=&quot;#YoucompleteMe&quot; class=&quot;headerlink&quot; title=&quot;YoucompleteMe&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Valloric/YouCompleteMe#semantic-completion-for-other-languages&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YoucompleteMe&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;大名鼎鼎的自動補全plugin，安裝過程挺麻煩的而且一直在變動。&lt;br&gt;&lt;code&gt;,gl&lt;/code&gt; :YcmCompleter GoToDeclaration&lt;br&gt;&lt;code&gt;,gf&lt;/code&gt; :YcmCompleter GoToDefinition&lt;br&gt;&lt;code&gt;,gg&lt;/code&gt;:YcmCompleter GoToDefinitionElseDeclaration&lt;/p&gt;
+&lt;h3 id=&quot;YCM-Generator&quot;&gt;&lt;a href=&quot;#YCM-Generator&quot; class=&quot;headerlink&quot; title=&quot;YCM-Generator&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/rdnetto/YCM-Generator&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YCM-Generator&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;可以在專案中生成Youcompleteme所需的&lt;code&gt;.ycm_extra_conf.py&lt;/code&gt;，專案的根目錄中須存在至少一種編譯系統&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;make&lt;/li&gt;
+&lt;li&gt;cmake&lt;/li&gt;
+&lt;li&gt;qmake&lt;/li&gt;
+&lt;li&gt;autotools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;利用&lt;code&gt;:YcmGenerateConfig&lt;/code&gt;或&lt;code&gt;:CCGenerateConfig&lt;/code&gt; 產生。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;language-related&quot;&gt;&lt;a href=&quot;#language-related&quot; class=&quot;headerlink&quot; title=&quot;language related&quot;&gt;&lt;/a&gt;language related&lt;/h2&gt;&lt;h3 id=&quot;pythone-m
+    
+    </summary>
+    
+    
+      <category term="note" scheme="http://good5dog5.github.io/tags/note/"/>
+    
+      <category term="vim" scheme="http://good5dog5.github.io/tags/vim/"/>
     
   </entry>
   
@@ -660,8 +734,8 @@ Y: just raise when you wanna assign to None.
     <title>Nodejs開發環境與npm</title>
     <link href="http://good5dog5.github.io/2016/04/05/nodejs-environment-and-npm/"/>
     <id>http://good5dog5.github.io/2016/04/05/nodejs-environment-and-npm/</id>
-    <published>2016-04-05T16:12:00.000Z</published>
-    <updated>2016-06-12T03:52:31.000Z</updated>
+    <published>2016-04-05T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;p&gt;Nodejs紅了好一陣子了，對於它我還是不太了解，可是手邊蠻多日常工具如&lt;code&gt;hexo&lt;/code&gt;都跟nodejs和npm密切相關，故用此篇來紀錄探索的過程。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Setting-up-nodejs-environment-on-Ubuntu&quot;&gt;&lt;a href=&quot;#Setting-up-nodejs-environment-on-Ubuntu&quot; class=&quot;headerlink&quot; title=&quot;Setting up nodejs environment on Ubuntu&quot;&gt;&lt;/a&gt;Setting up nodejs environment on Ubuntu&lt;/h2&gt;&lt;h3 id=&quot;install-nodejs&quot;&gt;&lt;a href=&quot;#install-nodejs&quot; class=&quot;headerlink&quot; title=&quot;install nodejs&quot;&gt;&lt;/a&gt;install nodejs&lt;/h3&gt;&lt;p&gt;Nodejs已經釋出v5了(&lt;a href=&quot;https://nodejs.org/en/blog/community/node-v5/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;source&lt;/a&gt;)，Ubuntu可用以下方式安裝最新版nodejs&lt;/p&gt;
@@ -705,8 +779,8 @@ Y: just raise when you wanna assign to None.
     <title>Bash script筆記</title>
     <link href="http://good5dog5.github.io/2016/04/03/bash-script-note/"/>
     <id>http://good5dog5.github.io/2016/04/03/bash-script-note/</id>
-    <published>2016-04-03T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-04-03T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;p&gt;在Linux上長需要寫些Shell script解決繁瑣的問題，可是很多語法常常寫過就忘，這篇主要是紀錄自己常忘記的東西。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -743,8 +817,8 @@ Y: just raise when you wanna assign to None.
     <title>為Blog啟用google站內搜尋功能</title>
     <link href="http://good5dog5.github.io/2016/04/02/github-pages-enable-googlesearch/"/>
     <id>http://good5dog5.github.io/2016/04/02/github-pages-enable-googlesearch/</id>
-    <published>2016-04-02T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-04-02T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;p&gt;寫網誌後發現剛更新的文章通常沒辦法利用站內搜尋找到，查了一下似乎是網站知名度太低，google在茫茫網海中尚未發現它的存在,挺令人哀傷的，還好這問題可以利用 &lt;a href=&quot;https://www.google.com/webmasters/tools/?hl=zh-TW&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;google search console&lt;/a&gt;解決。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -782,8 +856,8 @@ Y: just raise when you wanna assign to None.
     <title>tig使用筆記</title>
     <link href="http://good5dog5.github.io/2016/03/31/tig-note/"/>
     <id>http://good5dog5.github.io/2016/03/31/tig-note/</id>
-    <published>2016-03-31T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-03-31T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/good5dog5/dotfile/blob/master/config/XDG_CONFIG/tig/tigrc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;My tigrc&lt;/a&gt;&lt;/li&gt;
@@ -829,8 +903,8 @@ Y: just raise when you wanna assign to None.
     <title>寫英文履歷時的筆記</title>
     <link href="http://good5dog5.github.io/2016/03/30/resume-note/"/>
     <id>http://good5dog5.github.io/2016/03/30/resume-note/</id>
-    <published>2016-03-30T16:12:00.000Z</published>
-    <updated>2016-06-12T03:08:18.000Z</updated>
+    <published>2016-03-30T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;ul&gt;
@@ -879,8 +953,8 @@ Y: just raise when you wanna assign to None.
     <title>2016嵌入式系統課程W6課程筆記</title>
     <link href="http://good5dog5.github.io/2016/03/29/2016EmbeddedW6-course-note/"/>
     <id>http://good5dog5.github.io/2016/03/29/2016EmbeddedW6-course-note/</id>
-    <published>2016-03-29T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-03-29T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://embedded2016.hackpad.com/Mar-29-2016--VJmq0R0ILi6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;課程共筆&lt;/a&gt;&lt;/li&gt;
@@ -938,11 +1012,45 @@ Y: just raise when you wanna assign to None.
   </entry>
   
   <entry>
+    <title>Git 使用筆記</title>
+    <link href="http://good5dog5.github.io/2016/03/28/git-note/"/>
+    <id>http://good5dog5.github.io/2016/03/28/git-note/</id>
+    <published>2016-03-28T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
+    
+    <content type="html">&lt;p&gt;一些使用git遇到的問題與解決方法&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Remove-ssh-key-passphrase-without-create-a-new-key&quot;&gt;&lt;a href=&quot;#Remove-ssh-key-passphrase-without-create-a-new-key&quot; class=&quot;headerlink&quot; title=&quot;Remove ssh key passphrase without create a new key&quot;&gt;&lt;/a&gt;Remove ssh key passphrase without create a new key&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ssh-keygen -p &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 之後就是互動式的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;-p&lt;/code&gt;: Requests changing the passphrase of a private key file instead of creating a new private key.&lt;br&gt;&lt;code&gt;-N&lt;/code&gt;: Provides the &lt;strong&gt;new&lt;/strong&gt; passphrases.&lt;br&gt;&lt;code&gt;-P&lt;/code&gt;: Provide the &lt;strong&gt;Old&lt;/strong&gt; passphrases.&lt;/p&gt;
+&lt;p&gt;[參考] &lt;a href=&quot;http://stackoverflow.com/questions/112396/how-do-i-remove-the-passphrase-for-the-ssh-key-without-having-to-create-a-new-ke&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How do I remove the passphrase for the SSH key without having to create a new key?&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;移除佔用空間的huge-objects&quot;&gt;&lt;a href=&quot;#移除佔用空間的huge-objects&quot; class=&quot;headerlink&quot; title=&quot;移除佔用空間的huge objects&quot;&gt;&lt;/a&gt;移除佔用空間的huge objects&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Internals-Maintenance-and-Data-Recovery#Removing-Objects&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;link&lt;/a&gt;&lt;br&gt;&lt;code&gt;git clone&lt;/code&gt;時會下載所有的commit history，若commit的內容為&lt;em&gt;source code&lt;/em&gt;，因為壓縮文字檔為git的強項，故不會造成過多的空間浪費，但若加入的對象為huge object file，即使在下一次commit中移除該檔，由於它仍然存在history中的某次commit，故仍會佔用repository大量的空間。&lt;/p&gt;
+&lt;p&gt;###git gc&lt;br&gt;要是存在太多鬆散物件 (loose object, 不在 packfile 中的物件) 或 packfile，Git 會執行 git gc 命令。gc 指垃圾收集 (garbage collect)，此命令會做很多工作：收集所有鬆散物件並將它們存入 packfile，合併這些 packfile 進一個大的 packfile，然後將不被任何 commit 引用並且已存在一段時間 (數月) 的物件刪除。 &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一些使用git遇到的問題與解決方法&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Tools" scheme="http://good5dog5.github.io/categories/Tools/"/>
+    
+    
+      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
+    
+      <category term="Ssh" scheme="http://good5dog5.github.io/tags/Ssh/"/>
+    
+      <category term="Git" scheme="http://good5dog5.github.io/tags/Git/"/>
+    
+      <category term="Cml" scheme="http://good5dog5.github.io/tags/Cml/"/>
+    
+  </entry>
+  
+  <entry>
     <title>為tmux撰寫啟動script</title>
     <link href="http://good5dog5.github.io/2016/03/28/tmux-script/"/>
     <id>http://good5dog5.github.io/2016/03/28/tmux-script/</id>
-    <published>2016-03-28T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
+    <published>2016-03-28T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
     
     <content type="html">&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/good5dog5/dotfile/blob/master/config/XDG_CONFIG/tmux/tmux.conf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;my tmux.conf&lt;/a&gt;&lt;/li&gt;
@@ -989,323 +1097,6 @@ Y: just raise when you wanna assign to None.
       <category term="Tmux" scheme="http://good5dog5.github.io/tags/Tmux/"/>
     
       <category term="Script" scheme="http://good5dog5.github.io/tags/Script/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git 使用筆記</title>
-    <link href="http://good5dog5.github.io/2016/03/28/git-note/"/>
-    <id>http://good5dog5.github.io/2016/03/28/git-note/</id>
-    <published>2016-03-28T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
-    
-    <content type="html">&lt;p&gt;一些使用git遇到的問題與解決方法&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Remove-ssh-key-passphrase-without-create-a-new-key&quot;&gt;&lt;a href=&quot;#Remove-ssh-key-passphrase-without-create-a-new-key&quot; class=&quot;headerlink&quot; title=&quot;Remove ssh key passphrase without create a new key&quot;&gt;&lt;/a&gt;Remove ssh key passphrase without create a new key&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ssh-keygen -p &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 之後就是互動式的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;code&gt;-p&lt;/code&gt;: Requests changing the passphrase of a private key file instead of creating a new private key.&lt;br&gt;&lt;code&gt;-N&lt;/code&gt;: Provides the &lt;strong&gt;new&lt;/strong&gt; passphrases.&lt;br&gt;&lt;code&gt;-P&lt;/code&gt;: Provide the &lt;strong&gt;Old&lt;/strong&gt; passphrases.&lt;/p&gt;
-&lt;p&gt;[參考] &lt;a href=&quot;http://stackoverflow.com/questions/112396/how-do-i-remove-the-passphrase-for-the-ssh-key-without-having-to-create-a-new-ke&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How do I remove the passphrase for the SSH key without having to create a new key?&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一些使用git遇到的問題與解決方法&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Tools" scheme="http://good5dog5.github.io/categories/Tools/"/>
-    
-    
-      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
-    
-      <category term="Ssh" scheme="http://good5dog5.github.io/tags/Ssh/"/>
-    
-      <category term="Git" scheme="http://good5dog5.github.io/tags/Git/"/>
-    
-      <category term="Cml" scheme="http://good5dog5.github.io/tags/Cml/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>利用hexo寫blog並用Travis CI部署</title>
-    <link href="http://good5dog5.github.io/2016/03/27/write-blog-with-hexo/"/>
-    <id>http://good5dog5.github.io/2016/03/27/write-blog-with-hexo/</id>
-    <published>2016-03-27T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
-    
-    <content type="html">&lt;p&gt;寫網誌也有一段時間了，從最開始的無名小站，到比較進階可以自己改css, javascript的&lt;a href=&quot;https://www.blogger.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;blogger&lt;/a&gt;，這些平台都給了我不錯的使用體驗，外觀也都很漂亮，只是用起來覺得綁手綁腳，且所有內容都在server端，萬一哪天服務結束了 (無名小站..)則過去的文章紀錄也就隨之消失。 &lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;後來發現&lt;a href=&quot;https://jekyllrb.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Jekyll&lt;/a&gt;這個statistic site generator，他能夠把markdowm文件轉換成靜態網頁， 且所有的文章都存在local端，心中踏實了不少，更棒的是用git 去做verison control，並且可以發布到github page，所有願望一次滿足覺得幸福。 &lt;/p&gt;
-&lt;p&gt;Jekyll有個小缺點，更換佈景主題的時候要搬動_post中的文章，並從新設定&lt;code&gt;config.yml&lt;/code&gt;中的所有資料，這些問題在 &lt;a href=&quot;https://jekyllrb.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo&lt;/a&gt;中迎刃而解，hexo是利用node.js寫成的blog framework，具有高度可擴充性及架構, 更能讓使用者專住在內容，而不用耗費時間在調整複雜的架構設定。 &lt;/p&gt;
-&lt;h2 id=&quot;使用-Travis-CI-自動佈署-hexo&quot;&gt;&lt;a href=&quot;#使用-Travis-CI-自動佈署-hexo&quot; class=&quot;headerlink&quot; title=&quot;使用 Travis CI 自動佈署 hexo&quot;&gt;&lt;/a&gt;使用 Travis CI 自動佈署 hexo&lt;/h2&gt;&lt;p&gt;說實在hexo的安裝有點麻煩，且上傳到github的只有static site的部份，hexo主體的部份並不會上傳，故如果改天要用另外一台機器寫 blog就得先從新架設一次hexo的環境且套用同樣一份佈景主題，所產生的static site才不會與之前發布的衝突，而 Travis CI能夠簡化架設環境的麻煩。 &lt;/p&gt;
-&lt;h3 id=&quot;Travis-CI與-Continous-Integration-CI&quot;&gt;&lt;a href=&quot;#Travis-CI與-Continous-Integration-CI&quot; class=&quot;headerlink&quot; title=&quot;Travis CI與 Continous Integration(CI)&quot;&gt;&lt;/a&gt;Travis CI與 Continous Integration(CI)&lt;/h3&gt;&lt;p&gt;CI是應用在團隊開發時的一種實踐，團隊中每天會有多次push/pull整合到mainline，而CI的目標就是降低整合時發生各種錯誤的機會，透過自動化建制和自動測試等方法，能提早偵測出錯誤並修復之，進而提昇 整個團洞的開發速度。&lt;a href=&quot;https://www.wikiwand.com/en/Continuous_integration&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;wiki&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;而&lt;a href=&quot;https://travis-ci.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Travis CI&lt;/a&gt;是一個FOSS,分散式的軟體，提供github上repo Continous integration服務， 有趣的是他有兩個網站，分別提供免費即收費的服務。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://travis-ci.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://travis-ci.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://travis-ci.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://travis-ci.com/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Travis CI會在指定的github repo中等待new commit或pull request，並執行寫在&lt;code&gt;.travis.yml&lt;/code&gt;中的指令，通常為 建制或自動測試等動作,完成後Travic CI會用email或IRC通知使用者結果。 &lt;/p&gt;
-&lt;h3 id=&quot;workflow&quot;&gt;&lt;a href=&quot;#workflow&quot; class=&quot;headerlink&quot; title=&quot;workflow&quot;&gt;&lt;/a&gt;workflow&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;http://v2cc.github.io/2015/09/02/unbelievable-workflow-autodeploy-hexo-by-travis/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; 探索工作流：Travis CI 自动化构建 Hexo&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Reference&quot;&gt;&lt;a href=&quot;#Reference&quot; class=&quot;headerlink&quot; title=&quot;Reference&quot;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://v2cc.github.io/2015/09/02/unbelievable-workflow-autodeploy-hexo-by-travis/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;探索工作流：Travis CI 自动化构建 Hexo (一) &lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;寫網誌也有一段時間了，從最開始的無名小站，到比較進階可以自己改css, javascript的&lt;a href=&quot;https://www.blogger.com&quot;&gt;blogger&lt;/a&gt;，這些平台都給了我不錯的使用體驗，外觀也都很漂亮，只是用起來覺得綁手綁腳，且所有內容都在server端，萬一哪天服務結束了 (無名小站..)則過去的文章紀錄也就隨之消失。 &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Blog" scheme="http://good5dog5.github.io/categories/Blog/"/>
-    
-    
-      <category term="Blog" scheme="http://good5dog5.github.io/tags/Blog/"/>
-    
-      <category term="Hexo" scheme="http://good5dog5.github.io/tags/Hexo/"/>
-    
-      <category term="Travis CI" scheme="http://good5dog5.github.io/tags/Travis-CI/"/>
-    
-      <category term="Jekyll" scheme="http://good5dog5.github.io/tags/Jekyll/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2016嵌入式系統課程w3 - server-framework效能分析與改進</title>
-    <link href="http://good5dog5.github.io/2016/03/25/hw-server-framework-in-modern-c/"/>
-    <id>http://good5dog5.github.io/2016/03/25/hw-server-framework-in-modern-c/</id>
-    <published>2016-03-25T16:12:12.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
-    
-    <content type="html">&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/good5dog5/server-framework&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;github repository&lt;/a&gt;  &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://wiki.csie.ncku.edu.tw/embedded/2016q1h3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;課程網頁&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://embedded2016.hackpad.com/2016q1-Homework-3-a3Rb2XROJso&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;作業區&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://embedded2016.hackpad.com/EkhOLpdBSfW&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;我的hackpad問題集&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;目標&quot;&gt;&lt;a href=&quot;#目標&quot; class=&quot;headerlink&quot; title=&quot;目標&quot;&gt;&lt;/a&gt;目標&lt;/h2&gt;&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;閱讀以下材料:&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://banu.com/blog/2/how-to-use-epoll-a-complete-example-in-c/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to use epoll? A complete example in C&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.safaribooksonline.com/library/view/linux-system-programming/0596009585/ch04s02.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Event Poll Interface&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.geeksforgeeks.org/understanding-volatile-qualifier-in-c/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Understanding “volatile” qualifier in C&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://cis-linux1.temple.edu/~giorgio/cis307/readings/signals.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Unix Signals&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.intra.idv.tw/data/tech/hw/travellogic.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;信號量測&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.wikiwand.com/en/Reactor_pattern&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reactor Pattern&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www2.cs.uregina.ca/~hamilton/courses/330/notes/unix/pipes/pipes.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pipe system call&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.linuxhowtos.org/C_C++/socket.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sockets Tutorial&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;研讀&lt;a href=&quot;https://embedded2016.hackpad.com/Mar-22-2016-Mar-22-2016--CH64GFFiviW&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;第 5 週課程&lt;/a&gt;的物件導向程式設計參考資料，也一併紀錄問題於共筆上&lt;/li&gt;
-&lt;li&gt;分析 &lt;code&gt;httpd&lt;/code&gt; 程式執行效能，指出效能低落的原因，並且提出改進方案&lt;ul&gt;
-&lt;li&gt;需要實際去改寫程式碼！&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;加分題&lt;ul&gt;
-&lt;li&gt;補完&lt;code&gt;tests/test-buffer.c&lt;/code&gt;的測試項目&lt;/li&gt;
-&lt;li&gt;實做基本的 HTTP parser&lt;/li&gt;
-&lt;li&gt;參考&lt;code&gt;tests/test-protocol-server.c&lt;/code&gt;，實做類似 BBS 的 telnet server，可允許使用者登入&lt;br&gt;  BBS 控制碼可參考 &lt;a href=&quot;https://github.com/xeonchen/maplebbs-itoc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;maplebbs&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;預先安裝的packages&quot;&gt;&lt;a href=&quot;#預先安裝的packages&quot; class=&quot;headerlink&quot; title=&quot;預先安裝的packages&quot;&gt;&lt;/a&gt;預先安裝的packages&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get install apache2-utils check&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; sudo apt-get install doxygen graphviz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;apache2-utils&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Apache HTTP Server (utility programs for web servers)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Provides some add-on programs useful for any web server.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;check&lt;/p&gt;
-  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;unit test framework for C&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Check features a simple interface for defining unit tests, putting&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;little in the way of the developer. Tests are run in a separate&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;address space, so Check can catch both assertion failures and code&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;errors that cause segmentation faults or other signals. The output&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;from unit tests can be used within source code editors and IDEs.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;doxgen&lt;/p&gt;
-  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Documentation system for C, C++, Java, Python and other languages&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Doxygen is a documentation system for C, C++, Java, Objective-C, Python, IDL&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;and to some extent PHP, C#, and D.  It can generate an on-line class browser&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(in HTML) and/or an off-line reference manual (in LaTeX) from a set of&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;documented source files. There is also support for generating man pages&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;and for converting the generated output into Postscript, hyperlinked PDF&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;or compressed HTML.  The documentation is extracted directly from the sources.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;graphviz&lt;/p&gt;
-  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rich set of graph drawing tools&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Graph drawing addresses the problem of visualizing structural information&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;by constructing geometric representations of abstract graphs and networks.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Automatic generation of graph drawings has important applications in key&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;technologies such as database design, software engineering, VLSI and&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;network design and visual interfaces in other domains.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;閱讀資料&quot;&gt;&lt;a href=&quot;#閱讀資料&quot; class=&quot;headerlink&quot; title=&quot;閱讀資料&quot;&gt;&lt;/a&gt;閱讀資料&lt;/h2&gt;&lt;h3 id=&quot;epoll&quot;&gt;&lt;a href=&quot;#epoll&quot; class=&quot;headerlink&quot; title=&quot;epoll&quot;&gt;&lt;/a&gt;epoll&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/xiajun07061225/article/details/9250579&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ref1&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The epoll API performs a similar task to poll(2): monitoring multiple file descriptors to see if I/O is possible on any of them.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;epoll能夠通時monitor許多file descriptor，並對I/O event做監聽。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;int epoll_create(int size)&lt;/strong&gt; or &lt;strong&gt;int epoll_create1(int size)&lt;/strong&gt;&lt;br&gt; 產生出一個epoll instance並回傳一個file descriptor代表該instance, 自linux 2.6.8之後，&lt;code&gt;size&lt;/code&gt;參數被忽略掉，使用完畢需用&lt;strong&gt;close()&lt;/strong&gt;來釋放。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;epoll_ctl(2)&lt;/strong&gt; - control interface for an epoll descriptor&lt;br&gt; &lt;code&gt;int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;第一個参數epoll_create()的返回值。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;第二個參數表示operation,可為&lt;code&gt;EPOLL_CTL_ADD&lt;/code&gt;：註冊新的fd及想監聽的event到epfd中, &lt;code&gt;EPOLL_CTL_MOD&lt;/code&gt;：修改已經註冊之fd的監聽事件； &lt;code&gt;EPOLL_CTL_DEL&lt;/code&gt;：從epfd中刪除(deregister)，event欄位可為&lt;code&gt;NULL&lt;/code&gt;。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;第三個參數代表要監聽的fd。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;第四個參數代表要監聽的events,結構如下&lt;/p&gt;
-&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;union&lt;/span&gt; epoll_data &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt;        *ptr;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;          fd;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;uint32_t&lt;/span&gt;     u32;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;uint64_t&lt;/span&gt;     u64;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; &lt;span class=&quot;keyword&quot;&gt;epoll_data_t&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; epoll_event &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;uint32_t&lt;/span&gt;     events;      &lt;span class=&quot;comment&quot;&gt;/* Epoll events */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;epoll_data_t&lt;/span&gt; data;        &lt;span class=&quot;comment&quot;&gt;/* User data variable */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;code&gt;events&lt;/code&gt;是一組由下面幾種bit set組成的mask&lt;br&gt; EPOLLIN ：對應的fd可供讀&lt;br&gt; EPOLLOUT：對應的fd可供寫&lt;br&gt; EPOLLPRI：&lt;code&gt;There is urgent data available for read(2) operations.&lt;/code&gt;(還不太懂他的意思)&lt;/p&gt;
-&lt;p&gt;以下兩者不用特別在&lt;code&gt;event&lt;/code&gt;中設定， &lt;code&gt;epoll_wait(2)&lt;/code&gt;預設會去監聽這些事件&lt;br&gt; EPOLLERR：對應的fd出錯&lt;br&gt; EPOLLHUP：對應的fd hang up &lt;/p&gt;
-&lt;p&gt; EPOLLET：將對應的fd設為&lt;code&gt;Edge triggered&lt;/code&gt;, epoll預設為&lt;code&gt;Level triggered&lt;/code&gt;&lt;br&gt; EPOLLONESHOT：對該fd只監聽一次事件，即之後發生的events都會會被epoll回報，除非利用call epoll_ctl() with EPOLL_CTL_MOD再次設定events mask&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;epoll_wait(2)&lt;/strong&gt; - wait for an I/O event on an epoll file descriptor&lt;br&gt;   &lt;code&gt;int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;reactor-pattern&quot;&gt;&lt;a href=&quot;#reactor-pattern&quot; class=&quot;headerlink&quot; title=&quot;reactor pattern&quot;&gt;&lt;/a&gt;reactor pattern&lt;/h3&gt;&lt;h3 id=&quot;Understanding-“volatile”-qualifier-in-C&quot;&gt;&lt;a href=&quot;#Understanding-“volatile”-qualifier-in-C&quot; class=&quot;headerlink&quot; title=&quot;Understanding “volatile” qualifier in C&quot;&gt;&lt;/a&gt;Understanding “volatile” qualifier in C&lt;/h3&gt;&lt;p&gt;[&lt;a href=&quot;http://newscienceview.blogspot.com/2013/09/c-volatile.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ref1&lt;/a&gt;] [&lt;a href=&quot;http://newscienceview.blogspot.com/2013/09/c-volatile.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ref2&lt;/a&gt;]&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The volatile keyword is intended to prevent the compiler from applying any optimizations on objects that can change in ways that cannot be determined by the compiler. &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;code&gt;volatile&lt;/code&gt;是變數的修飾詞,它代表其所修飾的變數可能在任何時刻意外地被的更新，compiler就不會對該變數做optimization(例如把該變數存入register，每次都從register中讀取,取而代之的是每次都從memory更新該值)。&lt;/p&gt;
-&lt;p&gt;當一個變數的內容可能會被意想不到的更新時(by hardware)，一定要使用volatile來聲明該變數。通常，只有三種類型的變數會發生這種“意外”：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;在記憶體中進行位址映射的周邊暫存器(peripheral registers)；&lt;/li&gt;
-&lt;li&gt;在中斷處理程式中(interrupt service routine)可能被修改的全域變數(Global variables)；&lt;/li&gt;
-&lt;li&gt;多線程應用程式中(multi-threaded application) 的全域變數(Global variables)；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;假設我們有一個8位元的狀態暫存器映射在位址0x1234上。系統需要我們一直監測狀態暫存器的值，直到它的值不為0為止。&lt;/p&gt;
-&lt;p&gt;錯誤的寫法及對應的optimized assembly code&lt;br&gt;&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;uint * ptr = (uint *) &lt;span class=&quot;number&quot;&gt;0x1234&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;// Wait for register to become non-zero.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (*ptr == &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// Do something else.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mov ptr, #0x1234     &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mov a, @ptr loop&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;bz  loop&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;優化的原理很簡單，c code的第一行把一個變數讀入reg(assembly code的ptr)，如果從變數相關的上下文來看，變數的值總是沒變，則沒有必要從記憶體中更新值到reg,故while loop會無窮執行下去。&lt;/p&gt;
-&lt;p&gt;如果把第一行寫成&lt;code&gt;uint volatile * ptr = (uint volatile *) 0x1234;&lt;/code&gt;，則會強迫編譯器對該變數禁用優化，達到程式原本的目的。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;      mov ptr, #0x1234&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;loop  mov a, @ptr    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	  bz  loop&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h2 id=&quot;程式架構&quot;&gt;&lt;a href=&quot;#程式架構&quot; class=&quot;headerlink&quot; title=&quot;程式架構&quot;&gt;&lt;/a&gt;程式架構&lt;/h2&gt;&lt;p&gt;運用&lt;a href=&quot;http://good5dog5.github.io/2016/03/14/hw_raytracing/#%E5%88%A9%E7%94%A8-Graphviz-%E7%94%A2%E7%94%9F%E5%87%BD%E6%95%B8%E5%91%BC%E5%8F%AB%E9%97%9C%E4%BF%82%E5%9C%96&quot;&gt;Homework 2&lt;/a&gt;所學&lt;br&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#產生gmon.out&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;./httpd&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#產生呼叫圖&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gprof httpd| gprof2dot | dot -Tpng -o codemap.png&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/rmebmVi.png&quot; alt=&quot;結果&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;httpd-c&quot;&gt;&lt;a href=&quot;#httpd-c&quot; class=&quot;headerlink&quot; title=&quot;httpd.c&quot;&gt;&lt;/a&gt;httpd.c&lt;/h3&gt;&lt;p&gt;從&lt;code&gt;http.c&lt;/code&gt;的main function開始trace，裡頭的第一行&lt;code&gt;.on_data = ondata&lt;/code&gt;，直覺的以為&lt;code&gt;on_data&lt;/code&gt;會是一個structure或是變數，沒想到竟然是一個function。&lt;/p&gt;
-&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//httpd.c&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; Protocol protocol = &amp;#123; .on_data = on_data &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;on_data&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(server_pt srv, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; fd)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt; reply[] =&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&quot;HTTP/1.1 200 OK\r\n&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&quot;Content-Length: 12\r\n&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&quot;Connection: keep-alive\r\n&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&quot;Keep-Alive: timeout=2\r\n&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&quot;\r\n&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt; buff[&lt;span class=&quot;number&quot;&gt;1024&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (Server.read(srv, fd, buff, &lt;span class=&quot;number&quot;&gt;1024&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Server.write(srv, fd, reply, &lt;span class=&quot;keyword&quot;&gt;sizeof&lt;/span&gt;(reply));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;而struct Protocal中&lt;code&gt;.on_data&lt;/code&gt;定義為&lt;/p&gt;
-&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; (*on_data)(&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; Server *, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; sockfd); &lt;span class=&quot;comment&quot;&gt;/**&amp;lt; called when a data is available */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;這段我看不太懂，在stackoverflow找到一個不錯的&lt;a href=&quot;http://stackoverflow.com/questions/11038430/how-to-create-a-typedef-for-function-pointers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i)&lt;/span&gt;&lt;/span&gt;&amp;#123; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; i + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(*g)&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;  &lt;span class=&quot;comment&quot;&gt;// Declare typedef&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;g func = &amp;amp;foo;          &lt;span class=&quot;comment&quot;&gt;// Define function-pointer variable, and initialise&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; hvar = func(&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;);     &lt;span class=&quot;comment&quot;&gt;// Call function through pointer&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;故struct Protocal的&lt;code&gt;on_data&lt;/code&gt;的意思為&lt;code&gt;一個回傳型態為void，引數型態為(struct Server *, int)的function&lt;/code&gt;。&lt;br&gt;&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//httpd.c&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;start_server(.protocol = &amp;amp;protocol,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                 .timeout = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                 .on_init = on_init,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                 .threads = THREAD_COUNT)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//protocol-server.h &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;define&lt;/span&gt; start_server(...) \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Server.listen((struct ServerSettings)&amp;#123;__VA_ARGS__&amp;#125;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//會被轉換成&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Server.listen((&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; ServerSettings)&amp;#123;.protocol = &amp;amp;protocol, .timeout = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, .on_init = on_init, .threads = &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Struct Server&lt;/code&gt;定義在&lt;code&gt;protocol-server.c&lt;/code&gt;中，給個struct element都是一個function pointer，指向定義在&lt;code&gt;protocol-server.c&lt;/code&gt;中的functions，故執行&lt;code&gt;Server.listen(xxx)&lt;/code&gt;其實是呼叫&lt;code&gt;srv_listen(xxx)&lt;/code&gt;，整個過程實現了資料封裝即資訊隱藏的概念。&lt;/p&gt;
-&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/* Server API gateway */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; __SERVER_API__ Server = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .reactor = srv_reactor,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .settings = srv_settings,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .capacity = srv_capacity,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .listen = srv_listen,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .stop = srv_stop,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .stop_all = srv_stop_all,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .is_busy = is_busy,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .get_protocol = get_protocol,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .set_protocol = set_protocol,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .get_udata = get_udata,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .set_udata = set_udata,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .set_timeout = set_timeout,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .attach = srv_attach,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .close = srv_close,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .hijack = srv_hijack,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .count = srv_count,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .touch = srv_touch,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .rw_hooks = rw_hooks,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .read = srv_read,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .write = srv_write,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .write_move = srv_write_move,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .write_urgent = srv_write_urgent,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .write_move_urgent = srv_write_move_urgent,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .sendfile = srv_sendfile,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .each = each,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .each_block = each_block,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .fd_task = fd_task,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .run_async = run_async,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .run_after = run_after,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .run_every = run_every,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .root_pid = root_pid,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;protocol-server-c&quot;&gt;&lt;a href=&quot;#protocol-server-c&quot; class=&quot;headerlink&quot; title=&quot;protocol-server.c&quot;&gt;&lt;/a&gt;protocol-server.c&lt;/h3&gt;&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;srv_capacity&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;/* get current limits */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; flim = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (flim) &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; flim;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;ifdef&lt;/span&gt; _SC_OPEN_MAX&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    flim = sysconf(_SC_OPEN_MAX) - &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;elif&lt;/span&gt; defined(OPEN_MAX)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    flim = OPEN_MAX - &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;endif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//....&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;當變數被&lt;code&gt;static&lt;/code&gt;修飾，就會一直存在memory中的data section，就算結束函數呼叫後仍存在，因此&lt;code&gt;flim&lt;/code&gt;只有在&lt;code&gt;srv_capacity&lt;/code&gt;第一次被呼叫時被初始為0並通過if statement取得flim的max value，之後呼叫&lt;code&gt;srv_capacity&lt;/code&gt;都會直接被if statement卡住而直接return flim。&lt;/p&gt;
-&lt;p&gt;另外，&lt;code&gt;srv_capacity&lt;/code&gt;也被須告為&lt;code&gt;static&lt;/code&gt;，但其代表的意義為該function的存取範圍只限於該c file(&lt;code&gt;protocol-server.c&lt;/code&gt;)，如此有利資訊隱藏和避免與其他c file的命名衝突。&lt;/p&gt;
-&lt;p&gt;POSIX允許application在 &lt;strong&gt;compiler time&lt;/strong&gt; 或 &lt;strong&gt;run time&lt;/strong&gt;去測試系統支不支援某個option或取得某設定值;若是在compiler time決定的話則須引入&lt;code&gt;&amp;lt;unistd.h&amp;gt;&lt;/code&gt;和&lt;code&gt;&amp;lt;limits.h&amp;gt;&lt;/code&gt;並且撰寫macro測試。若由runtime決定則可由&lt;code&gt;sysconf()&lt;/code&gt;取得。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;pthread_mutex_init()&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;探索過程&quot;&gt;&lt;a href=&quot;#探索過程&quot; class=&quot;headerlink&quot; title=&quot;探索過程&quot;&gt;&lt;/a&gt;探索過程&lt;/h2&gt;&lt;p&gt;Q: &lt;code&gt;ab -c 32 -n 100 http://localhost:8080/&lt;/code&gt;的作用？&lt;br&gt;&lt;code&gt;ab&lt;/code&gt;是Apache HTTP server benchmarking tool，&lt;code&gt;-c&lt;/code&gt; option代表concurency，即一次送出的request數目，&lt;br&gt;&lt;code&gt;-n&lt;/code&gt;代表總共發出幾次request。&lt;/p&gt;
-&lt;h2 id=&quot;效能改進&quot;&gt;&lt;a href=&quot;#效能改進&quot; class=&quot;headerlink&quot; title=&quot;效能改進&quot;&gt;&lt;/a&gt;效能改進&lt;/h2&gt;&lt;p&gt;原版效能：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Concurrency Level:      32
-Time taken for tests:   16.136 seconds
-Complete requests:      100
-Failed requests:        0
-Total transferred:      9900 bytes
-HTML transferred:       1300 bytes
-Requests per second:    6.20 [#/sec] (mean)
-Time per request:       5163.499 [ms] (mean)
-Time per request:       161.359 [ms] (mean, across all concurrent requests)
-Transfer rate:          0.60 [Kbytes/sec] received
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    1   0.6      1       3
-Processing:  3997 4042  64.9   3998    4138
-Waiting:        0    0   0.4      0       2
-Total:       3999 4044  64.7   4000    4138
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/good5dog5/server-framework&quot;&gt;github repository&lt;/a&gt;  &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://wiki.csie.ncku.edu.tw/embedded/2016q1h3&quot;&gt;課程網頁&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://embedded2016.hackpad.com/2016q1-Homework-3-a3Rb2XROJso&quot;&gt;作業區&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://embedded2016.hackpad.com/EkhOLpdBSfW&quot;&gt;我的hackpad問題集&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;目標&quot;&gt;&lt;a href=&quot;#目標&quot; class=&quot;headerlink&quot; title=&quot;目標&quot;&gt;&lt;/a&gt;目標&lt;/h2&gt;&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;閱讀以下材料:&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://banu.com/blog/2/how-to-use-epoll-a-complete-example-in-c/&quot;&gt;How to use epoll? A complete example in C&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.safaribooksonline.com/library/view/linux-system-programming/0596009585/ch04s02.html&quot;&gt;The Event Poll Interface&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.geeksforgeeks.org/understanding-volatile-qualifier-in-c/&quot;&gt;Understanding “volatile” qualifier in C&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://cis-linux1.temple.edu/~giorgio/cis307/readings/signals.html&quot;&gt;Unix Signals&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.intra.idv.tw/data/tech/hw/travellogic.htm&quot;&gt;信號量測&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.wikiwand.com/en/Reactor_pattern&quot;&gt;Reactor Pattern&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www2.cs.uregina.ca/~hamilton/courses/330/notes/unix/pipes/pipes.html&quot;&gt;pipe system call&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.linuxhowtos.org/C_C++/socket.htm&quot;&gt;Sockets Tutorial&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;研讀&lt;a href=&quot;https://embedded2016.hackpad.com/Mar-22-2016-Mar-22-2016--CH64GFFiviW&quot;&gt;第 5 週課程&lt;/a&gt;的物件導向程式設計參考資料，也一併紀錄問題於共筆上&lt;/li&gt;
-&lt;li&gt;分析 &lt;code&gt;httpd&lt;/code&gt; 程式執行效能，指出效能低落的原因，並且提出改進方案&lt;ul&gt;
-&lt;li&gt;需要實際去改寫程式碼！&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;加分題&lt;ul&gt;
-&lt;li&gt;補完&lt;code&gt;tests/test-buffer.c&lt;/code&gt;的測試項目&lt;/li&gt;
-&lt;li&gt;實做基本的 HTTP parser&lt;/li&gt;
-&lt;li&gt;參考&lt;code&gt;tests/test-protocol-server.c&lt;/code&gt;，實做類似 BBS 的 telnet server，可允許使用者登入&lt;br&gt;  BBS 控制碼可參考 &lt;a href=&quot;https://github.com/xeonchen/maplebbs-itoc&quot;&gt;maplebbs&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="Work" scheme="http://good5dog5.github.io/categories/Work/"/>
-    
-    
-      <category term="Linux" scheme="http://good5dog5.github.io/tags/Linux/"/>
-    
-      <category term="C" scheme="http://good5dog5.github.io/tags/C/"/>
-    
-      <category term="Doxygen" scheme="http://good5dog5.github.io/tags/Doxygen/"/>
-    
-      <category term="embedded system" scheme="http://good5dog5.github.io/tags/embedded-system/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vim使用筆記</title>
-    <link href="http://good5dog5.github.io/2016/03/24/vim-note/"/>
-    <id>http://good5dog5.github.io/2016/03/24/vim-note/</id>
-    <published>2016-03-24T16:12:00.000Z</published>
-    <updated>2016-06-12T02:21:07.000Z</updated>
-    
-    <content type="html">&lt;ul&gt;
-&lt;li&gt;Use others vimrc  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vim -u ~/others.vimrc&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;markdown-word-wrap&quot;&gt;&lt;a href=&quot;#markdown-word-wrap&quot; class=&quot;headerlink&quot; title=&quot;markdown word-wrap&quot;&gt;&lt;/a&gt;markdown word-wrap&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;Line breaking&lt;/em&gt;, also known as &lt;em&gt;word wrapping&lt;/em&gt;, is the process of breaking a section of text into lines such that it will fit in the available width of a page, window or other display area.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;參考&lt;a href=&quot;http://alols.github.io/2012/11/07/writing-prose-with-vim/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing Prose with Vim&lt;/a&gt;, &lt;a href=&quot;https://github.com/reedes/vim-pencil&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;vim-pencli&lt;/a&gt;&lt;br&gt;在用markdown寫blog時，常常一個段落洋洋灑灑很多字，超出螢幕寬度甚多，此時可以用word wrap的功能限定字元數, 其還分成&lt;code&gt;soft-wrapped&lt;/code&gt;和&lt;code&gt;hard-wrapped&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;soft-wrapped中間行的結尾並不會有&lt;code&gt;換行字元&lt;/code&gt;,只是在顯示上吻合指定的區域，而hard-wrapped則會在中間行存在換行字元,目前暫用vim-pencli做soft-wrapped。&lt;/p&gt;
-&lt;p&gt;目前暫時以vim-pencli解掉。&lt;/p&gt;
-&lt;h2 id=&quot;expandtab-or-noexpandtab&quot;&gt;&lt;a href=&quot;#expandtab-or-noexpandtab&quot; class=&quot;headerlink&quot; title=&quot;expandtab or noexpandtab&quot;&gt;&lt;/a&gt;expandtab or noexpandtab&lt;/h2&gt;&lt;p&gt;&lt;code&gt;set tabstop=4&lt;/code&gt; : 設定插入&lt;code&gt;tab&lt;/code&gt;時用幾個space取代，例如本例是1個tab == 4 space&lt;br&gt;&lt;code&gt;set expandtab&lt;/code&gt; : 把tab用指定數目的space取代&lt;br&gt;&lt;code&gt;shiftwidth&lt;/code&gt;用來指定程式&lt;strong&gt;indent&lt;/strong&gt;的space數。&lt;/p&gt;
-&lt;p&gt;以上設定完後，之後鍵入tab都會被4個space取代，但之前存在於文件中的tab並不會改變&lt;br&gt;&lt;code&gt;set retab&lt;/code&gt;讓全文件apply新的tab設定。&lt;/p&gt;
-&lt;p&gt;有些文件如markdown，Makefile，需要tab才區別程式區段，可在&lt;code&gt;vimrc&lt;/code&gt;中加入&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;autocmd FileType make\|markdown setlocal noexpandtab&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Update-cscope-database&quot;&gt;&lt;a href=&quot;#Update-cscope-database&quot; class=&quot;headerlink&quot; title=&quot;Update cscope database&quot;&gt;&lt;/a&gt;Update cscope database&lt;/h2&gt;&lt;p&gt;撰寫了一隻&lt;code&gt;cscope_gen_database.sh&lt;/code&gt;去產生cscope database&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DIR=( &lt;span class=&quot;string&quot;&gt;&quot;./&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;string&quot;&gt;&quot;/usr/include/i386-linux-gnu/sys/&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;string&quot;&gt;&quot;/usr/include/i386-linux-gnu/bits/&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[ &lt;span class=&quot;_&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;cscope.files&quot;&lt;/span&gt; ] &amp;amp;&amp;amp; rm &lt;span class=&quot;string&quot;&gt;&quot;cscope.files&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;find /usr/include/ -maxdepth 1 -type f -name &lt;span class=&quot;string&quot;&gt;&quot;*.[hc]&quot;&lt;/span&gt; &amp;gt;&amp;gt; cscope.files&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; d &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$&amp;#123;DIR[@]&amp;#125;&lt;/span&gt;&quot;&lt;/span&gt;; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; [ &lt;span class=&quot;_&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$d&lt;/span&gt;&quot;&lt;/span&gt; ]; &lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       find &lt;span class=&quot;variable&quot;&gt;$d&lt;/span&gt; -type f -name &lt;span class=&quot;string&quot;&gt;&quot;*.[hc]&quot;&lt;/span&gt; -o -name &lt;span class=&quot;string&quot;&gt;&quot;*.cpp&quot;&lt;/span&gt; &amp;gt;&amp;gt; cscope.files&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;fi&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;done&lt;/span&gt;           &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cscope -Rbq -i cscope.files&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;直接在vim中輸入 &lt;code&gt;!cscope_gen_database src_root&lt;/code&gt;，src_root代表專案的根目錄。&lt;br&gt;接著輸入&lt;code&gt;cs reset&lt;/code&gt;即完成。&lt;/p&gt;
-&lt;h2 id=&quot;Remove-‘-M’-symbol&quot;&gt;&lt;a href=&quot;#Remove-‘-M’-symbol&quot; class=&quot;headerlink&quot; title=&quot;Remove ‘^M’ symbol&quot;&gt;&lt;/a&gt;Remove ‘^M’ symbol&lt;/h2&gt;&lt;p&gt;有時用vim開啟文件，會在行尾看到&lt;code&gt;^M&lt;/code&gt;符號，這是Windows(DOS)系統中的換行字元，可以下2種方法移除&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;字串取代: :%s/^M/\r/g (ctrl-v then ctrl-m才能打出^M)&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;doc2unix指令&lt;br&gt; ubuntu預設沒有安裝，需要安裝&lt;code&gt;tofrodos&lt;/code&gt; package&lt;/p&gt;
- &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get install tofrodos&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt; 之後執行 &lt;code&gt;todos xxx&lt;/code&gt;     (即unix2doc xxx)&lt;br&gt; 若想轉回則 &lt;code&gt;fromdos xxx&lt;/code&gt; (即doc2unix xxx)&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;修正文件中文亂碼問題&quot;&gt;&lt;a href=&quot;#修正文件中文亂碼問題&quot; class=&quot;headerlink&quot; title=&quot;修正文件中文亂碼問題&quot;&gt;&lt;/a&gt;修正文件中文亂碼問題&lt;/h2&gt;&lt;p&gt;發現之前在windows編輯過得文件，在linux下會顯示亂碼，這是因為windows是以&lt;code&gt;big5&lt;/code&gt;編碼，而linux是用&lt;code&gt;utf-8&lt;/code&gt;，此問題可用&lt;code&gt;iconv&lt;/code&gt;解決。&lt;br&gt;在&lt;code&gt;bash.alias&lt;/code&gt;中加入&lt;br&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;Big5toUTF8&lt;/span&gt;&lt;/span&gt; () &amp;#123; iconv &lt;span class=&quot;_&quot;&gt;-f&lt;/span&gt; big5 -t utf8 -c &lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt; -o &lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt;; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;假設要轉換&lt;code&gt;foo&lt;/code&gt;，直接輸入&lt;code&gt;Big5toUTF8 foo&lt;/code&gt;即可。&lt;/p&gt;
-&lt;h2 id=&quot;常用vim-regular-expression&quot;&gt;&lt;a href=&quot;#常用vim-regular-expression&quot; class=&quot;headerlink&quot; title=&quot;常用vim regular expression&quot;&gt;&lt;/a&gt;常用vim regular expression&lt;/h2&gt;&lt;p&gt;[&lt;a href=&quot;http://vimregex.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;vimregex&lt;/a&gt;] [&lt;a href=&quot;http://three-colors.blogspot.tw/2008/06/vim-regular-expression.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;vim 我最常用的 regular expression&lt;/a&gt;]&lt;/p&gt;
-&lt;p&gt;Character set:&lt;br&gt;&lt;img src=&quot;https://i.imgur.com/4WT4LgP.png&quot; alt=&quot;character set&quot;&gt;&lt;br&gt;&lt;code&gt;%s/(\+\s/(/&lt;/code&gt;: 會把左括號&lt;code&gt;(&lt;/code&gt;後的空白清除，例如執行後&lt;code&gt;( a&lt;/code&gt;會變成&lt;code&gt;(a&lt;/code&gt;&lt;br&gt;&lt;code&gt;%s/\s\+)/)/&lt;/code&gt;: 會把左括號&lt;code&gt;)&lt;/code&gt;前的空白清除，例如執行後&lt;code&gt;a )&lt;/code&gt;會變成&lt;code&gt;a)&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&quot;help&quot;&gt;&lt;a href=&quot;#help&quot; class=&quot;headerlink&quot; title=&quot;help&quot;&gt;&lt;/a&gt;help&lt;/h2&gt;&lt;p&gt;&lt;code&gt;h pattern&lt;/code&gt; : 搜尋&lt;code&gt;pattern&lt;/code&gt;相關的help文件&lt;br&gt;&lt;code&gt;link&lt;/code&gt; : &lt;code&gt;ctrl+]&lt;/code&gt;用來跳轉到quickref(follow the link)，&lt;code&gt;ctrl+T&lt;/code&gt;回到原本的topic。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;Use others vimrc  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td 
-    
-    </summary>
-    
-      <category term="Job" scheme="http://good5dog5.github.io/categories/Job/"/>
-    
-    
-      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
-    
-      <category term="Linux" scheme="http://good5dog5.github.io/tags/Linux/"/>
-    
-      <category term="vim" scheme="http://good5dog5.github.io/tags/vim/"/>
     
   </entry>
   

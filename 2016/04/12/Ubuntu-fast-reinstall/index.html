@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://good5dog5.github.io/2016/04/12/Ubuntu-fast-reinstall/index.html">
 <meta property="og:site_name" content="一奔二飛">
 <meta property="og:description" content="又把Ubuntu玩壞了，很多設定都要從寫，先來個紀錄。">
-<meta property="og:updated_time" content="2016-06-12T02:21:07.000Z">
+<meta property="og:updated_time" content="2016-08-04T04:28:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速重灌Ubuntu">
 <meta name="twitter:description" content="又把Ubuntu玩壞了，很多設定都要從寫，先來個紀錄。">
@@ -50,7 +50,7 @@
 				<h1 class="site-name"><a href="/" title="一奔二飛">一奔二飛</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -66,7 +66,7 @@
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
 					</form>
 					
 					</li>
@@ -88,16 +88,16 @@
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-12T16:12:00.000Z" itemprop="datePublished"> Published 2016-04-12</time>
+    <time datetime="2016-04-12T04:12:00.000Z" itemprop="datePublished"> 發表於 2016-04-12</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#製作開機USB"><span class="toc-number">1.</span> <span class="toc-text">製作開機USB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#備份package-list"><span class="toc-number">2.</span> <span class="toc-text">備份package list</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#備份PPA-list"><span class="toc-number">2.1.</span> <span class="toc-text">備份PPA list</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#urxvt"><span class="toc-number">2.2.</span> <span class="toc-text">urxvt</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#i3-wm"><span class="toc-number">3.</span> <span class="toc-text">i3-wm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i3blocks"><span class="toc-number">3.1.</span> <span class="toc-text">i3blocks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝中文字體"><span class="toc-number">4.</span> <span class="toc-text">安裝中文字體</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用fstab在開機自動掛載硬碟"><span class="toc-number">5.</span> <span class="toc-text">利用fstab在開機自動掛載硬碟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#製作開機USB"><span class="toc-number">1.</span> <span class="toc-text">製作開機USB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#備份package-list"><span class="toc-number">2.</span> <span class="toc-text">備份package list</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#備份PPA-list"><span class="toc-number">2.1.</span> <span class="toc-text">備份PPA list</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#urxvt"><span class="toc-number">2.2.</span> <span class="toc-text">urxvt</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#i3-wm"><span class="toc-number">3.</span> <span class="toc-text">i3-wm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i3blocks"><span class="toc-number">3.1.</span> <span class="toc-text">i3blocks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝中文字體"><span class="toc-number">4.</span> <span class="toc-text">安裝中文字體</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用fstab在開機自動掛載硬碟"><span class="toc-number">5.</span> <span class="toc-text">利用fstab在開機自動掛載硬碟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#網路設定"><span class="toc-number">6.</span> <span class="toc-text">網路設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">7.</span> <span class="toc-text">Reference</span></a></li></ol>
 		
 		</div>
 		
@@ -120,6 +120,7 @@
 </ul>
 <p>最終的<code>/etc/fstab</code>為：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /etc/fstab: static file system information.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Use 'blkid' to print the universally unique identifier for a</span></span><br><span class="line"><span class="comment"># device; this may be used with UUID= as a more robust way to name devices</span></span><br><span class="line"><span class="comment"># that works even if disks are added and removed. See fstab(5).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span></span><br><span class="line"><span class="comment"># / was on /dev/sda3 during installation</span></span><br><span class="line">UUID=04cf23d4-045c-4c72-92ca<span class="_">-e</span>4069889599d /                  ext4    errors=remount-ro 0       1</span><br><span class="line"><span class="comment"># /home was on /dev/sda2 during installation</span></span><br><span class="line">UUID=40a6134a-199b-4d5a-aaf9-ab331706e03a /home              ext4    defaults          0       2</span><br><span class="line"><span class="comment"># swap was on /dev/sda4 during installation</span></span><br><span class="line">UUID=3b2e2214-831d-456e-b9ed-203077920dae none               swap    sw                0       0</span><br><span class="line">UUID=e3ebb57a-58ef-4779-9721-3662b0f2f548 /media/jordan/MASS ext4 	 defaults          0       0</span><br></pre></td></tr></table></figure></p>
 <p>最後，執行<code>sudo mount -a</code>，掛載所有在fstab中指定的檔案系統。</p>
+<h2 id="網路設定"><a href="#網路設定" class="headerlink" title="網路設定"></a>網路設定</h2><p><strong>/etc/network/interfaces</strong><br><code>auto interface</code> – Start the interface(s) at boot. That’s why the lo interface uses this kind of linking configuration.<br><code>allow-auto interface</code> – Same as auto</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://askubuntu.com/questions/9135/how-to-backup-settings-and-list-of-installed-packages" target="_blank" rel="external">1</a></p>
   
 	</div>
@@ -152,8 +153,8 @@
 
 
 <div class="next">
-<a href="/2016/04/09/vim-plugin-note/"  title="一些常用的VIM plugins">
- <span>一些常用的VIM plugins
+<a href="/2016/04/09/Mimeapps-and-default-application/"  title="利用MIME type綁定各類預設應用程式">
+ <span>利用MIME type綁定各類預設應用程式
 </span>
 </a>
 </div>
@@ -169,17 +170,17 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#製作開機USB"><span class="toc-number">1.</span> <span class="toc-text">製作開機USB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#備份package-list"><span class="toc-number">2.</span> <span class="toc-text">備份package list</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#備份PPA-list"><span class="toc-number">2.1.</span> <span class="toc-text">備份PPA list</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#urxvt"><span class="toc-number">2.2.</span> <span class="toc-text">urxvt</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#i3-wm"><span class="toc-number">3.</span> <span class="toc-text">i3-wm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i3blocks"><span class="toc-number">3.1.</span> <span class="toc-text">i3blocks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝中文字體"><span class="toc-number">4.</span> <span class="toc-text">安裝中文字體</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用fstab在開機自動掛載硬碟"><span class="toc-number">5.</span> <span class="toc-text">利用fstab在開機自動掛載硬碟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#製作開機USB"><span class="toc-number">1.</span> <span class="toc-text">製作開機USB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#備份package-list"><span class="toc-number">2.</span> <span class="toc-text">備份package list</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#備份PPA-list"><span class="toc-number">2.1.</span> <span class="toc-text">備份PPA list</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#urxvt"><span class="toc-number">2.2.</span> <span class="toc-text">urxvt</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#i3-wm"><span class="toc-number">3.</span> <span class="toc-text">i3-wm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i3blocks"><span class="toc-number">3.1.</span> <span class="toc-text">i3blocks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝中文字體"><span class="toc-number">4.</span> <span class="toc-text">安裝中文字體</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用fstab在開機自動掛載硬碟"><span class="toc-number">5.</span> <span class="toc-text">利用fstab在開機自動掛載硬碟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#網路設定"><span class="toc-number">6.</span> <span class="toc-text">網路設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">7.</span> <span class="toc-text">Reference</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 <div id="authorInfo">
 	
@@ -207,7 +208,7 @@
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="good5dog5" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -217,7 +218,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
 		  
@@ -266,7 +267,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -294,23 +295,7 @@
 			
 		
 			
-				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/i3-wm/" title="i3 wm">i3 wm<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Job/" title="Job">Job<sup>2</sup></a></li>
 			
 		
 			
@@ -318,11 +303,27 @@
 			
 		
 			
-				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
+				<li><a href="/tags/i3-wm/" title="i3 wm">i3 wm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Job/" title="Job">Job<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/config/" title="config">config<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
 			
 		
 			
@@ -334,7 +335,11 @@
 			
 		
 			
-				<li><a href="/tags/Gihub-pages/" title="Gihub pages">Gihub pages<sup>1</sup></a></li>
+				<li><a href="/tags/job/" title="job">job<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
 			
 		
 			
@@ -345,16 +350,12 @@
 				<li><a href="/tags/script/" title="script">script<sup>1</sup></a></li>
 			
 		
-			
-				<li><a href="/tags/Polkit/" title="Polkit">Polkit<sup>1</sup></a></li>
-			
-		
 		</ul>
 </div>
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">連結</p>
     <ul>
         
     </ul>
@@ -364,11 +365,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -381,7 +382,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
 		
 		<a href="/about" target="_blank" title="Jordan Huang">Jordan Huang</a>
 		
@@ -594,7 +595,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
