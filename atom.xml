@@ -17,8 +17,8 @@
   
   <entry>
     <title>Reflash TX2 with Tegra Sample Root FileSystem R28.1</title>
-    <link href="http://good5dog5.github.io/2017/12/20/2017-12-20-tx2-reflash/"/>
-    <id>http://good5dog5.github.io/2017/12/20/2017-12-20-tx2-reflash/</id>
+    <link href="http://good5dog5.github.io/2017/12/20/tx2-reflash-with-sample-rootfs/"/>
+    <id>http://good5dog5.github.io/2017/12/20/tx2-reflash-with-sample-rootfs/</id>
     <published>2017-12-19T16:00:00.000Z</published>
     <updated>2017-12-20T07:01:47.080Z</updated>
     
@@ -652,6 +652,41 @@ Y: just raise when you wanna assign to None.
   </entry>
   
   <entry>
+    <title>一些常用的VIM plugins</title>
+    <link href="http://good5dog5.github.io/2016/04/09/vim-plugin-note/"/>
+    <id>http://good5dog5.github.io/2016/04/09/vim-plugin-note/</id>
+    <published>2016-04-09T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;language-related&quot;&gt;&lt;a href=&quot;#language-related&quot; class=&quot;headerlink&quot; title=&quot;language related&quot;&gt;&lt;/a&gt;language related&lt;/h2&gt;&lt;h3 id=&quot;pythone-mode&quot;&gt;&lt;a href=&quot;#pythone-mode&quot; class=&quot;headerlink&quot; title=&quot;pythone-mode&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/klen/python-mode&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pythone-mode&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;一個整合了 &lt;a href=&quot;https://www.pylint.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Pylint&lt;/a&gt;(python程式碼分析工具) &lt;a href=&quot;https://github.com/python-rope/rope&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;rope&lt;/a&gt;(a python refactoring library)&lt;a href=&quot;https://docs.python.org/2/library/pydoc.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pydoc&lt;/a&gt;(Python原生的文件產生模組) 的plugin，讓寫python更方便快速。 &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;,r&lt;/code&gt; : 執行當前code&lt;br&gt;&lt;code&gt;K&lt;/code&gt;  : 查詢當前游標所在的keyword&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;:PymodeDoc&lt;/code&gt;時發生&lt;strong&gt;E21: Cannot make changes, ‘modifiable’ is off&lt;/strong&gt;&lt;br&gt;    &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Error detected while processing function pymode#doc#show:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;line 7:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Traceback (most recent call last):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;File &amp;quot;&amp;quot;, line 1, in&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;File &amp;quot;/home/phongvcao/.vim/bundle/python-mode/pymode/init.py&amp;quot;, line 37, in get_documentation&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vim.current.buffer.append(str(out).splitlines(), 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vim.error: Vim:E21: Cannot make changes, &amp;apos;modifiable&amp;apos; is off&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;上網找到&lt;a href=&quot;https://www.bountysource.com/issues/9393603-vim-error-cannot-make-changes-modifiable-is-off?utm_campaign=plugin&amp;amp;utm_content=tracker/42165&amp;amp;utm_medium=issues&amp;amp;utm_source=github&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;workaround&lt;/a&gt;，把以下兩行加入&lt;code&gt;vimrc&lt;/code&gt;即可&lt;br&gt;    &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;autocmd FileType qf,rst :setlocal modifiable&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;autocmd FileType qf,rst :set modifiable&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;YoucompleteMe&quot;&gt;&lt;a href=&quot;#YoucompleteMe&quot; class=&quot;headerlink&quot; title=&quot;YoucompleteMe&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Valloric/YouCompleteMe#semantic-completion-for-other-languages&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YoucompleteMe&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;大名鼎鼎的自動補全plugin，安裝過程挺麻煩的而且一直在變動。&lt;br&gt;&lt;code&gt;,gl&lt;/code&gt; :YcmCompleter GoToDeclaration&lt;br&gt;&lt;code&gt;,gf&lt;/code&gt; :YcmCompleter GoToDefinition&lt;br&gt;&lt;code&gt;,gg&lt;/code&gt;:YcmCompleter GoToDefinitionElseDeclaration&lt;/p&gt;
+&lt;h3 id=&quot;YCM-Generator&quot;&gt;&lt;a href=&quot;#YCM-Generator&quot; class=&quot;headerlink&quot; title=&quot;YCM-Generator&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/rdnetto/YCM-Generator&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YCM-Generator&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;可以在專案中生成Youcompleteme所需的&lt;code&gt;.ycm_extra_conf.py&lt;/code&gt;，專案的根目錄中須存在至少一種編譯系統&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;make&lt;/li&gt;
+&lt;li&gt;cmake&lt;/li&gt;
+&lt;li&gt;qmake&lt;/li&gt;
+&lt;li&gt;autotools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;利用&lt;code&gt;:YcmGenerateConfig&lt;/code&gt;或&lt;code&gt;:CCGenerateConfig&lt;/code&gt; 產生。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;language-related&quot;&gt;&lt;a href=&quot;#language-related&quot; class=&quot;headerlink&quot; title=&quot;language related&quot;&gt;&lt;/a&gt;language related&lt;/h2&gt;&lt;h3 id=&quot;pythone-m
+    
+    </summary>
+    
+    
+      <category term="note" scheme="http://good5dog5.github.io/tags/note/"/>
+    
+      <category term="vim" scheme="http://good5dog5.github.io/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
     <title>利用MIME type綁定各類預設應用程式</title>
     <link href="http://good5dog5.github.io/2016/04/09/Mimeapps-and-default-application/"/>
     <id>http://good5dog5.github.io/2016/04/09/Mimeapps-and-default-application/</id>
@@ -689,44 +724,9 @@ Y: just raise when you wanna assign to None.
     </summary>
     
     
-      <category term="MIME type" scheme="http://good5dog5.github.io/tags/MIME-type/"/>
-    
       <category term="Linux" scheme="http://good5dog5.github.io/tags/Linux/"/>
     
-  </entry>
-  
-  <entry>
-    <title>一些常用的VIM plugins</title>
-    <link href="http://good5dog5.github.io/2016/04/09/vim-plugin-note/"/>
-    <id>http://good5dog5.github.io/2016/04/09/vim-plugin-note/</id>
-    <published>2016-04-09T04:12:00.000Z</published>
-    <updated>2016-08-04T04:28:43.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;language-related&quot;&gt;&lt;a href=&quot;#language-related&quot; class=&quot;headerlink&quot; title=&quot;language related&quot;&gt;&lt;/a&gt;language related&lt;/h2&gt;&lt;h3 id=&quot;pythone-mode&quot;&gt;&lt;a href=&quot;#pythone-mode&quot; class=&quot;headerlink&quot; title=&quot;pythone-mode&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/klen/python-mode&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pythone-mode&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;一個整合了 &lt;a href=&quot;https://www.pylint.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Pylint&lt;/a&gt;(python程式碼分析工具) &lt;a href=&quot;https://github.com/python-rope/rope&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;rope&lt;/a&gt;(a python refactoring library)&lt;a href=&quot;https://docs.python.org/2/library/pydoc.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pydoc&lt;/a&gt;(Python原生的文件產生模組) 的plugin，讓寫python更方便快速。 &lt;/p&gt;
-&lt;p&gt;&lt;code&gt;,r&lt;/code&gt; : 執行當前code&lt;br&gt;&lt;code&gt;K&lt;/code&gt;  : 查詢當前游標所在的keyword&lt;/p&gt;
-&lt;p&gt;使用&lt;code&gt;:PymodeDoc&lt;/code&gt;時發生&lt;strong&gt;E21: Cannot make changes, ‘modifiable’ is off&lt;/strong&gt;&lt;br&gt;    &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Error detected while processing function pymode#doc#show:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;line 7:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Traceback (most recent call last):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;File &amp;quot;&amp;quot;, line 1, in&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;File &amp;quot;/home/phongvcao/.vim/bundle/python-mode/pymode/init.py&amp;quot;, line 37, in get_documentation&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vim.current.buffer.append(str(out).splitlines(), 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vim.error: Vim:E21: Cannot make changes, &amp;apos;modifiable&amp;apos; is off&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;上網找到&lt;a href=&quot;https://www.bountysource.com/issues/9393603-vim-error-cannot-make-changes-modifiable-is-off?utm_campaign=plugin&amp;amp;utm_content=tracker/42165&amp;amp;utm_medium=issues&amp;amp;utm_source=github&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;workaround&lt;/a&gt;，把以下兩行加入&lt;code&gt;vimrc&lt;/code&gt;即可&lt;br&gt;    &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;autocmd FileType qf,rst :setlocal modifiable&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;autocmd FileType qf,rst :set modifiable&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;YoucompleteMe&quot;&gt;&lt;a href=&quot;#YoucompleteMe&quot; class=&quot;headerlink&quot; title=&quot;YoucompleteMe&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/Valloric/YouCompleteMe#semantic-completion-for-other-languages&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YoucompleteMe&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;大名鼎鼎的自動補全plugin，安裝過程挺麻煩的而且一直在變動。&lt;br&gt;&lt;code&gt;,gl&lt;/code&gt; :YcmCompleter GoToDeclaration&lt;br&gt;&lt;code&gt;,gf&lt;/code&gt; :YcmCompleter GoToDefinition&lt;br&gt;&lt;code&gt;,gg&lt;/code&gt;:YcmCompleter GoToDefinitionElseDeclaration&lt;/p&gt;
-&lt;h3 id=&quot;YCM-Generator&quot;&gt;&lt;a href=&quot;#YCM-Generator&quot; class=&quot;headerlink&quot; title=&quot;YCM-Generator&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/rdnetto/YCM-Generator&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YCM-Generator&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;可以在專案中生成Youcompleteme所需的&lt;code&gt;.ycm_extra_conf.py&lt;/code&gt;，專案的根目錄中須存在至少一種編譯系統&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;make&lt;/li&gt;
-&lt;li&gt;cmake&lt;/li&gt;
-&lt;li&gt;qmake&lt;/li&gt;
-&lt;li&gt;autotools&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;利用&lt;code&gt;:YcmGenerateConfig&lt;/code&gt;或&lt;code&gt;:CCGenerateConfig&lt;/code&gt; 產生。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;language-related&quot;&gt;&lt;a href=&quot;#language-related&quot; class=&quot;headerlink&quot; title=&quot;language related&quot;&gt;&lt;/a&gt;language related&lt;/h2&gt;&lt;h3 id=&quot;pythone-m
-    
-    </summary>
-    
-    
-      <category term="note" scheme="http://good5dog5.github.io/tags/note/"/>
-    
-      <category term="vim" scheme="http://good5dog5.github.io/tags/vim/"/>
+      <category term="MIME type" scheme="http://good5dog5.github.io/tags/MIME-type/"/>
     
   </entry>
   
@@ -1012,40 +1012,6 @@ Y: just raise when you wanna assign to None.
   </entry>
   
   <entry>
-    <title>Git 使用筆記</title>
-    <link href="http://good5dog5.github.io/2016/03/28/git-note/"/>
-    <id>http://good5dog5.github.io/2016/03/28/git-note/</id>
-    <published>2016-03-28T04:12:00.000Z</published>
-    <updated>2016-08-04T04:28:43.000Z</updated>
-    
-    <content type="html">&lt;p&gt;一些使用git遇到的問題與解決方法&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Remove-ssh-key-passphrase-without-create-a-new-key&quot;&gt;&lt;a href=&quot;#Remove-ssh-key-passphrase-without-create-a-new-key&quot; class=&quot;headerlink&quot; title=&quot;Remove ssh key passphrase without create a new key&quot;&gt;&lt;/a&gt;Remove ssh key passphrase without create a new key&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ssh-keygen -p &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 之後就是互動式的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;code&gt;-p&lt;/code&gt;: Requests changing the passphrase of a private key file instead of creating a new private key.&lt;br&gt;&lt;code&gt;-N&lt;/code&gt;: Provides the &lt;strong&gt;new&lt;/strong&gt; passphrases.&lt;br&gt;&lt;code&gt;-P&lt;/code&gt;: Provide the &lt;strong&gt;Old&lt;/strong&gt; passphrases.&lt;/p&gt;
-&lt;p&gt;[參考] &lt;a href=&quot;http://stackoverflow.com/questions/112396/how-do-i-remove-the-passphrase-for-the-ssh-key-without-having-to-create-a-new-ke&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How do I remove the passphrase for the SSH key without having to create a new key?&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;移除佔用空間的huge-objects&quot;&gt;&lt;a href=&quot;#移除佔用空間的huge-objects&quot; class=&quot;headerlink&quot; title=&quot;移除佔用空間的huge objects&quot;&gt;&lt;/a&gt;移除佔用空間的huge objects&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Internals-Maintenance-and-Data-Recovery#Removing-Objects&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;link&lt;/a&gt;&lt;br&gt;&lt;code&gt;git clone&lt;/code&gt;時會下載所有的commit history，若commit的內容為&lt;em&gt;source code&lt;/em&gt;，因為壓縮文字檔為git的強項，故不會造成過多的空間浪費，但若加入的對象為huge object file，即使在下一次commit中移除該檔，由於它仍然存在history中的某次commit，故仍會佔用repository大量的空間。&lt;/p&gt;
-&lt;p&gt;###git gc&lt;br&gt;要是存在太多鬆散物件 (loose object, 不在 packfile 中的物件) 或 packfile，Git 會執行 git gc 命令。gc 指垃圾收集 (garbage collect)，此命令會做很多工作：收集所有鬆散物件並將它們存入 packfile，合併這些 packfile 進一個大的 packfile，然後將不被任何 commit 引用並且已存在一段時間 (數月) 的物件刪除。 &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一些使用git遇到的問題與解決方法&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Tools" scheme="http://good5dog5.github.io/categories/Tools/"/>
-    
-    
-      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
-    
-      <category term="Ssh" scheme="http://good5dog5.github.io/tags/Ssh/"/>
-    
-      <category term="Git" scheme="http://good5dog5.github.io/tags/Git/"/>
-    
-      <category term="Cml" scheme="http://good5dog5.github.io/tags/Cml/"/>
-    
-  </entry>
-  
-  <entry>
     <title>為tmux撰寫啟動script</title>
     <link href="http://good5dog5.github.io/2016/03/28/tmux-script/"/>
     <id>http://good5dog5.github.io/2016/03/28/tmux-script/</id>
@@ -1097,6 +1063,40 @@ Y: just raise when you wanna assign to None.
       <category term="Tmux" scheme="http://good5dog5.github.io/tags/Tmux/"/>
     
       <category term="Script" scheme="http://good5dog5.github.io/tags/Script/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git 使用筆記</title>
+    <link href="http://good5dog5.github.io/2016/03/28/git-note/"/>
+    <id>http://good5dog5.github.io/2016/03/28/git-note/</id>
+    <published>2016-03-28T04:12:00.000Z</published>
+    <updated>2016-08-04T04:28:43.000Z</updated>
+    
+    <content type="html">&lt;p&gt;一些使用git遇到的問題與解決方法&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Remove-ssh-key-passphrase-without-create-a-new-key&quot;&gt;&lt;a href=&quot;#Remove-ssh-key-passphrase-without-create-a-new-key&quot; class=&quot;headerlink&quot; title=&quot;Remove ssh key passphrase without create a new key&quot;&gt;&lt;/a&gt;Remove ssh key passphrase without create a new key&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ssh-keygen -p &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 之後就是互動式的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;-p&lt;/code&gt;: Requests changing the passphrase of a private key file instead of creating a new private key.&lt;br&gt;&lt;code&gt;-N&lt;/code&gt;: Provides the &lt;strong&gt;new&lt;/strong&gt; passphrases.&lt;br&gt;&lt;code&gt;-P&lt;/code&gt;: Provide the &lt;strong&gt;Old&lt;/strong&gt; passphrases.&lt;/p&gt;
+&lt;p&gt;[參考] &lt;a href=&quot;http://stackoverflow.com/questions/112396/how-do-i-remove-the-passphrase-for-the-ssh-key-without-having-to-create-a-new-ke&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How do I remove the passphrase for the SSH key without having to create a new key?&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;移除佔用空間的huge-objects&quot;&gt;&lt;a href=&quot;#移除佔用空間的huge-objects&quot; class=&quot;headerlink&quot; title=&quot;移除佔用空間的huge objects&quot;&gt;&lt;/a&gt;移除佔用空間的huge objects&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Internals-Maintenance-and-Data-Recovery#Removing-Objects&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;link&lt;/a&gt;&lt;br&gt;&lt;code&gt;git clone&lt;/code&gt;時會下載所有的commit history，若commit的內容為&lt;em&gt;source code&lt;/em&gt;，因為壓縮文字檔為git的強項，故不會造成過多的空間浪費，但若加入的對象為huge object file，即使在下一次commit中移除該檔，由於它仍然存在history中的某次commit，故仍會佔用repository大量的空間。&lt;/p&gt;
+&lt;p&gt;###git gc&lt;br&gt;要是存在太多鬆散物件 (loose object, 不在 packfile 中的物件) 或 packfile，Git 會執行 git gc 命令。gc 指垃圾收集 (garbage collect)，此命令會做很多工作：收集所有鬆散物件並將它們存入 packfile，合併這些 packfile 進一個大的 packfile，然後將不被任何 commit 引用並且已存在一段時間 (數月) 的物件刪除。 &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一些使用git遇到的問題與解決方法&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Tools" scheme="http://good5dog5.github.io/categories/Tools/"/>
+    
+    
+      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
+    
+      <category term="Ssh" scheme="http://good5dog5.github.io/tags/Ssh/"/>
+    
+      <category term="Git" scheme="http://good5dog5.github.io/tags/Git/"/>
+    
+      <category term="Cml" scheme="http://good5dog5.github.io/tags/Cml/"/>
     
   </entry>
   

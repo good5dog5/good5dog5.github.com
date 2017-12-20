@@ -2,28 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://good5dog5.github.io/2017/12/20/2017-12-20-tx2-reflash/</loc>
+    <loc>http://good5dog5.github.io/2017/12/20/tx2-reflash-with-sample-rootfs/</loc>
     
     <lastmod>2017-12-20T07:01:47.080Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/search/index.html</loc>
-    
-    <lastmod>2016-08-04T04:28:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/03/29/2016EmbeddedW6-course-note/</loc>
-    
-    <lastmod>2016-08-04T04:28:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2016/04/09/Mimeapps-and-default-application/</loc>
+    <loc>http://good5dog5.github.io/2016/04/20/intro-xSystem-xinit/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
@@ -31,6 +17,13 @@
   
   <url>
     <loc>http://good5dog5.github.io/2014/10/16/Jobs-going/</loc>
+    
+    <lastmod>2016-08-04T04:28:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2016/04/09/Mimeapps-and-default-application/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
@@ -65,13 +58,6 @@
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/03/22/embedded-system-note/</loc>
-    
-    <lastmod>2016-08-04T04:28:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://good5dog5.github.io/2016/04/29/c-preprocessor-intro/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
@@ -79,14 +65,14 @@
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/03/28/git-note/</loc>
+    <loc>http://good5dog5.github.io/2016/03/22/embedded-system-note/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/03/21/hw-unit-test/</loc>
+    <loc>http://good5dog5.github.io/2016/03/28/git-note/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
@@ -107,7 +93,7 @@
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/04/22/i3wm-configuration-intro/</loc>
+    <loc>http://good5dog5.github.io/2016/03/21/hw-unit-test/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
@@ -121,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2014/10/22/Began-working/</loc>
+    <loc>http://good5dog5.github.io/2016/04/22/i3wm-configuration-intro/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
@@ -135,7 +121,7 @@
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/04/20/intro-xSystem-xinit/</loc>
+    <loc>http://good5dog5.github.io/2014/10/22/Began-working/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
@@ -143,6 +129,13 @@
   
   <url>
     <loc>http://good5dog5.github.io/2016/07/18/libreoffice-use-note/</loc>
+    
+    <lastmod>2016-08-04T04:28:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2015/05/14/lockFreeBst-note/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
@@ -191,14 +184,14 @@
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/03/19/urxvt-chinese-word-birck/</loc>
+    <loc>http://good5dog5.github.io/2016/03/29/2016EmbeddedW6-course-note/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/04/09/vim-plugin-note/</loc>
+    <loc>http://good5dog5.github.io/2016/03/19/urxvt-chinese-word-birck/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
@@ -212,14 +205,14 @@
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/03/27/write-blog-with-hexo/</loc>
+    <loc>http://good5dog5.github.io/2016/04/09/vim-plugin-note/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2016/07/09/%E5%88%A9%E7%94%A8gpg%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%AA%94%E6%A1%88/</loc>
+    <loc>http://good5dog5.github.io/2016/03/27/write-blog-with-hexo/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
@@ -233,7 +226,14 @@
   </url>
   
   <url>
-    <loc>http://good5dog5.github.io/2015/05/14/lockFreeBst-note/</loc>
+    <loc>http://good5dog5.github.io/2016/07/09/%E5%88%A9%E7%94%A8gpg%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%AA%94%E6%A1%88/</loc>
+    
+    <lastmod>2016-08-04T04:28:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/search/index.html</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
