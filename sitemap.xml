@@ -2,21 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://good5dog5.github.io/2018/01/03/Enable-kvm-module-on-tx2/</loc>
+    
+    <lastmod>2018-01-03T06:50:53.276Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://good5dog5.github.io/2017/12/20/tx2-reflash-with-sample-rootfs/</loc>
     
-    <lastmod>2017-12-20T07:01:47.080Z</lastmod>
+    <lastmod>2017-12-20T07:17:38.907Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://good5dog5.github.io/2016/04/20/intro-xSystem-xinit/</loc>
-    
-    <lastmod>2016-08-04T04:28:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://good5dog5.github.io/2014/10/16/Jobs-going/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
@@ -227,6 +227,13 @@
   
   <url>
     <loc>http://good5dog5.github.io/2016/07/09/%E5%88%A9%E7%94%A8gpg%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%AA%94%E6%A1%88/</loc>
+    
+    <lastmod>2016-08-04T04:28:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://good5dog5.github.io/2014/10/16/Jobs-going/</loc>
     
     <lastmod>2016-08-04T04:28:43.000Z</lastmod>
     
