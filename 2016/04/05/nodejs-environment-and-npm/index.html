@@ -1,613 +1,98 @@
-
- <!DOCTYPE HTML>
-<html >
-<head>
-  <meta charset="UTF-8">
-  
-    <title>Nodejs開發環境與npm | 一奔二飛</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="Jordan Huang">
-    
-
-    
-    <meta name="description" content="Nodejs紅了好一陣子了，對於它我還是不太了解，可是手邊蠻多日常工具如hexo都跟nodejs和npm密切相關，故用此篇來紀錄探索的過程。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Nodejs開發環境與npm">
-<meta property="og:url" content="http://good5dog5.github.io/2016/04/05/nodejs-environment-and-npm/index.html">
-<meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="Nodejs紅了好一陣子了，對於它我還是不太了解，可是手邊蠻多日常工具如hexo都跟nodejs和npm密切相關，故用此篇來紀錄探索的過程。">
-<meta property="og:updated_time" content="2016-08-04T04:28:43.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nodejs開發環境與npm">
-<meta name="twitter:description" content="Nodejs紅了好一陣子了，對於它我還是不太了解，可是手邊蠻多日常工具如hexo都跟nodejs和npm密切相關，故用此篇來紀錄探索的過程。">
-
-    
-    <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
-    <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-
+<% if (page.layout=='post' || page.layout=='photo'){ %>
+ <%- partial('_partial/head') %>
   <body>
     <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="一奔二飛" title="一奔二飛"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="一奔二飛">一奔二飛</a></h1>
-				<h2 class="blog-motto"></h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-						<li><a href="/about">About</a></li>
-					
-					<li>
- 					
-					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
+      <%- partial('_partial/header') %>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/05/nodejs-environment-and-npm/" title="Nodejs開發環境與npm" itemprop="url">Nodejs開發環境與npm</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-05T04:12:00.000Z" itemprop="datePublished"> Published 2016-04-05</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Setting-up-nodejs-environment-on-Ubuntu"><span class="toc-number">1.</span> <span class="toc-text">Setting up nodejs environment on Ubuntu</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-nodejs"><span class="toc-number">1.1.</span> <span class="toc-text">install nodejs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#install-npm"><span class="toc-number">1.2.</span> <span class="toc-text">install npm</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-install-packages"><span class="toc-number">2.</span> <span class="toc-text">npm - install packages</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#package-json"><span class="toc-number">2.1.</span> <span class="toc-text">package.json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#some-useful-npm-command"><span class="toc-number">2.2.</span> <span class="toc-text">some useful npm command</span></a></li></ol></li></ol>
-		
-		</div>
-		
-		<p>Nodejs紅了好一陣子了，對於它我還是不太了解，可是手邊蠻多日常工具如<code>hexo</code>都跟nodejs和npm密切相關，故用此篇來紀錄探索的過程。<br><a id="more"></a></p>
-<h2 id="Setting-up-nodejs-environment-on-Ubuntu"><a href="#Setting-up-nodejs-environment-on-Ubuntu" class="headerlink" title="Setting up nodejs environment on Ubuntu"></a>Setting up nodejs environment on Ubuntu</h2><h3 id="install-nodejs"><a href="#install-nodejs" class="headerlink" title="install nodejs"></a>install nodejs</h3><p>Nodejs已經釋出v5了(<a href="https://nodejs.org/en/blog/community/node-v5/" target="_blank" rel="external">source</a>)，Ubuntu可用以下方式安裝最新版nodejs</p>
-<ul>
-<li><strong>curl -s</strong>代表<code>silent</code> mode，不會印出任何訊息包括下載進度</li>
-<li><strong>curl -L</strong> :<br>   (HTTP/HTTPS) If the server reports that the requested page has moved to a different location (indicated with a Location: header and  a 3XX response code), this option will make curl redo the request on the new place.</li>
-<li><strong>sudo -E –preserve-env</strong>:<br>   Indicates to the security policy that the user wishes to preserve their existing environment variables.  The security policy may return an error if the user does not have permission to preserve the environment.</li>
-<li><strong>bash -</strong> :<a href="http://good5dog5.github.io/2016/04/05/bash-script-note/#mysterious-%E2%80%98-%E2%80%98">mysterious ‘-‘</a></li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Using Ubuntu</span></span><br><span class="line">curl <span class="_">-s</span>L https://deb.nodesource.com/setup_5.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line"></span><br><span class="line"><span class="comment"># Using Debian, as root</span></span><br><span class="line">curl <span class="_">-s</span>L https://deb.nodesource.com/setup_5.x | bash -</span><br><span class="line">apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
-<h3 id="install-npm"><a href="#install-npm" class="headerlink" title="install npm"></a>install npm</h3><p>npm是node的套件管理工具，安裝node會一併安裝npm，因為npm的更新速度較node快，故可用<code>sudo npm install npm -g</code>來更新npm。</p>
-<h2 id="npm-install-packages"><a href="#npm-install-packages" class="headerlink" title="npm - install packages"></a>npm - install packages</h2><p>npm安裝套件分為locally跟globally，若只是當前開發的程式<code>require</code>其他node package，則<code>npm install &lt;package_name&gt;</code>會執行install locally，在當前目錄下產生<code>node_modules</code>並把你要求的package放入;<code>-g --global</code>則是全域安裝，通常是把package拿來當執行檔用。</p>
-<p><code>npm install &lt;package_name&gt; --save</code>，會下載安裝package，並將package name和版本紀錄到<code>package.json</code>。</p>
-<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>package.json是一個用來紀錄你project開發時所depend的package，其他開法者只要clone你的project並執行<code>npm install</code>就會安裝好所需的package，project剛開始也可用<code>npm init</code>產生對應的package.json。</p>
-<h3 id="some-useful-npm-command"><a href="#some-useful-npm-command" class="headerlink" title="some useful npm command"></a>some useful npm command</h3><ul>
-<li><code>npm search &lt;package name&gt;</code> : 搜尋套件</li>
-<li><code>npm ls -g</code> ：列出全域安裝的套件，加上<code>-l</code>能列出更詳細的資訊</li>
-<li><code>npm update -g</code> : 更新全域安裝的套件</li>
-<li><code>cd some/project &amp;&amp; npm update</code> : 更新project用到的套件</li>
-</ul>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/note/">note</a><a href="/tags/Nodejs/">Nodejs</a><a href="/tags/npm/">npm</a><a href="/tags/hexo/">hexo</a>
-  </div>
-
-</div>
-
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2016/04/09/vim-plugin-note/" title="一些常用的VIM plugins">
-  <span>
-  一些常用的VIM plugins</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2016/04/03/bash-script-note/"  title="Bash script筆記">
- <span>Bash script筆記
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-
-<section id="comments" class="comment">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Setting-up-nodejs-environment-on-Ubuntu"><span class="toc-number">1.</span> <span class="toc-text">Setting up nodejs environment on Ubuntu</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-nodejs"><span class="toc-number">1.1.</span> <span class="toc-text">install nodejs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#install-npm"><span class="toc-number">1.2.</span> <span class="toc-text">install npm</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-install-packages"><span class="toc-number">2.</span> <span class="toc-text">npm - install packages</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#package-json"><span class="toc-number">2.1.</span> <span class="toc-text">package.json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#some-useful-npm-command"><span class="toc-number">2.2.</span> <span class="toc-text">some useful npm command</span></a></li></ol></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
-<aside class="clearfix">
-<div id="authorInfo">
-	
-		<div class="author-img"></div>		
-	
-	<div class="social-info" class="clearfix">
-		
-		
-		<a href="https://github.com/good5dog5" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<a href="mailto:good5dog5@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-
-	</div>
-</div>
-
-  
-<div class="github-card">
-<p class="asidetitle">Github Card</p>
-<div class="github-card" data-github="good5dog5" data-width="220" data-height="119" data-theme="medium">
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-  </div>
-
-
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">Categories</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/Blog/" title="Blog">Blog<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/C/" title="C">C<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/CLI/" title="CLI">CLI<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Homework/" title="Homework">Homework<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Job/" title="Job">Job<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Note/" title="Note">Note<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Tools/" title="Tools">Tools<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Work/" title="Work">Work<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/daily/" title="daily">daily<sup>1</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/Note/" title="Note">Note<sup>8</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/embedded-system/" title="embedded system">embedded system<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C/" title="C">C<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/c/" title="c">c<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/note/" title="note">note<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/i3-wm/" title="i3 wm">i3 wm<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Job/" title="Job">Job<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/config/" title="config">config<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CLI/" title="CLI">CLI<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/vim/" title="vim">vim<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/hack/" title="hack">hack<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Bash/" title="Bash">Bash<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/script/" title="script">script<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/rootfs/" title="rootfs">rootfs<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">Links</p>
-    <ul>
-        
-    </ul>
-</div>
-
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
+      <%- body %>
+      <%- partial('_partial/sidebar',{item: page,table: true}) %>
     </div>
-    <footer><div id="footer" >
-		
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
-		
-		<a href="/about" target="_blank" title="Jordan Huang">Jordan Huang</a>
-		
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-        getSize();
-        if (myWidth >= 1024) {
-          c.click();
-        }
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
-
-
-
-
-<script type="text/javascript">
-
-var disqus_shortname = 'good5dog5';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-
-<!-- MathJax End -->
-
-<!-- Tiny_search Begin -->
-
-<!-- Tiny_search End -->
-
+    <footer><%- partial('_partial/footer') %></footer>
+    <%- partial('_partial/after_footer') %>
   </body>
 </html>
+<% } else if(page.layout=='page'){ %>
+  <% if(page.source.match(/\.md$/)){ %>
+    <%- partial('_partial/head') %>
+      <body>
+        <header>
+          <%- partial('_partial/header') %>
+        </header>
+        <div id="container">
+          <%- body %>
+        </div>
+        <footer><%- partial('_partial/footer') %></footer>
+        <%- partial('_partial/after_footer') %>
+      </body>
+     </html>
+     <% }else{ %>
+    <%- page.content %>
+  <% } %>
+<% } else if(page.layout=='search'){ %>
+<%- partial('_partial/head') %>
+    <body>
+      <header>
+        <%- partial('_partial/header') %>
+      </header>
+      <div id="container">
+        <%- partial('_partial/search')%>
+      </div>
+      <footer><%- partial('_partial/footer') %></footer>
+      <%- partial('_partial/after_footer') %>
+    </body>
+   </html>
+<% } else if(page.layout=='tags'){ %>
+ <%- partial('_partial/head') %>
+    <body>
+      <header>
+        <%- partial('_partial/header') %>
+      </header>
+      <div id="container">
+          <%- partial('_partial/tags')%>
+      </div>
+      <footer><%- partial('_partial/footer') %></footer>
+      <%- partial('_partial/after_footer') %>
+    </body>
+   </html>
+<% } else if(page.layout=='categories'){ %>
+ <%- partial('_partial/head') %>
+    <body>
+      <header>
+        <%- partial('_partial/header') %>
+      </header>
+      <div id="container">
+          <%- partial('_partial/categories')%>
+      </div>
+      <footer><%- partial('_partial/footer') %></footer>
+      <%- partial('_partial/after_footer') %>
+    </body>
+   </html>
+<% } else if(page.category!=null||page.tag!=null||page.archive!=null) { %>
+  <%- partial('_partial/head') %>
+    <body>
+      <header>
+        <%- partial('_partial/header') %>
+      </header>
+      <div id="container">
+        <%- body %>
+      </div>
+      <footer><%- partial('_partial/footer') %></footer>
+      <%- partial('_partial/after_footer') %>
+    </body>
+   </html>
+<% } else { %>
+ <%- partial('_partial/head') %>
+  <body>
+    <header>
+      <%- partial('_partial/header') %>
+    </header>
+    <div id="container">
+      <%- body %>
+      <%- partial('_partial/sidebar',{item: page,table: false}) %>
+    </div>
+    <footer><%- partial('_partial/footer') %></footer>
+    <%- partial('_partial/after_footer') %>
+  </body>
+ </html>
+<% } %>

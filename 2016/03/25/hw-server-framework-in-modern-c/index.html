@@ -1,771 +1,98 @@
-
- <!DOCTYPE HTML>
-<html >
-<head>
-  <meta charset="UTF-8">
-  
-    <title>2016嵌入式系統課程w3 - server-framework效能分析與改進 | 一奔二飛</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="Jordan Huang">
-    
-
-    
-    <meta name="description" content="github repository  
-課程網頁
-作業區
-我的hackpad問題集
-
-目標
-
-閱讀以下材料:
-How to use epoll? A complete example in C
-The Event Poll Interface
-Understanding “volatile” qualifier in C
-Unix Signals
-信號量測
-Reactor Pattern
-pip">
-<meta property="og:type" content="article">
-<meta property="og:title" content="2016嵌入式系統課程w3 - server-framework效能分析與改進">
-<meta property="og:url" content="http://good5dog5.github.io/2016/03/25/hw-server-framework-in-modern-c/index.html">
-<meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="github repository  
-課程網頁
-作業區
-我的hackpad問題集
-
-目標
-
-閱讀以下材料:
-How to use epoll? A complete example in C
-The Event Poll Interface
-Understanding “volatile” qualifier in C
-Unix Signals
-信號量測
-Reactor Pattern
-pip">
-<meta property="og:image" content="https://i.imgur.com/rmebmVi.png">
-<meta property="og:updated_time" content="2016-08-04T04:28:43.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2016嵌入式系統課程w3 - server-framework效能分析與改進">
-<meta name="twitter:description" content="github repository  
-課程網頁
-作業區
-我的hackpad問題集
-
-目標
-
-閱讀以下材料:
-How to use epoll? A complete example in C
-The Event Poll Interface
-Understanding “volatile” qualifier in C
-Unix Signals
-信號量測
-Reactor Pattern
-pip">
-<meta name="twitter:image" content="https://i.imgur.com/rmebmVi.png">
-
-    
-    <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
-    <meta name="google-site-verification" content="x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk" />
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-
+<% if (page.layout=='post' || page.layout=='photo'){ %>
+ <%- partial('_partial/head') %>
   <body>
     <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="一奔二飛" title="一奔二飛"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="一奔二飛">一奔二飛</a></h1>
-				<h2 class="blog-motto"></h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-						<li><a href="/about">About</a></li>
-					
-					<li>
- 					
-					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
+      <%- partial('_partial/header') %>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/03/25/hw-server-framework-in-modern-c/" title="2016嵌入式系統課程w3 - server-framework效能分析與改進" itemprop="url">2016嵌入式系統課程w3 - server-framework效能分析與改進</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2016-03-25T04:12:12.000Z" itemprop="datePublished"> Published 2016-03-25</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目標"><span class="toc-number">1.</span> <span class="toc-text">目標</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#預先安裝的packages"><span class="toc-number">1.1.</span> <span class="toc-text">預先安裝的packages</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#閱讀資料"><span class="toc-number">2.</span> <span class="toc-text">閱讀資料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#epoll"><span class="toc-number">2.1.</span> <span class="toc-text">epoll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reactor-pattern"><span class="toc-number">2.2.</span> <span class="toc-text">reactor pattern</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Understanding-“volatile”-qualifier-in-C"><span class="toc-number">2.3.</span> <span class="toc-text">Understanding “volatile” qualifier in C</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#程式架構"><span class="toc-number">3.</span> <span class="toc-text">程式架構</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#httpd-c"><span class="toc-number">3.1.</span> <span class="toc-text">httpd.c</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#protocol-server-c"><span class="toc-number">3.2.</span> <span class="toc-text">protocol-server.c</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#探索過程"><span class="toc-number">4.</span> <span class="toc-text">探索過程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效能改進"><span class="toc-number">5.</span> <span class="toc-text">效能改進</span></a></li></ol>
-		
-		</div>
-		
-		<ul>
-<li><a href="https://github.com/good5dog5/server-framework" target="_blank" rel="external">github repository</a>  </li>
-<li><a href="http://wiki.csie.ncku.edu.tw/embedded/2016q1h3" target="_blank" rel="external">課程網頁</a></li>
-<li><a href="https://embedded2016.hackpad.com/2016q1-Homework-3-a3Rb2XROJso" target="_blank" rel="external">作業區</a></li>
-<li><a href="https://embedded2016.hackpad.com/EkhOLpdBSfW" target="_blank" rel="external">我的hackpad問題集</a></li>
-</ul>
-<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><blockquote>
-<ul>
-<li>閱讀以下材料:<ul>
-<li><a href="https://banu.com/blog/2/how-to-use-epoll-a-complete-example-in-c/" target="_blank" rel="external">How to use epoll? A complete example in C</a></li>
-<li><a href="https://www.safaribooksonline.com/library/view/linux-system-programming/0596009585/ch04s02.html" target="_blank" rel="external">The Event Poll Interface</a></li>
-<li><a href="http://www.geeksforgeeks.org/understanding-volatile-qualifier-in-c/" target="_blank" rel="external">Understanding “volatile” qualifier in C</a></li>
-<li><a href="http://cis-linux1.temple.edu/~giorgio/cis307/readings/signals.html" target="_blank" rel="external">Unix Signals</a></li>
-<li><a href="http://www.intra.idv.tw/data/tech/hw/travellogic.htm" target="_blank" rel="external">信號量測</a></li>
-<li><a href="http://www.wikiwand.com/en/Reactor_pattern" target="_blank" rel="external">Reactor Pattern</a></li>
-<li><a href="http://www2.cs.uregina.ca/~hamilton/courses/330/notes/unix/pipes/pipes.html" target="_blank" rel="external">pipe system call</a></li>
-<li><a href="http://www.linuxhowtos.org/C_C++/socket.htm" target="_blank" rel="external">Sockets Tutorial</a></li>
-</ul>
-</li>
-<li>研讀<a href="https://embedded2016.hackpad.com/Mar-22-2016-Mar-22-2016--CH64GFFiviW" target="_blank" rel="external">第 5 週課程</a>的物件導向程式設計參考資料，也一併紀錄問題於共筆上</li>
-<li>分析 <code>httpd</code> 程式執行效能，指出效能低落的原因，並且提出改進方案<ul>
-<li>需要實際去改寫程式碼！</li>
-</ul>
-</li>
-<li>加分題<ul>
-<li>補完<code>tests/test-buffer.c</code>的測試項目</li>
-<li>實做基本的 HTTP parser</li>
-<li>參考<code>tests/test-protocol-server.c</code>，實做類似 BBS 的 telnet server，可允許使用者登入<br>  BBS 控制碼可參考 <a href="https://github.com/xeonchen/maplebbs-itoc" target="_blank" rel="external">maplebbs</a></li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<a id="more"></a>
-<h3 id="預先安裝的packages"><a href="#預先安裝的packages" class="headerlink" title="預先安裝的packages"></a>預先安裝的packages</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2-utils check</span><br><span class="line"> sudo apt-get install doxygen graphviz</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>apache2-utils</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Apache HTTP Server (utility programs for web servers)</span><br><span class="line">Provides some add-on programs useful for any web server.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>check</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">unit test framework for C</span><br><span class="line">Check features a simple interface for defining unit tests, putting</span><br><span class="line">little in the way of the developer. Tests are run in a separate</span><br><span class="line">address space, so Check can catch both assertion failures and code</span><br><span class="line">errors that cause segmentation faults or other signals. The output</span><br><span class="line">from unit tests can be used within source code editors and IDEs.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>doxgen</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Documentation system for C, C++, Java, Python and other languages</span><br><span class="line">Doxygen is a documentation system for C, C++, Java, Objective-C, Python, IDL</span><br><span class="line">and to some extent PHP, C#, and D.  It can generate an on-line class browser</span><br><span class="line">(in HTML) and/or an off-line reference manual (in LaTeX) from a set of</span><br><span class="line">documented source files. There is also support for generating man pages</span><br><span class="line">and for converting the generated output into Postscript, hyperlinked PDF</span><br><span class="line">or compressed HTML.  The documentation is extracted directly from the sources.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>graphviz</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rich set of graph drawing tools</span><br><span class="line">Graph drawing addresses the problem of visualizing structural information</span><br><span class="line">by constructing geometric representations of abstract graphs and networks.</span><br><span class="line">Automatic generation of graph drawings has important applications in key</span><br><span class="line">technologies such as database design, software engineering, VLSI and</span><br><span class="line">network design and visual interfaces in other domains.</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="閱讀資料"><a href="#閱讀資料" class="headerlink" title="閱讀資料"></a>閱讀資料</h2><h3 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h3><p><a href="http://blog.csdn.net/xiajun07061225/article/details/9250579" target="_blank" rel="external">ref1</a></p>
-<blockquote>
-<p>The epoll API performs a similar task to poll(2): monitoring multiple file descriptors to see if I/O is possible on any of them.</p>
-</blockquote>
-<p>epoll能夠通時monitor許多file descriptor，並對I/O event做監聽。</p>
-<ol>
-<li><p><strong>int epoll_create(int size)</strong> or <strong>int epoll_create1(int size)</strong><br> 產生出一個epoll instance並回傳一個file descriptor代表該instance, 自linux 2.6.8之後，<code>size</code>參數被忽略掉，使用完畢需用<strong>close()</strong>來釋放。</p>
-</li>
-<li><p><strong>epoll_ctl(2)</strong> - control interface for an epoll descriptor<br> <code>int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);</code></p>
-<ul>
-<li><p>第一個参數epoll_create()的返回值。</p>
-</li>
-<li><p>第二個參數表示operation,可為<code>EPOLL_CTL_ADD</code>：註冊新的fd及想監聽的event到epfd中, <code>EPOLL_CTL_MOD</code>：修改已經註冊之fd的監聽事件； <code>EPOLL_CTL_DEL</code>：從epfd中刪除(deregister)，event欄位可為<code>NULL</code>。</p>
-</li>
-<li><p>第三個參數代表要監聽的fd。</p>
-</li>
-<li><p>第四個參數代表要監聽的events,結構如下</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">union</span> epoll_data &#123;</span><br><span class="line">	<span class="keyword">void</span>        *ptr;</span><br><span class="line">	<span class="keyword">int</span>          fd;</span><br><span class="line">	<span class="keyword">uint32_t</span>     u32;</span><br><span class="line">	<span class="keyword">uint64_t</span>     u64;</span><br><span class="line">&#125; <span class="keyword">epoll_data_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> epoll_event &#123;</span><br><span class="line">	<span class="keyword">uint32_t</span>     events;      <span class="comment">/* Epoll events */</span></span><br><span class="line">	<span class="keyword">epoll_data_t</span> data;        <span class="comment">/* User data variable */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><code>events</code>是一組由下面幾種bit set組成的mask<br> EPOLLIN ：對應的fd可供讀<br> EPOLLOUT：對應的fd可供寫<br> EPOLLPRI：<code>There is urgent data available for read(2) operations.</code>(還不太懂他的意思)</p>
-<p>以下兩者不用特別在<code>event</code>中設定， <code>epoll_wait(2)</code>預設會去監聽這些事件<br> EPOLLERR：對應的fd出錯<br> EPOLLHUP：對應的fd hang up </p>
-<p> EPOLLET：將對應的fd設為<code>Edge triggered</code>, epoll預設為<code>Level triggered</code><br> EPOLLONESHOT：對該fd只監聽一次事件，即之後發生的events都會會被epoll回報，除非利用call epoll_ctl() with EPOLL_CTL_MOD再次設定events mask</p>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><strong>epoll_wait(2)</strong> - wait for an I/O event on an epoll file descriptor<br>   <code>int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);</code></li>
-</ul>
-<h3 id="reactor-pattern"><a href="#reactor-pattern" class="headerlink" title="reactor pattern"></a>reactor pattern</h3><h3 id="Understanding-“volatile”-qualifier-in-C"><a href="#Understanding-“volatile”-qualifier-in-C" class="headerlink" title="Understanding “volatile” qualifier in C"></a>Understanding “volatile” qualifier in C</h3><p>[<a href="http://newscienceview.blogspot.com/2013/09/c-volatile.html" target="_blank" rel="external">ref1</a>] [<a href="http://newscienceview.blogspot.com/2013/09/c-volatile.html" target="_blank" rel="external">ref2</a>]</p>
-<blockquote>
-<p>The volatile keyword is intended to prevent the compiler from applying any optimizations on objects that can change in ways that cannot be determined by the compiler. </p>
-</blockquote>
-<p><code>volatile</code>是變數的修飾詞,它代表其所修飾的變數可能在任何時刻意外地被的更新，compiler就不會對該變數做optimization(例如把該變數存入register，每次都從register中讀取,取而代之的是每次都從memory更新該值)。</p>
-<p>當一個變數的內容可能會被意想不到的更新時(by hardware)，一定要使用volatile來聲明該變數。通常，只有三種類型的變數會發生這種“意外”：</p>
-<ul>
-<li>在記憶體中進行位址映射的周邊暫存器(peripheral registers)；</li>
-<li>在中斷處理程式中(interrupt service routine)可能被修改的全域變數(Global variables)；</li>
-<li>多線程應用程式中(multi-threaded application) 的全域變數(Global variables)；</li>
-</ul>
-<p>假設我們有一個8位元的狀態暫存器映射在位址0x1234上。系統需要我們一直監測狀態暫存器的值，直到它的值不為0為止。</p>
-<p>錯誤的寫法及對應的optimized assembly code<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uint * ptr = (uint *) <span class="number">0x1234</span>; <span class="comment">// Wait for register to become non-zero.</span></span><br><span class="line"><span class="keyword">while</span> (*ptr == <span class="number">0</span>);</span><br><span class="line"><span class="comment">// Do something else.</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov ptr, #0x1234     </span><br><span class="line">mov a, @ptr loop</span><br><span class="line">bz  loop</span><br></pre></td></tr></table></figure>
-<p>優化的原理很簡單，c code的第一行把一個變數讀入reg(assembly code的ptr)，如果從變數相關的上下文來看，變數的值總是沒變，則沒有必要從記憶體中更新值到reg,故while loop會無窮執行下去。</p>
-<p>如果把第一行寫成<code>uint volatile * ptr = (uint volatile *) 0x1234;</code>，則會強迫編譯器對該變數禁用優化，達到程式原本的目的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">      mov ptr, #0x1234</span><br><span class="line">loop  mov a, @ptr    </span><br><span class="line">	  bz  loop</span><br></pre></td></tr></table></figure></p>
-<h2 id="程式架構"><a href="#程式架構" class="headerlink" title="程式架構"></a>程式架構</h2><p>運用<a href="http://good5dog5.github.io/2016/03/14/hw_raytracing/#%E5%88%A9%E7%94%A8-Graphviz-%E7%94%A2%E7%94%9F%E5%87%BD%E6%95%B8%E5%91%BC%E5%8F%AB%E9%97%9C%E4%BF%82%E5%9C%96">Homework 2</a>所學<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#產生gmon.out</span></span><br><span class="line">./httpd</span><br><span class="line"></span><br><span class="line"><span class="comment">#產生呼叫圖</span></span><br><span class="line">gprof httpd| gprof2dot | dot -Tpng -o codemap.png</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/rmebmVi.png" alt="結果"></p>
-<h3 id="httpd-c"><a href="#httpd-c" class="headerlink" title="httpd.c"></a>httpd.c</h3><p>從<code>http.c</code>的main function開始trace，裡頭的第一行<code>.on_data = ondata</code>，直覺的以為<code>on_data</code>會是一個structure或是變數，沒想到竟然是一個function。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//httpd.c</span></span><br><span class="line"><span class="keyword">struct</span> Protocol protocol = &#123; .on_data = on_data &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">on_data</span><span class="params">(server_pt srv, <span class="keyword">int</span> fd)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> reply[] =</span><br><span class="line">        <span class="string">"HTTP/1.1 200 OK\r\n"</span></span><br><span class="line">        <span class="string">"Content-Length: 12\r\n"</span></span><br><span class="line">        <span class="string">"Connection: keep-alive\r\n"</span></span><br><span class="line">        <span class="string">"Keep-Alive: timeout=2\r\n"</span></span><br><span class="line">        <span class="string">"\r\n"</span></span><br><span class="line">        <span class="string">"Hello World!"</span>;</span><br><span class="line">    <span class="keyword">char</span> buff[<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (Server.read(srv, fd, buff, <span class="number">1024</span>))</span><br><span class="line">        Server.write(srv, fd, reply, <span class="keyword">sizeof</span>(reply));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>而struct Protocal中<code>.on_data</code>定義為</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*on_data)(<span class="keyword">struct</span> Server *, <span class="keyword">int</span> sockfd); <span class="comment">/**&lt; called when a data is available */</span></span><br></pre></td></tr></table></figure>
-<p>這段我看不太懂，在stackoverflow找到一個不錯的<a href="http://stackoverflow.com/questions/11038430/how-to-create-a-typedef-for-function-pointers" target="_blank" rel="external">例子</a><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123; <span class="keyword">return</span> i + <span class="number">1</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*g)</span><span class="params">(<span class="keyword">int</span>)</span></span>;  <span class="comment">// Declare typedef</span></span><br><span class="line">g func = &amp;foo;          <span class="comment">// Define function-pointer variable, and initialise</span></span><br><span class="line"><span class="keyword">int</span> hvar = func(<span class="number">3</span>);     <span class="comment">// Call function through pointer</span></span><br></pre></td></tr></table></figure></p>
-<p>故struct Protocal的<code>on_data</code>的意思為<code>一個回傳型態為void，引數型態為(struct Server *, int)的function</code>。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//httpd.c</span></span><br><span class="line">start_server(.protocol = &amp;protocol,</span><br><span class="line">                 .timeout = <span class="number">2</span>,</span><br><span class="line">                 .on_init = on_init,</span><br><span class="line">                 .threads = THREAD_COUNT)</span><br><span class="line"><span class="comment">//protocol-server.h </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> start_server(...) \</span><br><span class="line">    Server.listen((struct ServerSettings)&#123;__VA_ARGS__&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//會被轉換成</span></span><br><span class="line">Server.listen((<span class="keyword">struct</span> ServerSettings)&#123;.protocol = &amp;protocol, .timeout = <span class="number">2</span>, .on_init = on_init, .threads = <span class="number">4</span>&#125;);</span><br></pre></td></tr></table></figure></p>
-<p><code>Struct Server</code>定義在<code>protocol-server.c</code>中，給個struct element都是一個function pointer，指向定義在<code>protocol-server.c</code>中的functions，故執行<code>Server.listen(xxx)</code>其實是呼叫<code>srv_listen(xxx)</code>，整個過程實現了資料封裝即資訊隱藏的概念。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Server API gateway */</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">struct</span> __SERVER_API__ Server = &#123;</span><br><span class="line">    .reactor = srv_reactor,</span><br><span class="line">    .settings = srv_settings,</span><br><span class="line">    .capacity = srv_capacity,</span><br><span class="line">    .listen = srv_listen,</span><br><span class="line">    .stop = srv_stop,</span><br><span class="line">    .stop_all = srv_stop_all,</span><br><span class="line">    .is_busy = is_busy,</span><br><span class="line">    .get_protocol = get_protocol,</span><br><span class="line">    .set_protocol = set_protocol,</span><br><span class="line">    .get_udata = get_udata,</span><br><span class="line">    .set_udata = set_udata,</span><br><span class="line">    .set_timeout = set_timeout,</span><br><span class="line">    .attach = srv_attach,</span><br><span class="line">    .close = srv_close,</span><br><span class="line">    .hijack = srv_hijack,</span><br><span class="line">    .count = srv_count,</span><br><span class="line">    .touch = srv_touch,</span><br><span class="line">    .rw_hooks = rw_hooks,</span><br><span class="line">    .read = srv_read,</span><br><span class="line">    .write = srv_write,</span><br><span class="line">    .write_move = srv_write_move,</span><br><span class="line">    .write_urgent = srv_write_urgent,</span><br><span class="line">    .write_move_urgent = srv_write_move_urgent,</span><br><span class="line">    .sendfile = srv_sendfile,</span><br><span class="line">    .each = each,</span><br><span class="line">    .each_block = each_block,</span><br><span class="line">    .fd_task = fd_task,</span><br><span class="line">    .run_async = run_async,</span><br><span class="line">    .run_after = run_after,</span><br><span class="line">    .run_every = run_every,</span><br><span class="line">    .root_pid = root_pid,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="protocol-server-c"><a href="#protocol-server-c" class="headerlink" title="protocol-server.c"></a>protocol-server.c</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">long</span> <span class="title">srv_capacity</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">/* get current limits */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">long</span> flim = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (flim) <span class="keyword">return</span> flim;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _SC_OPEN_MAX</span></span><br><span class="line">    flim = sysconf(_SC_OPEN_MAX) - <span class="number">1</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> defined(OPEN_MAX)</span></span><br><span class="line">    flim = OPEN_MAX - <span class="number">1</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="comment">//....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>當變數被<code>static</code>修飾，就會一直存在memory中的data section，就算結束函數呼叫後仍存在，因此<code>flim</code>只有在<code>srv_capacity</code>第一次被呼叫時被初始為0並通過if statement取得flim的max value，之後呼叫<code>srv_capacity</code>都會直接被if statement卡住而直接return flim。</p>
-<p>另外，<code>srv_capacity</code>也被須告為<code>static</code>，但其代表的意義為該function的存取範圍只限於該c file(<code>protocol-server.c</code>)，如此有利資訊隱藏和避免與其他c file的命名衝突。</p>
-<p>POSIX允許application在 <strong>compiler time</strong> 或 <strong>run time</strong>去測試系統支不支援某個option或取得某設定值;若是在compiler time決定的話則須引入<code>&lt;unistd.h&gt;</code>和<code>&lt;limits.h&gt;</code>並且撰寫macro測試。若由runtime決定則可由<code>sysconf()</code>取得。</p>
-<ul>
-<li>pthread_mutex_init()</li>
-</ul>
-<h2 id="探索過程"><a href="#探索過程" class="headerlink" title="探索過程"></a>探索過程</h2><p>Q: <code>ab -c 32 -n 100 http://localhost:8080/</code>的作用？<br><code>ab</code>是Apache HTTP server benchmarking tool，<code>-c</code> option代表concurency，即一次送出的request數目，<br><code>-n</code>代表總共發出幾次request。</p>
-<h2 id="效能改進"><a href="#效能改進" class="headerlink" title="效能改進"></a>效能改進</h2><p>原版效能：</p>
-<pre><code>Concurrency Level:      32
-Time taken for tests:   16.136 seconds
-Complete requests:      100
-Failed requests:        0
-Total transferred:      9900 bytes
-HTML transferred:       1300 bytes
-Requests per second:    6.20 [#/sec] (mean)
-Time per request:       5163.499 [ms] (mean)
-Time per request:       161.359 [ms] (mean, across all concurrent requests)
-Transfer rate:          0.60 [Kbytes/sec] received
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    1   0.6      1       3
-Processing:  3997 4042  64.9   3998    4138
-Waiting:        0    0   0.4      0       2
-Total:       3999 4044  64.7   4000    4138
-</code></pre>  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Work/">Work</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/C/">C</a><a href="/tags/Doxygen/">Doxygen</a><a href="/tags/embedded-system/">embedded system</a>
-  </div>
-
-</div>
-
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2016/03/27/write-blog-with-hexo/" title="利用hexo寫blog並用Travis CI部署">
-  <span>
-  利用hexo寫blog並用Travis CI部署</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2016/03/24/vim-note/"  title="vim使用筆記">
- <span>vim使用筆記
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-
-<section id="comments" class="comment">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目標"><span class="toc-number">1.</span> <span class="toc-text">目標</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#預先安裝的packages"><span class="toc-number">1.1.</span> <span class="toc-text">預先安裝的packages</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#閱讀資料"><span class="toc-number">2.</span> <span class="toc-text">閱讀資料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#epoll"><span class="toc-number">2.1.</span> <span class="toc-text">epoll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reactor-pattern"><span class="toc-number">2.2.</span> <span class="toc-text">reactor pattern</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Understanding-“volatile”-qualifier-in-C"><span class="toc-number">2.3.</span> <span class="toc-text">Understanding “volatile” qualifier in C</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#程式架構"><span class="toc-number">3.</span> <span class="toc-text">程式架構</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#httpd-c"><span class="toc-number">3.1.</span> <span class="toc-text">httpd.c</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#protocol-server-c"><span class="toc-number">3.2.</span> <span class="toc-text">protocol-server.c</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#探索過程"><span class="toc-number">4.</span> <span class="toc-text">探索過程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效能改進"><span class="toc-number">5.</span> <span class="toc-text">效能改進</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
-<aside class="clearfix">
-<div id="authorInfo">
-	
-		<div class="author-img"></div>		
-	
-	<div class="social-info" class="clearfix">
-		
-		
-		<a href="https://github.com/good5dog5" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<a href="mailto:good5dog5@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-
-	</div>
-</div>
-
-  
-<div class="github-card">
-<p class="asidetitle">Github Card</p>
-<div class="github-card" data-github="good5dog5" data-width="220" data-height="119" data-theme="medium">
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-  </div>
-
-
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">Categories</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/Blog/" title="Blog">Blog<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/C/" title="C">C<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/CLI/" title="CLI">CLI<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Homework/" title="Homework">Homework<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Job/" title="Job">Job<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Note/" title="Note">Note<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Tools/" title="Tools">Tools<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Work/" title="Work">Work<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/daily/" title="daily">daily<sup>1</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/Note/" title="Note">Note<sup>8</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/embedded-system/" title="embedded system">embedded system<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C/" title="C">C<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/c/" title="c">c<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/note/" title="note">note<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Preprocessor/" title="Preprocessor">Preprocessor<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Blog/" title="Blog">Blog<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/i3-wm/" title="i3 wm">i3 wm<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Job/" title="Job">Job<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gdb/" title="gdb">gdb<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/config/" title="config">config<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/urxvt/" title="urxvt">urxvt<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CLI/" title="CLI">CLI<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/vim/" title="vim">vim<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/hack/" title="hack">hack<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Bash/" title="Bash">Bash<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/script/" title="script">script<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/rootfs/" title="rootfs">rootfs<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">Links</p>
-    <ul>
-        
-    </ul>
-</div>
-
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
+      <%- body %>
+      <%- partial('_partial/sidebar',{item: page,table: true}) %>
     </div>
-    <footer><div id="footer" >
-		
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
-		
-		<a href="/about" target="_blank" title="Jordan Huang">Jordan Huang</a>
-		
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-        getSize();
-        if (myWidth >= 1024) {
-          c.click();
-        }
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
-
-
-
-
-<script type="text/javascript">
-
-var disqus_shortname = 'good5dog5';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-
-<!-- MathJax End -->
-
-<!-- Tiny_search Begin -->
-
-<!-- Tiny_search End -->
-
+    <footer><%- partial('_partial/footer') %></footer>
+    <%- partial('_partial/after_footer') %>
   </body>
 </html>
+<% } else if(page.layout=='page'){ %>
+  <% if(page.source.match(/\.md$/)){ %>
+    <%- partial('_partial/head') %>
+      <body>
+        <header>
+          <%- partial('_partial/header') %>
+        </header>
+        <div id="container">
+          <%- body %>
+        </div>
+        <footer><%- partial('_partial/footer') %></footer>
+        <%- partial('_partial/after_footer') %>
+      </body>
+     </html>
+     <% }else{ %>
+    <%- page.content %>
+  <% } %>
+<% } else if(page.layout=='search'){ %>
+<%- partial('_partial/head') %>
+    <body>
+      <header>
+        <%- partial('_partial/header') %>
+      </header>
+      <div id="container">
+        <%- partial('_partial/search')%>
+      </div>
+      <footer><%- partial('_partial/footer') %></footer>
+      <%- partial('_partial/after_footer') %>
+    </body>
+   </html>
+<% } else if(page.layout=='tags'){ %>
+ <%- partial('_partial/head') %>
+    <body>
+      <header>
+        <%- partial('_partial/header') %>
+      </header>
+      <div id="container">
+          <%- partial('_partial/tags')%>
+      </div>
+      <footer><%- partial('_partial/footer') %></footer>
+      <%- partial('_partial/after_footer') %>
+    </body>
+   </html>
+<% } else if(page.layout=='categories'){ %>
+ <%- partial('_partial/head') %>
+    <body>
+      <header>
+        <%- partial('_partial/header') %>
+      </header>
+      <div id="container">
+          <%- partial('_partial/categories')%>
+      </div>
+      <footer><%- partial('_partial/footer') %></footer>
+      <%- partial('_partial/after_footer') %>
+    </body>
+   </html>
+<% } else if(page.category!=null||page.tag!=null||page.archive!=null) { %>
+  <%- partial('_partial/head') %>
+    <body>
+      <header>
+        <%- partial('_partial/header') %>
+      </header>
+      <div id="container">
+        <%- body %>
+      </div>
+      <footer><%- partial('_partial/footer') %></footer>
+      <%- partial('_partial/after_footer') %>
+    </body>
+   </html>
+<% } else { %>
+ <%- partial('_partial/head') %>
+  <body>
+    <header>
+      <%- partial('_partial/header') %>
+    </header>
+    <div id="container">
+      <%- body %>
+      <%- partial('_partial/sidebar',{item: page,table: false}) %>
+    </div>
+    <footer><%- partial('_partial/footer') %></footer>
+    <%- partial('_partial/after_footer') %>
+  </body>
+ </html>
+<% } %>
