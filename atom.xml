@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://good5dog5.github.io/"/>
-  <updated>2018-11-16T06:05:20.000Z</updated>
+  <updated>2019-12-03T08:25:27.800Z</updated>
   <id>http://good5dog5.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>爬取並分析 books.com.tw 之熱銷品資料</title>
+    <link href="http://good5dog5.github.io/2019/12/03/books-com-tw-analysis/"/>
+    <id>http://good5dog5.github.io/2019/12/03/books-com-tw-analysis/</id>
+    <published>2019-12-03T07:35:00.000Z</published>
+    <updated>2019-12-03T08:25:27.800Z</updated>
+    
+    <content type="html"><![CDATA[<p>簡單記錄一下這個週末做的小測試，專案連結在此:<a href="https://github.com/good5dog5/books_com_tw_crawler" target="_blank" rel="noopener">books_com_tw_crawler</a></p><a id="more"></a><h1 id="環境建置"><a href="#環境建置" class="headerlink" title="環境建置"></a>環境建置</h1><p>利用 pyenv 去建立 virtual environment，可依照不同 OS 去安裝。</p><h2 id="安裝-pyenv"><a href="#安裝-pyenv" class="headerlink" title="安裝 pyenv"></a>安裝 pyenv</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu (安裝所需 packages)</span></span><br><span class="line">sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev</span><br><span class="line">libsqlite3-dev wget curl llvm</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mac (直接安裝)</span></span><br><span class="line">curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</span><br></pre></td></tr></table></figure><h2 id="設定環境變數"><a href="#設定環境變數" class="headerlink" title="設定環境變數"></a>設定環境變數</h2><p>由於我用 oh-my-zsh, 在 plugins 加入 pyenv 並 source ~/.zhsrc 即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">autojump</span><br><span class="line">docker</span><br><span class="line">fzf</span><br><span class="line">osx</span><br><span class="line">pyenv</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p><h2 id="安裝-設定-global-python-intepreter"><a href="#安裝-設定-global-python-intepreter" class="headerlink" title="安裝/設定 global python intepreter"></a>安裝/設定 global python intepreter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyenv install 3.6.8</span><br><span class="line">pyenv global 3.6.8</span><br></pre></td></tr></table></figure><h2 id="利用-virtual-environment-安裝-python-packages"><a href="#利用-virtual-environment-安裝-python-packages" class="headerlink" title="利用 virtual environment 安裝 python packages"></a>利用 virtual environment 安裝 python packages</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -m venv .venv</span><br><span class="line"><span class="built_in">source</span> .venv/bin/activate</span><br></pre></td></tr></table></figure><p>以上兩步驟會在 <code>當前目錄下</code> 建立一個 .venv 資料夾，之後用 <code>pip</code> 安裝的套件都會放在裡面。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip  install -r requirements.txt</span><br></pre></td></tr></table></figure><h1 id="爬取資料"><a href="#爬取資料" class="headerlink" title="爬取資料"></a>爬取資料</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;簡單記錄一下這個週末做的小測試，專案連結在此:&lt;a href=&quot;https://github.com/good5dog5/books_com_tw_crawler&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;books_com_tw_crawler&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="http://good5dog5.github.io/tags/Python/"/>
+    
+      <category term="lxml" scheme="http://good5dog5.github.io/tags/lxml/"/>
+    
+      <category term="requests" scheme="http://good5dog5.github.io/tags/requests/"/>
+    
+      <category term="pandas" scheme="http://good5dog5.github.io/tags/pandas/"/>
+    
+  </entry>
   
   <entry>
     <title>Redis 初探 - 用 python 操作 redis</title>
@@ -487,33 +513,6 @@
       <category term="Resume" scheme="http://good5dog5.github.io/tags/Resume/"/>
     
       <category term="Cv" scheme="http://good5dog5.github.io/tags/Cv/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2016嵌入式系統課程W6課程筆記</title>
-    <link href="http://good5dog5.github.io/2016/03/29/2016EmbeddedW6-course-note/"/>
-    <id>http://good5dog5.github.io/2016/03/29/2016EmbeddedW6-course-note/</id>
-    <published>2016-03-29T04:12:00.000Z</published>
-    <updated>2016-08-04T04:28:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li><a href="https://embedded2016.hackpad.com/Mar-29-2016--VJmq0R0ILi6" target="_blank" rel="noopener">課程共筆</a></li></ul><blockquote><p>「環境每天都或多或少在變化，如果我們不變通，終有一日會發現遠遠落後。如果在沒有轉變的情況下，處境突然變好了，那只是靠運氣，太被動。」<br>「主動改善最困難的地方，不是如何改善，而是你根本不認為有需要改善。」<br>「只要是為了變得更好，而不是為變而變，我們就應該踏出這一步，不應故步自封，否則，突破絕不會從天而降。」</p></blockquote><a id="more"></a><h2 id="最佳化有時來自對系統的認知"><a href="#最佳化有時來自對系統的認知" class="headerlink" title="最佳化有時來自對系統的認知"></a>最佳化有時來自對系統的認知</h2><p>有branch的版本 vs 沒有branch的版本<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int32_t</span> a, b;</span><br><span class="line"><span class="keyword">if</span> (b&lt;<span class="number">0</span>) a++; <span class="comment">//等價於a -= b &gt;&gt; 31;</span></span><br></pre></td></tr></table></figure></p><h2 id="善用StackOverflow"><a href="#善用StackOverflow" class="headerlink" title="善用StackOverflow"></a>善用StackOverflow</h2><ol><li>查tag</li><li>看問問題的人是誰，你們也許有相同的興趣，google一下</li><li>回覆者是誰，可以google一下</li></ol><p>用google問題，找到的可能是和你同病相憐的人，請善用StackOverflow<br><a href="http://stackoverflow.com/questions/6297428/existing-threadpool-c-implementation" target="_blank" rel="noopener">[Question on StackOverflow]</a></p><h2 id="Thread-pool"><a href="#Thread-pool" class="headerlink" title="Thread pool"></a>Thread pool</h2><p><code>migrate</code>: 從一個worker thread 轉移到令一個worker thread<br><code>reuse</code>: 一個worker thread很快速，常為空可重複使用稱之。</p><ul><li>mutex lock有owner的概念，誰lock的就該由誰unlock。</li><li>mutex_lock的cost基本上會是<code>加法</code>的50~100倍。</li><li><code>lock free</code>並不是不用lock，只是用的lock比較少而已，就像waterproof也不是完全防水</li><li>Ring-buffer可以用來實作很多expire的概念，例如網路封包過一陣子會過期。</li><li>原本作業的想法，是長長排隊隊伍，到最後關頭才進行分組</li></ul><p>task-migration可以在每個work</p><ol><li>thread中，計算已經完成的task數，則之後要選擇migtate到的thread，就取counter最高的worker thread即可。</li><li>或者可以把工作轉成atomic operation</li></ol><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>  &#123;  </span><br><span class="line">    work = <span class="literal">NULL</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>  (thread_queue_len( thread ) &lt;= <span class="number">0</span>)   <span class="comment">//also atomic  </span></span><br><span class="line">        <span class="keyword">break</span> ;  </span><br><span class="line">    tmp =  thread -&gt;out;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">//prefetch work  </span></span><br><span class="line">    work = &amp; thread -&gt;work_queue[queue_offset(tmp)];  </span><br><span class="line">&#125;  <span class="keyword">while</span>  (!__sync_bool_compare_and_swap(&amp; thread -&gt;out, tmp, tmp + <span class="number">1</span>));  </span><br><span class="line"><span class="keyword">if</span>  (work)  do_something();</span><br></pre></td></tr></table></figure><p>其中 <code>__sync_bool_compare_and_swap</code>會由compiler轉成低階的<strong>test-and-set</strong>指令。</p><h2 id="ARM"><a href="#ARM" class="headerlink" title="ARM"></a>ARM</h2><ul><li>現在的processor pipeline多為9~10 stage，Zen phone用的ARM A15可到27 stage</li><li>ARM和MIPS都為RISC架構，其中ARM有<code>Barrel shifter</code>，能夠對register做shfit，重排register的bit</li><li>ARM的PC是指向 <strong>下兩道指令</strong>，不同於MIPC的是指向 下一到</li></ul><p>Q:如上面所說 PC 指向正在執行的後 2 條指令 (+8)，但若某道正在執行指令遇到中斷，這時候的 PC 會如何變化？<br>A:以Cortex M3/M4來說，而是以 <strong>硬體給定</strong> <code>EXC_RETURN</code>(exception return)作為新的PC，一旦返回原程式時才還原成 +8/+4</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://embedded2016.hackpad.com/Mar-29-2016--VJmq0R0ILi6&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;課程共筆&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;「環境每天都或多或少在變化，如果我們不變通，終有一日會發現遠遠落後。如果在沒有轉變的情況下，處境突然變好了，那只是靠運氣，太被動。」&lt;br&gt;「主動改善最困難的地方，不是如何改善，而是你根本不認為有需要改善。」&lt;br&gt;「只要是為了變得更好，而不是為變而變，我們就應該踏出這一步，不應故步自封，否則，突破絕不會從天而降。」&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
-    
-      <category term="Embedded System" scheme="http://good5dog5.github.io/tags/Embedded-System/"/>
     
   </entry>
   
