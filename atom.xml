@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://good5dog5.github.io/"/>
-  <updated>2019-12-03T08:25:27.800Z</updated>
+  <updated>2019-12-04T09:20:02.581Z</updated>
   <id>http://good5dog5.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://good5dog5.github.io/2019/12/03/books-com-tw-analysis/"/>
     <id>http://good5dog5.github.io/2019/12/03/books-com-tw-analysis/</id>
     <published>2019-12-03T07:35:00.000Z</published>
-    <updated>2019-12-03T08:25:27.800Z</updated>
+    <updated>2019-12-04T09:20:02.581Z</updated>
     
-    <content type="html"><![CDATA[<p>簡單記錄一下這個週末做的小測試，專案連結在此:<a href="https://github.com/good5dog5/books_com_tw_crawler" target="_blank" rel="noopener">books_com_tw_crawler</a></p><a id="more"></a><h1 id="環境建置"><a href="#環境建置" class="headerlink" title="環境建置"></a>環境建置</h1><p>利用 pyenv 去建立 virtual environment，可依照不同 OS 去安裝。</p><h2 id="安裝-pyenv"><a href="#安裝-pyenv" class="headerlink" title="安裝 pyenv"></a>安裝 pyenv</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu (安裝所需 packages)</span></span><br><span class="line">sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev</span><br><span class="line">libsqlite3-dev wget curl llvm</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mac (直接安裝)</span></span><br><span class="line">curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</span><br></pre></td></tr></table></figure><h2 id="設定環境變數"><a href="#設定環境變數" class="headerlink" title="設定環境變數"></a>設定環境變數</h2><p>由於我用 oh-my-zsh, 在 plugins 加入 pyenv 並 source ~/.zhsrc 即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">autojump</span><br><span class="line">docker</span><br><span class="line">fzf</span><br><span class="line">osx</span><br><span class="line">pyenv</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p><h2 id="安裝-設定-global-python-intepreter"><a href="#安裝-設定-global-python-intepreter" class="headerlink" title="安裝/設定 global python intepreter"></a>安裝/設定 global python intepreter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyenv install 3.6.8</span><br><span class="line">pyenv global 3.6.8</span><br></pre></td></tr></table></figure><h2 id="利用-virtual-environment-安裝-python-packages"><a href="#利用-virtual-environment-安裝-python-packages" class="headerlink" title="利用 virtual environment 安裝 python packages"></a>利用 virtual environment 安裝 python packages</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -m venv .venv</span><br><span class="line"><span class="built_in">source</span> .venv/bin/activate</span><br></pre></td></tr></table></figure><p>以上兩步驟會在 <code>當前目錄下</code> 建立一個 .venv 資料夾，之後用 <code>pip</code> 安裝的套件都會放在裡面。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip  install -r requirements.txt</span><br></pre></td></tr></table></figure><h1 id="爬取資料"><a href="#爬取資料" class="headerlink" title="爬取資料"></a>爬取資料</h1>]]></content>
+    <content type="html"><![CDATA[<p>簡單記錄一下這個週末做的小測試，專案連結在此:<a href="https://github.com/good5dog5/books_com_tw_crawler" target="_blank" rel="noopener">books_com_tw_crawler</a></p><a id="more"></a><h1 id="環境建置"><a href="#環境建置" class="headerlink" title="環境建置"></a>環境建置</h1><p>利用 pyenv 去建立 virtual environment，可依照不同 OS 去安裝。</p><h2 id="安裝-pyenv"><a href="#安裝-pyenv" class="headerlink" title="安裝 pyenv"></a>安裝 pyenv</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu (安裝所需 packages)</span></span><br><span class="line">sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev</span><br><span class="line">libsqlite3-dev wget curl llvm</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mac (直接安裝)</span></span><br><span class="line">curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</span><br></pre></td></tr></table></figure><h2 id="設定環境變數"><a href="#設定環境變數" class="headerlink" title="設定環境變數"></a>設定環境變數</h2><p>由於我用 oh-my-zsh, 在 plugins 加入 pyenv 並 source ~/.zhsrc 即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">autojump</span><br><span class="line">docker</span><br><span class="line">fzf</span><br><span class="line">osx</span><br><span class="line">pyenv</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p><h2 id="安裝-設定-global-python-intepreter"><a href="#安裝-設定-global-python-intepreter" class="headerlink" title="安裝/設定 global python intepreter"></a>安裝/設定 global python intepreter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyenv install 3.6.8</span><br><span class="line">pyenv global 3.6.8</span><br></pre></td></tr></table></figure><h2 id="利用-virtual-environment-安裝-python-packages"><a href="#利用-virtual-environment-安裝-python-packages" class="headerlink" title="利用 virtual environment 安裝 python packages"></a>利用 virtual environment 安裝 python packages</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -m venv .venv</span><br><span class="line"><span class="built_in">source</span> .venv/bin/activate</span><br></pre></td></tr></table></figure><p>以上兩步驟會在 <code>當前目錄下</code> 建立一個 .venv 資料夾，之後用 <code>pip</code> 安裝的套件都會放在裡面。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip  install -r requirements.txt</span><br></pre></td></tr></table></figure><h1 id="利用-requests-和-lxml-爬取熱銷品資料"><a href="#利用-requests-和-lxml-爬取熱銷品資料" class="headerlink" title="利用 requests 和 lxml 爬取熱銷品資料"></a>利用 requests 和 lxml 爬取熱銷品資料</h1><p>我的目標網頁為博客來書店的 top 100 熱銷書籍資料(<a href="https://www.books.com.tw/web/sys_tdrntb/books/)，簡單測試一下拿到的" target="_blank" rel="noopener">https://www.books.com.tw/web/sys_tdrntb/books/)，簡單測試一下拿到的</a> html 格式。</p><h1 id="取得-html"><a href="#取得-html" class="headerlink" title="取得 html"></a>取得 html</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">resp = requests.get(<span class="string">'https://www.books.com.tw/web/sys_tdrntb/books/'</span>)</span><br><span class="line">print(resp.content)</span><br></pre></td></tr></table></figure><p>會發現拿到的是 byte string, something likes<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">e4\xbc\x81\xe6\xa5\xad&lt;/span&gt;&lt;/li&gt;\n&lt;li class=<span class="string">"logo_1"</span>&gt;&lt;span</span><br><span class="line">title=<span class="string">"SSL\xe6\x86\x91\xe8\xad\x89\xe6\x9c\x8d\xe5\x8b\x99"</span>&gt;SSL\xe6\x86\x91\xe8\xad\x89\xe6\x9c\x8d\xe5\x8b\x99&lt;/span&gt;&lt;/li&gt;\n&lt;li</span><br><span class="line">class=<span class="string">"logo_2"</span>&gt;&lt;span</span><br></pre></td></tr></table></figure></p><p>用 str.decode 成 utf-8 即可。</p><h1 id="以-DOM-操作-html-data"><a href="#以-DOM-操作-html-data" class="headerlink" title="以 DOM 操作 html data"></a>以 DOM 操作 html data</h1><p>利用 lxml.html 將 html 轉成 etree 的樹狀結構，方便我們定位和取得各個節點的資料。</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lxml.html</span><br><span class="line">root_etree = lxml.html.fromstring(resp.content.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure><h1 id="取得-top-書單列表"><a href="#取得-top-書單列表" class="headerlink" title="取得 top 書單列表"></a>取得 top 書單列表</h1><p>現在 <code>root_etree</code> 是代表整張網頁的樹狀結構。我們可以用 <a href="https://stackoverflow.com/a/42194160" target="_blank" rel="noopener">chrome dev tool</a> 定位出每本暢銷書 link 的 xpath 並取得 url。以下 code snippet 會回傳一個 list of etree element。</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">books_url_list = root_etree.xpath(<span class="string">'/html/body/div[4]/div/div[3]/div[1]/ul/li'</span>)</span><br><span class="line">print(len(books_url_list)) <span class="comment"># 100</span></span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -66,6 +66,30 @@
       <category term="python" scheme="http://good5dog5.github.io/tags/python/"/>
     
       <category term="memcached" scheme="http://good5dog5.github.io/tags/memcached/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>KKStream 面試與工作經驗</title>
+    <link href="http://good5dog5.github.io/2018/08/28/interview-kkstream/"/>
+    <id>http://good5dog5.github.io/2018/08/28/interview-kkstream/</id>
+    <published>2018-08-28T05:12:00.000Z</published>
+    <updated>2019-12-04T02:08:49.739Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="Job" scheme="http://good5dog5.github.io/tags/Job/"/>
+    
+      <category term="Interview" scheme="http://good5dog5.github.io/tags/Interview/"/>
+    
+      <category term="KKStream" scheme="http://good5dog5.github.io/tags/KKStream/"/>
+    
+      <category term="KKBox" scheme="http://good5dog5.github.io/tags/KKBox/"/>
+    
+      <category term="SRE" scheme="http://good5dog5.github.io/tags/SRE/"/>
     
   </entry>
   
@@ -237,11 +261,11 @@
   </entry>
   
   <entry>
-    <title>Internship - Skymizer, Nvidia面試心得</title>
+    <title>Skymizer, Nvidia面試心得</title>
     <link href="http://good5dog5.github.io/2016/04/28/interview-skymizer-nvidia/"/>
     <id>http://good5dog5.github.io/2016/04/28/interview-skymizer-nvidia/</id>
     <published>2016-04-28T04:12:00.000Z</published>
-    <updated>2016-08-04T04:28:43.000Z</updated>
+    <updated>2019-12-04T02:06:57.577Z</updated>
     
     <content type="html"><![CDATA[<p>其實我沒有認真思考過為何要找暑期實習這件事，只是看到強者們都會努力去爭取這些機會，故利用進Lab前的空檔寫好英文履歷，有幸得到Skymizer和Nvidia的面試邀請，趁著記憶還鮮明時，把過程中的感受及心得記錄下來。</p><a id="more"></a><h2 id="Nvidia-Android-SW-Engineer-軟體開發實習生"><a href="#Nvidia-Android-SW-Engineer-軟體開發實習生" class="headerlink" title="Nvidia - Android SW Engineer 軟體開發實習生"></a>Nvidia - Android SW Engineer 軟體開發實習生</h2><p>這個職位在104的工作描述，是在做Android UX的自動化測試，需要熟悉Java, Python和bash script，因為本身對自動化還蠻狂熱的，就抱著試一試的心態投了履歷，過沒幾天就得到人資的回覆，外商做事果然有效率。 </p><p>面試主要分成上機測試和聊天兩個部份，上機測試的題目要求是用Python做auto cherry-pick，題目會給兩個git server的幾組change，你需要寫一個Python程式把這些change當成參數，利用Gerrit query取得change中對應的project name和reference，之後在parse一個xml檔得到project的pathname，最終才能完成cherry-pick，我最後卡在剖析JSON資料的部份，整體完成度大約50%。</p><p>聊天的部份有問到我面對一個難解問題時的處理態度及方法，及履歷上一些他們有興趣的問題，我履歷上有提到用過firebug和profiling tools做debug和效能分析的經驗，就有被問到用firebug除錯時，會深入到比javascript更低階的執行環境嗎？有沒有利用Python做過任何應用之類的，並提到說這個職缺需要實作一個內部使用，基於git的tool，要在六個月的時間中獨立完成，其實和我想像中的intern有不小的落差。</p><h2 id="Skymizer-軟體工程實習生"><a href="#Skymizer-軟體工程實習生" class="headerlink" title="Skymizer - 軟體工程實習生"></a>Skymizer - 軟體工程實習生</h2><p>Skymizer是這次找intern的主要動力與目標，會知道這間公司也是jserv老師常在課堂及臉書上數次提到該公司的強大，公司成員多來自一流大學且在如google，聯發科技等著名公司服務過，公司主要的產品是編譯器，透過獨家技術能讓顧客的程式效能提昇30%以上。</p><ul><li><a href="https://www.youtube.com/watch?v=cuFK7Onfqig" target="_blank" rel="noopener">公司介紹影片</a></li><li><a href="https://www.youtube.com/watch?v=CDOTMOUXqR4" target="_blank" rel="noopener">創辦人 Luba 在coscup 2011發表淺談 GCC 編譯技術 - Break Compilation Boundaries with GCC</a></li><li><a href="https://archive.org/details/COSCUP2012ARMvisorARMRMPeterChang" target="_blank" rel="noopener">創辦人之一 Peter chang在coscup 2012發表ARMvisor - ARM架構上系統虛擬機的實作 </a></li></ul><h3 id="履歷撰寫"><a href="#履歷撰寫" class="headerlink" title="履歷撰寫"></a>履歷撰寫</h3><p>為了這次面試我在一個禮拜內努力拼出英文履歷，並用<a href="https://github.com/posquit0/Awesome-CV" target="_blank" rel="noopener">Awesome-cv</a>和<a href="https://www.latex-project.org/" target="_blank" rel="noopener">latex</a>排出較為清晰的履歷版型，在這之前我沒用過latex，中文履歷也是用104的制式格式，履歷內容的產出很大一部份歸功於jserv老師，老師教我如何蒐集公司資料，分析自己的優勢與劣勢，最重要的是如何把自己做過得事情和經驗，透過履歷與職務產生連結，在這次面試過程中，我的履歷也得到面試官的肯定，其中一位提到他們通常會在十秒內掃過一份履歷並決定是否給其面試機會。</p><p><strong><a href="https://dl.dropboxusercontent.com/u/31201582/resume.pdf" target="_blank" rel="noopener">我的英文履歷</a></strong></p><p>在撰寫履歷期間，我參考過不少網路資料，並簡短紀錄成幾篇文章，有興趣的可以參考:</p><ol><li><a href="http://good5dog5.github.io/2016/03/23/Write_resume_using_Latex/">用Latex寫個人履歷 - 以Awesome-cv作為template</a></li><li><a href="http://good5dog5.github.io/2016/03/30/resume-note/">寫英文履歷時的筆記</a></li></ol><h3 id="面試過程"><a href="#面試過程" class="headerlink" title="面試過程"></a>面試過程</h3><p>面試當天總共有四位面試官，他們首先簡短的自我介紹後，換我被要求用我的履歷做自我介紹，我原本就有準備自我介紹，但跟我履歷上的順序是不一致的，這會讓面試官無法對照履歷獲得一個有系統的認知，建議準備自我介紹的時候可以按照履歷的排列順序會比較好。結束自我介紹後，面試官針對履歷上他們有興趣的項目做進一步的細問，我被問到 </p><ul><li>你用過perf和gprof，那他們有何不同的地方嗎？</li><li>你覺得perf的結果準確嗎？ 還有perf之所以能偵測程式熱點的機制是？</li><li>你如何用perf知道程式的cache misses rate有降低，指令是如何下的？</li><li>你說你用過gnu toolchain，那除了make和gcc，還有哪些utility是你有用過得？</li><li>你有撰寫過ld script的經驗嗎？</li><li>請問git rebase是什麼?</li></ul><p>專題相關問題</p><ul><li>簡述畢業專題負責的部份</li><li>五子棋AI的部份是到怎樣的程度</li><li>有用C++做過什麼專案嗎？Python呢？</li></ul><p>之後面試官給出了三個選擇，要上白板寫解法，一開始我用dp寫了第一個版本，被要求能否在更快呢？我把dp用來存資料的table修改為幾個variable，如此省掉array初始化的空間及array存取的overhead，因為forloop中有用到i++，就被問到說<code>i++</code>和<code>++i</code>的效能差異，並寫兩個function去實作<code>i++</code>和<code>++i</code>的差異，這裡我大概就卡了二十分鐘，之後回到原本的題目，被要求O(1)的解法，最後實在做不出來，面試官給出解題方向，例如可以在compile time先建制好table，並把table entry塞在GPU或CPU register中，即可在run time時以O(1)得解。</p><p>被問到的問題其實沒有很多，白板題的部份花掉太多時間，使得我有準備一些如<a href="http://www.books.com.tw/products/0010456858" target="_blank" rel="noopener">程式設計師的自我修養</a>中提到的知識沒機會被問到，另外，履歷中所有列出的陳述，都應該先思考被問到相關問題時該如何回答，使得在固定的面試時間內，能讓自己有更多表現的機會。 </p><h2 id="後續"><a href="#後續" class="headerlink" title="後續"></a>後續</h2><p>Skymizer在面試過後的幾天(5/27)來信，告知沒被錄取的結果，與一般罐頭感謝信不同的是，裡頭描述了我面試過程的表現與建議，讓得知結果後的心情除了沮喪，也有溫暖再出發的心情 </p><blockquote><p>謝謝您申請 Skymizer 的見習勇者，我們有感受到您對此職位的熱情與積極。<br>你使用 gprof 和 perf 的經驗是我們所重視的，在面試的過程中，我們也發現你會主動針對自己不足的部份尋求成長的空間，不斷進取的態度讓人印象深刻，你也有找到對應文件自行判讀的能力。</p><p>很遺憾的通知您此次沒有機會與您合作，但我們看得出來你有很大的潛力，也非常期待你未來的發展。一點個人的小建議，你的能力很優秀，在面試的時候對於題目可以更主動一點提問，可以讓你更加亮眼喔！</p><p>我們會在 blog 或粉絲團上分享我們對於產業、技術的想法，歡迎你繼續跟我們交流想法，也誠摯邀請你下次再前來挑戰！</p></blockquote><p>感動之餘我寫了人生第一封落榜感謝信XD</p><blockquote><p> Dear Little Sky,</p><p>感謝Skymizer給了我面試機會，讓我有機會重新檢視自己並追求卓越。</p><p>撰寫履歷的過程是有趣且充滿挑戰的，我從各方面蒐集Skymizer的相關資訊，包括Luba和Peter在COSCUP的演講，<br>看完後除了敬佩更增添我想在Skymizer工作的念頭，再寄出履歷後過了好久才等到回音，能得到你們的面試邀請真的很令我開心。</p><p>謝謝你們在面試時點出的問題，包括履歷的錯字，自我介紹的順序等等，你們對於程式執行效率的執著令我印象深刻，我會用這樣的態度去面對我以後撰寫的每個專案，<br>希望未來能夠通過你們的挑戰。</p></blockquote>]]></content>
     
@@ -255,6 +279,10 @@
       <category term="Job" scheme="http://good5dog5.github.io/tags/Job/"/>
     
       <category term="Interview" scheme="http://good5dog5.github.io/tags/Interview/"/>
+    
+      <category term="Skymizer" scheme="http://good5dog5.github.io/tags/Skymizer/"/>
+    
+      <category term="Nvidia" scheme="http://good5dog5.github.io/tags/Nvidia/"/>
     
   </entry>
   
@@ -481,38 +509,6 @@
       <category term="git" scheme="http://good5dog5.github.io/tags/git/"/>
     
       <category term="cml" scheme="http://good5dog5.github.io/tags/cml/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>寫英文履歷時的筆記</title>
-    <link href="http://good5dog5.github.io/2016/03/30/resume-note/"/>
-    <id>http://good5dog5.github.io/2016/03/30/resume-note/</id>
-    <published>2016-03-30T04:12:00.000Z</published>
-    <updated>2016-08-04T04:28:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><ul><li>履歷是恰如其份的描述你的本，如果你</li><li>找工作就像談戀愛一樣，你不用很出眾或特別優秀，只要剛好適合即可</li><li>適時的裝弱，但言談間給對方異想不到的驚喜</li><li>Interview是雙向的交流，不只是公司遠人也是人挑公司</li><li>Qualification，列舉出你跟職位需求所match的部份<br>  例如職位需求是清潔工，那你可以寫說平常有早晚打掃的習慣，擅長使用掃把，拖把抹布等等</li><li>面試的重點是作換位思考，以主管的角度思考他所期望的人才，想聽到的話語，感興趣的題目等</li><li>面試時的<strong>冷場</strong>是很致命的，你如果不主動找話題那主管就會出題目問你，在你還可以掌握主導權的時候就儘量的開話題，把話題引導到有利於自己的方向借題發揮。</li><li>如何突顯在前工作的重要性很重要，能確切表達公司的龍同地位但又不違反保密協定更是高手<br>  ex:北美前四大通信產品供應商 -&gt; HTC<br>  ex:財星top 500,etc</li></ul><h2 id="英文用詞"><a href="#英文用詞" class="headerlink" title="英文用詞"></a>英文用詞</h2><ul><li>表述自己對領域的專精程度<ul><li>極度牢靠的專精   - good knowledge of, solid knowledge of, strong .., In-depth knowledge</li><li>還不錯，不會太差 - familar with, working knowledge of</li><li>基礎上知道       - basic knowledge</li></ul></li></ul><h2 id="軟體工程師CV範例"><a href="#軟體工程師CV範例" class="headerlink" title="軟體工程師CV範例"></a>軟體工程師CV範例</h2><p><a href="https://perot.me/cv" target="_blank" rel="noopener">Etienne Perot » CV</a><br><a href="https://wiki.mozilla.org/FreeSoftwareOnResumes:Writing" target="_blank" rel="noopener">FreeSoftwareOnResumes:Writing</a><br><a href="https://sddelbecbc.com/resume.html" target="_blank" rel="noopener"> Muhammad Tauqir Ahmad</a></p><p><a href="http://blog.rockresume.com/2014/08/blog-post.html" target="_blank" rel="noopener">履歷，轉介紹，獵人頭，以及其他找工作的方式 </a><br><a href="https://www.ptt.cc/bbs/Salary/M.1370276459.A.4B5.html" target="_blank" rel="noopener">[心得] 使用Linkedin建立人脈</a><br><a href="http://blog.skymizer.com/resume2015/" target="_blank" rel="noopener">應徵大作戰，投出你的面試門票！（履歷篇）</a><br><a href="http://www.kent.ac.uk/careers/cv.htm" target="_blank" rel="noopener">How to write a successful CV</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;履歷是恰如其份的描述你的本，如果你&lt;/li&gt;
-&lt;li&gt;找工作就像談戀愛一樣，你不用很出眾或特別優秀，只要剛好適合即可&lt;/li&gt;
-&lt;li&gt;適時的裝弱，但言談間給對方異想不到的驚喜&lt;/li&gt;
-&lt;li&gt;Interview是雙向的交流
-      
-    
-    </summary>
-    
-    
-      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
-    
-      <category term="Resume" scheme="http://good5dog5.github.io/tags/Resume/"/>
-    
-      <category term="Cv" scheme="http://good5dog5.github.io/tags/Cv/"/>
     
   </entry>
   
