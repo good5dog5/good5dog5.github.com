@@ -4,25 +4,25 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>利用 GNU Privacy Guard (GPG) 加解密檔案 | 一奔二飛</title>
+    <title>解決 apt-get 顯示 public key is not AVALIABLE 的問題 | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
     
 
     
-    <meta name="description" content="GPG 是 unix-based系統常用的加解密工具，各種常用的應用如信件軟體和通訊軟體都依靠他來保證雙向通訊的安全。簡單紀錄一下如何利用 gpg 對檔案進行加解密。">
-<meta name="keywords" content="gpg,gnu,crypto">
+    <meta name="description" content="用 apt-get update package index 或是安裝套件時，常會發生錯誤訊息為 public key is not AVALIABLE的問題，紀錄一下對應的解法。">
+<meta name="keywords" content="apt-get,gpg,debian,ubuntu,apt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用 GNU Privacy Guard (GPG) 加解密檔案">
-<meta property="og:url" content="http://good5dog5.github.io/2016/07/09/利用gpg加解密檔案/index.html">
+<meta property="og:title" content="解決 apt-get 顯示 public key is not AVALIABLE 的問題">
+<meta property="og:url" content="http://good5dog5.github.io/2019/07/09/解決Public-key-is-not-avaliable/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="GPG 是 unix-based系統常用的加解密工具，各種常用的應用如信件軟體和通訊軟體都依靠他來保證雙向通訊的安全。簡單紀錄一下如何利用 gpg 對檔案進行加解密。">
+<meta property="og:description" content="用 apt-get update package index 或是安裝套件時，常會發生錯誤訊息為 public key is not AVALIABLE的問題，紀錄一下對應的解法。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-09T06:15:58.065Z">
+<meta property="og:updated_time" content="2019-12-09T06:24:22.472Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用 GNU Privacy Guard (GPG) 加解密檔案">
-<meta name="twitter:description" content="GPG 是 unix-based系統常用的加解密工具，各種常用的應用如信件軟體和通訊軟體都依靠他來保證雙向通訊的安全。簡單紀錄一下如何利用 gpg 對檔案進行加解密。">
+<meta name="twitter:title" content="解決 apt-get 顯示 public key is not AVALIABLE 的問題">
+<meta name="twitter:description" content="用 apt-get update package index 或是安裝套件時，常會發生錯誤訊息為 public key is not AVALIABLE的問題，紀錄一下對應的解法。">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -83,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/09/利用gpg加解密檔案/" title="利用 GNU Privacy Guard (GPG) 加解密檔案" itemprop="url">利用 GNU Privacy Guard (GPG) 加解密檔案</a>
+      <a href="/2019/07/09/解決Public-key-is-not-avaliable/" title="解決 apt-get 顯示 public key is not AVALIABLE 的問題" itemprop="url">解決 apt-get 顯示 public key is not AVALIABLE 的問題</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   </p><p class="article-time">
-    <time datetime="2016-07-08T19:50:42.000Z" itemprop="datePublished"> Published 2016-07-09</time>
+    <time datetime="2019-07-09T02:50:42.000Z" itemprop="datePublished"> Published 2019-07-09</time>
     
   </p>
 </header>
@@ -99,17 +99,15 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安裝"><span class="toc-number">1.</span> <span class="toc-text">安裝</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OSX"><span class="toc-number">1.1.</span> <span class="toc-text">OSX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他作業系統"><span class="toc-number">1.2.</span> <span class="toc-text">其他作業系統</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Encrypt"><span class="toc-number">1.2.1.</span> <span class="toc-text">Encrypt:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Decrypt"><span class="toc-number">1.2.2.</span> <span class="toc-text">Decrypt:</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#原因"><span class="toc-number">1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解法"><span class="toc-number">2.</span> <span class="toc-text">解法</span></a></li></ol>
 		
 		</div>
 		
-		<p>GPG 是 unix-based<br>系統常用的加解密工具，各種常用的應用如信件軟體和通訊軟體都依靠他來保證雙向通訊的安全。<br>簡單紀錄一下如何利用 gpg 對檔案進行加解密。</p>
+		<p>用 apt-get update package index 或是安裝套件時，常會發生錯誤訊息為 <code>public key is not AVALIABLE</code><br>的問題，紀錄一下對應的解法。</p>
 <a id="more"></a>
-<h1 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h1><h2 id="OSX"><a href="#OSX" class="headerlink" title="OSX"></a>OSX</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install gnupg</span><br></pre></td></tr></table></figure>
-<h2 id="其他作業系統"><a href="#其他作業系統" class="headerlink" title="其他作業系統"></a>其他作業系統</h2><p>可到 <a href="https://www.gnupg.org/download/#binary" target="_blank" rel="noopener">GnuPG</a> 下載對應安裝檔。</p>
-<h3 id="Encrypt"><a href="#Encrypt" class="headerlink" title="Encrypt:"></a>Encrypt:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gpg --cipher-algo AES256 --symmetric filename.tar.gz</span><br><span class="line"></span><br><span class="line">#等同</span><br><span class="line">gpg --cipher-algo AES256 -c filename.tar.gz</span><br></pre></td></tr></table></figure>
-<p>會產生名為 <code>filename.tar.gz.gpg</code>的加密檔，原來的<code>filename.tar.gz</code>亦存在。</p>
-<h3 id="Decrypt"><a href="#Decrypt" class="headerlink" title="Decrypt:"></a>Decrypt:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gpg --output filename.tar.gz --decrypt filename.tar.gz.gpg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等同</span></span><br><span class="line">gpg -o filename.tar.gz -d filename.tar.gz.gpg</span><br></pre></td></tr></table></figure>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>沒有對應的 public key，以此例而言， public key ID 是 <code>1F3045A5DF7587C3</code></p>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>從 key server 下載對應的公鑰即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1F3045A5DF7587C3</span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -118,7 +116,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/gpg/">gpg</a><a href="/tags/gnu/">gnu</a><a href="/tags/crypto/">crypto</a>
+  <span></span> <a href="/tags/apt-get/">apt-get</a><a href="/tags/gpg/">gpg</a><a href="/tags/debian/">debian</a><a href="/tags/ubuntu/">ubuntu</a><a href="/tags/apt/">apt</a>
   </div>
 
 </div>
@@ -133,16 +131,16 @@
 <nav class="article-nav clearfix">
  
  <div class="prev">
- <a href="/2016/07/18/libreoffice-use-note/" title="Libreoffice5 使用筆記">
+ <a href="/2019/12/03/books-com-tw-analysis/" title="爬取並分析 books.com.tw 之熱銷品資料">
   <span>
-  Libreoffice5 使用筆記</span>
+  爬取並分析 books.com.tw 之熱銷品資料</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/06/05/PyCon2016-review/" title="PyCon TW 2016參加心得">
- <span>PyCon TW 2016參加心得
+<a href="/2018/11/12/First-try-Redis-with-Python/" title="Redis 初探 - 用 python 操作 redis">
+ <span>Redis 初探 - 用 python 操作 redis
 </span>
 </a>
 </div>
@@ -163,7 +161,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安裝"><span class="toc-number">1.</span> <span class="toc-text">安裝</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OSX"><span class="toc-number">1.1.</span> <span class="toc-text">OSX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他作業系統"><span class="toc-number">1.2.</span> <span class="toc-text">其他作業系統</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Encrypt"><span class="toc-number">1.2.1.</span> <span class="toc-text">Encrypt:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Decrypt"><span class="toc-number">1.2.2.</span> <span class="toc-text">Decrypt:</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#原因"><span class="toc-number">1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解法"><span class="toc-number">2.</span> <span class="toc-text">解法</span></a></li></ol>
  
   </div>
 

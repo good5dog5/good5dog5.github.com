@@ -141,6 +141,64 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2019/07/09/解決Public-key-is-not-avaliable/" title="解決 apt-get 顯示 public key is not AVALIABLE 的問題" itemprop="url">解決 apt-get 顯示 public key is not AVALIABLE 的問題</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
+		
+  </p><p class="article-time">
+    <time datetime="2019-07-09T02:50:42.000Z" itemprop="datePublished"> Published 2019-07-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>用 apt-get update package index 或是安裝套件時，常會發生錯誤訊息為 <code>public key is not AVALIABLE</code><br>的問題，紀錄一下對應的解法。</p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2019/07/09/解決Public-key-is-not-avaliable/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/apt-get/">apt-get</a><a href="/tags/gpg/">gpg</a><a href="/tags/debian/">debian</a><a href="/tags/ubuntu/">ubuntu</a><a href="/tags/apt/">apt</a>
+  </div>
+
+</div>
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2019/07/09/解決Public-key-is-not-avaliable/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2018/11/12/First-try-Redis-with-Python/" title="Redis 初探 - 用 python 操作 redis" itemprop="url">Redis 初探 - 用 python 操作 redis</a>
   </h1>
   <p class="article-author">By
@@ -455,7 +513,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/09/利用gpg加解密檔案/" title="利用gpg加解密檔案" itemprop="url">利用gpg加解密檔案</a>
+      <a href="/2016/07/09/利用gpg加解密檔案/" title="利用 GNU Privacy Guard (GPG) 加解密檔案" itemprop="url">利用 GNU Privacy Guard (GPG) 加解密檔案</a>
   </h1>
   <p class="article-author">By
        
@@ -468,9 +526,7 @@
 </header>
     <div class="article-content">
         
-        <h3 id="Encrypt"><a href="#Encrypt" class="headerlink" title="Encrypt:"></a>Encrypt:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gpg --cipher-algo AES256 --symmetric filename.tar.gz</span><br><span class="line"></span><br><span class="line">#等同</span><br><span class="line">gpg --cipher-algo AES256 -c filename.tar.gz</span><br></pre></td></tr></table></figure>
-<p>會產生名為 <code>filename.tar.gz.gpg</code>的加密檔，原來的<code>filename.tar.gz</code>亦存在。</p>
-<h3 id="Decrypt"><a href="#Decrypt" class="headerlink" title="Decrypt:"></a>Decrypt:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gpg --output filename.tar.gz --decrypt filename.tar.gz.gpg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等同</span></span><br><span class="line">gpg -o filename.tar.gz -d filename.tar.gz.gpg</span><br></pre></td></tr></table></figure>
+        <p>GPG 是 unix-based<br>系統常用的加解密工具，各種常用的應用如信件軟體和通訊軟體都依靠他來保證雙向通訊的安全。<br>簡單紀錄一下如何利用 gpg 對檔案進行加解密。</p>
         
         
         <p class="article-more-link">
@@ -485,7 +541,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/gpg/">gpg</a>
+  <span></span> <a href="/tags/gpg/">gpg</a><a href="/tags/gnu/">gnu</a><a href="/tags/crypto/">crypto</a>
   </div>
 
 </div>
@@ -612,64 +668,6 @@
 	
 	  	<span></span>
 		<a href="/2016/05/26/初探Dbus與polkit/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/29/c-preprocessor-intro/" title="GNU c preprocessor筆記" itemprop="url">GNU c preprocessor筆記</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
-		
-  </p><p class="article-time">
-    <time datetime="2016-04-29T04:12:00.000Z" itemprop="datePublished"> Published 2016-04-29</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>C語言的前置處理(CPP:C Preprocessor)功能強大，了解其使用方法及時機能加快理解他人程式碼的速度與撰碼功力，本篇是我學習的筆記。</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/04/29/c-preprocessor-intro/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/c/">c</a><a href="/tags/Preprocessor/">Preprocessor</a><a href="/tags/gcc/">gcc</a><a href="/tags/macro/">macro</a>
-  </div>
-
-</div>
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/29/c-preprocessor-intro/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -823,6 +821,10 @@
 			
 		
 			
+				<li><a href="/tags/apt-get/" title="apt-get">apt-get<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
 			
 		
@@ -856,10 +858,6 @@
 		
 			
 				<li><a href="/tags/vim/" title="vim">vim<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/job/" title="job">job<sup>1</sup></a></li>
 			
 		
 		</ul>

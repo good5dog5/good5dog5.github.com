@@ -43,6 +43,34 @@
   </entry>
   
   <entry>
+    <title>解決 apt-get 顯示 public key is not AVALIABLE 的問題</title>
+    <link href="http://good5dog5.github.io/2019/07/09/%E8%A7%A3%E6%B1%BAPublic-key-is-not-avaliable/"/>
+    <id>http://good5dog5.github.io/2019/07/09/解決Public-key-is-not-avaliable/</id>
+    <published>2019-07-09T02:50:42.000Z</published>
+    <updated>2019-12-09T06:24:22.472Z</updated>
+    
+    <content type="html"><![CDATA[<p>用 apt-get update package index 或是安裝套件時，常會發生錯誤訊息為 <code>public key is not AVALIABLE</code><br>的問題，紀錄一下對應的解法。</p><a id="more"></a><h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>沒有對應的 public key，以此例而言， public key ID 是 <code>1F3045A5DF7587C3</code></p><h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>從 key server 下載對應的公鑰即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1F3045A5DF7587C3</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用 apt-get update package index 或是安裝套件時，常會發生錯誤訊息為 &lt;code&gt;public key is not AVALIABLE&lt;/code&gt;&lt;br&gt;的問題，紀錄一下對應的解法。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="apt-get" scheme="http://good5dog5.github.io/tags/apt-get/"/>
+    
+      <category term="gpg" scheme="http://good5dog5.github.io/tags/gpg/"/>
+    
+      <category term="debian" scheme="http://good5dog5.github.io/tags/debian/"/>
+    
+      <category term="ubuntu" scheme="http://good5dog5.github.io/tags/ubuntu/"/>
+    
+      <category term="apt" scheme="http://good5dog5.github.io/tags/apt/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Redis 初探 - 用 python 操作 redis</title>
     <link href="http://good5dog5.github.io/2018/11/12/First-try-Redis-with-Python/"/>
     <id>http://good5dog5.github.io/2018/11/12/First-try-Redis-with-Python/</id>
@@ -169,24 +197,26 @@
   </entry>
   
   <entry>
-    <title>利用gpg加解密檔案</title>
+    <title>利用 GNU Privacy Guard (GPG) 加解密檔案</title>
     <link href="http://good5dog5.github.io/2016/07/09/%E5%88%A9%E7%94%A8gpg%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%AA%94%E6%A1%88/"/>
     <id>http://good5dog5.github.io/2016/07/09/利用gpg加解密檔案/</id>
     <published>2016-07-08T19:50:42.000Z</published>
-    <updated>2018-11-16T07:00:02.000Z</updated>
+    <updated>2019-12-09T06:15:58.065Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="Encrypt"><a href="#Encrypt" class="headerlink" title="Encrypt:"></a>Encrypt:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gpg --cipher-algo AES256 --symmetric filename.tar.gz</span><br><span class="line"></span><br><span class="line">#等同</span><br><span class="line">gpg --cipher-algo AES256 -c filename.tar.gz</span><br></pre></td></tr></table></figure><p>會產生名為 <code>filename.tar.gz.gpg</code>的加密檔，原來的<code>filename.tar.gz</code>亦存在。</p><h3 id="Decrypt"><a href="#Decrypt" class="headerlink" title="Decrypt:"></a>Decrypt:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gpg --output filename.tar.gz --decrypt filename.tar.gz.gpg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等同</span></span><br><span class="line">gpg -o filename.tar.gz -d filename.tar.gz.gpg</span><br></pre></td></tr></table></figure><a id="more"></a>]]></content>
+    <content type="html"><![CDATA[<p>GPG 是 unix-based<br>系統常用的加解密工具，各種常用的應用如信件軟體和通訊軟體都依靠他來保證雙向通訊的安全。<br>簡單紀錄一下如何利用 gpg 對檔案進行加解密。</p><a id="more"></a><h1 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h1><h2 id="OSX"><a href="#OSX" class="headerlink" title="OSX"></a>OSX</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install gnupg</span><br></pre></td></tr></table></figure><h2 id="其他作業系統"><a href="#其他作業系統" class="headerlink" title="其他作業系統"></a>其他作業系統</h2><p>可到 <a href="https://www.gnupg.org/download/#binary" target="_blank" rel="noopener">GnuPG</a> 下載對應安裝檔。</p><h3 id="Encrypt"><a href="#Encrypt" class="headerlink" title="Encrypt:"></a>Encrypt:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gpg --cipher-algo AES256 --symmetric filename.tar.gz</span><br><span class="line"></span><br><span class="line">#等同</span><br><span class="line">gpg --cipher-algo AES256 -c filename.tar.gz</span><br></pre></td></tr></table></figure><p>會產生名為 <code>filename.tar.gz.gpg</code>的加密檔，原來的<code>filename.tar.gz</code>亦存在。</p><h3 id="Decrypt"><a href="#Decrypt" class="headerlink" title="Decrypt:"></a>Decrypt:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gpg --output filename.tar.gz --decrypt filename.tar.gz.gpg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等同</span></span><br><span class="line">gpg -o filename.tar.gz -d filename.tar.gz.gpg</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;Encrypt&quot;&gt;&lt;a href=&quot;#Encrypt&quot; class=&quot;headerlink&quot; title=&quot;Encrypt:&quot;&gt;&lt;/a&gt;Encrypt:&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gpg --cipher-algo AES256 --symmetric filename.tar.gz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#等同&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gpg --cipher-algo AES256 -c filename.tar.gz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;會產生名為 &lt;code&gt;filename.tar.gz.gpg&lt;/code&gt;的加密檔，原來的&lt;code&gt;filename.tar.gz&lt;/code&gt;亦存在。&lt;/p&gt;
-&lt;h3 id=&quot;Decrypt&quot;&gt;&lt;a href=&quot;#Decrypt&quot; class=&quot;headerlink&quot; title=&quot;Decrypt:&quot;&gt;&lt;/a&gt;Decrypt:&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gpg --output filename.tar.gz --decrypt filename.tar.gz.gpg&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 等同&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gpg -o filename.tar.gz -d filename.tar.gz.gpg&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+      &lt;p&gt;GPG 是 unix-based&lt;br&gt;系統常用的加解密工具，各種常用的應用如信件軟體和通訊軟體都依靠他來保證雙向通訊的安全。&lt;br&gt;簡單紀錄一下如何利用 gpg 對檔案進行加解密。&lt;/p&gt;
     
     </summary>
     
     
       <category term="gpg" scheme="http://good5dog5.github.io/tags/gpg/"/>
+    
+      <category term="gnu" scheme="http://good5dog5.github.io/tags/gnu/"/>
+    
+      <category term="crypto" scheme="http://good5dog5.github.io/tags/crypto/"/>
     
   </entry>
   
@@ -480,35 +510,6 @@
       <category term="Blog" scheme="http://good5dog5.github.io/tags/Blog/"/>
     
       <category term="Gihub pages" scheme="http://good5dog5.github.io/tags/Gihub-pages/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>tig使用筆記</title>
-    <link href="http://good5dog5.github.io/2016/03/31/tig-note/"/>
-    <id>http://good5dog5.github.io/2016/03/31/tig-note/</id>
-    <published>2016-03-31T04:12:00.000Z</published>
-    <updated>2016-08-04T04:28:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li><a href="https://github.com/good5dog5/dotfile/blob/master/config/XDG_CONFIG/tig/tigrc" target="_blank" rel="noopener">My tigrc</a></li></ul><p><a href="https://github.com/jonas/tig" target="_blank" rel="noopener">tig</a>是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)</p><a id="more"></a><h2 id="tigrc"><a href="#tigrc" class="headerlink" title="tigrc"></a>tigrc</h2><p><a href="https://github.com/jonas/tig/wiki/Bindings" target="_blank" rel="noopener">tig binding wiki</a></p><ul><li><p>在<code>status view時刪掉某檔案</code></p>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind status D !?@rm %(file)</span><br></pre></td></tr></table></figure><ul><li><code>!</code>:使用external command <code>rm</code></li><li><code>?</code>:asks for confirmation, like “Are you sure you want to delete file? [YyNn]”</li><li><code>@</code>:prevents tig to display the command output, making things more integrated.</li></ul></li></ul><h2 id="在尚未有commit的repository啟動tig"><a href="#在尚未有commit的repository啟動tig" class="headerlink" title="在尚未有commit的repository啟動tig"></a>在尚未有commit的repository啟動tig</h2><p>在剛執行完<code>git init</code>的資料夾中執行<code>tig</code>會顯示以下錯誤<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tig: No revisions match the given arguments.</span><br></pre></td></tr></table></figure></p><p>解決辦法是執行<code>tig status</code>，顯示status view，可以直接按<code>u</code>加入檔案。<br><img src="https://i.imgur.com/t5c55Ur.png" alt="tig status"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/good5dog5/dotfile/blob/master/config/XDG_CONFIG/tig/tigrc&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;My tigrc&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/jonas/tig&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;tig&lt;/a&gt;是個ncurses-based text-mode的git界面，簡化git的操作流程不用打一長串的指令:)&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
-    
-      <category term="tig" scheme="http://good5dog5.github.io/tags/tig/"/>
-    
-      <category term="git" scheme="http://good5dog5.github.io/tags/git/"/>
-    
-      <category term="cml" scheme="http://good5dog5.github.io/tags/cml/"/>
     
   </entry>
   
