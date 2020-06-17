@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://good5dog5.github.io/"/>
-  <updated>2019-12-04T09:20:02.581Z</updated>
+  <updated>2020-03-28T17:48:32.550Z</updated>
   <id>http://good5dog5.github.io/</id>
   
   <author>
@@ -17,11 +17,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>利用 MusicBrainz Database 學習 postgres</title>
+    <link href="http://good5dog5.github.io/2020/03/29/%E5%88%A9%E7%94%A8-MusicBrainz-Database-%E5%AD%B8%E7%BF%92-postgresql/"/>
+    <id>http://good5dog5.github.io/2020/03/29/利用-MusicBrainz-Database-學習-postgresql/</id>
+    <published>2020-03-29T04:32:00.000Z</published>
+    <updated>2020-03-28T17:48:32.550Z</updated>
+    
+    <content type="html"><![CDATA[<p>由於最近專案上大量使用 sql, 加上前陣子做了 <a href="https://www.slideshare.net/ssuserb41761/postgres-indexing-and-toward-big-data-application" target="_blank" rel="noopener">postgres 內部 index</a> 的研究，想更近一步優化 sql 的寫法，<br>因此找了 musicvbrainz database 來練習，這裡紀錄一下整個安裝和設定的過程。</p><a id="more"></a><p>我在 <a href="https://aws.amazon.com/tw/lightsail/" target="_blank" rel="noopener">aws lightsail</a> 上開了一台 VPS, 從乾淨的環境開始裝設 postgres</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line">sudo sh -c <span class="string">'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" &gt;&gt; /etc/apt/sources.list.d/pgdg.list'</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install postgresql postgresql-contrib</span><br></pre></td></tr></table></figure><p>接著利用 mbdata 來創建 db 並導入 sql dump files.</p><h2 id="遇到的問題"><a href="#遇到的問題" class="headerlink" title="遇到的問題"></a>遇到的問題</h2><h3 id="無法-remote-access-postgres-from-psql"><a href="#無法-remote-access-postgres-from-psql" class="headerlink" title="無法 remote access postgres from psql"></a>無法 remote access postgres from psql</h3><p>解決辦法: lightsail enable 5432 port</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;由於最近專案上大量使用 sql, 加上前陣子做了 &lt;a href=&quot;https://www.slideshare.net/ssuserb41761/postgres-indexing-and-toward-big-data-application&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;postgres 內部 index&lt;/a&gt; 的研究，想更近一步優化 sql 的寫法，&lt;br&gt;因此找了 musicvbrainz database 來練習，這裡紀錄一下整個安裝和設定的過程。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://good5dog5.github.io/tags/python/"/>
+    
+      <category term="postgres" scheme="http://good5dog5.github.io/tags/postgres/"/>
+    
+      <category term="aws" scheme="http://good5dog5.github.io/tags/aws/"/>
+    
+      <category term="lightsail" scheme="http://good5dog5.github.io/tags/lightsail/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 pandas 處理非結構話資料</title>
+    <link href="http://good5dog5.github.io/2019/12/03/%E4%BD%BF%E7%94%A8pandas%E8%99%95%E7%90%86%E9%9D%9E%E7%B5%90%E6%A7%8B%E5%8C%96%E8%B3%87%E6%96%99/"/>
+    <id>http://good5dog5.github.io/2019/12/03/使用pandas處理非結構化資料/</id>
+    <published>2019-12-03T07:50:42.000Z</published>
+    <updated>2019-12-09T06:56:54.739Z</updated>
+    
+    <content type="html"><![CDATA[<p>TO be finished.<br><a id="more"></a></p><h1 id="Universal-functions-ufunc"><a href="#Universal-functions-ufunc" class="headerlink" title="Universal functions (ufunc)"></a>Universal functions (ufunc)</h1><p>pandas 底層以 numpy 的 ndarray 去表現 columns values 的集合，而 numpy 提供了一系列的 universal<br>function 可以加速 ndarray 的運算速度。</p><p><a href="https://docs.scipy.org/doc/numpy/reference/ufuncs.html" target="_blank" rel="noopener">https://docs.scipy.org/doc/numpy/reference/ufuncs.html</a></p><h2 id="Vectorization"><a href="#Vectorization" class="headerlink" title="Vectorization"></a>Vectorization</h2><p>透過特殊硬體，讓原本需要多個 iteration 才能完成的運算並行處理，compiler<br>會知道底層硬體是否支持向量化操作，而自動產生對應的 binary code.</p><p><a href="https://lappweb.in2p3.fr/~paubert/ASTERICS_HPC/images/vectorization.png" target="_blank" rel="noopener">!scalar v.s vectorized</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;TO be finished.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://good5dog5.github.io/tags/python/"/>
+    
+      <category term="pandas" scheme="http://good5dog5.github.io/tags/pandas/"/>
+    
+      <category term="data engineer" scheme="http://good5dog5.github.io/tags/data-engineer/"/>
+    
+  </entry>
+  
+  <entry>
     <title>爬取並分析 books.com.tw 之熱銷品資料</title>
     <link href="http://good5dog5.github.io/2019/12/03/books-com-tw-analysis/"/>
     <id>http://good5dog5.github.io/2019/12/03/books-com-tw-analysis/</id>
     <published>2019-12-03T07:35:00.000Z</published>
-    <updated>2019-12-04T09:20:02.581Z</updated>
+    <updated>2019-12-09T06:27:55.512Z</updated>
     
     <content type="html"><![CDATA[<p>簡單記錄一下這個週末做的小測試，專案連結在此:<a href="https://github.com/good5dog5/books_com_tw_crawler" target="_blank" rel="noopener">books_com_tw_crawler</a></p><a id="more"></a><h1 id="環境建置"><a href="#環境建置" class="headerlink" title="環境建置"></a>環境建置</h1><p>利用 pyenv 去建立 virtual environment，可依照不同 OS 去安裝。</p><h2 id="安裝-pyenv"><a href="#安裝-pyenv" class="headerlink" title="安裝 pyenv"></a>安裝 pyenv</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu (安裝所需 packages)</span></span><br><span class="line">sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev</span><br><span class="line">libsqlite3-dev wget curl llvm</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mac (直接安裝)</span></span><br><span class="line">curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</span><br></pre></td></tr></table></figure><h2 id="設定環境變數"><a href="#設定環境變數" class="headerlink" title="設定環境變數"></a>設定環境變數</h2><p>由於我用 oh-my-zsh, 在 plugins 加入 pyenv 並 source ~/.zhsrc 即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">autojump</span><br><span class="line">docker</span><br><span class="line">fzf</span><br><span class="line">osx</span><br><span class="line">pyenv</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p><h2 id="安裝-設定-global-python-intepreter"><a href="#安裝-設定-global-python-intepreter" class="headerlink" title="安裝/設定 global python intepreter"></a>安裝/設定 global python intepreter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyenv install 3.6.8</span><br><span class="line">pyenv global 3.6.8</span><br></pre></td></tr></table></figure><h2 id="利用-virtual-environment-安裝-python-packages"><a href="#利用-virtual-environment-安裝-python-packages" class="headerlink" title="利用 virtual environment 安裝 python packages"></a>利用 virtual environment 安裝 python packages</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -m venv .venv</span><br><span class="line"><span class="built_in">source</span> .venv/bin/activate</span><br></pre></td></tr></table></figure><p>以上兩步驟會在 <code>當前目錄下</code> 建立一個 .venv 資料夾，之後用 <code>pip</code> 安裝的套件都會放在裡面。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip  install -r requirements.txt</span><br></pre></td></tr></table></figure><h1 id="利用-requests-和-lxml-爬取熱銷品資料"><a href="#利用-requests-和-lxml-爬取熱銷品資料" class="headerlink" title="利用 requests 和 lxml 爬取熱銷品資料"></a>利用 requests 和 lxml 爬取熱銷品資料</h1><p>我的目標網頁為博客來書店的 top 100 熱銷書籍資料(<a href="https://www.books.com.tw/web/sys_tdrntb/books/)，簡單測試一下拿到的" target="_blank" rel="noopener">https://www.books.com.tw/web/sys_tdrntb/books/)，簡單測試一下拿到的</a> html 格式。</p><h1 id="取得-html"><a href="#取得-html" class="headerlink" title="取得 html"></a>取得 html</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">resp = requests.get(<span class="string">'https://www.books.com.tw/web/sys_tdrntb/books/'</span>)</span><br><span class="line">print(resp.content)</span><br></pre></td></tr></table></figure><p>會發現拿到的是 byte string, something likes<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">e4\xbc\x81\xe6\xa5\xad&lt;/span&gt;&lt;/li&gt;\n&lt;li class=<span class="string">"logo_1"</span>&gt;&lt;span</span><br><span class="line">title=<span class="string">"SSL\xe6\x86\x91\xe8\xad\x89\xe6\x9c\x8d\xe5\x8b\x99"</span>&gt;SSL\xe6\x86\x91\xe8\xad\x89\xe6\x9c\x8d\xe5\x8b\x99&lt;/span&gt;&lt;/li&gt;\n&lt;li</span><br><span class="line">class=<span class="string">"logo_2"</span>&gt;&lt;span</span><br></pre></td></tr></table></figure></p><p>用 str.decode 成 utf-8 即可。</p><h1 id="以-DOM-操作-html-data"><a href="#以-DOM-操作-html-data" class="headerlink" title="以 DOM 操作 html data"></a>以 DOM 操作 html data</h1><p>利用 lxml.html 將 html 轉成 etree 的樹狀結構，方便我們定位和取得各個節點的資料。</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lxml.html</span><br><span class="line">root_etree = lxml.html.fromstring(resp.content.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure><h1 id="取得-top-書單列表"><a href="#取得-top-書單列表" class="headerlink" title="取得 top 書單列表"></a>取得 top 書單列表</h1><p>現在 <code>root_etree</code> 是代表整張網頁的樹狀結構。我們可以用 <a href="https://stackoverflow.com/a/42194160" target="_blank" rel="noopener">chrome dev tool</a> 定位出每本暢銷書 link 的 xpath 並取得 url。以下 code snippet 會回傳一個 list of etree element。</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">books_url_list = root_etree.xpath(<span class="string">'/html/body/div[4]/div/div[3]/div[1]/ul/li'</span>)</span><br><span class="line">print(len(books_url_list)) <span class="comment"># 100</span></span><br></pre></td></tr></table></figure>]]></content>
     
@@ -457,59 +507,13 @@
     </summary>
     
     
-      <category term="note" scheme="http://good5dog5.github.io/tags/note/"/>
-    
       <category term="Nodejs" scheme="http://good5dog5.github.io/tags/Nodejs/"/>
     
       <category term="npm" scheme="http://good5dog5.github.io/tags/npm/"/>
     
+      <category term="note" scheme="http://good5dog5.github.io/tags/note/"/>
+    
       <category term="hexo" scheme="http://good5dog5.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Bash script筆記</title>
-    <link href="http://good5dog5.github.io/2016/04/03/bash-script-note/"/>
-    <id>http://good5dog5.github.io/2016/04/03/bash-script-note/</id>
-    <published>2016-04-03T04:12:00.000Z</published>
-    <updated>2016-08-04T04:28:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在Linux上長需要寫些Shell script解決繁瑣的問題，可是很多語法常常寫過就忘，這篇主要是紀錄自己常忘記的東西。</p><a id="more"></a><h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>比較常用 <code>array=(one two three)</code>這種宣告方法</p><h3 id="Dereferencing-the-variables-in-array"><a href="#Dereferencing-the-variables-in-array" class="headerlink" title="Dereferencing the variables in array"></a>Dereferencing the variables in array</h3><p>假設array=(one two three)<br>則<code>echo ${array{*}}</code>和<code>echo ${array{@}}</code>一樣都會印出 <strong>one two three</strong>，只是${array{*}}會將”one two three”視為單一字串。</p><h2 id="mysterious-‘-‘"><a href="#mysterious-‘-‘" class="headerlink" title="mysterious ‘-‘"></a>mysterious ‘-‘</h2><p><code>cd -</code>可以在當前目錄和上一個拜訪過得目錄之間做切換，<code>curl -sL http://xxxx | sudo -E bash -</code>可以讓bash執行curl下載的script，到底<code>-</code>是啥東西呢？</p><p>根據<a href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank" rel="noopener">POSIX Utility Syntax Guidelines</a></p><blockquote><p>Guideline 13:<br>For utilities that use operands to represent files to be opened for either reading or writing, the ‘-‘ operand should be used to mean only standard input (or standard output when it is clear from context that an output file is being specified) or a file named -. </p></blockquote><p>也就是說，當utility後面接的operand是檔案（檔名）時，<code>-</code>會被視為<code>stdin</code>或<code>stdout</code>，端看使用情境，否則就單純只是代表名為<code>-</code>的檔案。<br>另外，POSIX對<code>cd</code>時後面接的<code>-</code>有特別的定義：</p><blockquote><p>-<br>    When a <hyphen> is used as the operand, this shall be equivalent to the command:<br>    Whencd “$OLDPWD” &amp;&amp; pwd<br>    Whenwhich changes to the previous working directory and then writes its name.</hyphen></p></blockquote><p>理解以上之後，可以試試看 <code>echo &quot;echo echo&quot;| bash -</code>，這會印出<code>echo</code>。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在Linux上長需要寫些Shell script解決繁瑣的問題，可是很多語法常常寫過就忘，這篇主要是紀錄自己常忘記的東西。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
-    
-      <category term="Bash" scheme="http://good5dog5.github.io/tags/Bash/"/>
-    
-      <category term="script" scheme="http://good5dog5.github.io/tags/script/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>為Blog啟用google站內搜尋功能</title>
-    <link href="http://good5dog5.github.io/2016/04/02/github-pages-enable-googlesearch/"/>
-    <id>http://good5dog5.github.io/2016/04/02/github-pages-enable-googlesearch/</id>
-    <published>2016-04-02T04:12:00.000Z</published>
-    <updated>2016-08-04T04:28:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>寫網誌後發現剛更新的文章通常沒辦法利用站內搜尋找到，查了一下似乎是網站知名度太低，google在茫茫網海中尚未發現它的存在,挺令人哀傷的，還好這問題可以利用 <a href="https://www.google.com/webmasters/tools/?hl=zh-TW" target="_blank" rel="noopener">google search console</a>解決。</p><a id="more"></a><h2 id="讓google收錄你的網站"><a href="#讓google收錄你的網站" class="headerlink" title="讓google收錄你的網站"></a>讓google收錄你的網站</h2><p>search console會要求你驗證網站所有權，驗證的方法有很多種，我採用的是在網頁中加入html tag</p><p>編輯<code>themes/jacman/layout/_partial/head.ejs</code>加入<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"google-site-verification"</span> <span class="attr">content</span>=<span class="string">"x99kAHj-gCMS5M9ADRJOZwI_xsHXfgWfUpOcAhEivNk"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p><p>之後在search console中點選vertify即完成驗證。<br><img src="https://i.imgur.com/qWHcXqq.png" alt="ownership"></p><h2 id="提交sitemap"><a href="#提交sitemap" class="headerlink" title="提交sitemap"></a>提交sitemap</h2><p><a href="http://zhaojiandong.github.io/hexo-optimization1/" target="_blank" rel="noopener">ref1</a><br><code>sitemap.xml</code>是一個檔案，紀錄網站所有links形成的集合，方便網路爬蟲了解網站的架構並進行index，如此網站才能被搜尋得到。<a href="https://support.google.com/webmasters/answer/156184?hl=zh-Hant" target="_blank" rel="noopener">ref</a><br><code>heox</code>提供了sitemap generator</p><ol><li>安裝:<code>npm install hexo-generator-sitemap --save</code></li><li>設置：編輯 <code>_config.yml</code>，加入以下內容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plugins:</span><br><span class="line">- hexo-generator-sitemap</span><br></pre></td></tr></table></figure></li></ol><p>目前作到這一步hexo會報錯，暫且先紀錄到這裡。<br><strong>更新</strong> : 根據<a href="https://github.com/hexojs/hexo-renderer-jade/issues/4" target="_blank" rel="noopener">此issue</a>，<code>hexo 3.2</code>不用在<code>_config.yml</code>中加入<code>-plugins</code>的設定，它會自動載入所有已安裝的plugin，加入plugin的設定則會使hexo只載入那些plugins而出錯。</p><p><img src="https://i.imgur.com/welf0uM.png" alt="sitemap"><br>之後需要提交sitemap到google search console，提交成功的畫面<br><img src="https://i.imgur.com/8hrQkCs.png" alt="!cse sitemap"></p><h2 id="修改jacman’s-config-yml"><a href="#修改jacman’s-config-yml" class="headerlink" title="修改jacman’s _config.yml"></a>修改jacman’s _config.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#### Custom Search</span><br><span class="line">google_cse: </span><br><span class="line">  enable: true</span><br><span class="line">  cx: ## e.g. 018294693190868310296:abnhpuysycw your Custom Search ID.</span><br></pre></td></tr></table></figure><p>並在<code>source</code>資料夾建一個<code>index.md</code>內容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">layout: search </span><br><span class="line">title: search</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p><p>最終成果～<br><img src="https://i.imgur.com/7tKx8rO.png" alt="result"></p><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://www.jianshu.com/p/3e341d86acd2" target="_blank" rel="noopener">hexo博客换主题–icarus</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;寫網誌後發現剛更新的文章通常沒辦法利用站內搜尋找到，查了一下似乎是網站知名度太低，google在茫茫網海中尚未發現它的存在,挺令人哀傷的，還好這問題可以利用 &lt;a href=&quot;https://www.google.com/webmasters/tools/?hl=zh-TW&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;google search console&lt;/a&gt;解決。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Blog" scheme="http://good5dog5.github.io/tags/Blog/"/>
-    
-      <category term="Gihub pages" scheme="http://good5dog5.github.io/tags/Gihub-pages/"/>
     
   </entry>
   
