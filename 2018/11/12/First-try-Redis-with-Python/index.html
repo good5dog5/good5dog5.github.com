@@ -4,25 +4,25 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>Redis 初探 - 用 python 操作 redis | 一奔二飛</title>
+    <title>Redis 初探 - 使用 python 操作 redis | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
     
 
     
-    <meta name="description" content="Redis?redis 是 key:value pair’s cache system, 或是說是一套 distributed dictionary server從 StackOverflow 的問題 Memcached vs. Redis?  大家一面倒地推 Redis 安裝 redis server, redis-py12brew install redispip install redis">
+    <meta name="description" content="Redis 是什麼?redis 是 key:value pair’s cache system, 或是說是一套 distributed dictionary server從 StackOverflow 的問題 Memcached vs. Redis?  大家一面倒地推 Redis 安裝 redis server, redis-py12brew install redispip install re">
 <meta name="keywords" content="redis,python,memcached">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis 初探 - 用 python 操作 redis">
+<meta property="og:title" content="Redis 初探 - 使用 python 操作 redis">
 <meta property="og:url" content="http://good5dog5.github.io/2018/11/12/First-try-Redis-with-Python/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="Redis?redis 是 key:value pair’s cache system, 或是說是一套 distributed dictionary server從 StackOverflow 的問題 Memcached vs. Redis?  大家一面倒地推 Redis 安裝 redis server, redis-py12brew install redispip install redis">
+<meta property="og:description" content="Redis 是什麼?redis 是 key:value pair’s cache system, 或是說是一套 distributed dictionary server從 StackOverflow 的問題 Memcached vs. Redis?  大家一面倒地推 Redis 安裝 redis server, redis-py12brew install redispip install re">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-16T06:05:20.000Z">
+<meta property="og:updated_time" content="2020-09-21T06:33:31.461Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis 初探 - 用 python 操作 redis">
-<meta name="twitter:description" content="Redis?redis 是 key:value pair’s cache system, 或是說是一套 distributed dictionary server從 StackOverflow 的問題 Memcached vs. Redis?  大家一面倒地推 Redis 安裝 redis server, redis-py12brew install redispip install redis">
+<meta name="twitter:title" content="Redis 初探 - 使用 python 操作 redis">
+<meta name="twitter:description" content="Redis 是什麼?redis 是 key:value pair’s cache system, 或是說是一套 distributed dictionary server從 StackOverflow 的問題 Memcached vs. Redis?  大家一面倒地推 Redis 安裝 redis server, redis-py12brew install redispip install re">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -83,7 +83,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/11/12/First-try-Redis-with-Python/" title="Redis 初探 - 用 python 操作 redis" itemprop="url">Redis 初探 - 用 python 操作 redis</a>
+      <a href="/2018/11/12/First-try-Redis-with-Python/" title="Redis 初探 - 使用 python 操作 redis" itemprop="url">Redis 初探 - 使用 python 操作 redis</a>
   </h1>
   <p class="article-author">By
        
@@ -99,11 +99,11 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis"><span class="toc-number">1.</span> <span class="toc-text">Redis?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝-redis-server-redis-py"><span class="toc-number">2.</span> <span class="toc-text">安裝 redis server, redis-py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#設定並啟動-redis-server"><span class="toc-number">3.</span> <span class="toc-text">設定並啟動 redis server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#minimal-test"><span class="toc-number">4.</span> <span class="toc-text">minimal test</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-是什麼"><span class="toc-number">1.</span> <span class="toc-text">Redis 是什麼?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝-redis-server-redis-py"><span class="toc-number">2.</span> <span class="toc-text">安裝 redis server, redis-py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#設定並啟動-redis-server"><span class="toc-number">3.</span> <span class="toc-text">設定並啟動 redis server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#minimal-test"><span class="toc-number">4.</span> <span class="toc-text">minimal test</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis?"></a>Redis?</h2><p>redis 是 key:value pair’s cache system, 或是說是一套 distributed dictionary server<br>從 StackOverflow 的<a href="https://stackoverflow.com/questions/10558465/memcached-vs-redis" target="_blank" rel="noopener">問題</a> Memcached vs. Redis?  大家一面倒地推 Redis</p>
+		<h2 id="Redis-是什麼"><a href="#Redis-是什麼" class="headerlink" title="Redis 是什麼?"></a>Redis 是什麼?</h2><p>redis 是 key:value pair’s cache system, 或是說是一套 distributed dictionary server<br>從 StackOverflow 的<a href="https://stackoverflow.com/questions/10558465/memcached-vs-redis" target="_blank" rel="noopener">問題</a> Memcached vs. Redis?  大家一面倒地推 Redis</p>
 <h2 id="安裝-redis-server-redis-py"><a href="#安裝-redis-server-redis-py" class="headerlink" title="安裝 redis server, redis-py"></a>安裝 redis server, redis-py</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install redis</span><br><span class="line">pip install redis</span><br></pre></td></tr></table></figure>
 <h2 id="設定並啟動-redis-server"><a href="#設定並啟動-redis-server" class="headerlink" title="設定並啟動 redis server"></a>設定並啟動 redis server</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ln -sfv /usr/<span class="built_in">local</span>/opt/redis/*.plist ~/Library/LaunchAgents</span><br><span class="line">launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist</span><br><span class="line">redis-server /usr/<span class="built_in">local</span>/etc/redis.conf</span><br></pre></td></tr></table></figure>
 <p>測試看看 redis 是否跑起來</p>
@@ -162,7 +162,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis"><span class="toc-number">1.</span> <span class="toc-text">Redis?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝-redis-server-redis-py"><span class="toc-number">2.</span> <span class="toc-text">安裝 redis server, redis-py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#設定並啟動-redis-server"><span class="toc-number">3.</span> <span class="toc-text">設定並啟動 redis server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#minimal-test"><span class="toc-number">4.</span> <span class="toc-text">minimal test</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-是什麼"><span class="toc-number">1.</span> <span class="toc-text">Redis 是什麼?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝-redis-server-redis-py"><span class="toc-number">2.</span> <span class="toc-text">安裝 redis server, redis-py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#設定並啟動-redis-server"><span class="toc-number">3.</span> <span class="toc-text">設定並啟動 redis server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#minimal-test"><span class="toc-number">4.</span> <span class="toc-text">minimal test</span></a></li></ol>
  
   </div>
 
@@ -258,7 +258,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Note/" title="Note">Note<sup>8</sup></a></li>
+				<li><a href="/tags/Note/" title="Note">Note<sup>9</sup></a></li>
 			
 		
 			

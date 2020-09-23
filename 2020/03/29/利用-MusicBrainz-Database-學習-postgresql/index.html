@@ -11,18 +11,20 @@
     
 
     
-    <meta name="description" content="由於最近專案上大量使用 sql, 加上前陣子做了 postgres 內部 index 的研究，想更近一步優化 sql 的寫法，因此找了 musicvbrainz database 來練習，這裡紀錄一下整個安裝和設定的過程。">
+    <meta name="description" content="由於最近專案上大量使用 sql, 加上前陣子做了 postgres 內部 index 的研究，想更近一步優化 sql 的寫法，因此找了 musicvbrainz database 這 來練習，這裡紀錄一下整個安裝和設定的過程。 MusicBrainz是一個旨在創造開放資料音樂資料庫的專案，它原初的目的是針對光碟資料庫中的限制，但如今已不再將目標局限於CD後設資料儲存庫，而擴大為一種結構化的「音樂">
 <meta name="keywords" content="python,postgres,aws,lightsail">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用 MusicBrainz Database 學習 postgres">
 <meta property="og:url" content="http://good5dog5.github.io/2020/03/29/利用-MusicBrainz-Database-學習-postgresql/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="由於最近專案上大量使用 sql, 加上前陣子做了 postgres 內部 index 的研究，想更近一步優化 sql 的寫法，因此找了 musicvbrainz database 來練習，這裡紀錄一下整個安裝和設定的過程。">
+<meta property="og:description" content="由於最近專案上大量使用 sql, 加上前陣子做了 postgres 內部 index 的研究，想更近一步優化 sql 的寫法，因此找了 musicvbrainz database 這 來練習，這裡紀錄一下整個安裝和設定的過程。 MusicBrainz是一個旨在創造開放資料音樂資料庫的專案，它原初的目的是針對光碟資料庫中的限制，但如今已不再將目標局限於CD後設資料儲存庫，而擴大為一種結構化的「音樂">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-28T17:48:32.550Z">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/9/91/MusicBrainz_Logo_2016.svg">
+<meta property="og:updated_time" content="2020-09-21T08:01:41.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用 MusicBrainz Database 學習 postgres">
-<meta name="twitter:description" content="由於最近專案上大量使用 sql, 加上前陣子做了 postgres 內部 index 的研究，想更近一步優化 sql 的寫法，因此找了 musicvbrainz database 來練習，這裡紀錄一下整個安裝和設定的過程。">
+<meta name="twitter:description" content="由於最近專案上大量使用 sql, 加上前陣子做了 postgres 內部 index 的研究，想更近一步優化 sql 的寫法，因此找了 musicvbrainz database 這 來練習，這裡紀錄一下整個安裝和設定的過程。 MusicBrainz是一個旨在創造開放資料音樂資料庫的專案，它原初的目的是針對光碟資料庫中的限制，但如今已不再將目標局限於CD後設資料儲存庫，而擴大為一種結構化的「音樂">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/9/91/MusicBrainz_Logo_2016.svg">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -103,7 +105,9 @@
 		
 		</div>
 		
-		<p>由於最近專案上大量使用 sql, 加上前陣子做了 <a href="https://www.slideshare.net/ssuserb41761/postgres-indexing-and-toward-big-data-application" target="_blank" rel="noopener">postgres 內部 index</a> 的研究，想更近一步優化 sql 的寫法，<br>因此找了 musicvbrainz database 來練習，這裡紀錄一下整個安裝和設定的過程。</p>
+		<p><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/MusicBrainz_Logo_2016.svg" alt=""></p>
+<p>由於最近專案上大量使用 sql, 加上前陣子做了 <a href="https://www.slideshare.net/ssuserb41761/postgres-indexing-and-toward-big-data-application" target="_blank" rel="noopener">postgres 內部 index</a> 的研究，想更近一步優化 sql 的寫法，因此找了 musicvbrainz database 這 來練習，這裡紀錄一下整個安裝和設定的過程。</p>
+<p>MusicBrainz是一個旨在創造開放資料音樂資料庫的專案，它原初的目的是針對光碟資料庫中的限制，但如今已不再將目標局限於CD後設資料儲存庫，而擴大為一種結構化的「音樂維基百科」。</p>
 <a id="more"></a>
 <p>我在 <a href="https://aws.amazon.com/tw/lightsail/" target="_blank" rel="noopener">aws lightsail</a> 上開了一台 VPS, 從乾淨的環境開始裝設 postgres</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line">sudo sh -c <span class="string">'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" &gt;&gt; /etc/apt/sources.list.d/pgdg.list'</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install postgresql postgresql-contrib</span><br></pre></td></tr></table></figure>
@@ -131,6 +135,13 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev">
+ <a href="/2020/09/21/讀書心得-與成功有約/" title="讀書心得：與成功有約">
+  <span>
+  讀書心得：與成功有約</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2019/12/03/使用pandas處理非結構化資料/" title="使用 pandas 處理非結構話資料">
@@ -251,7 +262,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Note/" title="Note">Note<sup>8</sup></a></li>
+				<li><a href="/tags/Note/" title="Note">Note<sup>9</sup></a></li>
 			
 		
 			
