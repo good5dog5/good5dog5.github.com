@@ -4,25 +4,25 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>Linux學習心得 | 一奔二飛</title>
+    <title>我的第一個 shell script：利用 megadl 下載 Mega.co.nz 的檔案 | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
     
 
     
-    <meta name="description" content="大學剛開始就有種錯誤的期待，覺得必須把過去沒玩到的加倍討回來，整個校園有太多歡樂值得探尋，錯誤的把蹺課理解成大學賦於學生的一種選擇，於是乎成績就一直平平，甚至於，低落。">
-<meta name="keywords" content="Linux">
+    <meta name="description" content="這篇是我在 2014 發布的舊文章。當時很興奮的紀錄自己用 megadl 下載檔案。 還記得那時 Mega.co.nz 就會限制單個 ip 的下載流量，然而 megadl 卻能超額下載而不被偵測，還因此覺得自己很厲害而沾沾自喜 XDD 今日看來只覺得有些尷尬，但又感謝自己一直能保有熱情持續學習，敬所有跌跌撞撞卻樂此不疲的 Linux.er.">
+<meta name="keywords" content="Mega,shell script,megadl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux學習心得">
-<meta property="og:url" content="http://good5dog5.github.io/2014/10/16/Jobs-going/index.html">
+<meta property="og:title" content="我的第一個 shell script：利用 megadl 下載 Mega.co.nz 的檔案">
+<meta property="og:url" content="http://good5dog5.github.io/2014/03/16/20140316-用meagadl下載Mega檔案/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="大學剛開始就有種錯誤的期待，覺得必須把過去沒玩到的加倍討回來，整個校園有太多歡樂值得探尋，錯誤的把蹺課理解成大學賦於學生的一種選擇，於是乎成績就一直平平，甚至於，低落。">
+<meta property="og:description" content="這篇是我在 2014 發布的舊文章。當時很興奮的紀錄自己用 megadl 下載檔案。 還記得那時 Mega.co.nz 就會限制單個 ip 的下載流量，然而 megadl 卻能超額下載而不被偵測，還因此覺得自己很厲害而沾沾自喜 XDD 今日看來只覺得有些尷尬，但又感謝自己一直能保有熱情持續學習，敬所有跌跌撞撞卻樂此不疲的 Linux.er.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2016-08-04T04:28:43.000Z">
+<meta property="og:updated_time" content="2020-09-23T16:37:41.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux學習心得">
-<meta name="twitter:description" content="大學剛開始就有種錯誤的期待，覺得必須把過去沒玩到的加倍討回來，整個校園有太多歡樂值得探尋，錯誤的把蹺課理解成大學賦於學生的一種選擇，於是乎成績就一直平平，甚至於，低落。">
+<meta name="twitter:title" content="我的第一個 shell script：利用 megadl 下載 Mega.co.nz 的檔案">
+<meta name="twitter:description" content="這篇是我在 2014 發布的舊文章。當時很興奮的紀錄自己用 megadl 下載檔案。 還記得那時 Mega.co.nz 就會限制單個 ip 的下載流量，然而 megadl 卻能超額下載而不被偵測，還因此覺得自己很厲害而沾沾自喜 XDD 今日看來只覺得有些尷尬，但又感謝自己一直能保有熱情持續學習，敬所有跌跌撞撞卻樂此不疲的 Linux.er.">
 
     
     <link rel="alternative" href="/atom.xml" title="一奔二飛" type="application/atom+xml">
@@ -83,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/16/Jobs-going/" title="Linux學習心得" itemprop="url">Linux學習心得</a>
+      <a href="/2014/03/16/20140316-用meagadl下載Mega檔案/" title="我的第一個 shell script：利用 megadl 下載 Mega.co.nz 的檔案" itemprop="url">我的第一個 shell script：利用 megadl 下載 Mega.co.nz 的檔案</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
 		
   </p><p class="article-time">
-    <time datetime="2014-10-16T04:12:12.000Z" itemprop="datePublished"> Published 2014-10-16</time>
+    <time datetime="2014-03-16T04:12:00.000Z" itemprop="datePublished"> Published 2014-03-16</time>
     
   </p>
 </header>
@@ -99,30 +99,28 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-是個很好的轉折"><span class="toc-number">1.</span> <span class="toc-text">Linux 是個很好的轉折</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初期"><span class="toc-number">2.</span> <span class="toc-text">初期</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#源起"><span class="toc-number">1.</span> <span class="toc-text">源起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Megatools"><span class="toc-number">2.</span> <span class="toc-text">Megatools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下載腳本"><span class="toc-number">3.</span> <span class="toc-text">下載腳本</span></a></li></ol>
 		
 		</div>
 		
-		<p>大學剛開始就有種錯誤的期待，覺得必須把過去沒玩到的加倍討回來，整個校園有太多歡樂值得探尋，錯誤的把蹺課理解成大學賦於學生的一種選擇，於是乎成績就一直平平，甚至於，低落。</p>
-<a id="more"></a>   
-<hr>
-<h3 id="Linux-是個很好的轉折"><a href="#Linux-是個很好的轉折" class="headerlink" title="Linux 是個很好的轉折"></a>Linux 是個很好的轉折</h3><p>一直到當兵的時候開始閱讀鳥哥的私房菜，一本給初學者看的linux聖經，是在生大學的暑假買的的，當時純粹是覺得CML用起來很帥，大致裝完fedora後玩玩GUI後書就放到書櫃了，連Terminal都不之道友沒有打開過，下部隊後每天都有兩個小時左右的休息時間，索性帶了塵封五年多的書去軍中看，在過去看來艱澀難懂的內容，在經過大學四年來的學習經驗後，看起來是津津有味，用過難用的Widows作業系統後更能體會CML的效率，加上軍中過於無聊，看書效率其好無比，一個禮拜就能精看3~5個章節，回家就開機實際操作看看。</p>
-<h3 id="初期"><a href="#初期" class="headerlink" title="初期"></a>初期</h3><p>剛開始接觸新領域時，總需要一些基礎background去支持，Linux集成了所有電腦科學的精華和與UNIX的深厚淵源，其背後所涵蓋的基礎知識更是廣泛，一開始我先從Linux的歷史開始了解，當作看近代電腦系統發展史，了解Linux是在怎樣的時空背景下快速而蓬勃的發展，UNIX和Bell lab的關係，以及C語言和path套件是如何加速整個Linux tools的開發熱潮，而後Apache套件的釋出搭上網路熱潮，讓能夠運行Apache的Linux非科學市場的注意與愛用。</p>
-<p>了解基本歷史後，可以了解一下Linux的特性，優點與缺點都是可以讓你所想像的Linux更具體，大概知道X Window system的運作 </p>
+		<p>這篇是我在 2014 發布的舊文章。當時很興奮的紀錄自己用 megadl 下載檔案。 還記得那時 Mega.co.nz 就會限制單個 ip 的下載流量，然而 megadl 卻能超額下載而不被偵測，還因此覺得自己很厲害而沾沾自喜 XDD</p>
+<p>今日看來只覺得有些尷尬，但又感謝自己一直能保有熱情持續學習，敬所有跌跌撞撞卻樂此不疲的 Linux.er.</p>
+<a id="more"></a>
+<h2 id="源起"><a href="#源起" class="headerlink" title="源起"></a>源起</h2><p>切換到全 Linux 的作業環境後,很多應用程式都能找到替代方案,唯獨論壇上免空資源的下載器,大多是為了廣大的 windows 用戶所撰寫,自己常下載的免空大老”MEGA”就是其中一例,windows上可以利用MegaDownloader自動排程下載,linux下目前只有看到Megatools 這套cml界面的工具可用,而且裡面只有一個cmd是用來下載他人分享的內容,其餘都是用 來對自己的空間坐上傳,下載,查詢等等,與原來windows下的MegaDownloader功能相去甚遠。</p>
+<h2 id="Megatools"><a href="#Megatools" class="headerlink" title="Megatools"></a>Megatools</h2><p>Megatools 的 manual 如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">megals(1) megatools manual megals(1)</span><br><span class="line"></span><br><span class="line">name</span><br><span class="line"></span><br><span class="line">megadl - download exported files and directories from mega.co.nz</span><br><span class="line"></span><br><span class="line">synopsis</span><br><span class="line"></span><br><span class="line">       megadl [--no-progress] [--path &lt;path&gt;] &lt;links&gt;...</span><br><span class="line">       megadl --path - &lt;filelink&gt;</span><br><span class="line">description</span><br><span class="line"></span><br><span class="line">downloads exported files and folders from mega.co.nz. handles links like:</span><br><span class="line"></span><br><span class="line">· https://mega.co.nz/<span class="comment">#!7yvwhczz!baublakkkvv8him-8-qfmgoys289toqwn7rgfpzxb_w</span></span><br><span class="line"></span><br><span class="line">· https://mega.co.nz/<span class="comment">#f!hilfdajt!hlivvqqkse1d0ogxzuaojg</span></span><br><span class="line"></span><br><span class="line">       when downloading individual files, these are placed into &lt;path&gt;. when downloading folders, the contents of the folder are placed into directory</span><br><span class="line">       specified by &lt;path&gt;.</span><br><span class="line"></span><br><span class="line">       to <span class="built_in">export</span> files, you can use mega.co.nz web application, or megals(1)<span class="string">'s --export option.</span></span><br><span class="line"><span class="string">options</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       --path &lt;path&gt;</span></span><br><span class="line"><span class="string">           local directory to download to. defaults to the current working directory.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">           if &lt;path&gt; is -, remote file will be streamed to stdout.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       --no-progress</span></span><br><span class="line"><span class="string">           disable download progress reporting. this is implied when streaming.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       --debug [&lt;options&gt;]</span></span><br><span class="line"><span class="string">           Enable debugging of various aspects of the megatools operation. You may enable multiple debugging options separated by commas. (eg.  --debug</span></span><br><span class="line"><span class="string">           api,fs)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">           Available options are:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">           ·    api: Dump Mega.co.nz API calls</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">           ·    fs: Dump Mega.co.nz filesystem (may require --reload to actually print something)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">           ·    cache: Dump cache contents</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       --version</span></span><br><span class="line"><span class="string">           Show version information</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       &lt;links&gt;</span></span><br><span class="line"><span class="string">           File and folder links to download from.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       &lt;filelink&gt;</span></span><br><span class="line"><span class="string">           Link to exported file to stream.</span></span><br></pre></td></tr></table></figure>
+<h2 id="下載腳本"><a href="#下載腳本" class="headerlink" title="下載腳本"></a>下載腳本</h2><p>例如要下載一個連結為 <code>https://mega.co.nz/#!7YVWhCzZ!bauBlAkKKvv8hIm-8-qFmGOYS289ToQWN7rGFPzXB_wf</code> 的檔案則指令為<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">megadl <span class="string">"https://mega.co.nz/#!7YVWhCzZ!bauBlAkKKvv8hIm-8-qFmGOYS289ToQWN7rGFPzXB_w"</span></span><br></pre></td></tr></table></figure></p>
+<p>如果我有一連串的連結我就要手動作N次,很沒效率 剛好最近有接觸到shell script,就用他來批次化完成吧<br>先看code:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /media/G;</span><br><span class="line"></span><br><span class="line">filename=<span class="string">"<span class="variable">$1</span>"</span>;</span><br><span class="line">passcode=<span class="string">"<span class="variable">$2</span>"</span>;</span><br><span class="line">scriptname=<span class="variable">$&#123;filename%.*&#125;</span>.sh;</span><br><span class="line"></span><br><span class="line">cat <span class="variable">$filename</span> | sed <span class="string">'s/^/megadl /'</span> | awk -v q=<span class="string">"'"</span> <span class="string">'&#123;print $1 " " q$2q &#125;'</span> &gt;<span class="variable">$scriptname</span>; <span class="built_in">echo</span></span><br><span class="line"><span class="string">"<span class="variable">$scriptname</span>"</span> be created;</span><br><span class="line"></span><br><span class="line">sh <span class="variable">$scriptname</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> Download finish remove <span class="string">"<span class="variable">$scriptname</span>"</span>; rm <span class="variable">$scriptname</span>;<span class="string">'"</span></span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
-
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Linux/">Linux</a>
+  <span></span> <a href="/tags/Mega/">Mega</a><a href="/tags/shell-script/">shell script</a><a href="/tags/megadl/">megadl</a>
   </div>
 
 </div>
@@ -137,19 +135,12 @@
 <nav class="article-nav clearfix">
  
  <div class="prev">
- <a href="/2014/10/22/Began-working/" title="資工系畢業後的第一份工作： Edimax 訊舟科技">
+ <a href="/2014/10/16/Jobs-going/" title="Linux學習心得">
   <span>
-  資工系畢業後的第一份工作： Edimax 訊舟科技</span>
+  Linux學習心得</span>
 </a>
 </div>
 
-
-<div class="next">
-<a href="/2014/03/16/20140316-用meagadl下載Mega檔案/" title="我的第一個 shell script：利用 megadl 下載 Mega.co.nz 的檔案">
- <span>我的第一個 shell script：利用 megadl 下載 Mega.co.nz 的檔案
-</span>
-</a>
-</div>
 
 </nav>
 
@@ -167,7 +158,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-是個很好的轉折"><span class="toc-number">1.</span> <span class="toc-text">Linux 是個很好的轉折</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初期"><span class="toc-number">2.</span> <span class="toc-text">初期</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#源起"><span class="toc-number">1.</span> <span class="toc-text">源起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Megatools"><span class="toc-number">2.</span> <span class="toc-text">Megatools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下載腳本"><span class="toc-number">3.</span> <span class="toc-text">下載腳本</span></a></li></ol>
  
   </div>
 
