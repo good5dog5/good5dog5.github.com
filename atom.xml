@@ -203,13 +203,19 @@
   </entry>
   
   <entry>
-    <title>KKStream 面試與工作經驗</title>
+    <title>KKStream DevOps Engineer  面試經驗</title>
     <link href="http://good5dog5.github.io/2018/08/28/interview-kkstream/"/>
     <id>http://good5dog5.github.io/2018/08/28/interview-kkstream/</id>
     <published>2018-08-28T05:12:00.000Z</published>
-    <updated>2019-12-04T02:08:49.739Z</updated>
+    <updated>2020-09-23T17:13:10.183Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 2018 年 5 月左右，我的研究主題在實作方面進入了撞牆期，有長達五個月的時間都沒有實質的進展。那陣子每次要跟教授<br>meeting 前都壓力神大，加上看到身邊的同學一個個都進入知名大公司實習，心裡也慢慢埋下找實習的念頭。</p><p>那時候主要找的職缺是 DevOps，因為有我喜愛的 Linux 又有當時很火紅的雲端運算、AWS<br>和分散式運算等名詞，聽起來就超 cool 的。</p><p>我只投了一家做高頻交易的公司，是在清大就業博覽會上有聽到他們家的 pitch，面試後也拿到<br>offer，殊不知後來 KKStream 主動連絡上我，且開出比高頻交易公司更好的<br>Offer，僅以此篇記錄下整個面試過程給大家參考。</p><a id="more"></a><h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><p>來到 KKBOX 集團位於南港展覽館站的大樓，KKStream 位在 7 (or 8 有點忘了)<br>樓，剛進門就有很正個櫃檯小姐姐帶你到小房間寫考卷，考卷上大概都是一些概念題，題目大概有</p><ul><li>CDN 是什麼</li><li>high availability 是什麼</li><li>VPN 和 Proxy 有什麼不同</li><li>一些常用的 linux 指令</li><li>Linux network debug / performance 指令</li></ul><p>題目對純資工系的學生來說應該還好，只可能有些專有名詞要查一下了解過應該都寫得出來。<br>寫完考卷後就進來一個主管、一個 backend 同事和一個 SRE 同事近來一起面試，習慣 1-on-1<br>面試的我面對這樣的場面真的覺得備感壓力… </p><p>他們主要會對考卷上的答案在做一些詢問，像我 VPN 和 Proxy<br>就沒有達的很好，有再和主管討論一下兩者個差異，之後就是一些情境題，像是如果有一個 API endpoint<br>打不進去了，你要怎麼排除問題？針對這題我會列出一些假設情境，一方面展現自己對系統的了解，一方面也讓問題具體化變得比較好回答。回答完後，面試官會再加上一些限制條件，比如說若這樣的機器有幾百台，那這時候原本的方法該還適用嘛？該如何改善等等。</p><p>整個面試的過程都是類似的情境問題，持續了約 1.5 個小時結束這次面試。</p><h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><p>大約過了兩三天後收到二面通知，地點在同一區另一棟大樓的 KKBOX<br>辦公室。這次面談的是用人主管和他的主管，主要聊 KKStream<br>主要的技術和方向，跟問一些人格特質方面的問題，技術問題有是大方向的聊聊。印象比較深刻的是，我有問到說<br>DevOps 這個職位的技能樹又深又廣，我該如何規劃我的 Career path<br>呢？用人主管本身是架構師，針對這個問題他說這還是很看個人，每個人的選擇都不一樣，面對的需求也不一樣，他給我的建議是用到什麼就學什麼，能學就盡量學總有一天會用到跟融會貫通的。在經過一個小時左右的聊天結束這次面談。</p><h2 id="後續"><a href="#後續" class="headerlink" title="後續"></a>後續</h2><p>面談後我覺得我很喜歡 KKStream<br>給我的感覺，在面談中能深切感受到公司的技術含量與充滿活力與尊重工程師的文化，每天都在等 HR 的 Offer<br>電話。直到面試後下週的週五還是沒有消息，心裡想著大概不會上了吧，下意識地打開信箱才發現有封 HR<br>的信，說我他們決定給我 Offer 但電話一直打不通，請我回撥談一下 Offer 事宜。</p><p>總之最後如願拿到 Offer 囉。</p>]]></content>
     
     <summary type="html">
+    
+      &lt;p&gt;在 2018 年 5 月左右，我的研究主題在實作方面進入了撞牆期，有長達五個月的時間都沒有實質的進展。那陣子每次要跟教授&lt;br&gt;meeting 前都壓力神大，加上看到身邊的同學一個個都進入知名大公司實習，心裡也慢慢埋下找實習的念頭。&lt;/p&gt;
+&lt;p&gt;那時候主要找的職缺是 DevOps，因為有我喜愛的 Linux 又有當時很火紅的雲端運算、AWS&lt;br&gt;和分散式運算等名詞，聽起來就超 cool 的。&lt;/p&gt;
+&lt;p&gt;我只投了一家做高頻交易的公司，是在清大就業博覽會上有聽到他們家的 pitch，面試後也拿到&lt;br&gt;offer，殊不知後來 KKStream 主動連絡上我，且開出比高頻交易公司更好的&lt;br&gt;Offer，僅以此篇記錄下整個面試過程給大家參考。&lt;/p&gt;
     
     </summary>
     
