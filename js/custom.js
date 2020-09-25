@@ -20,6 +20,9 @@ $(function () {
             };
         });
     }
+
+    database.ref('/').set({a:123});
+
     readVisits(oriUrl, $("#visits .count"));
     if (curUrl && curUrl != "_") {
         readVisits("page/" + curUrl, $("#pageviews .count"));
