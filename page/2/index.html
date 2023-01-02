@@ -83,6 +83,128 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2018/11/12/First-try-Redis-with-Python/" title="Redis 初探 - 使用 python 操作 redis" itemprop="url">Redis 初探 - 使用 python 操作 redis</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
+		
+  </p><p class="article-time">
+    <time datetime="2018-11-12T09:53:00.000Z" itemprop="datePublished"> Published 2018-11-12</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="Redis-是什麼"><a href="#Redis-是什麼" class="headerlink" title="Redis 是什麼?"></a>Redis 是什麼?</h2><p>redis 是 key:value pair’s cache system, 或是說是一套 distributed dictionary server<br>從 StackOverflow 的<a href="https://stackoverflow.com/questions/10558465/memcached-vs-redis" target="_blank" rel="noopener">問題</a> Memcached vs. Redis?  大家一面倒地推 Redis</p>
+<h2 id="安裝-redis-server-redis-py"><a href="#安裝-redis-server-redis-py" class="headerlink" title="安裝 redis server, redis-py"></a>安裝 redis server, redis-py</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install redis</span><br><span class="line">pip install redis</span><br></pre></td></tr></table></figure>
+<h2 id="設定並啟動-redis-server"><a href="#設定並啟動-redis-server" class="headerlink" title="設定並啟動 redis server"></a>設定並啟動 redis server</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ln -sfv /usr/<span class="built_in">local</span>/opt/redis/*.plist ~/Library/LaunchAgents</span><br><span class="line">launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist</span><br><span class="line">redis-server /usr/<span class="built_in">local</span>/etc/redis.conf</span><br></pre></td></tr></table></figure>
+<p>測試看看 redis 是否跑起來</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli ping</span><br></pre></td></tr></table></figure>
+<h2 id="minimal-test"><a href="#minimal-test" class="headerlink" title="minimal test"></a>minimal test</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line">r = redis.Redis(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, db=<span class="number">0</span>)</span><br><span class="line">r.set(<span class="string">'foo'</span>,<span class="string">'bar'</span>)</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line">r.get(<span class="string">'foo'</span>)</span><br><span class="line">bar</span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/redis/">redis</a><a href="/tags/python/">python</a><a href="/tags/memcached/">memcached</a>
+  </div>
+
+</div>
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/11/12/First-try-Redis-with-Python/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/08/28/interview-kkstream/" title="KKStream DevOps Engineer  面試經驗" itemprop="url">KKStream DevOps Engineer  面試經驗</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
+		
+  </p><p class="article-time">
+    <time datetime="2018-08-28T05:12:00.000Z" itemprop="datePublished"> Published 2018-08-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>在 2018 年 5 月左右，我的研究主題在實作方面進入了撞牆期，有長達五個月的時間都沒有實質的進展。那陣子每次要跟教授<br>meeting 前都壓力神大，加上看到身邊的同學一個個都進入知名大公司實習，心裡也慢慢埋下找實習的念頭。</p>
+<p>那時候主要找的職缺是 DevOps，因為有我喜愛的 Linux 又有當時很火紅的雲端運算、AWS<br>和分散式運算等名詞，聽起來就超 cool 的。</p>
+<p>我只投了一家做高頻交易的公司，是在清大就業博覽會上有聽到他們家的 pitch，面試後也拿到<br>offer，殊不知後來 KKStream 主動連絡上我，且開出比高頻交易公司更好的<br>Offer，僅以此篇記錄下整個面試過程給大家參考。</p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2018/08/28/interview-kkstream/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Job/">Job</a><a href="/tags/Interview/">Interview</a><a href="/tags/KKStream/">KKStream</a><a href="/tags/KKBox/">KKBox</a><a href="/tags/SRE/">SRE</a>
+  </div>
+
+</div>
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/08/28/interview-kkstream/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2018/01/03/Enable-kvm-module-on-tx2/" title="讓 TX2 boot on Hyp mode並啟動 KVM" itemprop="url">讓 TX2 boot on Hyp mode並啟動 KVM</a>
   </h1>
   <p class="article-author">By
@@ -563,121 +685,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/22/i3wm-configuration-intro/" title="i3 window manager設定與使用教學" itemprop="url">i3 window manager設定與使用教學</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
-		
-  </p><p class="article-time">
-    <time datetime="2016-04-22T04:12:00.000Z" itemprop="datePublished"> Published 2016-04-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <a id="more"></a>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Note/">Note</a><a href="/tags/i3-wm/">i3 wm</a><a href="/tags/config/">config</a>
-  </div>
-
-</div>
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/22/i3wm-configuration-intro/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/20/intro-xSystem-xinit/" title="初探X window system與xinit" itemprop="url">初探X window system與xinit</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jordan Huang" target="_blank" itemprop="author">Jordan Huang</a>
-		
-  </p><p class="article-time">
-    <time datetime="2016-04-20T04:12:00.000Z" itemprop="datePublished"> Published 2016-04-20</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>自從開始用<a href="https://wiki.archlinux.org/index.php/rxvt-unicode" target="_blank" rel="noopener">urxvt</a>後，覺得自己對x window system及它的設定檔們(<code>.xinitrc</code>, <code>.Xresources</code>, <code>.xdefault</code>, <code>.xprofile</code>)還是一知半解，剛好最近重灌ubuntu後urxvt掛掉，趁此機會邊修復邊紀錄。</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/04/20/intro-xSystem-xinit/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/xinit/">xinit</a><a href="/tags/urxvt/">urxvt</a>
-  </div>
-
-</div>
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/20/intro-xSystem-xinit/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -822,6 +829,10 @@
 			
 		
 			
+				<li><a href="/tags/Python/" title="Python">Python<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/i3-wm/" title="i3 wm">i3 wm<sup>2</sup></a></li>
 			
 		
@@ -831,10 +842,6 @@
 		
 			
 				<li><a href="/tags/Resume/" title="Resume">Resume<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Python/" title="Python">Python<sup>2</sup></a></li>
 			
 		
 			
@@ -886,7 +893,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2023 
 		
 		<a href="/about" target="_blank" title="Jordan Huang">Jordan Huang</a>
 		
