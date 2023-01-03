@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://good5dog5.github.io/"/>
-  <updated>2023-01-02T15:18:32.862Z</updated>
+  <updated>2023-01-02T15:23:09.896Z</updated>
   <id>http://good5dog5.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://good5dog5.github.io/2022/12/14/tailscale-%E5%9F%BA%E6%96%BCWireGuard%E7%9A%84%E4%BE%BF%E5%88%A9VPN/"/>
     <id>http://good5dog5.github.io/2022/12/14/tailscale-基於WireGuard的便利VPN/</id>
     <published>2022-12-14T12:37:00.000Z</published>
-    <updated>2023-01-02T15:18:32.862Z</updated>
+    <updated>2023-01-02T15:23:09.896Z</updated>
     
     <content type="html"><![CDATA[<p>終於終結需要開 linode, 設定 router port-forwarding, 學習 reverse ssh tunnel 與猶豫要不要付費買 ngork 的日子 XDD<br><a id="more"></a></p><h2 id="Tailscale-是什麼"><a href="#Tailscale-是什麼" class="headerlink" title="Tailscale 是什麼"></a>Tailscale 是什麼</h2><p>能將你所有的裝置加入同一個網段，彼此可以互相連通。</p><p>在過去讓裝置可在網際網路上被存取，會需要有台 public 的跳板機或是 router, 並透過 port-forwarding 或是 reverse ssh tunnel 的方式才可讓機器互相連通。而且每個 port 都需要設定，挺麻煩的。<br><img src="tailscale-view.png" alt="overview"></p><h2 id="使用步驟"><a href="#使用步驟" class="headerlink" title="使用步驟"></a>使用步驟</h2><p>首先在 <a href="https://tailscale.com" target="_blank" rel="noopener">官網</a> 上註冊帳號</p><p>在 *nix 系統上可夠過指令快速安裝: <code>curl -fsSL [https://tailscale.com/install.sh](https://tailscale.com/install.sh) | sh</code><br>安裝好後下 <code>tailscale up</code> 啟動 tailscale daemon<br>接著就可以取得 <code>tailscale ip -4</code> 取得 tailscale 分配給你的內網 ip<br>若有用 群暉(Synology) NAS 的朋友，在 Package Center 上也有對應的套件可以安裝<br><img src="synology-package.png" alt="synology-pacakge"></p><p>安裝好後點開，就會跳出 authentication 視窗，透過 OAuth 即可完成認證。<br><img src="auth.png" alt="auth"></p><h2 id="適用情境"><a href="#適用情境" class="headerlink" title="適用情境"></a>適用情境</h2><h3 id="Portainer"><a href="#Portainer" class="headerlink" title="Portainer"></a>Portainer</h3><p>最近有個專案需要在 Proxmox VE 上的 VM 啟動多達 20 幾台的 docker container, 過程中需要一直查看 container logs。為求方便，我使用 Portainer  來取代繁雜的 docker 指令。</p><p>若沒有 tailscale 會需要對 portainer server 在 router 上做 port-forwarding, 而我所要監測的 VM 上也需要做一次才可使用 portainer agent。現在我只要開啟 tailscale 就可連接，極度方便。<br><img src="tailscale-toggle.png" alt="toggle"><br><img src="portainer.png" alt="portainer"></p>]]></content>
     
