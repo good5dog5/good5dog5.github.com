@@ -4,26 +4,26 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>2016嵌入式系統課程w3 - server-framework效能分析與改進 | 一奔二飛</title>
+    <title>2016 Jserv 嵌入式系統課程 week 3 - server-framework 效能分析與改進 | 一奔二飛</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jordan Huang">
     
 
     
-    <meta name="description" content="github repository   課程網頁 作業區 我的hackpad問題集  目標  閱讀以下材料: How to use epoll? A complete example in C The Event Poll Interface Understanding “volatile” qualifier in C Unix Signals 信號量測 Reactor Pattern pip">
+    <meta name="description" content="github repository   課程網頁 作業區 我的hackpad問題集">
 <meta name="keywords" content="Linux,C,Doxygen,embedded system">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2016嵌入式系統課程w3 - server-framework效能分析與改進">
+<meta property="og:title" content="2016 Jserv 嵌入式系統課程 week 3 - server-framework 效能分析與改進">
 <meta property="og:url" content="http://good5dog5.github.io/2016/03/25/hw-server-framework-in-modern-c/index.html">
 <meta property="og:site_name" content="一奔二飛">
-<meta property="og:description" content="github repository   課程網頁 作業區 我的hackpad問題集  目標  閱讀以下材料: How to use epoll? A complete example in C The Event Poll Interface Understanding “volatile” qualifier in C Unix Signals 信號量測 Reactor Pattern pip">
+<meta property="og:description" content="github repository   課程網頁 作業區 我的hackpad問題集">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://i.imgur.com/rmebmVi.png">
-<meta property="og:updated_time" content="2016-08-04T04:28:43.000Z">
+<meta property="og:updated_time" content="2023-01-30T17:28:27.193Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2016嵌入式系統課程w3 - server-framework效能分析與改進">
-<meta name="twitter:description" content="github repository   課程網頁 作業區 我的hackpad問題集  目標  閱讀以下材料: How to use epoll? A complete example in C The Event Poll Interface Understanding “volatile” qualifier in C Unix Signals 信號量測 Reactor Pattern pip">
+<meta name="twitter:title" content="2016 Jserv 嵌入式系統課程 week 3 - server-framework 效能分析與改進">
+<meta name="twitter:description" content="github repository   課程網頁 作業區 我的hackpad問題集">
 <meta name="twitter:image" content="https://i.imgur.com/rmebmVi.png">
 
     
@@ -85,7 +85,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/25/hw-server-framework-in-modern-c/" title="2016嵌入式系統課程w3 - server-framework效能分析與改進" itemprop="url">2016嵌入式系統課程w3 - server-framework效能分析與改進</a>
+      <a href="/2016/03/25/hw-server-framework-in-modern-c/" title="2016 Jserv 嵌入式系統課程 week 3 - server-framework 效能分析與改進" itemprop="url">2016 Jserv 嵌入式系統課程 week 3 - server-framework 效能分析與改進</a>
   </h1>
   <p class="article-author">By
        
@@ -111,6 +111,7 @@
 <li><a href="https://embedded2016.hackpad.com/2016q1-Homework-3-a3Rb2XROJso" target="_blank" rel="noopener">作業區</a></li>
 <li><a href="https://embedded2016.hackpad.com/EkhOLpdBSfW" target="_blank" rel="noopener">我的hackpad問題集</a></li>
 </ul>
+<a id="more"></a>
 <h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><blockquote>
 <ul>
 <li>閱讀以下材料:<ul>
@@ -137,7 +138,7 @@
 </li>
 </ul>
 </blockquote>
-<a id="more"></a>
+<!--more-->
 <h3 id="預先安裝的packages"><a href="#預先安裝的packages" class="headerlink" title="預先安裝的packages"></a>預先安裝的packages</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2-utils check</span><br><span class="line"> sudo apt-get install doxygen graphviz</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>apache2-utils</p>
