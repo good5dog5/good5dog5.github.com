@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>一奔二飛</title>
+  <title>Jordan&#39;s Notes</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://good5dog5.github.io/"/>
+  <link href="http://jordanhuang.tw/"/>
   <updated>2023-01-02T15:23:09.896Z</updated>
-  <id>http://good5dog5.github.io/</id>
+  <id>http://jordanhuang.tw/</id>
   
   <author>
     <name>Jordan Huang</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Tailscale, 基於 WireGuard 的便利 VPN</title>
-    <link href="http://good5dog5.github.io/2022/12/14/tailscale-%E5%9F%BA%E6%96%BCWireGuard%E7%9A%84%E4%BE%BF%E5%88%A9VPN/"/>
-    <id>http://good5dog5.github.io/2022/12/14/tailscale-基於WireGuard的便利VPN/</id>
+    <link href="http://jordanhuang.tw/2022/12/14/tailscale-%E5%9F%BA%E6%96%BCWireGuard%E7%9A%84%E4%BE%BF%E5%88%A9VPN/"/>
+    <id>http://jordanhuang.tw/2022/12/14/tailscale-基於WireGuard的便利VPN/</id>
     <published>2022-12-14T12:37:00.000Z</published>
     <updated>2023-01-02T15:23:09.896Z</updated>
     
@@ -32,22 +32,22 @@
     </summary>
     
     
-      <category term="cloud" scheme="http://good5dog5.github.io/tags/cloud/"/>
+      <category term="cloud" scheme="http://jordanhuang.tw/tags/cloud/"/>
     
-      <category term="Tailscale" scheme="http://good5dog5.github.io/tags/Tailscale/"/>
+      <category term="Tailscale" scheme="http://jordanhuang.tw/tags/Tailscale/"/>
     
-      <category term="networking" scheme="http://good5dog5.github.io/tags/networking/"/>
+      <category term="networking" scheme="http://jordanhuang.tw/tags/networking/"/>
     
-      <category term="vpn" scheme="http://good5dog5.github.io/tags/vpn/"/>
+      <category term="vpn" scheme="http://jordanhuang.tw/tags/vpn/"/>
     
-      <category term="wireguard" scheme="http://good5dog5.github.io/tags/wireguard/"/>
+      <category term="wireguard" scheme="http://jordanhuang.tw/tags/wireguard/"/>
     
   </entry>
   
   <entry>
     <title>Minio 備份筆記</title>
-    <link href="http://good5dog5.github.io/2021/08/17/minio-backup/"/>
-    <id>http://good5dog5.github.io/2021/08/17/minio-backup/</id>
+    <link href="http://jordanhuang.tw/2021/08/17/minio-backup/"/>
+    <id>http://jordanhuang.tw/2021/08/17/minio-backup/</id>
     <published>2021-08-17T12:37:00.000Z</published>
     <updated>2022-08-08T13:49:48.948Z</updated>
     
@@ -61,20 +61,20 @@
     </summary>
     
     
-      <category term="Minio" scheme="http://good5dog5.github.io/tags/Minio/"/>
+      <category term="Minio" scheme="http://jordanhuang.tw/tags/Minio/"/>
     
-      <category term="S3" scheme="http://good5dog5.github.io/tags/S3/"/>
+      <category term="S3" scheme="http://jordanhuang.tw/tags/S3/"/>
     
-      <category term="object-storage" scheme="http://good5dog5.github.io/tags/object-storage/"/>
+      <category term="object-storage" scheme="http://jordanhuang.tw/tags/object-storage/"/>
     
-      <category term="cloud" scheme="http://good5dog5.github.io/tags/cloud/"/>
+      <category term="cloud" scheme="http://jordanhuang.tw/tags/cloud/"/>
     
   </entry>
   
   <entry>
     <title>ANKI 系列：快速找出 ANKI NOTE 中圖檔在檔案系統的位置</title>
-    <link href="http://good5dog5.github.io/2020/09/23/20200923-%E6%89%BE%E5%88%B0ANKI%E4%B8%8A%E5%9C%96%E6%AA%94%E5%9C%A8%E6%AA%94%E6%A1%88%E7%B3%BB%E7%B5%B1%E7%9A%84%E4%BD%8D%E7%BD%AE/"/>
-    <id>http://good5dog5.github.io/2020/09/23/20200923-找到ANKI上圖檔在檔案系統的位置/</id>
+    <link href="http://jordanhuang.tw/2020/09/23/20200923-%E6%89%BE%E5%88%B0ANKI%E4%B8%8A%E5%9C%96%E6%AA%94%E5%9C%A8%E6%AA%94%E6%A1%88%E7%B3%BB%E7%B5%B1%E7%9A%84%E4%BD%8D%E7%BD%AE/"/>
+    <id>http://jordanhuang.tw/2020/09/23/20200923-找到ANKI上圖檔在檔案系統的位置/</id>
     <published>2020-09-23T15:56:00.000Z</published>
     <updated>2020-09-23T16:07:43.000Z</updated>
     
@@ -88,16 +88,16 @@
     </summary>
     
     
-      <category term="Anki" scheme="http://good5dog5.github.io/tags/Anki/"/>
+      <category term="Anki" scheme="http://jordanhuang.tw/tags/Anki/"/>
     
-      <category term="fileSystem" scheme="http://good5dog5.github.io/tags/fileSystem/"/>
+      <category term="fileSystem" scheme="http://jordanhuang.tw/tags/fileSystem/"/>
     
   </entry>
   
   <entry>
     <title>讀書書摘：神父也得憂鬱症</title>
-    <link href="http://good5dog5.github.io/2020/09/21/%E6%9B%B8%E6%91%98-%E7%A5%9E%E7%88%B6%E4%B9%9F%E5%BE%97%E6%86%82%E9%AC%B1%E7%97%87/"/>
-    <id>http://good5dog5.github.io/2020/09/21/書摘-神父也得憂鬱症/</id>
+    <link href="http://jordanhuang.tw/2020/09/21/%E6%9B%B8%E6%91%98-%E7%A5%9E%E7%88%B6%E4%B9%9F%E5%BE%97%E6%86%82%E9%AC%B1%E7%97%87/"/>
+    <id>http://jordanhuang.tw/2020/09/21/書摘-神父也得憂鬱症/</id>
     <published>2020-09-21T13:03:27.000Z</published>
     <updated>2020-09-24T06:17:32.000Z</updated>
     
@@ -110,18 +110,18 @@
     </summary>
     
     
-      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
+      <category term="Note" scheme="http://jordanhuang.tw/tags/Note/"/>
     
-      <category term="書摘" scheme="http://good5dog5.github.io/tags/%E6%9B%B8%E6%91%98/"/>
+      <category term="書摘" scheme="http://jordanhuang.tw/tags/%E6%9B%B8%E6%91%98/"/>
     
-      <category term="心得" scheme="http://good5dog5.github.io/tags/%E5%BF%83%E5%BE%97/"/>
+      <category term="心得" scheme="http://jordanhuang.tw/tags/%E5%BF%83%E5%BE%97/"/>
     
   </entry>
   
   <entry>
     <title>讀書心得：與成功有約</title>
-    <link href="http://good5dog5.github.io/2020/09/21/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97-%E7%AA%AE%E7%88%B8%E7%88%B8%E8%88%87%E5%AF%8C%E7%88%B8%E7%88%B8/"/>
-    <id>http://good5dog5.github.io/2020/09/21/讀書心得-窮爸爸與富爸爸/</id>
+    <link href="http://jordanhuang.tw/2020/09/21/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97-%E7%AA%AE%E7%88%B8%E7%88%B8%E8%88%87%E5%AF%8C%E7%88%B8%E7%88%B8/"/>
+    <id>http://jordanhuang.tw/2020/09/21/讀書心得-窮爸爸與富爸爸/</id>
     <published>2020-09-21T08:08:00.000Z</published>
     <updated>2020-09-24T06:22:41.000Z</updated>
     
@@ -139,18 +139,18 @@
     </summary>
     
     
-      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
+      <category term="Note" scheme="http://jordanhuang.tw/tags/Note/"/>
     
-      <category term="書摘" scheme="http://good5dog5.github.io/tags/%E6%9B%B8%E6%91%98/"/>
+      <category term="書摘" scheme="http://jordanhuang.tw/tags/%E6%9B%B8%E6%91%98/"/>
     
-      <category term="心得" scheme="http://good5dog5.github.io/tags/%E5%BF%83%E5%BE%97/"/>
+      <category term="心得" scheme="http://jordanhuang.tw/tags/%E5%BF%83%E5%BE%97/"/>
     
   </entry>
   
   <entry>
     <title>讀書心得：與成功有約</title>
-    <link href="http://good5dog5.github.io/2020/09/21/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97-%E8%88%87%E6%88%90%E5%8A%9F%E6%9C%89%E7%B4%84/"/>
-    <id>http://good5dog5.github.io/2020/09/21/讀書心得-與成功有約/</id>
+    <link href="http://jordanhuang.tw/2020/09/21/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97-%E8%88%87%E6%88%90%E5%8A%9F%E6%9C%89%E7%B4%84/"/>
+    <id>http://jordanhuang.tw/2020/09/21/讀書心得-與成功有約/</id>
     <published>2020-09-21T08:08:00.000Z</published>
     <updated>2020-09-24T06:11:32.000Z</updated>
     
@@ -163,18 +163,18 @@
     </summary>
     
     
-      <category term="Note" scheme="http://good5dog5.github.io/tags/Note/"/>
+      <category term="Note" scheme="http://jordanhuang.tw/tags/Note/"/>
     
-      <category term="書摘" scheme="http://good5dog5.github.io/tags/%E6%9B%B8%E6%91%98/"/>
+      <category term="書摘" scheme="http://jordanhuang.tw/tags/%E6%9B%B8%E6%91%98/"/>
     
-      <category term="心得" scheme="http://good5dog5.github.io/tags/%E5%BF%83%E5%BE%97/"/>
+      <category term="心得" scheme="http://jordanhuang.tw/tags/%E5%BF%83%E5%BE%97/"/>
     
   </entry>
   
   <entry>
     <title>利用 MusicBrainz Database 學習 postgres</title>
-    <link href="http://good5dog5.github.io/2020/03/29/%E5%88%A9%E7%94%A8-MusicBrainz-Database-%E5%AD%B8%E7%BF%92-postgresql/"/>
-    <id>http://good5dog5.github.io/2020/03/29/利用-MusicBrainz-Database-學習-postgresql/</id>
+    <link href="http://jordanhuang.tw/2020/03/29/%E5%88%A9%E7%94%A8-MusicBrainz-Database-%E5%AD%B8%E7%BF%92-postgresql/"/>
+    <id>http://jordanhuang.tw/2020/03/29/利用-MusicBrainz-Database-學習-postgresql/</id>
     <published>2020-03-29T04:32:00.000Z</published>
     <updated>2020-09-21T08:01:41.000Z</updated>
     
@@ -189,20 +189,20 @@
     </summary>
     
     
-      <category term="python" scheme="http://good5dog5.github.io/tags/python/"/>
+      <category term="python" scheme="http://jordanhuang.tw/tags/python/"/>
     
-      <category term="postgres" scheme="http://good5dog5.github.io/tags/postgres/"/>
+      <category term="postgres" scheme="http://jordanhuang.tw/tags/postgres/"/>
     
-      <category term="aws" scheme="http://good5dog5.github.io/tags/aws/"/>
+      <category term="aws" scheme="http://jordanhuang.tw/tags/aws/"/>
     
-      <category term="lightsail" scheme="http://good5dog5.github.io/tags/lightsail/"/>
+      <category term="lightsail" scheme="http://jordanhuang.tw/tags/lightsail/"/>
     
   </entry>
   
   <entry>
     <title>使用 pandas 處理非結構話資料</title>
-    <link href="http://good5dog5.github.io/2019/12/03/%E4%BD%BF%E7%94%A8pandas%E8%99%95%E7%90%86%E9%9D%9E%E7%B5%90%E6%A7%8B%E5%8C%96%E8%B3%87%E6%96%99/"/>
-    <id>http://good5dog5.github.io/2019/12/03/使用pandas處理非結構化資料/</id>
+    <link href="http://jordanhuang.tw/2019/12/03/%E4%BD%BF%E7%94%A8pandas%E8%99%95%E7%90%86%E9%9D%9E%E7%B5%90%E6%A7%8B%E5%8C%96%E8%B3%87%E6%96%99/"/>
+    <id>http://jordanhuang.tw/2019/12/03/使用pandas處理非結構化資料/</id>
     <published>2019-12-03T07:50:42.000Z</published>
     <updated>2019-12-09T06:56:54.000Z</updated>
     
@@ -215,18 +215,18 @@
     </summary>
     
     
-      <category term="python" scheme="http://good5dog5.github.io/tags/python/"/>
+      <category term="python" scheme="http://jordanhuang.tw/tags/python/"/>
     
-      <category term="pandas" scheme="http://good5dog5.github.io/tags/pandas/"/>
+      <category term="pandas" scheme="http://jordanhuang.tw/tags/pandas/"/>
     
-      <category term="data engineer" scheme="http://good5dog5.github.io/tags/data-engineer/"/>
+      <category term="data engineer" scheme="http://jordanhuang.tw/tags/data-engineer/"/>
     
   </entry>
   
   <entry>
     <title>Python Pandas 數據分析：以博客來網路書店熱銷商品為例</title>
-    <link href="http://good5dog5.github.io/2019/12/03/books-com-tw-analysis/"/>
-    <id>http://good5dog5.github.io/2019/12/03/books-com-tw-analysis/</id>
+    <link href="http://jordanhuang.tw/2019/12/03/books-com-tw-analysis/"/>
+    <id>http://jordanhuang.tw/2019/12/03/books-com-tw-analysis/</id>
     <published>2019-12-03T07:35:00.000Z</published>
     <updated>2020-09-21T06:30:39.000Z</updated>
     
@@ -239,20 +239,20 @@
     </summary>
     
     
-      <category term="Python" scheme="http://good5dog5.github.io/tags/Python/"/>
+      <category term="Python" scheme="http://jordanhuang.tw/tags/Python/"/>
     
-      <category term="lxml" scheme="http://good5dog5.github.io/tags/lxml/"/>
+      <category term="lxml" scheme="http://jordanhuang.tw/tags/lxml/"/>
     
-      <category term="requests" scheme="http://good5dog5.github.io/tags/requests/"/>
+      <category term="requests" scheme="http://jordanhuang.tw/tags/requests/"/>
     
-      <category term="pandas" scheme="http://good5dog5.github.io/tags/pandas/"/>
+      <category term="pandas" scheme="http://jordanhuang.tw/tags/pandas/"/>
     
   </entry>
   
   <entry>
     <title>解決 apt-get 顯示 public key is not AVALIABLE 的問題</title>
-    <link href="http://good5dog5.github.io/2019/07/09/%E8%A7%A3%E6%B1%BAPublic-key-is-not-avaliable/"/>
-    <id>http://good5dog5.github.io/2019/07/09/解決Public-key-is-not-avaliable/</id>
+    <link href="http://jordanhuang.tw/2019/07/09/%E8%A7%A3%E6%B1%BAPublic-key-is-not-avaliable/"/>
+    <id>http://jordanhuang.tw/2019/07/09/解決Public-key-is-not-avaliable/</id>
     <published>2019-07-09T02:50:42.000Z</published>
     <updated>2019-12-09T06:24:22.000Z</updated>
     
@@ -265,22 +265,22 @@
     </summary>
     
     
-      <category term="apt-get" scheme="http://good5dog5.github.io/tags/apt-get/"/>
+      <category term="apt-get" scheme="http://jordanhuang.tw/tags/apt-get/"/>
     
-      <category term="gpg" scheme="http://good5dog5.github.io/tags/gpg/"/>
+      <category term="gpg" scheme="http://jordanhuang.tw/tags/gpg/"/>
     
-      <category term="debian" scheme="http://good5dog5.github.io/tags/debian/"/>
+      <category term="debian" scheme="http://jordanhuang.tw/tags/debian/"/>
     
-      <category term="ubuntu" scheme="http://good5dog5.github.io/tags/ubuntu/"/>
+      <category term="ubuntu" scheme="http://jordanhuang.tw/tags/ubuntu/"/>
     
-      <category term="apt" scheme="http://good5dog5.github.io/tags/apt/"/>
+      <category term="apt" scheme="http://jordanhuang.tw/tags/apt/"/>
     
   </entry>
   
   <entry>
     <title>Redis 初探 - 使用 python 操作 redis</title>
-    <link href="http://good5dog5.github.io/2018/11/12/First-try-Redis-with-Python/"/>
-    <id>http://good5dog5.github.io/2018/11/12/First-try-Redis-with-Python/</id>
+    <link href="http://jordanhuang.tw/2018/11/12/First-try-Redis-with-Python/"/>
+    <id>http://jordanhuang.tw/2018/11/12/First-try-Redis-with-Python/</id>
     <published>2018-11-12T09:53:00.000Z</published>
     <updated>2020-09-21T06:33:31.000Z</updated>
     
@@ -296,18 +296,18 @@
     </summary>
     
     
-      <category term="redis" scheme="http://good5dog5.github.io/tags/redis/"/>
+      <category term="redis" scheme="http://jordanhuang.tw/tags/redis/"/>
     
-      <category term="python" scheme="http://good5dog5.github.io/tags/python/"/>
+      <category term="python" scheme="http://jordanhuang.tw/tags/python/"/>
     
-      <category term="memcached" scheme="http://good5dog5.github.io/tags/memcached/"/>
+      <category term="memcached" scheme="http://jordanhuang.tw/tags/memcached/"/>
     
   </entry>
   
   <entry>
     <title>KKStream DevOps Engineer  面試經驗</title>
-    <link href="http://good5dog5.github.io/2018/08/28/interview-kkstream/"/>
-    <id>http://good5dog5.github.io/2018/08/28/interview-kkstream/</id>
+    <link href="http://jordanhuang.tw/2018/08/28/interview-kkstream/"/>
+    <id>http://jordanhuang.tw/2018/08/28/interview-kkstream/</id>
     <published>2018-08-28T05:12:00.000Z</published>
     <updated>2020-09-23T17:13:10.000Z</updated>
     
@@ -322,22 +322,22 @@
     </summary>
     
     
-      <category term="Job" scheme="http://good5dog5.github.io/tags/Job/"/>
+      <category term="Job" scheme="http://jordanhuang.tw/tags/Job/"/>
     
-      <category term="Interview" scheme="http://good5dog5.github.io/tags/Interview/"/>
+      <category term="Interview" scheme="http://jordanhuang.tw/tags/Interview/"/>
     
-      <category term="KKStream" scheme="http://good5dog5.github.io/tags/KKStream/"/>
+      <category term="KKStream" scheme="http://jordanhuang.tw/tags/KKStream/"/>
     
-      <category term="KKBox" scheme="http://good5dog5.github.io/tags/KKBox/"/>
+      <category term="KKBox" scheme="http://jordanhuang.tw/tags/KKBox/"/>
     
-      <category term="SRE" scheme="http://good5dog5.github.io/tags/SRE/"/>
+      <category term="SRE" scheme="http://jordanhuang.tw/tags/SRE/"/>
     
   </entry>
   
   <entry>
     <title>讓 TX2 boot on Hyp mode並啟動 KVM</title>
-    <link href="http://good5dog5.github.io/2018/01/03/Enable-kvm-module-on-tx2/"/>
-    <id>http://good5dog5.github.io/2018/01/03/Enable-kvm-module-on-tx2/</id>
+    <link href="http://jordanhuang.tw/2018/01/03/Enable-kvm-module-on-tx2/"/>
+    <id>http://jordanhuang.tw/2018/01/03/Enable-kvm-module-on-tx2/</id>
     <published>2018-01-03T06:24:50.000Z</published>
     <updated>2018-01-03T06:50:53.000Z</updated>
     
@@ -354,18 +354,18 @@
     </summary>
     
     
-      <category term="KVM" scheme="http://good5dog5.github.io/tags/KVM/"/>
+      <category term="KVM" scheme="http://jordanhuang.tw/tags/KVM/"/>
     
-      <category term="kernel" scheme="http://good5dog5.github.io/tags/kernel/"/>
+      <category term="kernel" scheme="http://jordanhuang.tw/tags/kernel/"/>
     
-      <category term="hack" scheme="http://good5dog5.github.io/tags/hack/"/>
+      <category term="hack" scheme="http://jordanhuang.tw/tags/hack/"/>
     
   </entry>
   
   <entry>
     <title>Flash TX2 with default Root FileSystem(R28.1)</title>
-    <link href="http://good5dog5.github.io/2017/12/20/tx2-reflash-with-sample-rootfs/"/>
-    <id>http://good5dog5.github.io/2017/12/20/tx2-reflash-with-sample-rootfs/</id>
+    <link href="http://jordanhuang.tw/2017/12/20/tx2-reflash-with-sample-rootfs/"/>
+    <id>http://jordanhuang.tw/2017/12/20/tx2-reflash-with-sample-rootfs/</id>
     <published>2017-12-19T16:00:00.000Z</published>
     <updated>2017-12-20T07:17:38.000Z</updated>
     
@@ -381,18 +381,18 @@
     </summary>
     
     
-      <category term="hack" scheme="http://good5dog5.github.io/tags/hack/"/>
+      <category term="hack" scheme="http://jordanhuang.tw/tags/hack/"/>
     
-      <category term="TX2" scheme="http://good5dog5.github.io/tags/TX2/"/>
+      <category term="TX2" scheme="http://jordanhuang.tw/tags/TX2/"/>
     
-      <category term="rootfs" scheme="http://good5dog5.github.io/tags/rootfs/"/>
+      <category term="rootfs" scheme="http://jordanhuang.tw/tags/rootfs/"/>
     
   </entry>
   
   <entry>
     <title>Libreoffice5 使用筆記</title>
-    <link href="http://good5dog5.github.io/2016/07/18/libreoffice-use-note/"/>
-    <id>http://good5dog5.github.io/2016/07/18/libreoffice-use-note/</id>
+    <link href="http://jordanhuang.tw/2016/07/18/libreoffice-use-note/"/>
+    <id>http://jordanhuang.tw/2016/07/18/libreoffice-use-note/</id>
     <published>2016-07-17T18:37:08.000Z</published>
     <updated>2016-08-04T04:28:43.000Z</updated>
     
@@ -405,14 +405,14 @@
     </summary>
     
     
-      <category term="libreoffice" scheme="http://good5dog5.github.io/tags/libreoffice/"/>
+      <category term="libreoffice" scheme="http://jordanhuang.tw/tags/libreoffice/"/>
     
   </entry>
   
   <entry>
     <title>利用 GNU Privacy Guard (GPG) 加解密檔案</title>
-    <link href="http://good5dog5.github.io/2016/07/09/%E5%88%A9%E7%94%A8gpg%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%AA%94%E6%A1%88/"/>
-    <id>http://good5dog5.github.io/2016/07/09/利用gpg加解密檔案/</id>
+    <link href="http://jordanhuang.tw/2016/07/09/%E5%88%A9%E7%94%A8gpg%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%AA%94%E6%A1%88/"/>
+    <id>http://jordanhuang.tw/2016/07/09/利用gpg加解密檔案/</id>
     <published>2016-07-08T19:50:42.000Z</published>
     <updated>2019-12-09T06:15:58.000Z</updated>
     
@@ -425,18 +425,18 @@
     </summary>
     
     
-      <category term="gpg" scheme="http://good5dog5.github.io/tags/gpg/"/>
+      <category term="gpg" scheme="http://jordanhuang.tw/tags/gpg/"/>
     
-      <category term="gnu" scheme="http://good5dog5.github.io/tags/gnu/"/>
+      <category term="gnu" scheme="http://jordanhuang.tw/tags/gnu/"/>
     
-      <category term="crypto" scheme="http://good5dog5.github.io/tags/crypto/"/>
+      <category term="crypto" scheme="http://jordanhuang.tw/tags/crypto/"/>
     
   </entry>
   
   <entry>
     <title>PyCon TW 2016參加心得</title>
-    <link href="http://good5dog5.github.io/2016/06/05/PyCon2016-review/"/>
-    <id>http://good5dog5.github.io/2016/06/05/PyCon2016-review/</id>
+    <link href="http://jordanhuang.tw/2016/06/05/PyCon2016-review/"/>
+    <id>http://jordanhuang.tw/2016/06/05/PyCon2016-review/</id>
     <published>2016-06-05T02:35:00.000Z</published>
     <updated>2016-08-04T04:28:43.000Z</updated>
     
@@ -449,16 +449,16 @@
     </summary>
     
     
-      <category term="PyCon" scheme="http://good5dog5.github.io/tags/PyCon/"/>
+      <category term="PyCon" scheme="http://jordanhuang.tw/tags/PyCon/"/>
     
-      <category term="Python" scheme="http://good5dog5.github.io/tags/Python/"/>
+      <category term="Python" scheme="http://jordanhuang.tw/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>初探D-Bus與polkit</title>
-    <link href="http://good5dog5.github.io/2016/05/26/%E5%88%9D%E6%8E%A2Dbus%E8%88%87polkit/"/>
-    <id>http://good5dog5.github.io/2016/05/26/初探Dbus與polkit/</id>
+    <link href="http://jordanhuang.tw/2016/05/26/%E5%88%9D%E6%8E%A2Dbus%E8%88%87polkit/"/>
+    <id>http://jordanhuang.tw/2016/05/26/初探Dbus與polkit/</id>
     <published>2016-05-26T06:21:00.000Z</published>
     <updated>2016-08-04T04:28:43.000Z</updated>
     
@@ -471,16 +471,16 @@
     </summary>
     
     
-      <category term="D-Bus" scheme="http://good5dog5.github.io/tags/D-Bus/"/>
+      <category term="D-Bus" scheme="http://jordanhuang.tw/tags/D-Bus/"/>
     
-      <category term="Polkit" scheme="http://good5dog5.github.io/tags/Polkit/"/>
+      <category term="Polkit" scheme="http://jordanhuang.tw/tags/Polkit/"/>
     
   </entry>
   
   <entry>
     <title>GNU C Preprocessor 常用功能介紹</title>
-    <link href="http://good5dog5.github.io/2016/04/29/c-preprocessor-intro/"/>
-    <id>http://good5dog5.github.io/2016/04/29/c-preprocessor-intro/</id>
+    <link href="http://jordanhuang.tw/2016/04/29/c-preprocessor-intro/"/>
+    <id>http://jordanhuang.tw/2016/04/29/c-preprocessor-intro/</id>
     <published>2016-04-29T04:12:00.000Z</published>
     <updated>2020-09-21T06:31:10.000Z</updated>
     
@@ -493,20 +493,20 @@
     </summary>
     
     
-      <category term="c" scheme="http://good5dog5.github.io/tags/c/"/>
+      <category term="c" scheme="http://jordanhuang.tw/tags/c/"/>
     
-      <category term="Preprocessor" scheme="http://good5dog5.github.io/tags/Preprocessor/"/>
+      <category term="Preprocessor" scheme="http://jordanhuang.tw/tags/Preprocessor/"/>
     
-      <category term="gcc" scheme="http://good5dog5.github.io/tags/gcc/"/>
+      <category term="gcc" scheme="http://jordanhuang.tw/tags/gcc/"/>
     
-      <category term="macro" scheme="http://good5dog5.github.io/tags/macro/"/>
+      <category term="macro" scheme="http://jordanhuang.tw/tags/macro/"/>
     
   </entry>
   
   <entry>
     <title>Skymizer, Nvidia面試心得</title>
-    <link href="http://good5dog5.github.io/2016/04/28/interview-skymizer-nvidia/"/>
-    <id>http://good5dog5.github.io/2016/04/28/interview-skymizer-nvidia/</id>
+    <link href="http://jordanhuang.tw/2016/04/28/interview-skymizer-nvidia/"/>
+    <id>http://jordanhuang.tw/2016/04/28/interview-skymizer-nvidia/</id>
     <published>2016-04-28T04:12:00.000Z</published>
     <updated>2019-12-04T02:06:57.000Z</updated>
     
@@ -519,13 +519,13 @@
     </summary>
     
     
-      <category term="Job" scheme="http://good5dog5.github.io/tags/Job/"/>
+      <category term="Job" scheme="http://jordanhuang.tw/tags/Job/"/>
     
-      <category term="Interview" scheme="http://good5dog5.github.io/tags/Interview/"/>
+      <category term="Interview" scheme="http://jordanhuang.tw/tags/Interview/"/>
     
-      <category term="Skymizer" scheme="http://good5dog5.github.io/tags/Skymizer/"/>
+      <category term="Skymizer" scheme="http://jordanhuang.tw/tags/Skymizer/"/>
     
-      <category term="Nvidia" scheme="http://good5dog5.github.io/tags/Nvidia/"/>
+      <category term="Nvidia" scheme="http://jordanhuang.tw/tags/Nvidia/"/>
     
   </entry>
   
