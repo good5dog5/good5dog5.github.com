@@ -1,3 +1,7 @@
+<script src="<%- config.root %>js/jquery-2.0.3.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+<script src="<%- config.root %>js/custom.js"></script>
+
 <header class="article-info clearfix">
   <h1 itemprop="name">
     <% if(item.link) { %>
@@ -12,6 +16,8 @@
 		<% } %>
   <p class="article-time">
     <time datetime="<%= date_xml(item.date) %>" itemprop="datePublished"> <%= __('datepublished') %> <%= item.date.format(config.date_format) %></time>
-    
+  </p>
+  <p class="article-view-count">PageView
+    <font class="count"><font></font>
   </p>
 </header>

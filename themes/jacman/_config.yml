@@ -18,7 +18,6 @@ widgets:
 - links
 - douban
 - rss
-- weibo
   ## provide eight widgets:github-card,category,tag,rss,archive,tagcloud,links,weibo
 
 
@@ -58,11 +57,10 @@ creative_commons: none
 author:
   intro_line1:  "Have fun here!"    ## your introduction on the bottom of the page
   intro_line2:  ""  ## the 2nd line
-  weibo_verifier: b3593ceb    ## e.g. b3593ceb Your weibo-show widget verifier ,if you use weibo-show it is needed.
   tsina:      ## e.g. 2176287895  Your weibo ID,It will be used in share button.
   douban:     ## e.g. wuchong1014 or your id for https://www.douban.com/people/wuchong1014
   zhihu:      ## e.g. jark  for http://www.zhihu.com/people/jark
-  email:      good5dog5@gmail.com## e.g. imjark@gmail.com
+  email:      good5dog5@gmail.com ## e.g. imjark@gmail.com
   twitter:    ## e.g. jarkwu for https://twitter.com/jarkwu
   github:     good5dog5
   facebook:   ## e.g. imjark for https://facebook.com/imjark
@@ -80,7 +78,6 @@ toc:
 
 #### Links
 links:
-  # 码农圈: https://coderq.com,一个面向程序员交流分享的新一代社区
 
 
 
@@ -98,9 +95,9 @@ jiathis:
 
 #### Analytics
 google_analytics:
-  enable: false
-  id:        ## e.g. UA-46321946-2 your google analytics ID.
-  site:      ## e.g. wuchong.me your google analytics site or set the value as auto.
+  enable: true
+  id: UA-44033199-1        ## e.g. UA-46321946-2 your google analytics ID.
+  site: good5dog5.github.io/
 ## You MUST upgrade to Universal Analytics first!
 ## https://developers.google.com/analytics/devguides/collection/upgrade/?hl=zh_CN
 baidu_tongji:
@@ -115,11 +112,10 @@ ShowCustomFont: true  ## you can change custom font in `variable.styl` and `font
 fancybox: true        ## if you use gallery post or want use fancybox please set the value to true.
 totop: true           ## if you want to scroll to top in every post set the value to true
 
-
 #### Custom Search
 google_cse: 
-  enable: false
-  cx:   ## e.g. 018294693190868310296:abnhpuysycw your Custom Search ID.
+  enable: true
+  cx: 005457362716393960174:drd0fxottq8   ## e.g. 018294693190868310296:abnhpuysycw your Custom Search ID.
 ## https://www.google.com/cse/ 
 ## To enable the custom search You must create a "search" folder in '/source' and a "index.md" file
 ## set the 'front-matter' as

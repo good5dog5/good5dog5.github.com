@@ -2,7 +2,7 @@
 layout: post
 category: Note
 title: 2016W5嵌入式系統實作-課程筆記
-tags: [Embedded system, c, Linux]
+tags: [Embedded system, c, Linux, Preprocessor]
 ---
 
 * [課程網頁](https://embedded2016.hackpad.com/Mar-22-2016-Mar-22-2016--CH64GFFiviW)
@@ -65,10 +65,11 @@ int main(int argc, char *argv[])
 typedef int (*func_t)(Object *);
 ~~~
 
-## c preprocessor
+## Stringfication and concatenation
 
 * [Stringification(字串化)](https://gcc.gnu.org/onlinedocs/cpp/Stringification.html)
 * [concatenation(連結，接續)](https://gcc.gnu.org/onlinedocs/cpp/Concatenation.html) 
+* [C preprocessor](http://wen00072-blog.logdown.com/posts/146624-talk-about-c-macros#目錄)
 
 考慮以下MACRO -`object.h`
 
@@ -100,7 +101,7 @@ DECLARE_OBJECT(sphere)
 struct __light_node; typedef struct __light_node *light_node; struct __light_node { light element; light_node next; }; void append_light(const light *X, light_node *list); void delete_light_list(light_node *list);
 ~~~
 
-故對`object.c`前處理後(`gcc -E -P source.c`)[GNU: The C Preprocessor 導讀 ](http://wen00072-blog.logdown.com/posts/146624-talk-about-c-macros)
+故對`object.c`前處理後(`gcc -E -P source.c`)
 
 ~~~ c
 struct __light_node; typedef struct __light_node *light_node; struct __light_node { light element; light_node next; }; void append_light(const light *X, light_node *list); void delete_light_list(light_node *list);
